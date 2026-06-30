@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>n8n: la alternativa open source a Zapier para automatizaciones con IA | IA para Negocios</title>
+  <meta name="description" content="Qué es n8n y cómo usarlo para automatizar procesos con IA. La alternativa open source a Zapier con más flexibilidad, agentes de IA y posibilidad de self-hosting.">
+  <meta name="keywords" content="n8n automatización, n8n vs Zapier, n8n open source, n8n IA agentes, automatización self-hosted">
+  <meta property="og:title" content="n8n: la alternativa open source a Zapier para automatizaciones con IA">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://iaparanegocios.es/articulos/n8n-automatizacion-codigo.html">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"n8n: la alternativa open source a Zapier para automatizaciones con IA","author":{"@type":"Organization","name":"Equipo IA para Negocios"},"publisher":{"@type":"Organization","name":"IA para Negocios","url":"https://iaparanegocios.es"},"datePublished":"2025-06-16","url":"https://iaparanegocios.es/articulos/n8n-automatizacion-codigo.html"}</script>
+</head>
+<body>
+<div class="reading-progress" id="reading-progress"></div>
+
+<header class="site-header"><div class="container"><nav class="nav" id="main-nav">
+  <a href="../index.html" class="nav-logo"><div class="logo-icon">🤖</div><span><b>IA</b> para Negocios</span></a>
+  <div class="nav-links">
+    <a href="../categorias/chatgpt-empresas.html">ChatGPT</a>
+    <a href="../categorias/automatizacion-ia.html" class="active">Automatización</a>
+    <a href="../categorias/herramientas-ia.html">Herramientas</a>
+    <a href="../categorias/ia-marketing.html">Marketing</a>
+    <a href="../categorias/ia-por-sector.html">Por Sector</a>
+    <a href="../categorias/productividad-ia.html">Productividad</a>
+    <a href="../categorias/ia-ecommerce.html">eCommerce</a>
+    <a href="../categorias/legal-privacidad-ia.html">Legal</a>
+  </div>
+  <div class="nav-cta"><a href="../index.html#newsletter" class="btn btn-primary">Newsletter gratis</a></div>
+  <button class="nav-hamburger" aria-label="Menú" onclick="document.getElementById('main-nav').classList.toggle('nav-mobile-open')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+</nav></div></header>
+
+<main><div class="container" style="padding-top:2.5rem;padding-bottom:4rem;">
+  <nav class="breadcrumb">
+    <a href="../index.html">Inicio</a><span class="breadcrumb-sep">/</span>
+    <a href="../categorias/automatizacion-ia.html">Automatización con IA</a><span class="breadcrumb-sep">/</span>
+    <span>n8n: automatización open source con IA</span>
+  </nav>
+  <div class="article-layout">
+    <article class="article-content-main">
+      <header class="article-header">
+        <div class="article-meta-bar">
+          <span class="badge badge-cyan">Automatización</span>
+          <span class="separator">·</span><span>16 de junio de 2025</span>
+          <span class="separator">·</span><span>7 min de lectura</span>
+          <span class="separator">·</span><span>Equipo IA para Negocios</span>
+        </div>
+        <h1 style="margin-top:1rem;">n8n: la alternativa open source a Zapier para automatizaciones con IA</h1>
+      </header>
+
+      <nav class="toc-box"><h4>📋 En este artículo</h4><ol>
+        <li><a href="#que-es">Qué es n8n y por qué está creciendo</a></li>
+        <li><a href="#vs-zapier">n8n vs Zapier vs Make: comparativa</a></li>
+        <li><a href="#ia">n8n para automatizaciones con IA</a></li>
+        <li><a href="#casos">Casos de uso empresariales</a></li>
+        <li><a href="#self-hosting">Self-hosting: privacidad y control total</a></li>
+        <li><a href="#empezar">Por dónde empezar con n8n</a></li>
+      </ol></nav>
+
+      <div class="article-body">
+        <p>n8n (pronunciado "n-eight-n") es la herramienta de automatización que usan los equipos técnicos que quieren la flexibilidad de Zapier pero sin sus limitaciones ni su precio. En 2024-2025 se ha convertido en la herramienta favorita para construir agentes de IA empresariales.</p>
+
+        <div class="info-box">
+          <strong>💡 Por qué n8n está despegando:</strong> La combinación de open source (puedes hostearlo tú mismo y tus datos nunca salen de tu servidor), precio muy inferior a Zapier para alto volumen, y los mejores nodos de IA del mercado lo hacen ideal para empresas que quieren control total.
+        </div>
+
+        <h2 id="que-es">Qué es n8n y por qué está creciendo</h2>
+        <p>n8n es una plataforma de automatización de flujos de trabajo que:</p>
+        <ul>
+          <li>Tiene interfaz visual de drag-and-drop como Zapier o Make</li>
+          <li>Tiene más de 400 conectores a servicios y APIs</li>
+          <li>Permite escribir código JavaScript cuando necesitas lógica personalizada</li>
+          <li>Tiene nodos nativos para IA: OpenAI, Anthropic, Hugging Face, Ollama (local)</li>
+          <li>Es open source: puedes instalarlo en tu propio servidor</li>
+          <li>Tiene nodos específicos para construir agentes de IA con memoria</li>
+        </ul>
+
+        <h2 id="vs-zapier">n8n vs Zapier vs Make: comparativa</h2>
+        <table>
+          <thead><tr><th>Característica</th><th>Zapier</th><th>Make</th><th>n8n</th></tr></thead>
+          <tbody>
+            <tr><td>Facilidad de uso</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+            <tr><td>Flexibilidad técnica</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+            <tr><td>IA integrada</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+            <tr><td>Self-hosting</td><td>No</td><td>No</td><td>Sí (gratis)</td></tr>
+            <tr><td>Precio alto volumen</td><td>Caro</td><td>Moderado</td><td>Muy económico</td></tr>
+            <tr><td>Conectores</td><td>6.000+</td><td>1.500+</td><td>400+</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>¿Cuándo elegir n8n?</strong> Cuando tienes volumen alto de automatizaciones y el coste de Zapier es elevado, cuando quieres construir agentes de IA complejos, cuando la privacidad de datos es crítica (self-hosting), o cuando tienes alguien en el equipo con conocimientos técnicos básicos.</p>
+
+        <h2 id="ia">n8n para automatizaciones con IA</h2>
+        <p>n8n tiene los nodos de IA más avanzados del mercado no-code:</p>
+
+        <h3>AI Agent Node</h3>
+        <p>El nodo más potente: crea agentes de IA con memoria, herramientas y capacidad de razonamiento multi-paso. El agente puede decidir qué hacer a continuación basándose en el contexto.</p>
+
+        <h3>Chain de LLM</h3>
+        <p>Conecta múltiples llamadas a modelos de lenguaje: el output de uno es el input del siguiente. Ideal para pipelines de procesamiento de texto complejos.</p>
+
+        <h3>Memoria vectorial</h3>
+        <p>n8n se integra con bases de datos vectoriales (Pinecone, Qdrant, Supabase) para dar memoria a largo plazo a tus agentes de IA.</p>
+
+        <h2 id="casos">Casos de uso empresariales</h2>
+
+        <h3>Agente de atención al cliente</h3>
+        <p>Cuando llega una consulta por email: n8n busca en la base de conocimiento de la empresa (via embeddings), el LLM genera una respuesta contextualizada, si la confianza es alta responde automáticamente, si es baja escala al humano.</p>
+
+        <h3>Pipeline de procesamiento de documentos</h3>
+        <p>Facturas recibidas por email → n8n extrae texto con OCR → LLM extrae datos estructurados (proveedor, importe, fecha) → datos introducidos en sistema contable → notificación al equipo.</p>
+
+        <h3>Monitorización y alertas inteligentes</h3>
+        <p>n8n consulta periódicamente múltiples fuentes de datos → LLM analiza si hay anomalías o situaciones que requieren atención → alerta personalizada enviada al responsable correspondiente.</p>
+
+        <h2 id="self-hosting">Self-hosting: privacidad y control total</h2>
+        <p>La gran ventaja de n8n para empresas con requisitos de privacidad:</p>
+        <ul>
+          <li>Instala n8n en tu servidor (VPS, servidor propio o cloud)</li>
+          <li>Todos los datos de los flujos de trabajo permanecen en tu infraestructura</li>
+          <li>Coste: solo el servidor (desde 5-10€/mes en Digital Ocean o Hetzner)</li>
+          <li>Puedes usar modelos de IA locales (Ollama) para que ni los datos de IA salgan de tu red</li>
+        </ul>
+
+        <h2 id="empezar">Por dónde empezar con n8n</h2>
+        <ol>
+          <li><strong>Prueba en la nube:</strong> n8n.io tiene plan gratuito para primeros flujos. Sin instalación.</li>
+          <li><strong>Aprende los conceptos básicos:</strong> Trigger → Nodos → Output. Como Zapier pero más flexible.</li>
+          <li><strong>Primer flujo simple:</strong> Webhook → proceso básico → envío de email. Sin IA todavía.</li>
+          <li><strong>Añade IA:</strong> Incluye un nodo de OpenAI o Claude en tu flujo existente.</li>
+          <li><strong>Self-hosting:</strong> Cuando tienes flujos en producción y quieres control total, instala en VPS.</li>
+        </ol>
+
+        <div class="info-box">
+          <strong>Recursos:</strong> La comunidad de n8n en foro.n8n.io es muy activa. Hay miles de plantillas de flujos ya construidos que puedes importar y adaptar. También hay creadores de contenido en YouTube que enseñan n8n con IA en español.
+        </div>
+      </div>
+    </article>
+
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <h3>Artículos relacionados</h3>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.75rem;">
+          <li><a href="zapier-ia-automatizar-tareas.html" style="color:var(--color-text-muted);font-size:0.875rem;">Zapier con IA</a></li>
+          <li><a href="make-automatizacion-flujos-trabajo.html" style="color:var(--color-text-muted);font-size:0.875rem;">Make para automatización</a></li>
+          <li><a href="chatgpt-api-integracion.html" style="color:var(--color-text-muted);font-size:0.875rem;">ChatGPT API para empresas</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-widget cta-widget">
+        <h3>Automatización avanzada</h3>
+        <p>Newsletter con flujos de automatización con IA para equipos técnicos y empresas.</p>
+        <a href="../index.html#newsletter" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Suscribirme gratis</a>
+      </div>
+      <div class="ad-slot ad-slot-rectangle">Espacio publicitario 300×250</div>
+    </aside>
+  </div>
+</div></main>
+
+<footer class="site-footer"><div class="container"><div class="footer-grid">
+  <div><div class="footer-logo"><div class="logo-icon">🤖</div><span><b>IA</b> para Negocios</span></div><p style="color:var(--color-text-muted);font-size:0.875rem;margin-top:0.75rem;">Inteligencia artificial aplicada a empresas y autónomos en España.</p></div>
+  <div><h4 class="footer-heading">Categorías</h4><ul class="footer-links"><li><a href="../categorias/chatgpt-empresas.html">ChatGPT Empresas</a></li><li><a href="../categorias/automatizacion-ia.html">Automatización</a></li><li><a href="../categorias/herramientas-ia.html">Herramientas IA</a></li><li><a href="../categorias/ia-marketing.html">IA Marketing</a></li></ul></div>
+  <div><h4 class="footer-heading">Más categorías</h4><ul class="footer-links"><li><a href="../categorias/ia-por-sector.html">IA por Sector</a></li><li><a href="../categorias/productividad-ia.html">Productividad</a></li><li><a href="../categorias/ia-ecommerce.html">IA eCommerce</a></li><li><a href="../categorias/legal-privacidad-ia.html">Legal y Privacidad</a></li></ul></div>
+  <div><h4 class="footer-heading">Artículos populares</h4><ul class="footer-links"><li><a href="como-usar-chatgpt-empresa.html">Cómo usar ChatGPT en tu empresa</a></li><li><a href="mejores-herramientas-ia-2025.html">Mejores herramientas IA 2025</a></li><li><a href="automatizacion-ia-pequenas-empresas.html">Automatización para pymes</a></li></ul></div>
+</div><div style="border-top:1px solid var(--color-border);margin-top:2rem;padding-top:1.5rem;text-align:center;color:var(--color-text-muted);font-size:0.875rem;">© 2025 IA para Negocios · Todos los derechos reservados</div></div></footer>
+
+<script>
+  const bar = document.getElementById('reading-progress');
+  window.addEventListener('scroll', () => {
+    const el = document.documentElement;
+    const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  });
+</script>
+</body>
+</html>
