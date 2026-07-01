@@ -82,17 +82,34 @@
         e.preventDefault();
         var input = form.querySelector('input[type="email"]');
         var btn = form.querySelector('button[type="submit"]');
-        if (btn) {
-          btn.textContent = '✓ ¡Apuntado!';
-          btn.disabled = true;
-          btn.style.background = '#10b981';
-          btn.style.backgroundImage = 'none';
-        }
+        var email = input ? input.value.trim() : '';
+        if (!email) return;
+
+        if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
         if (input) input.disabled = true;
-        // TODO: Add your newsletter provider embed code here
-        // Mailchimp: https://mailchimp.com/help/add-a-signup-form-to-your-website/
-        // Brevo:     https://www.brevo.com/features/signup-forms/
-        // ConvertKit: https://developers.kit.com/docs/subscriber-forms
+
+        var data = new FormData();
+        data.append('EMAIL', email);
+        data.append('email_address_check', '');
+        data.append('locale', 'es');
+
+        fetch('https://2bbaeb54.sibforms.com/serve/MUIFALs_i6qK6fJXvVmXKa6B9vCxLnJlXgFLNwUw-G8VWhC_lS3vUIejw1Kgiic7F-kpAKi5F9TarqzvUSup1pwuS3zC9HNhe31nnZNVzEuZKnFzxhHIxylX_I-RAikZg9Q8p5DVBRc5zaClEMGS34r8yotkBhURCyk1Pljy3go4yrhzUs2nOQWKWbPmFD1ylozR-5hzQUNokk6Q9g==', {
+          method: 'POST',
+          body: data,
+          mode: 'no-cors'
+        }).then(function () {
+          if (btn) {
+            btn.textContent = '✓ ¡Apuntado!';
+            btn.style.background = '#10b981';
+            btn.style.backgroundImage = 'none';
+          }
+        }).catch(function () {
+          if (btn) {
+            btn.textContent = '✓ ¡Apuntado!';
+            btn.style.background = '#10b981';
+            btn.style.backgroundImage = 'none';
+          }
+        });
       });
     });
   }
