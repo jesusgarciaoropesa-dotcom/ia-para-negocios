@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iaparanegocios.es/sitemap.xml
+Sitemap: https://iando.xyz/sitemap.xml
