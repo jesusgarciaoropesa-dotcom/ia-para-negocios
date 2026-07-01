@@ -7,10 +7,34 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://iaparanegocios.es/categorias/automatizacion-ia.html</loc>
+    <loc>https://iaparanegocios.es/sobre-nosotros.html</loc>
     <lastmod>2026-07-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://iaparanegocios.es/contacto.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://iaparanegocios.es/cookies.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://iaparanegocios.es/politica-privacidad.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://iaparanegocios.es/aviso-legal.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://iaparanegocios.es/categorias/chatgpt-empresas.html</loc>
@@ -19,13 +43,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://iaparanegocios.es/categorias/herramientas-ia.html</loc>
+    <loc>https://iaparanegocios.es/categorias/automatizacion-ia.html</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://iaparanegocios.es/categorias/ia-ecommerce.html</loc>
+    <loc>https://iaparanegocios.es/categorias/herramientas-ia.html</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -43,13 +67,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://iaparanegocios.es/categorias/legal-privacidad-ia.html</loc>
+    <loc>https://iaparanegocios.es/categorias/productividad-ia.html</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://iaparanegocios.es/categorias/productividad-ia.html</loc>
+    <loc>https://iaparanegocios.es/categorias/ia-ecommerce.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://iaparanegocios.es/categorias/legal-privacidad-ia.html</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
