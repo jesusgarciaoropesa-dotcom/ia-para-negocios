@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacidad de datos al usar IA en empresa: riesgos y buenas prácticas | IA para Negocios</title>
+  <meta name="description" content="Cómo proteger la privacidad de datos al usar herramientas de IA en tu empresa. Qué datos no enviar a la IA, configuración de privacidad, datos sensibles y medidas técnicas.">
+  <meta name="keywords" content="privacidad datos IA empresa, datos confidenciales IA, seguridad IA empresas, ChatGPT privacidad empresa, datos sensibles inteligencia artificial">
+  <meta property="og:title" content="Privacidad de datos al usar IA en empresa: riesgos y buenas prácticas">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://iaparanegocios.es/articulos/privacidad-datos-ia-empresa.html">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Privacidad de datos al usar IA en empresa: riesgos y buenas prácticas","author":{"@type":"Organization","name":"Equipo IA para Negocios"},"publisher":{"@type":"Organization","name":"IA para Negocios","url":"https://iaparanegocios.es"},"datePublished":"2025-06-16","url":"https://iaparanegocios.es/articulos/privacidad-datos-ia-empresa.html"}</script>
+</head>
+<body>
+<div class="reading-progress" id="reading-progress"></div>
+
+<header class="site-header"><div class="container"><nav class="nav" id="main-nav">
+  <a href="../index.html" class="nav-logo"><div class="logo-icon">🤖</div><span><b>IA</b> para Negocios</span></a>
+  <div class="nav-links">
+    <a href="../categorias/chatgpt-empresas.html">ChatGPT</a>
+    <a href="../categorias/automatizacion-ia.html">Automatización</a>
+    <a href="../categorias/herramientas-ia.html">Herramientas</a>
+    <a href="../categorias/ia-marketing.html">Marketing</a>
+    <a href="../categorias/ia-por-sector.html">Por Sector</a>
+    <a href="../categorias/productividad-ia.html">Productividad</a>
+    <a href="../categorias/ia-ecommerce.html">eCommerce</a>
+    <a href="../categorias/legal-privacidad-ia.html" class="active">Legal</a>
+  </div>
+  <div class="nav-cta"><a href="../index.html#newsletter" class="btn btn-primary">Newsletter gratis</a></div>
+  <button class="nav-hamburger" aria-label="Menú" onclick="document.getElementById('main-nav').classList.toggle('nav-mobile-open')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+</nav></div></header>
+
+<main><div class="container" style="padding-top:2.5rem;padding-bottom:4rem;">
+  <nav class="breadcrumb">
+    <a href="../index.html">Inicio</a><span class="breadcrumb-sep">/</span>
+    <a href="../categorias/legal-privacidad-ia.html">Legal y Privacidad IA</a><span class="breadcrumb-sep">/</span>
+    <span>Privacidad de datos con IA</span>
+  </nav>
+  <div class="article-layout">
+    <article class="article-content-main">
+      <header class="article-header">
+        <div class="article-meta-bar">
+          <span class="badge badge-purple">Legal</span>
+          <span class="separator">·</span><span>16 de junio de 2025</span>
+          <span class="separator">·</span><span>7 min de lectura</span>
+          <span class="separator">·</span><span>Equipo IA para Negocios</span>
+        </div>
+        <h1 style="margin-top:1rem;">Privacidad de datos al usar IA en empresa: riesgos y buenas prácticas</h1>
+      </header>
+
+      <nav class="toc-box"><h4>📋 En este artículo</h4><ol>
+        <li><a href="#riesgos">Riesgos reales de privacidad con IA</a></li>
+        <li><a href="#no-enviar">Qué datos no deberías enviar a la IA</a></li>
+        <li><a href="#configuracion">Configuración de privacidad en herramientas de IA</a></li>
+        <li><a href="#anonimizar">Anonimizar y seudonimizar datos</a></li>
+        <li><a href="#ia-local">IA local y modelos privados</a></li>
+        <li><a href="#politica">Política de uso de IA en la empresa</a></li>
+      </ol></nav>
+
+      <div class="article-body">
+        <p>Cuando un empleado pega el contrato con un cliente en ChatGPT para que le ayude a resumirlo, ¿sabe que esos datos pueden usarse para entrenar el modelo? La privacidad de datos es uno de los riesgos más infravalorados en la adopción de IA empresarial. Este artículo explica los riesgos reales y cómo mitigarlos.</p>
+
+        <h2 id="riesgos">Riesgos reales de privacidad con IA</h2>
+        <p>Los principales riesgos de privacidad al usar herramientas de IA en empresa:</p>
+
+        <h3>1. Datos usados para entrenamiento</h3>
+        <p>Muchos proveedores de IA en sus planes gratuitos y básicos pueden usar las conversaciones para mejorar sus modelos. En enero 2023, Samsung tuvo que prohibir internamente el uso de ChatGPT después de que empleados enviaran código fuente propietario. Aunque ChatGPT no "recuerda" esa información de forma directa, los datos podrían usarse en el entrenamiento futuro.</p>
+
+        <h3>2. Almacenamiento y retención de datos</h3>
+        <p>Los datos enviados a herramientas de IA se almacenan en los servidores del proveedor. La duración de retención varía: OpenAI conserva las conversaciones 30 días por defecto en los planes de pago con historial desactivado. En planes gratuitos, puede ser indefinido.</p>
+
+        <h3>3. Acceso de empleados del proveedor</h3>
+        <p>Los proveedores suelen reservarse el derecho de que sus empleados accedan a las conversaciones para revisión de seguridad y mejora del modelo. Aunque este acceso está sujeto a NDA y controles, es un riesgo para información muy sensible.</p>
+
+        <h3>4. Brechas de seguridad en el proveedor</h3>
+        <p>En marzo 2023, OpenAI tuvo un bug que expuso brevemente partes del historial de conversaciones de algunos usuarios. Un proveedor con millones de conversaciones sensibles de empresas es un objetivo atractivo para atacantes.</p>
+
+        <h2 id="no-enviar">Qué datos no deberías enviar a la IA</h2>
+        <p>Como regla general, salvo que tengas un DPA firmado y verificado con el proveedor, no deberías enviar:</p>
+
+        <ul>
+          <li><strong>Datos personales de clientes:</strong> Nombres, emails, teléfonos, DNI, datos de pago</li>
+          <li><strong>Datos de salud:</strong> Historial médico, diagnósticos, información de seguros de salud</li>
+          <li><strong>Información financiera:</strong> Datos bancarios, información fiscal, balances no públicos</li>
+          <li><strong>Secretos comerciales:</strong> Código fuente propietario, fórmulas, estrategias de producto no publicadas</li>
+          <li><strong>Datos de empleados:</strong> Evaluaciones de desempeño, información de nóminas, datos de RRHH</li>
+          <li><strong>Información confidencial de negociaciones:</strong> Términos de contratos en negociación, estrategia de adquisiciones</li>
+          <li><strong>Credenciales de acceso:</strong> Contraseñas, API keys, tokens de acceso</li>
+        </ul>
+
+        <div class="warning-box">
+          <strong>La regla del periódico:</strong> Antes de pegar información en una herramienta de IA, pregúntate: ¿estaría cómodo si esta información apareciera publicada en un periódico? Si la respuesta es no, no la envíes.
+        </div>
+
+        <h2 id="configuracion">Configuración de privacidad en herramientas de IA</h2>
+        <p>La mayoría de los proveedores permiten configurar opciones de privacidad que reducen el riesgo:</p>
+
+        <h3>ChatGPT (OpenAI)</h3>
+        <ul>
+          <li><strong>Desactivar historial de conversaciones:</strong> En Configuración → Controles de datos → "Mejorar el modelo para todos" → Off. Cuando está desactivado, las conversaciones no se usan para entrenamiento</li>
+          <li><strong>Plan Teams/Enterprise:</strong> Garantiza contractualmente que los datos no se usan para entrenamiento. Es el único plan adecuado para datos confidenciales</li>
+          <li><strong>Data Export:</strong> Puedes descargar todo tu historial de conversaciones y solicitar la eliminación</li>
+        </ul>
+
+        <h3>Claude (Anthropic)</h3>
+        <ul>
+          <li>El plan gratuito puede usar conversaciones para mejorar el modelo</li>
+          <li>Claude.ai Pro (de pago) tiene más controles sobre retención de datos</li>
+          <li>API de Anthropic: Por defecto, las llamadas a la API no se usan para entrenamiento. Ideal para integraciones empresariales</li>
+        </ul>
+
+        <h3>Microsoft Copilot / Azure OpenAI</h3>
+        <ul>
+          <li>Para empresas con Azure, el servicio Azure OpenAI garantiza que los datos no se usan para entrenar los modelos base de OpenAI</li>
+          <li>Los datos permanecen dentro del tenant de Azure de la empresa</li>
+          <li>Cumple con las certificaciones ISO 27001, SOC 2 y es compatible con RGPD</li>
+        </ul>
+
+        <h2 id="anonimizar">Anonimizar y seudonimizar datos</h2>
+        <p>Cuando necesites usar IA con información que contiene datos personales, la anonimización y seudonimización reducen el riesgo:</p>
+
+        <h3>Seudonimización básica</h3>
+        <p>Sustituye los datos identificadores por códigos o nombres ficticios antes de enviarlo a la IA. Por ejemplo: "El cliente Juan García (ID: C001) tiene una deuda de..." → "El cliente C001 tiene una deuda de...". La IA puede ayudarte igualmente sin necesitar saber quién es específicamente C001.</p>
+
+        <div class="prompt-box">
+          "Antes de enviarte este documento, he sustituido todos los nombres propios y datos identificadores por códigos. Cuando necesites referirte a personas, usa los códigos [P1, P2...], empresas [E1, E2...] y ubicaciones [L1, L2...] que aparecen en el texto. El documento es: [texto con datos seudonimizados]."
+        </div>
+
+        <h2 id="ia-local">IA local y modelos privados</h2>
+        <p>La solución más segura para datos muy sensibles es usar modelos de IA que se ejecuten localmente en los servidores de la empresa:</p>
+
+        <ul>
+          <li><strong>Ollama:</strong> Permite ejecutar modelos como Llama 3, Mistral o Phi localmente en cualquier ordenador. Los datos nunca salen del dispositivo</li>
+          <li><strong>Azure Private Endpoints:</strong> Para empresas grandes, acceso privado a modelos de Azure OpenAI sin que los datos pasen por internet público</li>
+          <li><strong>Modelos fine-tuned en infraestructura propia:</strong> La opción más cara pero más completa para empresas con requisitos de cumplimiento muy estrictos</li>
+        </ul>
+
+        <h2 id="politica">Política de uso de IA en la empresa</h2>
+        <p>Sin una política clara, los empleados toman sus propias decisiones sobre qué datos pueden enviar a herramientas de IA. La política debe cubrir:</p>
+
+        <ul>
+          <li>Qué herramientas de IA están autorizadas para uso profesional</li>
+          <li>Qué categorías de datos están prohibidas de enviar a IA externa</li>
+          <li>Proceso de aprobación para nuevas herramientas de IA</li>
+          <li>Formación obligatoria sobre uso seguro de IA</li>
+          <li>Consecuencias del incumplimiento</li>
+        </ul>
+
+        <div class="info-box">
+          <strong>Punto de partida:</strong> Si tu empresa todavía no tiene política de IA, empieza con una regla simple y clara: "No envíes datos personales de clientes ni información confidencial de negocio a herramientas de IA sin aprobación previa del responsable de cumplimiento." Esta regla simple previene el 80% de los incidentes de privacidad relacionados con IA.
+        </div>
+      </div>
+    </article>
+
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <h3>Artículos relacionados</h3>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.75rem;">
+          <li><a href="rgpd-ia-empresa.html" style="color:var(--color-text-muted);font-size:0.875rem;">RGPD e IA en empresas</a></li>
+          <li><a href="politica-uso-ia-empresa.html" style="color:var(--color-text-muted);font-size:0.875rem;">Política de uso de IA en empresa</a></li>
+          <li><a href="ia-reglamento-europeo-ia.html" style="color:var(--color-text-muted);font-size:0.875rem;">Reglamento Europeo de IA</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-widget cta-widget">
+        <h3>IA segura y responsable</h3>
+        <p>Newsletter con prácticas de seguridad y privacidad para empresas que usan IA.</p>
+        <a href="../index.html#newsletter" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Suscribirme gratis</a>
+      </div>
+      <div class="ad-slot ad-slot-rectangle">Espacio publicitario 300×250</div>
+    </aside>
+  </div>
+</div></main>
+
+<footer class="site-footer"><div class="container"><div class="footer-grid">
+  <div><div class="footer-logo"><div class="logo-icon">🤖</div><span><b>IA</b> para Negocios</span></div><p style="color:var(--color-text-muted);font-size:0.875rem;margin-top:0.75rem;">Inteligencia artificial aplicada a empresas y autónomos en España.</p></div>
+  <div><h4 class="footer-heading">Categorías</h4><ul class="footer-links"><li><a href="../categorias/chatgpt-empresas.html">ChatGPT Empresas</a></li><li><a href="../categorias/automatizacion-ia.html">Automatización</a></li><li><a href="../categorias/herramientas-ia.html">Herramientas IA</a></li><li><a href="../categorias/ia-marketing.html">IA Marketing</a></li></ul></div>
+  <div><h4 class="footer-heading">Más categorías</h4><ul class="footer-links"><li><a href="../categorias/ia-por-sector.html">IA por Sector</a></li><li><a href="../categorias/productividad-ia.html">Productividad</a></li><li><a href="../categorias/ia-ecommerce.html">IA eCommerce</a></li><li><a href="../categorias/legal-privacidad-ia.html">Legal y Privacidad</a></li></ul></div>
+  <div><h4 class="footer-heading">Artículos populares</h4><ul class="footer-links"><li><a href="como-usar-chatgpt-empresa.html">Cómo usar ChatGPT en tu empresa</a></li><li><a href="mejores-herramientas-ia-2025.html">Mejores herramientas IA 2025</a></li><li><a href="automatizacion-ia-pequenas-empresas.html">Automatización para pymes</a></li></ul></div>
+</div><div style="border-top:1px solid var(--color-border);margin-top:2rem;padding-top:1.5rem;text-align:center;color:var(--color-text-muted);font-size:0.875rem;">© 2025 IA para Negocios · Todos los derechos reservados</div></div></footer>
+
+<script>
+  const bar = document.getElementById('reading-progress');
+  window.addEventListener('scroll', () => {
+    const el = document.documentElement;
+    const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  });
+</script>
+</body>
+</html>
