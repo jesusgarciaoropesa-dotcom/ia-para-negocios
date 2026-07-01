@@ -54,6 +54,10 @@
   if (existing === 'all') { loadGA(); }
   if (existing) return;
 
+  // Determine relative prefix (works on GitHub Pages subpath and custom domain)
+  var _inSubdir = /\/(articulos|categorias)\//.test(window.location.pathname);
+  var _cookiesHref = (_inSubdir ? '../' : '') + 'cookies.html';
+
   // No stored consent — show banner
   var banner = document.createElement('div');
   banner.id = 'cookie-banner';
@@ -62,7 +66,7 @@
   banner.innerHTML =
     '<div class="cookie-banner-inner">' +
       '<p>🍪 Usamos cookies de analítica (Google Analytics) para mejorar el sitio. ' +
-      '<a href="/cookies.html">Política de cookies</a>.</p>' +
+      '<a href="' + _cookiesHref + '">Política de cookies</a>.</p>' +
       '<div class="cookie-banner-btns">' +
         '<button class="cookie-btn cookie-btn-secondary" onclick="__cookieEssential()">Solo técnicas</button>' +
         '<button class="cookie-btn cookie-btn-primary" onclick="__cookieAcceptAll()">Aceptar todas</button>' +
