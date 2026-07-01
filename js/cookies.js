@@ -2,8 +2,7 @@
   'use strict';
 
   var CONSENT_KEY = 'cookie_consent';
-  // Replace with your GA4 Measurement ID (e.g. 'G-ABC1234567')
-  var GA_ID = 'G-XXXXXXXXXX';
+  var GA_ID = 'G-0CX7BG92C8';
 
   function getCookie(name) {
     var m = document.cookie.match('(?:^|;\\s*)' + name + '=([^;]*)');
