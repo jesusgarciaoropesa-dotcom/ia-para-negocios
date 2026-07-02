@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
   <header class="site-header">
     <div class="container">
       <nav class="nav" id="main-nav">
@@ -25,12 +26,12 @@
         </div>
         <a href="buscar.html" class="nav-search-link" aria-label="Buscar"><svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
         <div class="nav-cta"><a href="./index.html#newsletter" class="btn btn-primary">Newsletter gratis</a></div>
-        <button class="nav-hamburger" aria-label="Menú" onclick="document.getElementById('main-nav').classList.toggle('nav-mobile-open')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+        <button class="nav-hamburger" aria-label="Menú" aria-expanded="false" aria-controls="main-nav" onclick="var n=document.getElementById('main-nav');var open=n.classList.toggle('nav-mobile-open');this.setAttribute('aria-expanded', open)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <div class="container" style="padding-top:5rem;padding-bottom:6rem;max-width:560px;text-align:center;">
       <div style="font-size:5rem;font-weight:800;background:var(--gradient-cta);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;">404</div>
       <h1 style="margin-top:1.25rem;">Esta página no existe</h1>

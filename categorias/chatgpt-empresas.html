@@ -19,6 +19,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5086488459276769" crossorigin="anonymous"></script>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
 
   <!-- Header -->
   <header class="site-header">
@@ -42,14 +43,14 @@
         <div class="nav-cta">
           <a href="#newsletter" class="btn btn-primary">Newsletter gratis</a>
         </div>
-        <button class="nav-hamburger" aria-label="Menú" onclick="document.getElementById('main-nav').classList.toggle('nav-mobile-open')">
+        <button class="nav-hamburger" aria-label="Menú" aria-expanded="false" aria-controls="main-nav" onclick="var n=document.getElementById('main-nav');var open=n.classList.toggle('nav-mobile-open');this.setAttribute('aria-expanded', open)">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
 
     <!-- Category Hero -->
     <section class="cat-hero">

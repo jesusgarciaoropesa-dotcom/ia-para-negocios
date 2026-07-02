@@ -17,6 +17,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5086488459276769" crossorigin="anonymous"></script>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
 <div class="reading-progress" id="reading-progress"></div>
 
 <header class="site-header"><div class="container"><nav class="nav" id="main-nav">
@@ -33,10 +34,10 @@
   </div>
   <a href="../buscar.html" class="nav-search-link" aria-label="Buscar"><svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
         <div class="nav-cta"><a href="../index.html#newsletter" class="btn btn-primary">Newsletter gratis</a></div>
-  <button class="nav-hamburger" aria-label="Menú" onclick="document.getElementById('main-nav').classList.toggle('nav-mobile-open')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <button class="nav-hamburger" aria-label="Menú" aria-expanded="false" aria-controls="main-nav" onclick="var n=document.getElementById('main-nav');var open=n.classList.toggle('nav-mobile-open');this.setAttribute('aria-expanded', open)"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
 </nav></div></header>
 
-<main><div class="container" style="padding-top:2.5rem;padding-bottom:4rem;">
+<main id="main-content"><div class="container" style="padding-top:2.5rem;padding-bottom:4rem;">
   <nav class="breadcrumb">
     <a href="../index.html">Inicio</a><span class="breadcrumb-sep">/</span>
     <a href="../categorias/herramientas-ia.html">Herramientas IA</a><span class="breadcrumb-sep">/</span>
