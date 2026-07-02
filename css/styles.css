@@ -14,6 +14,21 @@
 }
 .skip-link:focus { top: 1rem; }
 
+/* ===== Newsletter consent checkbox ===== */
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--color-text-dim);
+  text-align: left;
+  margin: 0.25rem 0;
+  width: 100%;
+}
+.form-consent input[type="checkbox"] { margin-top: 0.2rem; flex-shrink: 0; }
+.form-consent span { flex: 1; min-width: 0; }
+.form-consent a { color: var(--color-text-muted); text-decoration: underline; }
+
 /* ===== CSS Variables ===== */
 :root {
   --color-bg: #0f0f23;
@@ -475,7 +490,7 @@ p { color: var(--color-text-muted); line-height: 1.7; }
 .cta-widget h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
 .cta-widget p { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1rem; }
 .email-form { display: flex; flex-direction: column; gap: 0.5rem; }
-.email-form input {
+.email-form input:not([type="checkbox"]) {
   width: 100%;
   padding: 0.65rem 1rem;
   background: rgba(255,255,255,0.05);
@@ -508,7 +523,7 @@ p { color: var(--color-text-muted); line-height: 1.7; }
   flex-wrap: wrap;
   justify-content: center;
 }
-.newsletter-form input {
+.newsletter-form input:not([type="checkbox"]) {
   flex: 1;
   min-width: 220px;
   padding: 0.75rem 1.25rem;
