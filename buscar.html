@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aviso legal | IA para Negocios</title>
-  <meta name="description" content="Aviso legal de IA para Negocios. Información sobre el titular del sitio, condiciones de uso y limitación de responsabilidad.">
-  <link rel="canonical" href="https://iando.xyz/aviso-legal.html">
+  <title>Buscar artículos | IA para Negocios</title>
+  <meta name="description" content="Busca entre más de 90 guías prácticas de inteligencia artificial para empresas y autónomos: ChatGPT, automatización, herramientas, marketing y más.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://iando.xyz/buscar.html">
   <link rel="stylesheet" href="css/styles.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5086488459276769" crossorigin="anonymous"></script>
 </head>
@@ -24,7 +25,6 @@
           <a href="categorias/ia-ecommerce.html">eCommerce</a>
           <a href="categorias/legal-privacidad-ia.html">Legal</a>
         </div>
-        <a href="buscar.html" class="nav-search-link" aria-label="Buscar"><svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
         <div class="nav-cta"><a href="./index.html#newsletter" class="btn btn-primary">Newsletter gratis</a></div>
         <button class="nav-hamburger" aria-label="Menú" onclick="document.getElementById('main-nav').classList.toggle('nav-mobile-open')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
       </nav>
@@ -32,34 +32,24 @@
   </header>
 
   <main>
-    <div class="container" style="padding-top:3rem;padding-bottom:4rem;max-width:760px;">
-      <nav class="breadcrumb"><a href="./">Inicio</a><span class="breadcrumb-sep">/</span><span>Aviso legal</span></nav>
-      <h1 style="margin-top:1.5rem;">Aviso legal</h1>
-      <p style="color:var(--color-text-muted);">Última actualización: 1 de julio de 2026</p>
+    <div class="container" style="padding-top:3rem;padding-bottom:4rem;">
+      <nav class="breadcrumb"><a href="./">Inicio</a><span class="breadcrumb-sep">/</span><span>Buscar</span></nav>
+      <h1 style="margin-top:1.5rem;">Buscar artículos</h1>
+      <p style="color:var(--color-text-muted);margin-top:0.5rem;">Más de 90 guías sobre IA para empresas. Escribe una palabra clave para filtrar.</p>
 
-      <h2 style="margin-top:2rem;">Titular del sitio web</h2>
-      <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se facilitan los siguientes datos:</p>
-      <ul>
-        <li><strong>Sitio web:</strong> iando.xyz</li>
-        <li><strong>Correo electrónico:</strong> info@iando.xyz</li>
-      </ul>
+      <div style="margin-top:2rem;max-width:520px;">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Ej: ChatGPT, facturación, ecommerce, RGPD..."
+          autofocus
+          style="width:100%;padding:0.85rem 1.1rem;font-size:1rem;border-radius:0.6rem;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);"
+        >
+      </div>
 
-      <h2 style="margin-top:2rem;">Objeto y ámbito de aplicación</h2>
-      <p>Las presentes condiciones regulan el acceso y uso del sitio web iando.xyz, cuya finalidad es proporcionar información y contenidos sobre el uso de inteligencia artificial en el entorno empresarial. El acceso al sitio web implica la aceptación de las presentes condiciones.</p>
+      <p id="search-count" style="margin-top:1.25rem;font-size:0.875rem;color:var(--color-text-dim);"></p>
 
-      <h2 style="margin-top:2rem;">Propiedad intelectual</h2>
-      <p>Los contenidos del sitio web (textos, imágenes, diseño gráfico, código fuente) son propiedad de IA para Negocios o de terceros que han autorizado su uso. Queda prohibida su reproducción, distribución o comunicación pública sin autorización expresa.</p>
-      <p>Los nombres de herramientas y productos mencionados en los artículos (ChatGPT, Claude, Gemini, etc.) son marcas registradas de sus respectivos propietarios. Su mención tiene carácter informativo y no implica vinculación ni endorsement.</p>
-
-      <h2 style="margin-top:2rem;">Limitación de responsabilidad</h2>
-      <p>El contenido de este sitio web tiene carácter informativo y orientativo. No constituye asesoramiento legal, fiscal, financiero ni de ningún otro tipo. IA para Negocios no se responsabiliza de las decisiones empresariales tomadas basándose en el contenido de este sitio.</p>
-      <p>La IA evoluciona rápidamente. A pesar de nuestros esfuerzos por mantener el contenido actualizado, algunos datos pueden haber quedado desfasados. Te recomendamos contrastar la información con las fuentes oficiales antes de tomar decisiones importantes.</p>
-
-      <h2 style="margin-top:2rem;">Enlaces a terceros</h2>
-      <p>Este sitio contiene enlaces a sitios web de terceros. Algunos son enlaces de afiliado: si realizas una compra a través de ellos, podemos recibir una comisión sin coste adicional para ti. IA para Negocios no es responsable del contenido de los sitios externos enlazados.</p>
-
-      <h2 style="margin-top:2rem;">Legislación aplicable</h2>
-      <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia derivada del uso de este sitio, las partes se someten a los juzgados y tribunales competentes conforme a la normativa vigente.</p>
+      <div id="search-results" style="margin-top:1rem;display:flex;flex-direction:column;gap:0.25rem;"></div>
     </div>
   </main>
 
@@ -100,6 +90,60 @@
       </div>
     </div>
   </footer>
-<script src="js/cookies.js"></script>
+
+  <script src="js/cookies.js"></script>
+  <script>
+    (function () {
+      var input = document.getElementById('search-input');
+      var results = document.getElementById('search-results');
+      var count = document.getElementById('search-count');
+      var params = new URLSearchParams(window.location.search);
+      var initial = params.get('q') || '';
+      var index = [];
+
+      function normalize(s) {
+        return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+      }
+
+      function render(query) {
+        var q = normalize(query.trim());
+        if (!q) {
+          results.innerHTML = '';
+          count.textContent = '';
+          return;
+        }
+        var matches = index.filter(function (a) {
+          return normalize(a.title).indexOf(q) !== -1 ||
+                 normalize(a.desc).indexOf(q) !== -1 ||
+                 normalize(a.cat).indexOf(q) !== -1;
+        });
+        count.textContent = matches.length === 0
+          ? 'Sin resultados para "' + query + '"'
+          : matches.length + (matches.length === 1 ? ' resultado' : ' resultados');
+        results.innerHTML = matches.map(function (a) {
+          return '<a href="' + a.url + '" class="article-item" style="text-decoration:none;">' +
+            '<div class="article-item-body">' +
+              '<div class="article-item-meta"><span class="badge badge-primary">' + a.cat + '</span></div>' +
+              '<div class="article-item-title">' + a.title + '</div>' +
+              '<div class="article-item-excerpt">' + a.desc + '</div>' +
+            '</div>' +
+            '<svg class="article-item-arrow" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' +
+          '</a>';
+        }).join('');
+      }
+
+      fetch('search-index.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          index = data;
+          if (initial) {
+            input.value = initial;
+            render(initial);
+          }
+        });
+
+      input.addEventListener('input', function () { render(input.value); });
+    })();
+  </script>
 </body>
 </html>
