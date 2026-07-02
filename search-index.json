@@ -66,8 +66,8 @@
 "url": "articulos/chatgpt-negociacion-contratos.html"
 },
 {
-"title": "ChatGPT Plus vs Business (antes Team) para empresas: ¿Cuál elegir en 2026?",
-"desc": "Comparativa detallada de ChatGPT Plus (20$/mes) vs ChatGPT Business, antes llamado Team (30$/usuario/mes). Qué incluye cada plan, cuándo vale la pena y cómo justificar el coste.",
+"title": "ChatGPT Plus vs Business para empresas: ¿Cuál elegir?",
+"desc": "Comparativa de ChatGPT Plus (20$/mes) vs ChatGPT Business (30$/usuario/mes): qué incluye cada plan, cuándo vale la pena y cómo justificar el coste.",
 "cat": "ChatGPT",
 "url": "articulos/chatgpt-plus-vs-team-empresas.html"
 },
@@ -109,18 +109,18 @@
 },
 {
 "title": "GPT Image 2 para empresas: genera imágenes corporativas con IA",
-"desc": "Cómo usar GPT Image 2 (el sucesor de DALL-E, integrado en ChatGPT) para crear imágenes corporativas, ilustraciones y contenido visual para tu empresa. Comparativa con Midjourney y Stable Diffusion.",
+"desc": "Cómo usar GPT Image 2, sucesor de DALL-E integrado en ChatGPT, para crear imágenes corporativas y contenido visual. Comparativa con Midjourney y Stable Diffusion.",
 "cat": "Herramientas",
 "url": "articulos/dall-e-imagenes-empresa.html"
 },
 {
 "title": "Derechos de autor y contenido generado por IA: qué debes saber",
-"desc": "Guía sobre propiedad intelectual y derechos de autor del contenido generado por IA. Quién es el autor, qué protección tiene, cómo usarlo comercialmente y qué dice la ley española y europea.",
+"desc": "Guía sobre derechos de autor del contenido generado por IA: quién es el autor, qué protección tiene, cómo usarlo comercialmente y qué dice la ley española.",
 "cat": "Legal",
 "url": "articulos/derechos-autor-contenido-ia.html"
 },
 {
-"title": "ElevenLabs para empresas: voz IA para podcast, vídeo y atención al cliente",
+"title": "ElevenLabs para empresas: voz IA para podcast y vídeo",
 "desc": "Cómo usar ElevenLabs para crear voz artificial de alta calidad para tu empresa. Podcast, vídeos, atención al cliente y locuciones corporativas con IA.",
 "cat": "Herramientas",
 "url": "articulos/eleven-labs-voz-ia.html"
@@ -139,7 +139,7 @@
 },
 {
 "title": "Análisis de clientes con IA en eCommerce: segmenta y personaliza a escala",
-"desc": "Cómo usar la IA para analizar el comportamiento de tus clientes en eCommerce. Segmentación RFM, análisis de cohortes, predicción de churn y personalización basada en datos.",
+"desc": "Cómo usar la IA para analizar el comportamiento de tus clientes en eCommerce: segmentación RFM, cohortes, predicción de churn y personalización con datos.",
 "cat": "eCommerce",
 "url": "articulos/ia-analisis-clientes-ecommerce.html"
 },
@@ -150,20 +150,20 @@
 "url": "articulos/ia-analisis-competencia.html"
 },
 {
-"title": "IA para analítica de marketing: interpreta tus datos con inteligencia artificial",
+"title": "IA para analítica de marketing: interpreta tus datos",
 "desc": "Cómo usar IA para analizar tus métricas de marketing. Atribución, predicción de tendencias, optimización de campañas y dashboards inteligentes para empresas.",
 "cat": "Marketing",
 "url": "articulos/ia-analitica-marketing.html"
 },
 {
-"title": "Aprende más rápido con IA: técnicas y herramientas para el aprendizaje acelerado",
+"title": "Aprende más rápido con IA: técnicas y herramientas",
 "desc": "Cómo usar la IA para aprender habilidades profesionales más rápido. Técnicas de estudio con IA, tutores personalizados, síntesis de información y aprendizaje activo.",
 "cat": "Productividad",
 "url": "articulos/ia-aprende-mas-rapido.html"
 },
 {
 "title": "IA para auditorías de cumplimiento: automatizar controles internos",
-"desc": "Cómo usar inteligencia artificial para automatizar auditorías de cumplimiento en empresas. Controles internos con IA, auditoría continua, detección de anomalías y herramientas de audit analytics.",
+"desc": "Cómo usar IA para automatizar auditorías de cumplimiento: controles internos, auditoría continua, detección de anomalías y herramientas de audit analytics.",
 "cat": "Legal",
 "url": "articulos/ia-auditoria-cumplimiento.html"
 },
@@ -181,31 +181,31 @@
 },
 {
 "title": "Calendario inteligente con IA: gestiona tu tiempo sin esfuerzo",
-"desc": "Cómo usar la IA para gestionar tu calendario de forma inteligente. Planificación automática, bloqueo de tiempo profundo, reuniones optimizadas y gestión de conflictos.",
+"desc": "Cómo gestionar tu calendario con IA: planificación automática, bloqueo de tiempo profundo, reuniones optimizadas y gestión de conflictos de agenda.",
 "cat": "Productividad",
 "url": "articulos/ia-calendario-inteligente.html"
 },
 {
 "title": "Chatbot IA para tienda online: aumenta ventas y reduce soporte",
-"desc": "Cómo implementar un chatbot con IA en tu tienda online. Responde preguntas 24/7, guía compras, automatiza soporte y aumenta la conversión con inteligencia artificial.",
+"desc": "Cómo implementar un chatbot con IA en tu tienda online: responde preguntas 24/7, guía compras, automatiza soporte y aumenta la conversión.",
 "cat": "eCommerce",
 "url": "articulos/ia-chatbot-tienda-online.html"
 },
 {
 "title": "Cláusulas de protección de datos con IA: DPA y contratos RGPD",
-"desc": "Cómo redactar y revisar cláusulas de protección de datos con IA. Contratos de encargado de tratamiento (DPA), cláusulas RGPD en contratos con proveedores y clientes, y herramientas de IA para compliance.",
+"desc": "Cómo redactar cláusulas de protección de datos con IA: contratos DPA, cláusulas RGPD con proveedores y clientes, y herramientas de IA para compliance.",
 "cat": "Legal",
 "url": "articulos/ia-clausulas-proteccion-datos.html"
 },
 {
-"title": "IA para clínicas veterinarias: gestión, diagnóstico y comunicación con clientes",
+"title": "IA para clínicas veterinarias: gestión y diagnóstico",
 "desc": "Cómo usar inteligencia artificial en clínicas veterinarias. Herramientas para gestión de citas, diagnóstico asistido, comunicación con propietarios y marketing.",
 "cat": "Por Sector",
 "url": "articulos/ia-clinicas-veterinarias.html"
 },
 {
 "title": "IA para contratos legales: redactar, revisar y analizar contratos",
-"desc": "Cómo usar inteligencia artificial para redactar, revisar y analizar contratos en tu empresa. Herramientas de IA para contratos, prompts útiles y qué puede y no puede hacer la IA en materia legal.",
+"desc": "Cómo usar IA para redactar, revisar y analizar contratos: herramientas, prompts útiles y qué puede y no puede hacer la IA en materia legal.",
 "cat": "Legal",
 "url": "articulos/ia-contratos-legales.html"
 },
@@ -217,31 +217,31 @@
 },
 {
 "title": "IA para cumplimiento normativo: automatizar compliance en empresas",
-"desc": "Cómo usar inteligencia artificial para automatizar el cumplimiento normativo en empresas. Monitorización de cambios regulatorios, evaluación de riesgos, documentación de compliance y auditorías.",
+"desc": "Cómo automatizar el cumplimiento normativo con IA: monitorización de cambios regulatorios, evaluación de riesgos, documentación y auditorías.",
 "cat": "Legal",
 "url": "articulos/ia-cumplimiento-normativo.html"
 },
 {
-"title": "IA para atención al cliente en eCommerce: automatiza el soporte sin perder calidad",
-"desc": "Cómo usar la IA para automatizar la atención al cliente de tu tienda online. Respuestas automáticas, gestión de devoluciones, tickets de soporte y satisfacción del cliente con IA.",
+"title": "IA para atención al cliente en tu eCommerce",
+"desc": "Cómo automatizar la atención al cliente de tu tienda online con IA: respuestas automáticas, gestión de devoluciones, tickets de soporte y satisfacción.",
 "cat": "eCommerce",
 "url": "articulos/ia-customer-service-ecommerce.html"
 },
 {
-"title": "IA para delegación de tareas: cómo delegar mejor con inteligencia artificial",
+"title": "IA para delegar tareas mejor en tu empresa",
 "desc": "Cómo usar la IA para delegar tareas de forma efectiva. Decidir qué delegar, crear instrucciones claras, seguimiento automatizado y feedback con IA.",
 "cat": "Productividad",
 "url": "articulos/ia-delegacion-tareas.html"
 },
 {
 "title": "IA para descripciones de productos: genera textos que venden en minutos",
-"desc": "Cómo usar la IA para escribir descripciones de productos que convierten. Técnicas, prompts y herramientas para generar fichas de producto optimizadas para SEO y ventas.",
+"desc": "Cómo usar la IA para escribir descripciones de productos que convierten: técnicas, prompts y herramientas para fichas optimizadas para SEO y ventas.",
 "cat": "eCommerce",
 "url": "articulos/ia-descripciones-productos.html"
 },
 {
 "title": "IA para dropshipping: automatiza tu tienda y escala sin stock",
-"desc": "Cómo usar la IA para automatizar un negocio de dropshipping. Encontrar productos ganadores, automatizar pedidos, generar descripciones únicas y gestionar el soporte con IA.",
+"desc": "Cómo automatizar un negocio de dropshipping con IA: encontrar productos ganadores, automatizar pedidos, generar descripciones y gestionar soporte.",
 "cat": "eCommerce",
 "url": "articulos/ia-dropshipping-automatizacion.html"
 },
@@ -259,7 +259,7 @@
 },
 {
 "title": "IA en tu estrategia de marketing digital: Guía práctica 2026",
-"desc": "Cómo integrar la inteligencia artificial en tu estrategia de marketing digital. Atracción, conversión y fidelización de clientes con IA. Guía práctica con ejemplos reales.",
+"desc": "Cómo integrar la IA en tu estrategia de marketing digital: atracción, conversión y fidelización de clientes. Guía práctica con ejemplos reales.",
 "cat": "Marketing",
 "url": "articulos/ia-estrategia-marketing-digital.html"
 },
@@ -271,12 +271,12 @@
 },
 {
 "title": "Fotografía de productos con IA: mejora tus imágenes sin fotógrafo",
-"desc": "Cómo usar la IA para mejorar la fotografía de productos de tu tienda online. Fondos eliminados, imágenes de estudio virtuales, retoque automático y generación de fotos con IA.",
+"desc": "Cómo mejorar la fotografía de productos con IA: fondos eliminados, estudios virtuales, retoque automático y generación de fotos para tu tienda.",
 "cat": "eCommerce",
 "url": "articulos/ia-fotografia-productos.html"
 },
 {
-"title": "IA para generación de leads: captar clientes potenciales con inteligencia artificial",
+"title": "IA para generación de leads en tu empresa",
 "desc": "Cómo usar IA para generar leads cualificados. Lead scoring, chatbots de captación, personalización y automatización del funnel de ventas para empresas.",
 "cat": "Marketing",
 "url": "articulos/ia-generacion-leads.html"
@@ -289,13 +289,13 @@
 },
 {
 "title": "IA para gestión de inventario en eCommerce: nunca más roturas de stock",
-"desc": "Cómo usar la IA para optimizar el inventario de tu tienda online. Predicción de demanda, reposición automática, gestión de stock muerto y optimización de almacén con inteligencia artificial.",
+"desc": "Cómo optimizar el inventario de tu tienda online con IA: predicción de demanda, reposición automática, stock muerto y optimización de almacén.",
 "cat": "eCommerce",
 "url": "articulos/ia-gestion-inventario.html"
 },
 {
 "title": "IA para gestión del tiempo: recupera 2 horas diarias como autónomo",
-"desc": "Cómo usar IA para optimizar la gestión del tiempo si eres autónomo o freelance. Herramientas, técnicas y sistemas para ser más productivo con inteligencia artificial.",
+"desc": "Cómo usar IA para optimizar la gestión del tiempo si eres autónomo: herramientas, técnicas y sistemas para ser más productivo.",
 "cat": "Productividad",
 "url": "articulos/ia-gestion-tiempo-autonomos.html"
 },
@@ -312,7 +312,7 @@
 "url": "articulos/ia-google-ads-optimizacion.html"
 },
 {
-"title": "IA para influencer marketing: encontrar, gestionar y medir colaboraciones",
+"title": "IA para influencer marketing: gestiona colaboraciones",
 "desc": "Cómo usar IA para el influencer marketing: descubrir creadores relevantes, analizar audiencias, gestionar campañas y medir el ROI de las colaboraciones.",
 "cat": "Marketing",
 "url": "articulos/ia-influencer-marketing.html"
@@ -325,7 +325,7 @@
 },
 {
 "title": "IA para investigación rápida: busca y sintetiza información en minutos",
-"desc": "Cómo usar la IA para investigar cualquier tema en minutos. Técnicas de búsqueda con IA, síntesis de información, verificación de fuentes y research profesional acelerado.",
+"desc": "Cómo investigar cualquier tema en minutos con IA: técnicas de búsqueda, síntesis de información, verificación de fuentes y research acelerado.",
 "cat": "Productividad",
 "url": "articulos/ia-investigacion-rapida.html"
 },
@@ -336,32 +336,32 @@
 "url": "articulos/ia-personalizacion-marketing.html"
 },
 {
-"title": "IA para planificación de tareas: organiza tu trabajo con inteligencia artificial",
-"desc": "Cómo usar IA para planificar y organizar tareas de forma más eficiente. Herramientas de gestión de tareas con IA y técnicas de priorización para empresas y autónomos.",
+"title": "IA para planificación de tareas en tu empresa",
+"desc": "Cómo planificar y organizar tareas con IA de forma más eficiente: herramientas de gestión de tareas y técnicas de priorización para empresas.",
 "cat": "Productividad",
 "url": "articulos/ia-planificacion-tareas.html"
 },
 {
 "title": "Precios dinámicos con IA: maximiza el margen de tu tienda online",
-"desc": "Cómo implementar precios dinámicos con IA en tu eCommerce. Monitorización de competidores, pricing por demanda, reglas de precio automáticas y herramientas de repricing.",
+"desc": "Cómo implementar precios dinámicos con IA en tu eCommerce: monitorización de competidores, pricing por demanda y herramientas de repricing.",
 "cat": "eCommerce",
 "url": "articulos/ia-precios-dinamicos.html"
 },
 {
 "title": "IA y propiedad intelectual: patentes, marcas y secretos comerciales",
-"desc": "Cómo afecta la inteligencia artificial a la propiedad intelectual de tu empresa. Protección de patentes con IA, riesgo de secretos comerciales, marcas y software generado por IA.",
+"desc": "Cómo afecta la IA a la propiedad intelectual de tu empresa: patentes, secretos comerciales, marcas y software generado por inteligencia artificial.",
 "cat": "Legal",
 "url": "articulos/ia-propiedad-intelectual.html"
 },
 {
 "title": "Motor de recomendaciones con IA: vende más en cada visita",
-"desc": "Cómo implementar un motor de recomendaciones con IA en tu tienda online. Tipos de recomendaciones, herramientas para Shopify y WooCommerce, y cómo aumentar el ticket medio.",
+"desc": "Cómo implementar un motor de recomendaciones con IA en tu tienda online: tipos, herramientas para Shopify y WooCommerce y cómo subir el ticket medio.",
 "cat": "eCommerce",
 "url": "articulos/ia-recomendaciones-productos.html"
 },
 {
-"title": "Recuperar carritos abandonados con IA: convierte el 10-15% de los abandonos",
-"desc": "Cómo usar la IA para recuperar carritos abandonados en tu tienda online. Secuencias de email automáticas, SMS, retargeting con IA y estrategias de recuperación efectivas.",
+"title": "Recuperar carritos abandonados con IA",
+"desc": "Cómo recuperar carritos abandonados con IA: secuencias de email automáticas, SMS, retargeting y estrategias de recuperación efectivas.",
 "cat": "eCommerce",
 "url": "articulos/ia-recuperar-carritos-abandonados.html"
 },
@@ -373,12 +373,12 @@
 },
 {
 "title": "Reglamento Europeo de IA: qué deben saber las empresas españolas",
-"desc": "Guía del Reglamento Europeo de Inteligencia Artificial (AI Act) para empresas. Clasificación de riesgos, obligaciones según categoría, plazos de entrada en vigor y cómo prepararse.",
+"desc": "Guía del Reglamento Europeo de IA (AI Act) para empresas: clasificación de riesgos, obligaciones según categoría, plazos y cómo prepararse.",
 "cat": "Legal",
 "url": "articulos/ia-reglamento-europeo-ia.html"
 },
 {
-"title": "IA para reportes automáticos: dashboards y alertas sin intervención humana",
+"title": "IA para reportes automáticos: dashboards y alertas",
 "desc": "Cómo crear sistemas de reporting automático con IA. Dashboards en tiempo real, alertas inteligentes y reportes que se generan solos para empresas y equipos.",
 "cat": "Automatización",
 "url": "articulos/ia-reportes-automaticos.html"
@@ -390,13 +390,13 @@
 "url": "articulos/ia-restaurantes-hosteleria.html"
 },
 {
-"title": "RPA con IA: qué es la automatización robótica de procesos y cómo aplicarla",
+"title": "RPA con IA: automatización robótica de procesos",
 "desc": "Qué es RPA (Robotic Process Automation) y cómo combinarlo con IA para automatizar procesos repetitivos en empresas. Herramientas, casos de uso y por dónde empezar.",
 "cat": "Automatización",
 "url": "articulos/ia-rpa-que-es.html"
 },
 {
-"title": "IA en el sector de la construcción: obra, presupuestos y gestión de proyectos",
+"title": "IA en construcción: obra, presupuestos y proyectos",
 "desc": "Cómo usa la inteligencia artificial en construcción. Presupuestos automáticos, gestión BIM con IA, seguridad en obra, inspección visual y planificación de proyectos.",
 "cat": "Por Sector",
 "url": "articulos/ia-sector-construccion.html"
@@ -409,7 +409,7 @@
 },
 {
 "title": "IA en el sector financiero: banca, seguros y fintech en España",
-"desc": "Cómo la inteligencia artificial transforma el sector financiero español. Detección de fraude, scoring crediticio, asesoramiento automatizado y cumplimiento normativo.",
+"desc": "Cómo la IA transforma el sector financiero español: detección de fraude, scoring crediticio, asesoramiento automatizado y cumplimiento normativo.",
 "cat": "Por Sector",
 "url": "articulos/ia-sector-financiero.html"
 },
@@ -421,7 +421,7 @@
 },
 {
 "title": "IA para abogados y despachos jurídicos: herramientas y casos de uso",
-"desc": "Cómo usan la IA los abogados y despachos en España. Investigación jurídica, revisión de contratos, redacción de escritos y gestión del despacho con inteligencia artificial.",
+"desc": "Cómo usan la IA los abogados y despachos en España: investigación jurídica, revisión de contratos, redacción de escritos y gestión del despacho.",
 "cat": "Por Sector",
 "url": "articulos/ia-sector-legal-abogados.html"
 },
@@ -432,13 +432,13 @@
 "url": "articulos/ia-sector-legal.html"
 },
 {
-"title": "IA en logística y transporte: optimización de rutas, almacén y cadena de suministro",
-"desc": "Cómo usa la IA el sector logístico. Optimización de rutas, gestión de almacén, predicción de demanda, mantenimiento de flota y cadena de suministro con inteligencia artificial.",
+"title": "IA en logística: rutas, almacén y cadena de suministro",
+"desc": "Cómo usa la IA el sector logístico: optimización de rutas, gestión de almacén, predicción de demanda, mantenimiento de flota y cadena de suministro.",
 "cat": "Por Sector",
 "url": "articulos/ia-sector-logistica.html"
 },
 {
-"title": "IA en el sector retail: tiendas físicas y omnicanal con inteligencia artificial",
+"title": "IA en retail: tiendas físicas y venta omnicanal",
 "desc": "Cómo usa la IA el comercio minorista. Personalización de cliente, gestión de inventario, precios dinámicos, experiencia en tienda y omnicanalidad con IA.",
 "cat": "Por Sector",
 "url": "articulos/ia-sector-retail.html"
@@ -450,26 +450,26 @@
 "url": "articulos/ia-sector-salud.html"
 },
 {
-"title": "IA en seguros: suscripción, siniestros y detección de fraude con inteligencia artificial",
+"title": "IA en seguros: suscripción, siniestros y fraude",
 "desc": "Cómo transforma la IA el sector asegurador en España. Suscripción automatizada, gestión de siniestros con IA, detección de fraude y personalización de pólizas.",
 "cat": "Por Sector",
 "url": "articulos/ia-sector-seguros.html"
 },
 {
-"title": "IA en turismo: hoteles, agencias y experiencias con inteligencia artificial",
-"desc": "Cómo transforma la IA el sector turístico español. Personalización de viajes, revenue management, chatbots de reservas, análisis de reseñas y marketing turístico con IA.",
+"title": "IA en turismo: hoteles, agencias y experiencias",
+"desc": "Cómo transforma la IA el sector turístico español: personalización de viajes, revenue management, chatbots de reservas y marketing turístico.",
 "cat": "Por Sector",
 "url": "articulos/ia-sector-turismo.html"
 },
 {
 "title": "IA para SEO: optimización de contenido y posicionamiento en 2026",
-"desc": "Cómo usar IA para mejorar el SEO de tu empresa. Investigación de palabras clave, optimización de contenido y estrategias de posicionamiento con inteligencia artificial.",
+"desc": "Cómo usar IA para mejorar el SEO de tu empresa: investigación de palabras clave, optimización de contenido y estrategias de posicionamiento.",
 "cat": "Marketing",
 "url": "articulos/ia-seo-optimizacion.html"
 },
 {
 "title": "Herramientas IA para Shopify: las mejores apps para vender más en 2026",
-"desc": "Las mejores apps y herramientas de IA para tiendas Shopify. Desde Shopify Magic hasta apps de terceros para marketing, soporte, inventario y optimización de conversión.",
+"desc": "Las mejores apps de IA para tiendas Shopify: desde Shopify Magic hasta apps de marketing, soporte, inventario y optimización de conversión.",
 "cat": "eCommerce",
 "url": "articulos/ia-shopify-herramientas.html"
 },
@@ -480,13 +480,13 @@
 "url": "articulos/ia-tomar-notas-reuniones.html"
 },
 {
-"title": "IA para trabajo remoto: herramientas y técnicas para equipos distribuidos",
-"desc": "Cómo usar la IA para trabajar mejor en remoto. Comunicación asíncrona, reuniones virtuales con IA, coordinación de equipos distribuidos y productividad en teletrabajo.",
+"title": "IA para trabajo remoto: herramientas y técnicas",
+"desc": "Cómo trabajar mejor en remoto con IA: comunicación asíncrona, reuniones virtuales, coordinación de equipos distribuidos y productividad.",
 "cat": "Productividad",
 "url": "articulos/ia-trabajo-remoto.html"
 },
 {
-"title": "IA para vídeo marketing: crea contenido de vídeo sin cámara ni presupuesto",
+"title": "IA para vídeo marketing sin cámara ni presupuesto",
 "desc": "Cómo usar IA para crear vídeos de marketing profesionales. Avatares IA, vídeo desde texto, edición automática, subtítulos y traducción para empresas.",
 "cat": "Marketing",
 "url": "articulos/ia-video-marketing.html"
@@ -547,25 +547,25 @@
 },
 {
 "title": "Política de uso de IA en empresa: cómo crearla y qué debe incluir",
-"desc": "Cómo crear una política de uso de inteligencia artificial para tu empresa. Qué herramientas permitir, qué datos proteger, cómo formar al equipo y cómo actualizar la política.",
+"desc": "Cómo crear una política de uso de IA para tu empresa: qué herramientas permitir, qué datos proteger, cómo formar al equipo y actualizarla.",
 "cat": "Legal",
 "url": "articulos/politica-uso-ia-empresa.html"
 },
 {
 "title": "Privacidad de datos al usar IA en empresa: riesgos y buenas prácticas",
-"desc": "Cómo proteger la privacidad de datos al usar herramientas de IA en tu empresa. Qué datos no enviar a la IA, configuración de privacidad, datos sensibles y medidas técnicas.",
+"desc": "Cómo proteger la privacidad de datos al usar IA en tu empresa: qué datos no enviar, configuración de privacidad y medidas técnicas.",
 "cat": "Legal",
 "url": "articulos/privacidad-datos-ia-empresa.html"
 },
 {
 "title": "Responsabilidad legal por sistemas de IA en empresas",
-"desc": "Guía sobre responsabilidad legal de las empresas por el uso de sistemas de IA. Quién responde por los errores de la IA, la retirada de la Directiva de Responsabilidad por IA de la UE y cómo protegerse.",
+"desc": "Guía sobre responsabilidad legal por el uso de IA: quién responde por sus errores, la retirada de la Directiva de Responsabilidad de la UE y cómo protegerte.",
 "cat": "Legal",
 "url": "articulos/responsabilidad-ia-empresas.html"
 },
 {
 "title": "RGPD e inteligencia artificial en empresas: guía de cumplimiento 2026",
-"desc": "Guía completa sobre RGPD e IA para empresas españolas. Bases legales para usar datos con IA, derechos de los usuarios, evaluaciones de impacto y obligaciones de cumplimiento.",
+"desc": "Guía sobre RGPD e IA para empresas españolas: bases legales para usar datos con IA, derechos de los usuarios, evaluaciones de impacto y cumplimiento.",
 "cat": "Legal",
 "url": "articulos/rgpd-ia-empresa.html"
 },
