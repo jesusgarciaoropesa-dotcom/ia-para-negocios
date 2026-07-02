@@ -669,6 +669,11 @@ p { color: var(--color-text-muted); line-height: 1.7; }
   .section { padding: 3rem 0; }
   .grid-3, .grid-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 }
+.table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.5rem 0; }
+.table-wrapper table { margin: 0; }
+@media (max-width: 640px) {
+  .table-wrapper table { min-width: 560px; }
+}
 @media (max-width: 540px) {
   .nav-cta { display: none; }
 }
