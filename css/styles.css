@@ -400,6 +400,7 @@ p { color: var(--color-text-muted); line-height: 1.7; }
 .article-body strong { color: var(--color-text); font-weight: 600; }
 .article-body a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
 .article-body a:hover { color: var(--color-secondary); }
+.article-body a.btn, .article-body a.btn:hover { color: #fff; text-decoration: none; }
 .article-body blockquote { border-left: 3px solid var(--color-primary); padding: 1rem 1.5rem; background: rgba(99,102,241,0.05); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 1.5rem 0; }
 .article-body blockquote p { margin-bottom: 0; font-style: italic; }
 .article-body table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
