@@ -132,6 +132,12 @@
 "url": "articulos/copy-ai-marketing.html"
 },
 {
+"title": "Cómo crear un GPT personalizado para tu negocio (sin programar)",
+"desc": "Guía paso a paso para crear un GPT personalizado en ChatGPT sin programar: subir tus documentos, configurar instrucciones y cuándo usar un GPT o un Proyecto.",
+"cat": "ChatGPT",
+"url": "articulos/crear-gpt-personalizado.html"
+},
+{
 "title": "GPT Image 2 para empresas: genera imágenes corporativas con IA",
 "desc": "Cómo usar GPT Image 2, sucesor de DALL-E integrado en ChatGPT, para crear imágenes corporativas y contenido visual. Comparativa con Midjourney y Stable Diffusion.",
 "cat": "Herramientas",
