@@ -88,7 +88,7 @@ Los artículos están diseñados para enlazar de forma natural a herramientas Sa
 | ChatGPT / OpenAI | No tiene (usa alternativas) | — | — |
 | ElevenLabs | [try.elevenlabs.io](https://try.elevenlabs.io/v6gvji9kdntz) | — | **Activo** (enlace en eleven-labs-voz-ia.html) |
 | Grammarly | Impact.com | $0.20 por registro + comisión | Solicitud enviada, pendiente de aprobación |
-| Gamma | PartnerStack | — | Solicitud enviada, pendiente de aprobación |
+| Gamma | [try.gamma.app](https://try.gamma.app/fziy5itj64qi) | 30% recurrente (primer año) | **Activo** (enlace en gamma-presentaciones-ia.html) |
 | Make.com | [make.com/affiliate](https://make.com/en/affiliate) | 35% recurrente | **Activo** (enlace en make-automatizacion-flujos-trabajo.html) |
 | Jasper AI | [jasper.ai/legal/affiliates](https://jasper.ai) | 25% recurrente (30% si superas 100 leads convertidos en 12 meses) | Pendiente de solicitar; revisión manual más estricta con la calidad/audiencia del contenido |
 | Perplexity | partners.dub.co/perplexity | Sin confirmar | Estado dudoso: el antiguo programa de referidos de Comet terminó el 6-nov-2025; confirmar en navegador si el enlace sigue activo antes de solicitar |
