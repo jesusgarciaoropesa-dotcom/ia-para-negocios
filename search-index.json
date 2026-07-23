@@ -708,6 +708,18 @@
 "url": "articulos/rgpd-ia-empresa.html"
 },
 {
+"title": "Inyección de prompts: el riesgo de seguridad de los agentes de IA",
+"desc": "Qué es la inyección de prompts, por qué es el riesgo de seguridad número 1 en sistemas de IA según OWASP, y cómo proteger tu empresa sin un equipo de seguridad dedicado.",
+"cat": "Legal",
+"url": "articulos/seguridad-agentes-ia-inyeccion-prompts.html"
+},
+{
+"title": "Vibe coding para pymes: crea tu propia app sin programar",
+"desc": "Qué es el vibe coding, qué herramientas usar (Lovable, Replit, Bolt, v0) y qué puede crear de verdad una pyme sin perfil técnico, con los riesgos de seguridad reales que debes conocer.",
+"cat": "Herramientas",
+"url": "articulos/vibe-coding-pymes.html"
+},
+{
 "title": "Vídeo con IA para tu negocio: qué usar ahora que Sora se retira",
 "desc": "Sora de OpenAI se retira en 2026. Comparativa de Google Veo, Kling, Runway, Luma y HeyGen para crear vídeos publicitarios y de producto con IA para tu negocio.",
 "cat": "Herramientas",
