@@ -85,7 +85,7 @@
 },
 {
 "title": "ChatGPT Plus vs Business para empresas: ¿Cuál elegir?",
-"desc": "Comparativa de ChatGPT Plus (20$/mes) vs ChatGPT Business (30$/usuario/mes): qué incluye cada plan, cuándo vale la pena y cómo justificar el coste.",
+"desc": "Comparativa de ChatGPT Plus (20$/mes) vs ChatGPT Business (desde 20$/usuario/mes): qué incluye cada plan, cuándo vale la pena y cómo justificar el coste.",
 "cat": "ChatGPT",
 "url": "articulos/chatgpt-plus-vs-team-empresas.html"
 },
@@ -100,6 +100,12 @@
 "desc": "Biblioteca de 50 prompts organizados por situación para responder consultas, gestionar reclamaciones y mejorar la experiencia del cliente con ChatGPT.",
 "cat": "ChatGPT",
 "url": "articulos/chatgpt-prompts-atencion-cliente.html"
+},
+{
+"title": "ChatGPT ya tiene anuncios: qué significa para tu marketing",
+"desc": "OpenAI abrió el 22 de julio de 2026 la publicidad de autoservicio en ChatGPT. Cómo funciona, quién ve los anuncios, cuánto cuesta y si tu pyme española ya puede anunciarse.",
+"cat": "Marketing",
+"url": "articulos/chatgpt-publicidad-anuncios.html"
 },
 {
 "title": "ChatGPT para redactar emails profesionales: 20 plantillas listas",
@@ -598,6 +604,12 @@
 "desc": "Guía práctica de Jasper AI para crear contenido de marketing de forma consistente: blog posts, anuncios, emails y copys con la voz de tu marca.",
 "cat": "Herramientas",
 "url": "articulos/jasper-ai-contenido.html"
+},
+{
+"title": "Kit Digital para IA: cómo conseguir el bono para tu pyme",
+"desc": "Guía del Kit Digital para digitalización con IA: importes por segmento, requisitos, qué cubre y qué no, y los problemas reales del programa que debes conocer antes de solicitarlo.",
+"cat": "Herramientas",
+"url": "articulos/kit-digital-ia-pymes.html"
 },
 {
 "title": "Make (Integromat): automatización de flujos de trabajo con IA",
