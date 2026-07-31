@@ -754,5 +754,11 @@
 "desc": "Guía práctica para usar Zapier con IA en tu empresa. Crea automatizaciones potentes con ChatGPT, elimina tareas manuales y ahorra horas cada semana.",
 "cat": "Automatización",
 "url": "articulos/zapier-ia-automatizar-tareas.html"
+},
+{
+"title": "Kimi K3: la IA china abierta y barata — qué debe saber tu empresa",
+"desc": "Qué es Kimi K3 de Moonshot AI, qué dicen los benchmarks independientes frente a los de la propia empresa, cuánto cuesta, y los riesgos de gobernanza de datos y censura que debe conocer tu empresa.",
+"cat": "Herramientas",
+"url": "articulos/kimi-k3-ia-empresa.html"
 }
 ]
