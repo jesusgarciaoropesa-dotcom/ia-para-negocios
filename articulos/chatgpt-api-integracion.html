@@ -17,9 +17,10 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://iando.xyz/og-image.png">
   <link rel="stylesheet" href="../css/styles.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"ChatGPT API para empresas: integra IA en tus aplicaciones y procesos","image":"https://iando.xyz/og-image.png","author":{"@type":"Organization","name":"Equipo IA para Negocios"},"publisher":{"@type":"Organization","name":"IA para Negocios","url":"https://iando.xyz","logo":{"@type":"ImageObject","url":"https://iando.xyz/logo.png"}},"datePublished":"2025-06-16","dateModified":"2026-07-01","url":"https://iando.xyz/articulos/chatgpt-api-integracion.html"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"ChatGPT API para empresas: integra IA en tus aplicaciones y procesos","image":"https://iando.xyz/og-image.png","author":{"@type":"Organization","name":"Equipo IA para Negocios"},"publisher":{"@type":"Organization","name":"IA para Negocios","url":"https://iando.xyz","logo":{"@type":"ImageObject","url":"https://iando.xyz/logo.png"}},"datePublished":"2025-06-16","dateModified":"2026-07-23","url":"https://iando.xyz/articulos/chatgpt-api-integracion.html"}</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5086488459276769" crossorigin="anonymous"></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://iando.xyz/"}, {"@type": "ListItem", "position": 2, "name": "ChatGPT para Empresas", "item": "https://iando.xyz/categorias/chatgpt-empresas.html"}, {"@type": "ListItem", "position": 3, "name": "ChatGPT API para empresas", "item": "https://iando.xyz/articulos/chatgpt-api-integracion.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Necesito saber programar para usar la API de ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"No necesariamente. Con Zapier o Make puedes construir automatizaciones completas con la API sin escribir código."}},{"@type":"Question","name":"¿Mis datos se usan para entrenar el modelo si uso la API?","acceptedAnswer":{"@type":"Answer","text":"No por defecto. Los datos enviados vía API no se usan para entrenar los modelos de OpenAI, y existe un acuerdo de tratamiento de datos (DPA) para cumplimiento RGPD."}},{"@type":"Question","name":"¿Qué pasa si mi empresa todavía usa la Assistants API?","acceptedAnswer":{"@type":"Answer","text":"Tiene que migrar a la Responses API antes del 26 de agosto de 2026, fecha en la que OpenAI la retira definitivamente."}}]}</script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Saltar al contenido</a>
@@ -53,8 +54,8 @@
       <header class="article-header">
         <div class="article-meta-bar">
           <span class="badge badge-primary">ChatGPT</span>
-          <span class="separator">·</span><span>1 de julio de 2026</span>
-          <span class="separator">·</span><span>8 min de lectura</span>
+          <span class="separator">·</span><span>Actualizado 23 de julio de 2026</span>
+          <span class="separator">·</span><span>9 min de lectura</span>
           <span class="separator">·</span><span>Equipo IA para Negocios</span>
         </div>
         <h1 style="margin-top:1rem;">ChatGPT API para empresas: integra IA en tus aplicaciones y procesos</h1>
@@ -67,6 +68,7 @@
         <li><a href="#casos">Casos de uso empresariales</a></li>
         <li><a href="#custom">ChatGPT personalizado para tu empresa</a></li>
         <li><a href="#privacidad">Privacidad y datos empresariales</a></li>
+        <li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li>
       </ol></nav>
 
       <div class="article-body">
@@ -86,14 +88,14 @@
 
         <h2 id="precio">Precios y modelos disponibles</h2>
         <div class="table-wrapper"><table>
-          <thead><tr><th>Modelo</th><th>Uso ideal</th><th>Precio aproximado</th></tr></thead>
+          <thead><tr><th>Modelo</th><th>Uso ideal</th><th>Precio aproximado (entrada/salida)</th></tr></thead>
           <tbody>
-            <tr><td>GPT-5.5</td><td>Tareas complejas, análisis, razonamiento</td><td>~$5/1M tokens entrada</td></tr>
-            <tr><td>GPT-5.4 mini</td><td>Tareas estándar, alto volumen</td><td>~$0,75/1M tokens entrada</td></tr>
-            <tr><td>GPT-5.4 nano</td><td>Tareas simples, máxima economía</td><td>~$0,20/1M tokens entrada</td></tr>
+            <tr><td>GPT-5.6 Sol</td><td>Tareas complejas, análisis, razonamiento</td><td>~$5 / $30 por millón de tokens</td></tr>
+            <tr><td>GPT-5.6 Terra</td><td>Tareas estándar, buen equilibrio</td><td>~$2,50 / $15 por millón de tokens</td></tr>
+            <tr><td>GPT-5.6 Luna</td><td>Tareas simples, alto volumen</td><td>~$1 / $6 por millón de tokens</td></tr>
           </tbody>
         </table></div>
-        <p><strong>¿Cuánto cuesta en la práctica?</strong> Un token equivale aproximadamente a 0,75 palabras. Un email de 200 palabras son ~270 tokens. Con GPT-5.4 nano, procesar 10.000 emails mensuales costaría poco más de 0,50$ en tokens de entrada.</p>
+        <p><strong>¿Cuánto cuesta en la práctica?</strong> Un token equivale aproximadamente a 0,75 palabras. Un email de 200 palabras son ~270 tokens. Con GPT-5.6 Luna, procesar 10.000 emails mensuales cuesta muy pocos dólares en tokens de entrada. Estos precios son de la propia API (pago por uso), no los de las suscripciones de ChatGPT Plus/Business — y OpenAI los ajusta con cierta frecuencia, así que confírmalos en openai.com/api/pricing antes de presupuestar un proyecto grande.</p>
 
         <h2 id="sin-codigo">Integrar sin programar (Zapier, Make)</h2>
         <p>No necesitas saber programar para usar la API. Zapier y Make tienen conectores nativos con OpenAI:</p>
@@ -124,12 +126,15 @@
         <p>Conecta tus reseñas de Google, Trustpilot o encuestas con la API: la IA analiza el sentimiento, clasifica los temas y alerta sobre problemas emergentes.</p>
 
         <h2 id="custom">ChatGPT personalizado para tu empresa</h2>
-        <p>OpenAI ofrece dos opciones para personalizar el modelo a tu empresa:</p>
+        <p>OpenAI ofrece varias opciones para personalizar el modelo a tu empresa:</p>
         <ul>
           <li><strong>GPTs personalizados:</strong> Crea un "ChatGPT" para tu empresa con instrucciones específicas, documentos de tu empresa como base de conocimiento, y herramientas conectadas. Sin código, desde chatgpt.com.</li>
           <li><strong>Fine-tuning:</strong> Entrena el modelo con tus propios datos para que aprenda tu estilo, terminología o flujo de trabajo específico. Requiere datos y habilidad técnica.</li>
-          <li><strong>Assistants API:</strong> Crea asistentes con memoria persistente, acceso a archivos y herramientas personalizadas. Requiere desarrollo.</li>
+          <li><strong>Responses API:</strong> Es la forma actual de crear asistentes con memoria, acceso a archivos y herramientas personalizadas vía API, incluyendo capacidades de agente (deep research, uso de herramientas, MCP). Requiere desarrollo.</li>
         </ul>
+        <div class="warning-box">
+          <strong>Si tu empresa usa la antigua Assistants API, tienes hasta el 26 de agosto de 2026:</strong> OpenAI la retira definitivamente en esa fecha. Toda integración construida sobre Assistants API debe migrar a la Responses API antes del apagado — si tu proveedor técnico no lo ha planificado ya, es el momento de preguntar.
+        </div>
 
         <h2 id="privacidad">Privacidad y datos empresariales</h2>
         <p>La pregunta más frecuente en empresas: ¿se usa mi información para entrenar el modelo?</p>
@@ -142,6 +147,17 @@
         <div class="info-box">
           <strong>Recomendación para empresas:</strong> Si vas a procesar datos de clientes con la API, firma el DPA con OpenAI y asegúrate de que tu política de privacidad menciona el uso de procesadores de IA. Para datos muy sensibles (médicos, financieros), considera soluciones on-premise o modelos privados.
         </div>
+
+        <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
+
+        <h3>¿Necesito saber programar para usar la API de ChatGPT?</h3>
+        <p>No necesariamente. Con Zapier o Make puedes construir automatizaciones completas con la API sin escribir código, aunque para integraciones más complejas sí conviene contar con un desarrollador.</p>
+
+        <h3>¿Mis datos se usan para entrenar el modelo si uso la API?</h3>
+        <p>No por defecto. A diferencia de ChatGPT.com en su configuración estándar, los datos enviados vía API no se usan para entrenar los modelos de OpenAI, y existe un acuerdo de tratamiento de datos (DPA) para cumplimiento RGPD.</p>
+
+        <h3>¿Qué pasa si mi empresa todavía usa la Assistants API?</h3>
+        <p>Tiene que migrar a la Responses API antes del 26 de agosto de 2026, fecha en la que OpenAI retira definitivamente la Assistants API.</p>
       </div>
     </article>
 
