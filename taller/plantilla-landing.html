@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- PLANTILLA DEL TALLER: sustituye todo lo que va entre {{ }} y adapta colores, tipografías y secciones al negocio -->
+<title>{{SEO_TITLE}}</title>
+<meta name="description" content="{{SEO_DESCRIPTION}}">
+<meta name="robots" content="noindex, nofollow"><!-- quitar solo en la versión definitiva del cliente -->
+<meta property="og:title" content="{{SEO_TITLE}}">
+<meta property="og:description" content="{{SEO_DESCRIPTION}}">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="{{C_PRIMARIO}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family={{FUENTE_TITULOS_URL}}:wght@500;700&family={{FUENTE_TEXTO_URL}}:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{TIPO_SCHEMA}}",
+  "name": "{{NEGOCIO}}",
+  "description": "{{SEO_DESCRIPTION}}",
+  "telephone": "{{TELEFONO_E164}}",
+  "address": { "@type": "PostalAddress", "streetAddress": "{{DIRECCION}}", "addressLocality": "{{LOCALIDAD}}", "addressRegion": "{{PROVINCIA}}", "addressCountry": "ES" },
+  "areaServed": "{{ZONA}}",
+  "openingHoursSpecification": [ {{HORARIO_SCHEMA}} ]
+}
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [ {{FAQ_SCHEMA}} ] }
+</script>
+<style>
+  :root {
+    --c-primario: {{C_PRIMARIO}};      /* color de marca: botones, acentos */
+    --c-oscuro: {{C_OSCURO}};          /* titulares y pie */
+    --c-fondo: {{C_FONDO}};            /* fondo general */
+    --c-suave: {{C_SUAVE}};            /* fondos de sección alternos */
+    --c-texto: {{C_TEXTO}};
+    --c-wa: #1f9d55;                   /* WhatsApp (verde accesible) */
+    --f-titulos: "{{FUENTE_TITULOS}}", Georgia, serif;
+    --f-texto: "{{FUENTE_TEXTO}}", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --radio: 14px;
+    --ancho: 1100px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; font-family: var(--f-texto); color: var(--c-texto); background: var(--c-fondo); line-height: 1.6; font-size: 17px; }
+  img, svg { max-width: 100%; display: block; }
+  a { color: var(--c-primario); }
+  h1, h2, h3 { font-family: var(--f-titulos); color: var(--c-oscuro); line-height: 1.15; margin: 0 0 .5em; }
+  h1 { font-size: clamp(2rem, 6vw, 3.4rem); }
+  h2 { font-size: clamp(1.6rem, 4.2vw, 2.4rem); }
+  h3 { font-size: 1.2rem; }
+  .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 20px; }
+  section { padding: 72px 0; }
+  .alterna { background: var(--c-suave); }
+  .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .8rem; font-weight: 600; color: var(--c-primario); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; min-height: 48px; padding: 0 22px; border-radius: 999px; font-weight: 600; text-decoration: none; border: 2px solid transparent; transition: transform .15s ease, box-shadow .15s ease; }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+  .btn-wa { background: var(--c-wa); color: #fff; }
+  .btn-2 { background: transparent; color: var(--c-oscuro); border-color: currentColor; }
+  :focus-visible { outline: 3px solid var(--c-primario); outline-offset: 3px; }
+
+  /* Cabecera */
+  header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--c-fondo) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,.06); }
+  .barra { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; }
+  .marca { font-family: var(--f-titulos); font-size: 1.25rem; font-weight: 700; color: var(--c-oscuro); text-decoration: none; }
+  nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+  nav a { color: var(--c-oscuro); text-decoration: none; font-weight: 600; font-size: .95rem; }
+  @media (max-width: 820px) { nav { display: none; } }
+
+  /* Hero */
+  .hero { padding: 56px 0 72px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .hero p.sub { font-size: 1.15rem; max-width: 34ch; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .hero-visual { border-radius: calc(var(--radio) * 2); overflow: hidden; aspect-ratio: 4/5; background: var(--c-suave); }
+  @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; } .hero-visual { aspect-ratio: 16/10; order: -1; } }
+
+  /* Servicios */
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 28px; }
+  .tarjeta { background: #fff; border-radius: var(--radio); padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 8px 24px rgba(0,0,0,.05); }
+  .tarjeta .precio { font-weight: 600; color: var(--c-primario); margin-top: 8px; }
+
+  /* Por qué */
+  .puntos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 28px; }
+  .punto svg { width: 44px; height: 44px; margin-bottom: 10px; color: var(--c-primario); }
+
+  /* Sobre */
+  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  @media (max-width: 820px) { .dos { grid-template-columns: 1fr; } }
+
+  /* Horario y mapa */
+  .horario { width: 100%; border-collapse: collapse; }
+  .horario td { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,.08); }
+  .horario td:last-child { text-align: right; font-weight: 600; }
+  .mapa { border: 0; width: 100%; height: 340px; border-radius: var(--radio); }
+
+  /* FAQ */
+  details { background: #fff; border-radius: var(--radio); padding: 16px 20px; margin-top: 12px; }
+  summary { cursor: pointer; font-weight: 600; color: var(--c-oscuro); }
+
+  /* Contacto y pie */
+  .cta-final { text-align: center; }
+  .cta-final .acciones { justify-content: center; }
+  footer { background: var(--c-oscuro); color: rgba(255,255,255,.85); padding: 36px 0 96px; font-size: .9rem; }
+  footer a { color: #fff; }
+
+  /* Botón flotante de WhatsApp */
+  .wa-flota { position: fixed; right: 16px; bottom: 16px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: var(--c-wa); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .wa-flota svg { width: 30px; height: 30px; color: #fff; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="contenedor barra">
+    <a class="marca" href="#inicio">{{NEGOCIO}}</a>
+    <nav aria-label="Secciones"><ul><li><a href="#servicios">Servicios</a></li><li><a href="#sobre">Quiénes somos</a></li><li><a href="#horario">Horario</a></li><li><a href="#contacto">Contacto</a></li></ul></nav>
+    <a class="btn btn-wa" href="https://wa.me/{{WHATSAPP}}?text={{WA_TEXTO_URL}}" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="contenedor hero-grid">
+      <div>
+        <span class="eyebrow">{{SECTOR}} en {{LOCALIDAD}}</span>
+        <h1>{{H1}}</h1>
+        <p class="sub">{{HERO_SUB}}</p>
+        <div class="acciones">
+          <a class="btn btn-wa" href="https://wa.me/{{WHATSAPP}}?text={{WA_TEXTO_URL}}" target="_blank" rel="noopener">{{HERO_CTA}}</a>
+          <a class="btn btn-2" href="tel:{{TELEFONO_E164}}">Llamar</a>
+        </div>
+      </div>
+      <div class="hero-visual">{{HERO_IMAGEN_O_SVG}}</div>
+    </div>
+  </section>
+
+  <section id="servicios" class="alterna">
+    <div class="contenedor">
+      <span class="eyebrow">Servicios</span>
+      <h2>{{SERVICIOS_TITULO}}</h2>
+      <div class="rejilla">
+        <!-- Repite una tarjeta por servicio. Precio solo si el cliente lo ha dado. -->
+        <article class="tarjeta"><h3>{{SERVICIO_NOMBRE}}</h3><p>{{SERVICIO_DESCRIPCION}}</p><p class="precio">{{SERVICIO_PRECIO}}</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="contenedor">
+      <span class="eyebrow">Por qué elegirnos</span>
+      <h2>{{POR_QUE_TITULO}}</h2>
+      <div class="puntos">
+        <!-- 3-4 puntos CIERTOS según la ficha, cada uno con un icono SVG sencillo -->
+        <div class="punto">{{ICONO_SVG}}<h3>{{PUNTO_TITULO}}</h3><p>{{PUNTO_TEXTO}}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="alterna">
+    <div class="contenedor dos">
+      <div><span class="eyebrow">Quiénes somos</span><h2>{{SOBRE_TITULO}}</h2><p>{{SOBRE_TEXTO}}</p></div>
+      <div class="hero-visual" style="aspect-ratio:4/3">{{SOBRE_IMAGEN_O_SVG}}</div>
+    </div>
+  </section>
+
+  <section id="horario">
+    <div class="contenedor dos">
+      <div>
+        <span class="eyebrow">Horario</span><h2>Cuándo y dónde</h2>
+        <table class="horario"><tbody>{{HORARIO_FILAS}}</tbody></table>
+        <p style="margin-top:16px">{{DIRECCION}}, {{LOCALIDAD}}</p>
+      </div>
+      <iframe class="mapa" title="Mapa de {{NEGOCIO}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={{DIRECCION_URL}}&output=embed"></iframe>
+    </div>
+  </section>
+
+  <section class="alterna">
+    <div class="contenedor" style="max-width:820px">
+      <span class="eyebrow">Preguntas frecuentes</span><h2>Lo que más nos preguntan</h2>
+      <details><summary>{{FAQ_PREGUNTA}}</summary><p>{{FAQ_RESPUESTA}}</p></details>
+    </div>
+  </section>
+
+  <section id="contacto" class="cta-final">
+    <div class="contenedor">
+      <h2>{{CTA_FINAL_TITULO}}</h2>
+      <p>{{CTA_FINAL_TEXTO}}</p>
+      <div class="acciones">
+        <a class="btn btn-wa" href="https://wa.me/{{WHATSAPP}}?text={{WA_TEXTO_URL}}" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+        <a class="btn btn-2" href="tel:{{TELEFONO_E164}}">{{TELEFONO_VISIBLE}}</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <p><strong>{{NEGOCIO}}</strong> · {{DIRECCION}}, {{LOCALIDAD}} · <a href="tel:{{TELEFONO_E164}}">{{TELEFONO_VISIBLE}}</a></p>
+    <p>Responsable de esta web: {{TITULAR_LEGAL}}. Los datos que nos envíes por WhatsApp o teléfono solo se usan para atender tu consulta.</p>
+    <p style="opacity:.7">Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
+  </div>
+</footer>
+
+<a class="wa-flota" href="https://wa.me/{{WHATSAPP}}?text={{WA_TEXTO_URL}}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.3-.9 2.1 0 .9.4 1.8 1 2.6 1.1 1.6 2.5 2.9 4.2 3.7.6.3 1.1.4 1.5.5.6.2 1.2.1 1.7 0 .5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></svg>
+</a>
+</body>
+</html>
