@@ -830,3 +830,6 @@ p { color: var(--color-text-muted); line-height: 1.7; }
   background-size: contain;
 }
 .warning-icon { background: transparent; border: none; }
+
+/* Huecos de anuncios vacíos: AdSense coloca los anuncios automáticos por su cuenta, así que no se muestran marcadores */
+.ad-slot { display: none; }

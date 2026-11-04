@@ -73,7 +73,7 @@
         </div>
         <a href="../buscar.html" class="nav-search-link" aria-label="Buscar"><svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
         <div class="nav-cta">
-          <a href="#newsletter" class="btn btn-primary">Newsletter gratis</a>
+          <a href="../servicios.html" class="btn btn-primary">Te lo monto</a>
         </div>
         <button class="nav-hamburger" aria-label="Menú" aria-expanded="false" aria-controls="main-nav" onclick="var n=document.getElementById('main-nav');var open=n.classList.toggle('nav-mobile-open');this.setAttribute('aria-expanded', open)">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -322,13 +322,13 @@
             <h3>¿Por dónde debería empezar si solo puedo probar un caso de uso?</h3>
             <p>Por la redacción de comunicaciones escritas (emails, informes, propuestas): es el caso de uso con la curva de aprendizaje más baja, el impacto más inmediato y el resultado más fácil de medir frente a otros usos como el análisis de datos o la automatización.</p>
 
-            <div style="margin-top: 2.5rem; padding: 2rem; background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.06) 100%); border: 1px solid rgba(99,102,241,0.2); border-radius: var(--radius-md); text-align: center;">
-              <p style="font-size: 1rem; color: var(--color-text); font-weight: 600; margin-bottom: 0.5rem;">¿Quieres más guías como esta?</p>
-              <p style="margin-bottom: 1.25rem;">Cada semana publicamos nuevas estrategias de IA para empresas. Suscríbete gratis y no te pierdas nada.</p>
-              <a href="#newsletter" class="btn btn-primary">Suscribirme a la newsletter</a>
-            </div>
+            
 
-          </div>
+          
+        <div class="info-box" data-cta-servicios style="margin-top:2rem;">
+          <p><strong>¿Quieres aplicarlo en tu negocio y no tienes tiempo?</strong> Te lo monto yo: webs, citas y reservas online, redes sociales con agentes de IA y automatizaciones a medida, con precio cerrado. <a href="../servicios.html">Mira cómo trabajo</a>.</p>
+        </div>
+      </div>
           <!-- /article-body -->
 
         </article>
@@ -368,20 +368,11 @@
           </div>
 
           <!-- Newsletter Widget -->
-          <div class="sidebar-widget">
-            <div class="sidebar-widget-header">Newsletter semanal</div>
-            <div class="sidebar-widget-body">
-              <div class="cta-widget">
-                <h3>Guías de IA cada semana</h3>
-                <p>Estrategias prácticas, herramientas y prompts para tu negocio. Gratis, sin spam.</p>
-                <form class="email-form" onsubmit="return false;">
-                  <input type="email" placeholder="tu@email.com" required>
-                  <label class="form-consent"><input type="checkbox" required><span>Acepto recibir el newsletter y la <a href="../politica-privacidad.html">política de privacidad</a>.</span></label><button type="submit" class="btn btn-primary">Suscribirme gratis</button>
-                </form>
-                <p style="font-size: 0.75rem; color: var(--color-text-dim); margin-top: 0.5rem; margin-bottom: 0;">+2.500 profesionales suscritos</p>
-              </div>
-            </div>
-          </div>
+          <div class="sidebar-widget cta-widget" data-servicios>
+        <h3>¿Lo quieres en tu negocio?</h3>
+        <p>Si no tienes tiempo de montarlo, te lo dejo funcionando: webs, reservas online, redes con agentes de IA y automatizaciones.</p>
+        <a href="../servicios.html" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Te lo monto</a>
+      </div>
 
           <!-- Ad Slot -->
           <div class="ad-slot ad-slot-rectangle">Espacio publicitario — Google AdSense 300×250</div>
@@ -452,6 +443,7 @@
             <li><a href="../politica-privacidad.html">Privacidad</a></li>
             <li><a href="../aviso-legal.html">Aviso legal</a></li>
             <li><a href="../cookies.html">Política de cookies</a></li>
+            <li><a href="../servicios.html">Te lo monto</a></li>
             <li><a href="../contacto.html">Contacto</a></li>
           </ul>
         </div>
