@@ -16,6 +16,9 @@ tabla `centro.articulos`) y Jesús aprueba cada artículo en su panel "Centro de
 | Jesús | Cuando quiera | Aprueba (`aprobado`) o rechaza con comentario en el panel |
 | Publicador web (`iando-publicador`) | Cada día | Pasa los aprobados de `borradores` a `main` y los enlaza (`publicado`) |
 
+
+> **Publicar de verdad**: GitHub Pages sirve iando.xyz desde la rama `claude/ia-negocios-category-pages-df349r`, no desde `main`. Después de cada `git push origin main`, haz también `git push origin main:claude/ia-negocios-category-pages-df349r` (si dice que no es fast-forward, primero `git fetch origin claude/ia-negocios-category-pages-df349r` y avisa en el registro en vez de forzar).
+
 ## Ramas
 
 - `main` → lo que se ve en iando.xyz (GitHub Pages publica la raíz de `main`).
