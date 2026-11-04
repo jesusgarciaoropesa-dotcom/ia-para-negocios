@@ -37,14 +37,39 @@ BeautySalon, Restaurant, BarOrPub, Store, HardwareStore, LodgingBusiness, Dentis
 concretas y cortas (máximo 6), pensadas para que Jesús se las mande por WhatsApp.
 Lo que no sea imprescindible se deja marcado como "a confirmar" y se sigue.
 
-### 2. Investigación
+### 2. Investigación (a fondo: es lo que hace que la web no parezca genérica)
 
-- Busca el negocio (WebSearch): ficha de Google, web o redes que ya tenga, dirección,
-  horario y valoraciones **solo para entender** (nunca se copian reseñas a la web).
-- 3-5 competidores de la zona: qué ofrecen, cómo se presentan, qué les falta.
-- Búsquedas locales probables: "<servicio> en <localidad>", "<servicio> cerca de mí"…
-- Resultado: `{"negocio_en_google": ..., "competidores": [...], "palabras_clave": [...],
-  "oportunidades": [...], "fuentes": [...]}`.
+La ficha de Google Maps no se puede abrir directamente desde el taller, pero casi
+todo lo que muestra está copiado en otras webs. Busca **al menos 6 fuentes** y ábrelas:
+
+- **Directorios que copian la ficha de Google**: Restaurant Guru, Wanderlog, Gastroranking,
+  TripAdvisor, TheFork, Yelp, Páginas Amarillas, QDQ, Cylex, Truckfly (carretera),
+  Doctoralia/Top Doctors (clínicas), Booksy/Treatwell (peluquería y estética).
+- **Sus redes**: Facebook e Instagram (publicaciones recientes: platos, ofertas, horarios,
+  fotos del local que describan cómo es).
+- **Prensa y blogs**: artículos que lo mencionen ("dónde comer en la A-5", guías locales).
+- Busca expresamente: "<negocio> <localidad> carta", "… menú del día", "… precios",
+  "… horario", "… opiniones".
+
+Qué tienes que sacar (y anotar de qué fuente sale cada dato):
+
+| Dato | Ejemplos |
+|---|---|
+| Lo que vende, con nombres reales | Platos de la carta, menú del día y su precio, especialidades; servicios y tarifas |
+| Horario real | Por días, incluidos cierres |
+| Características | Terraza, aparcamiento, accesible, mascotas, para llevar, wifi, grupos |
+| Qué destacan los clientes | Temas que se repiten en las opiniones (la tortilla, el trato, la rapidez…). Se usan para elegir qué destacar, **nunca se copian reseñas ni se ponen estrellas** |
+| Cifras públicas | Nota y número de reseñas (solo como argumento de venta para Jesús, no en la web) |
+| Datos de contacto | Teléfono, WhatsApp, dirección exacta, redes |
+
+Si Jesús ha pegado información en las notas (de la ficha de Google o de lo que le dijo el
+cliente), esa información manda sobre la de terceros.
+
+Resultado: `{"negocio_en_google": ..., "carta_o_servicios": [{nombre, precio?, fuente}],
+"horario": ..., "caracteristicas": [...], "lo_que_destacan": [...], "competidores": [...],
+"palabras_clave": [...], "oportunidades": [...], "fuentes": [...]}`.
+Si un sector tiene carta o tarifas y no la encuentras en ninguna fuente, dilo en las notas
+para que Jesús la pida, en vez de rellenar con platos genéricos.
 
 ### 3. Textos
 
