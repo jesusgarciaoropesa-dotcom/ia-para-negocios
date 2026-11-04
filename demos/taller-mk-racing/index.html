@@ -21,7 +21,7 @@
   "name": "Taller Mk Racing",
   "description": "Taller de motos y ciclomotores en Oropesa (Toledo): mantenimiento, aceite, neumáticos, frenos, electricidad, puesta a punto para la ITV, preparación racing y venta de recambios.",
   "telephone": "+34637847114",
-  "address": { "@type": "PostalAddress", "streetAddress": "Calle Campana de Oropesa, 15", "addressLocality": "Oropesa", "addressRegion": "Toledo", "addressCountry": "ES" },
+  "address": { "@type": "PostalAddress", "streetAddress": "Calle Campana de Oropesa, 15", "postalCode": "45560", "addressLocality": "Oropesa", "addressRegion": "Toledo", "addressCountry": "ES" },
   "areaServed": "Oropesa (Toledo) y alrededores",
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "14:00" },
@@ -36,7 +36,7 @@
   { "@type": "Question", "name": "¿Qué horario tenéis?", "acceptedAnswer": { "@type": "Answer", "text": "De lunes a viernes, de 9:00 a 14:00 y de 16:00 a 19:00. Sábados y domingos cerrado." } },
   { "@type": "Question", "name": "¿Me preparáis la moto para pasar la ITV?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, la repasamos antes para que llegues a la ITV con todo en orden. La inspección se pasa en la estación de ITV." } },
   { "@type": "Question", "name": "¿Vendéis recambios?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, tenemos venta de recambios para motos y ciclomotores. Pregúntanos por WhatsApp por la pieza que buscas." } },
-  { "@type": "Question", "name": "¿Dónde está el taller?", "acceptedAnswer": { "@type": "Answer", "text": "En la Calle Campana de Oropesa 15, en Oropesa (Toledo)." } }
+  { "@type": "Question", "name": "¿Dónde está el taller?", "acceptedAnswer": { "@type": "Answer", "text": "En la Calle Campana de Oropesa 15, 45560 Oropesa (Toledo)." } }
 ] }
 </script>
 <style>
@@ -149,6 +149,12 @@
   .cta-final .acciones { justify-content: center; }
   .cta-final .btn-2 { border-color: #fff; }
 
+  .marcas { padding: 56px 0; background: var(--c-fondo); }
+  .marcas .cabecera-sec { margin-bottom: 22px; }
+  .lista-marcas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .lista-marcas li { position: relative; display: flex; align-items: center; justify-content: center; min-height: 64px; padding: 10px 14px; background: #fff; border: 1px solid #dcd9d2; border-radius: var(--radio); font-family: var(--f-titulos); font-weight: 700; font-style: italic; font-size: 1.3rem; text-transform: uppercase; letter-spacing: .04em; color: var(--c-oscuro); overflow: hidden; }
+  .lista-marcas li::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, var(--c-primario), var(--c-primario-2)); }
+  .lista-marcas li.mas { background: var(--c-oscuro); color: #fff; border-color: var(--c-oscuro); font-size: 1.05rem; grid-column: span 2; }
   footer { background: var(--c-oscuro); color: rgba(255,255,255,.8); padding: 40px 0 100px; font-size: .92rem; }
   footer a { color: #fff; }
   footer .logo-pie svg { height: 38px; width: auto; margin-bottom: 14px; }
@@ -277,6 +283,16 @@
     </div>
   </section>
 
+  <section id="marcas" class="marcas">
+    <div class="contenedor">
+      <div class="cabecera-sec">
+        <div><span class="eyebrow">Marcas</span><h2>Trabajamos con todas las marcas</h2></div>
+        <p>Da igual la marca de tu moto o ciclomotor: la traes y la atendemos. Estas son algunas de las más habituales.</p>
+      </div>
+      <ul class="lista-marcas" aria-label="Algunas de las marcas con las que trabajamos"><li>Honda</li><li>Yamaha</li><li>Kawasaki</li><li>Suzuki</li><li>BMW</li><li>KTM</li><li>Ducati</li><li>Triumph</li><li>Aprilia</li><li>Piaggio</li><li>Vespa</li><li>Kymco</li><li>SYM</li><li>Peugeot</li><li class="mas">Y cualquier otra marca</li></ul>
+    </div>
+  </section>
+
   <section class="oscura">
     <div class="contenedor">
       <span class="eyebrow">Por qué elegirnos</span>
@@ -356,9 +372,9 @@
           <tr><td>Viernes</td><td>9:00–14:00 · 16:00–19:00</td></tr>
           <tr class="cerrado"><td>Sábado y domingo</td><td>Cerrado</td></tr>
         </tbody></table>
-        <p class="direccion"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>Calle Campana de Oropesa, 15<br>Oropesa (Toledo)</span></p>
+        <p class="direccion"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>Calle Campana de Oropesa, 15<br>45560 Oropesa (Toledo)</span></p>
       </div>
-      <iframe class="mapa" title="Mapa de Taller Mk Racing" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Calle%20Campana%20de%20Oropesa%2015%2C%20Oropesa%2C%20Toledo&output=embed"></iframe>
+      <iframe class="mapa" title="Mapa de Taller Mk Racing" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Calle%20Campana%20de%20Oropesa%2015%2C%2045560%20Oropesa%2C%20Toledo&output=embed"></iframe>
     </div>
   </section>
 
@@ -370,7 +386,7 @@
       <details><summary>¿Qué horario tenéis?</summary><p>De lunes a viernes, de 9:00 a 14:00 y de 16:00 a 19:00. Sábados y domingos cerrado.</p></details>
       <details><summary>¿Me preparáis la moto para pasar la ITV?</summary><p>Sí, la repasamos antes para que llegues a la ITV con todo en orden. La inspección se pasa en la estación de ITV.</p></details>
       <details><summary>¿Vendéis recambios?</summary><p>Sí, tenemos venta de recambios para motos y ciclomotores. Pregúntanos por WhatsApp por la pieza que buscas.</p></details>
-      <details><summary>¿Dónde está el taller?</summary><p>En la Calle Campana de Oropesa 15, en Oropesa (Toledo).</p></details>
+      <details><summary>¿Dónde está el taller?</summary><p>En la Calle Campana de Oropesa 15, 45560 Oropesa (Toledo).</p></details>
     </div>
   </section>
 
@@ -389,7 +405,7 @@
 <footer>
   <div class="contenedor">
     <div class="logo-pie"><svg viewBox="0 0 210 56" role="img" aria-label="Logo de Taller Mk Racing"><use href="#logo"/></svg></div>
-    <p><strong>Taller Mk Racing</strong> · Calle Campana de Oropesa, 15, Oropesa (Toledo) · <a href="tel:+34637847114">637 84 71 14</a></p>
+    <p><strong>Taller Mk Racing</strong> · Calle Campana de Oropesa, 15, 45560 Oropesa (Toledo) · <a href="tel:+34637847114">637 84 71 14</a></p>
     <p>Responsable de esta web: Taller Mk Racing. Los datos que nos envíes por WhatsApp o teléfono solo se usan para atender tu consulta.</p>
     <p style="opacity:.7">Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
   </div>
