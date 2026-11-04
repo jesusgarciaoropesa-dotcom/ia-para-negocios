@@ -74,8 +74,9 @@
   .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
   .hero p.sub { font-size: 1.15rem; max-width: 34ch; }
   .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-  .hero-visual { border-radius: calc(var(--radio) * 2); overflow: hidden; aspect-ratio: 4/5; background: var(--c-suave); }
-  @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; } .hero-visual { aspect-ratio: 16/10; order: -1; } }
+  .hero-visual { border-radius: calc(var(--radio) * 2); overflow: hidden; aspect-ratio: 4/5; background: var(--c-suave); display: grid; place-items: center; }
+  .hero-visual > svg, .hero-visual > img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 820px) { .hero { padding-top: 32px; } .hero-grid { grid-template-columns: 1fr; gap: 28px; } .hero-visual { aspect-ratio: 16/10; } }
 
   /* Servicios */
   .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 28px; }
