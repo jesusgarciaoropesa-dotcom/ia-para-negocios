@@ -21,7 +21,7 @@ tabla `centro.articulos`) y Jesús aprueba cada artículo en su panel "Centro de
 
 ## Ramas
 
-- `main` → lo que se ve en iando.xyz (GitHub Pages publica la raíz de `main`).
+- `main` → la versión buena de la web; se copia a `claude/ia-negocios-category-pages-df349r`, que es la rama que publica GitHub Pages en iando.xyz.
 - `borradores` → artículos pendientes de aprobar. Vista previa de cada uno:
   `https://raw.githack.com/jesusgarciaoropesa-dotcom/ia-para-negocios/borradores/articulos/<slug>.html`
 - Nunca se escribe directamente en `main` salvo el Publicador con artículos aprobados.
