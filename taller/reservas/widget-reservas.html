@@ -1,0 +1,114 @@
+<!-- ============ RESERVAS (taller de iando) ============
+     Pega este bloque dentro de <main> de la landing, donde quieras la sección de reservas.
+     Sustituye {{NEGOCIO_ID}} y {{WHATSAPP}}. Usa las variables de color de la landing (--c-primario, --c-oscuro…).
+     Los datos van a Supabase con la clave pública (anon): solo puede leer servicios y huecos
+     y reservar a través de la función reservar_hueco, que comprueba que la hora está libre. -->
+<section id="reservar" class="alterna">
+  <div class="contenedor" style="max-width:760px">
+    <span class="eyebrow">Reserva online</span>
+    <h2>Pide tu cita</h2>
+    <p>Elige el servicio, el día y la hora que te venga bien. Te confirmamos por teléfono o WhatsApp.</p>
+    <form id="rv-form" class="rv" novalidate>
+      <label>Servicio<select id="rv-serv" required><option value="">Cargando servicios…</option></select></label>
+      <label>Día<input type="date" id="rv-fecha" required></label>
+      <div><span class="rv-lab">Hora</span><div id="rv-horas" class="rv-horas" role="radiogroup" aria-label="Horas libres"><p class="rv-ayuda">Elige primero servicio y día.</p></div></div>
+      <div class="rv-dos">
+        <label>Nombre<input id="rv-nombre" autocomplete="name" maxlength="120" required></label>
+        <label>Teléfono<input id="rv-tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="600 000 000" required></label>
+      </div>
+      <label>Comentario (opcional)<textarea id="rv-notas" rows="2" maxlength="500"></textarea></label>
+      <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos solo para gestionar esta cita.</label>
+      <button class="btn btn-wa" type="submit" id="rv-enviar">Reservar</button>
+      <p id="rv-estado" class="rv-estado" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+<style>
+  .rv { display: grid; gap: 14px; margin-top: 20px; background: #fff; border-radius: var(--radio, 14px); padding: 22px; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+  .rv label, .rv-lab { display: grid; gap: 6px; font-weight: 600; color: var(--c-oscuro, #222); font-size: .95rem; }
+  .rv input, .rv select, .rv textarea { box-sizing: border-box; font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid rgba(0,0,0,.18); border-radius: 10px; background: #fff; color: inherit; min-height: 48px; width: 100%; }
+  .rv-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .rv-dos { grid-template-columns: 1fr; } }
+  .rv-horas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .rv-horas button { min-height: 44px; min-width: 72px; border-radius: 999px; border: 1px solid rgba(0,0,0,.2); background: #fff; font: inherit; cursor: pointer; }
+  .rv-horas button[aria-checked="true"] { background: var(--c-primario, #333); color: #fff; border-color: transparent; }
+  .rv-ayuda { margin: 0; font-weight: 400; opacity: .75; font-size: .95rem; }
+  .rv-check { grid-template-columns: auto 1fr !important; align-items: start; font-weight: 400 !important; }
+  .rv-check input { min-height: 0; width: 20px; height: 20px; margin-top: 2px; }
+  .rv-estado { margin: 0; font-weight: 600; }
+  .rv-estado.ok { color: #1f7a45; } .rv-estado.mal { color: #b42318; }
+</style>
+<script>
+(function () {
+  var SB = "https://gimoqpusrdltlkrwsykr.supabase.co";
+  var KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdpbW9xcHVzcmRsdGxrcndzeWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MDA0NDIsImV4cCI6MjA5Nzk3NjQ0Mn0.xmxP3TGAkXNPsrIKSYj1A-NXrIN1JIyzl9Fv6_FP8Dw";
+  var NEGOCIO = "{{NEGOCIO_ID}}";
+  var WHATSAPP = "{{WHATSAPP}}";
+  var H = { apikey: KEY, Authorization: "Bearer " + KEY, "Content-Type": "application/json" };
+  var $ = function (id) { return document.getElementById(id); };
+  var hora = null, servicios = [];
+  var estado = function (t, cls) { var e = $("rv-estado"); e.textContent = t; e.className = "rv-estado " + (cls || ""); };
+  var hoy = new Date(); var iso = function (d) { return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
+  $("rv-fecha").min = iso(hoy); $("rv-fecha").max = iso(new Date(hoy.getTime() + 60 * 864e5));
+
+  fetch(SB + "/rest/v1/servicios?select=id,nombre,precio_desde,duracion_minutos&order=nombre&negocio_id=eq." + NEGOCIO, { headers: H })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (s) {
+      servicios = s;
+      $("rv-serv").innerHTML = '<option value="">Elige un servicio</option>' + s.map(function (x) {
+        return '<option value="' + x.id + '">' + x.nombre.replace(/</g, "&lt;") + (x.precio_desde ? " · desde " + x.precio_desde + " €" : "") + "</option>";
+      }).join("");
+    })
+    .catch(function () { $("rv-serv").innerHTML = '<option value="">No se pudieron cargar los servicios</option>'; estado("La reserva online no está disponible ahora. Escríbenos por WhatsApp.", "mal"); });
+
+  function cargarHoras() {
+    hora = null;
+    var s = $("rv-serv").value, f = $("rv-fecha").value, box = $("rv-horas");
+    if (!s || !f) { box.innerHTML = '<p class="rv-ayuda">Elige primero servicio y día.</p>'; return; }
+    box.innerHTML = '<p class="rv-ayuda">Buscando horas libres…</p>';
+    fetch(SB + "/rest/v1/rpc/huecos_libres", { method: "POST", headers: H, body: JSON.stringify({ p_negocio_id: NEGOCIO, p_servicio_id: s, p_fecha: f }) })
+      .then(function (r) { return r.json(); })
+      .then(function (horas) {
+        if (!Array.isArray(horas) || !horas.length) { box.innerHTML = '<p class="rv-ayuda">No quedan horas libres ese día. Prueba con otro.</p>'; return; }
+        box.innerHTML = horas.map(function (h) { var v = String(h).slice(0, 5); return '<button type="button" role="radio" aria-checked="false" data-h="' + v + '">' + v + "</button>"; }).join("");
+        box.querySelectorAll("button").forEach(function (b) {
+          b.onclick = function () { box.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-checked", "false"); }); b.setAttribute("aria-checked", "true"); hora = b.dataset.h; };
+        });
+      })
+      .catch(function () { box.innerHTML = '<p class="rv-ayuda">No se pudieron cargar las horas. Inténtalo de nuevo.</p>'; });
+  }
+  $("rv-serv").onchange = cargarHoras; $("rv-fecha").onchange = cargarHoras;
+
+  $("rv-form").onsubmit = function (e) {
+    e.preventDefault();
+    var nombre = $("rv-nombre").value.trim(), tel = $("rv-tel").value.replace(/\D/g, "");
+    if (!$("rv-serv").value || !$("rv-fecha").value) return estado("Elige servicio y día.", "mal");
+    if (!hora) return estado("Elige una hora.", "mal");
+    if (!nombre) return estado("Escribe tu nombre.", "mal");
+    if (!/^(34)?[6-9]\d{8}$/.test(tel)) return estado("Revisa el teléfono (9 cifras).", "mal");
+    if (!$("rv-ok").checked) return estado("Marca la casilla de privacidad.", "mal");
+    $("rv-enviar").disabled = true; estado("Reservando…");
+    fetch(SB + "/rest/v1/rpc/reservar_hueco", { method: "POST", headers: H, body: JSON.stringify({
+      p_negocio_id: NEGOCIO, p_nombre: nombre, p_telefono: tel.slice(-9), p_email: null,
+      p_servicio_id: $("rv-serv").value, p_fecha: $("rv-fecha").value, p_hora: hora, p_notas: $("rv-notas").value.trim() || null }) })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res && res.ok) {
+          var s = servicios.find(function (x) { return x.id === $("rv-serv").value; }) || {};
+          var f = new Date($("rv-fecha").value + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
+          var hh = hora;
+          estado("¡Reserva hecha! " + (s.nombre || "") + " el " + f + " a las " + hh + ". Te confirmaremos en breve.", "ok");
+          $("rv-form").reset(); $("rv-horas").innerHTML = ""; hora = null;
+          if (WHATSAPP && /^\d+$/.test(WHATSAPP)) {
+            var a = document.createElement("a"); a.className = "btn btn-2"; a.target = "_blank"; a.rel = "noopener";
+            a.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hola, acabo de reservar " + (s.nombre || "") + " el " + f + " a las " + hh + " a nombre de " + nombre + ".");
+            a.textContent = "Avisar por WhatsApp (opcional)"; $("rv-estado").after(a);
+          }
+        } else { estado((res && res.error) || "No se pudo reservar. Inténtalo de nuevo.", "mal"); cargarHoras(); }
+      })
+      .catch(function () { estado("No se pudo reservar. Escríbenos por WhatsApp.", "mal"); })
+      .finally(function () { $("rv-enviar").disabled = false; });
+  };
+})();
+</script>
+<!-- ============ /RESERVAS ============ -->
