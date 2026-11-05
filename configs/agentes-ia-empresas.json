@@ -1,0 +1,12 @@
+{
+ "slug": "agentes-ia-empresas",
+ "slides": [
+  {"tipo": "portada", "kicker": "Agentes de IA", "titulo": "Agentes de IA: delegar, no solo preguntar", "destacado": "delegar", "subtitulo": "Qué son y cómo empezar a usarlos en tu negocio"},
+  {"tipo": "versus", "titulo": "Chatbot o agente", "izquierda": {"titulo": "Chatbot", "items": ["Responde una pregunta cada vez", "Tú haces los pasos", "Copias y pegas el resultado"]}, "derecha": {"titulo": "Agente", "items": ["Recibe un objetivo completo", "Decide los pasos él solo", "Vuelve con el trabajo hecho"]}},
+  {"tipo": "lista", "titulo": "Qué puede hacer un agente", "items": ["Navegar por webs y rellenar formularios", "Usar hojas de cálculo y aplicaciones", "Encadenar buscar, analizar y redactar", "Corregir sus errores sobre la marcha"]},
+  {"tipo": "lista", "titulo": "Dónde ahorra tiempo de verdad", "destacado": "tiempo", "items": ["Juntar informes de varias fuentes", "Comparar precios de la competencia", "Cruzar datos entre hojas de cálculo", "Checklists para nuevos empleados"]},
+  {"tipo": "punto", "titulo": "Empieza por algo pequeño", "texto": "Una tarea que hagas cada semana y tenga varios pasos: buscar información y resumirla en una tabla, por ejemplo.", "dato": "**Truco:** dale el resultado final que quieres, no la lista de pasos. Él decide cómo llegar."},
+  {"tipo": "lista", "titulo": "Antes de darle acceso", "items": ["Que pida confirmación antes de enviar o comprar", "Solo los permisos que necesita la tarea", "Revisa siempre el resultado", "Cuidado con los datos de clientes"]},
+  {"tipo": "cierre", "titulo": "La guía completa está en iando.xyz", "destacado": "iando.xyz", "texto": "Con los agentes más usados y un prompt para empezar hoy."}
+ ]
+}
