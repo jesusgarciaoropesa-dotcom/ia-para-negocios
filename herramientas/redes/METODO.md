@@ -11,7 +11,8 @@ Jesús aprueba cada publicación en el panel "Centro de mando" (pestaña Revisar
 ## Qué se hace cada semana
 
 **3 carruseles**, programados para **lunes, miércoles y viernes a las 13:15 (Madrid)** de la semana
-siguiente. Cada uno nace de **un artículo publicado** en iando.xyz:
+siguiente, y **su reel con voz** al día siguiente de cada uno a las 19:30 (ver más abajo).
+Cada carrusel nace de **un artículo publicado** en iando.xyz:
 
 1. **Elegir artículos** (ninguno repetido de las últimas 12 semanas en `centro.publicaciones.articulo`):
    - Primero los que Google ya enseña: `centro.search_paginas` (indexada) y búsquedas de
@@ -50,6 +51,36 @@ siguiente. Cada uno nace de **un artículo publicado** en iando.xyz:
 | `programada_para` | lunes/miércoles/viernes 13:15 Europe/Madrid de la semana siguiente |
 | `estado` | `para_revisar` |
 | `revision` | `{"comprobado": [...], "dudas": [...], "fuentes": [...]}` |
+
+## Reel con voz (uno por carrusel)
+
+Cada carrusel tiene también su **reel**: el mismo contenido animado, con voz en off y sin música,
+que sale **al día siguiente a las 19:30** (martes, jueves y sábado).
+
+La voz lee el título y el texto de cada lámina (no los números ni el recuadro del dato, que se
+quedan en pantalla); en la portada, título y subtítulo; en el cierre, solo el título y "enlace en la bio".
+
+1. **Escribe la versión corta para el vídeo**: en cada lámina de tipo `punto`, añade
+   `"reel": {"texto": "..."}` con el texto resumido en **una frase de 10-16 palabras** (la misma
+   idea, sin datos nuevos). Se ve y se lee en el reel en lugar del texto del carrusel.
+2. Comprueba lo que va a leer la voz: `python3 herramientas/redes/generar_reel.py configs/<slug>.json --guion`.
+   - **Duración: 45-60 s.** Si pasa de 60 s, acorta más los `"reel"`.
+   - Si alguna palabra se va a leer mal (siglas, marcas, inglés), añade en la lámina `"voz"` con cómo
+     se dice (`{"titulo": "...", "texto": "..."}`) o amplía `DICCIONARIO` en `generar_reel.py`.
+3. Genera: `python3 herramientas/redes/generar_reel.py configs/<slug>.json` → `reels/<slug>.mp4` y
+   `reels/<slug>-portada.jpg`. Tarda unos minutos. Mira la portada y 3-4 fotogramas
+   (`ffmpeg -ss <segundo> -i reels/<slug>.mp4 -frames:v 1 f.jpg`) antes de seguir.
+4. Sube `reels/` a la rama `redes` y crea otra publicación:
+
+| Campo | Valor |
+|---|---|
+| `tipo` | `reel` |
+| `archivos` | `{https://raw.githubusercontent.com/jesusgarciaoropesa-dotcom/ia-para-negocios/redes/reels/<slug>.mp4}` |
+| `portada` | la URL raw de `reels/<slug>-portada.jpg` |
+| `historia` | vacío |
+| `texto` / `texto_facebook` | otra primera línea distinta a la del carrusel (que no parezca repetido) |
+| `programada_para` | el día siguiente al carrusel, 19:30 Europe/Madrid |
+| resto | igual que el carrusel (`articulo`, `hashtags`, `estado='para_revisar'`, `revision`) |
 
 ## Textos
 
