@@ -8,7 +8,7 @@ Datos del encargo: tabla `centro.encargos` (Supabase `gimoqpusrdltlkrwsykr`).
 Archivos: rama `demos` de este repo → `demos/<slug>/index.html` (+ `capturas/`).
 
 
-> **Publicar de verdad**: GitHub Pages sirve iando.xyz desde la rama `claude/ia-negocios-category-pages-df349r`, no desde `main`. Después de cada `git push origin main`, haz también `git push origin main:claude/ia-negocios-category-pages-df349r` (si dice que no es fast-forward, primero `git fetch origin claude/ia-negocios-category-pages-df349r` y avisa en el registro en vez de forzar).
+> **Publicar**: GitHub Pages sirve iando.xyz desde `main` (cambiado el 5-11-2026). Basta con `git push origin main`; copiar también a `claude/ia-negocios-category-pages-df349r` ya no hace falta, aunque no hace daño.
 
 ## Etapas y quién hace qué
 

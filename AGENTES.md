@@ -17,11 +17,11 @@ tabla `centro.articulos`) y Jesús aprueba cada artículo en su panel "Centro de
 | Publicador web (`iando-publicador`) | Cada día | Pasa los aprobados de `borradores` a `main` y los enlaza (`publicado`) |
 
 
-> **Publicar de verdad**: GitHub Pages sirve iando.xyz desde la rama `claude/ia-negocios-category-pages-df349r`, no desde `main`. Después de cada `git push origin main`, haz también `git push origin main:claude/ia-negocios-category-pages-df349r` (si dice que no es fast-forward, primero `git fetch origin claude/ia-negocios-category-pages-df349r` y avisa en el registro en vez de forzar).
+> **Publicar**: GitHub Pages sirve iando.xyz desde `main` (cambiado el 5-11-2026). Basta con `git push origin main`; copiar también a `claude/ia-negocios-category-pages-df349r` ya no hace falta, aunque no hace daño.
 
 ## Ramas
 
-- `main` → la versión buena de la web; se copia a `claude/ia-negocios-category-pages-df349r`, que es la rama que publica GitHub Pages en iando.xyz.
+- `main` → lo que se ve en iando.xyz (GitHub Pages publica la raíz de `main`).
 - `borradores` → artículos pendientes de aprobar. Vista previa de cada uno:
   `https://raw.githack.com/jesusgarciaoropesa-dotcom/ia-para-negocios/borradores/articulos/<slug>.html`
 - Nunca se escribe directamente en `main` salvo el Publicador con artículos aprobados.
