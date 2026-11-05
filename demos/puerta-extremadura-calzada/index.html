@@ -137,6 +137,20 @@
   footer { background: #1a2316; color: rgba(255,255,255,.82); padding: 36px 0 100px; font-size: .9rem; }
   footer a { color: #fff; }
 
+  .pizarra { margin-top: 40px; background: var(--c-oscuro); color: #f5ead6; border-radius: 18px; padding: 30px 28px; box-shadow: inset 0 0 0 6px #3a4a30, 0 18px 40px rgba(38,51,32,.18); }
+  .pizarra h3 { color: #fff; font-size: 1.6rem; margin: 0; }
+  .pizarra-cab p { margin: 4px 0 0; color: var(--c-ocre); font-weight: 600; }
+  .platos { list-style: none; padding: 0; margin: 22px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0 34px; }
+  .platos li { padding: 12px 0; border-bottom: 1px dashed rgba(245,234,214,.28); }
+  .platos b { display: block; font-family: var(--f-titulos); font-weight: 500; font-size: 1.08rem; color: #fff; }
+  .platos span { font-size: .9rem; opacity: .8; }
+  .menu-hoy { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; background: rgba(217,154,61,.14); border: 2px solid var(--c-ocre); border-radius: 12px; padding: 16px 18px; }
+  .menu-hoy b { color: var(--c-ocre); }
+  .pizarra-nota { margin: 16px 0 0; font-size: .88rem; opacity: .7; }
+  .franja { padding: 26px 0; background: var(--c-primario); color: #fff; }
+  .servicios-lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px 22px; }
+  .servicios-lista li { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: .95rem; }
+  .servicios-lista svg { width: 26px; height: 26px; flex: none; color: #fbe3b8; }
   .wa-flota { position: fixed; right: 16px; bottom: 16px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: var(--c-wa); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
   .wa-flota svg { width: 30px; height: 30px; color: #fff; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
@@ -221,6 +235,41 @@
           <h3>Platos combinados y carta</h3><p>Si prefieres elegir, tienes platos combinados y carta.</p>
         </article>
       </div>
+
+      <div class="pizarra">
+        <div class="pizarra-cab">
+          <h3>Lo que más se pide</h3>
+          <p>Los favoritos de quien para aquí.</p>
+        </div>
+        <ul class="platos">
+          <li><b>Bocadillo de lomo a la plancha con queso manchego</b><span>bocadillo grande, de los que llenan</span></li>
+          <li><b>Bocadillo de pechuga de pollo</b></li>
+          <li><b>Bocadillo de calamares</b><span>un clásico de barra</span></li>
+          <li><b>Croquetas</b><span>ración bien servida</span></li>
+          <li><b>Hamburguesa</b></li>
+          <li><b>Tostadas y tortilla</b><span>para el desayuno, tostadas grandes</span></li>
+          <li><b>Jamón ibérico</b></li>
+          <li><b>Café</b><span>para seguir viaje</span></li>
+        </ul>
+        <div class="menu-hoy">
+          <div><b>Menú del día</b> · entre semana y también los fines de semana.<br>¿Qué hay hoy? Pregúntanos por WhatsApp y te lo decimos al momento.</div>
+          <a class="btn btn-wa" href="https://wa.me/34636190499?text=Hola%2C%20%C2%BFqu%C3%A9%20hay%20hoy%20de%20men%C3%BA%3F" target="_blank" rel="noopener">Menú de hoy</a>
+        </div>
+        <p class="pizarra-nota">Carta completa y precios, en el restaurante.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="franja" aria-label="Servicios del restaurante">
+    <div class="contenedor">
+      <ul class="servicios-lista">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10 12 4l9 6M12 10v10M7 20h10M5 15h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Terraza y mesas fuera</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 7h12v9H2zM14 10h4l3 3v3h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="6" cy="18" r="2" fill="currentColor"/><circle cx="17" cy="18" r="2" fill="currentColor"/></svg>Parking de camiones iluminado</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h14M15 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V8l-3-3M8 7h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Gasolinera al lado</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 13H7zM9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Para llevar</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 10h20M6 15h4" stroke="currentColor" stroke-width="2"/></svg>Tarjeta y tickets restaurante</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Comedor amplio y barra</li>
+      </ul>
     </div>
   </section>
 
@@ -232,7 +281,7 @@
         <div class="punto"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 10 42M30 6l8 36M24 10v6M24 22v6M24 34v6"/></svg><h3>A pie de autovía</h3><p>En el km 159 de la A-5, junto a la gasolinera. Paras, comes y sigues.</p></div>
         <div class="punto"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 34h36M14 34a10 10 0 0 1 20 0M24 14v6M11 21l4 4M37 21l-4 4"/></svg><h3>Abrimos temprano</h3><p>Desayunos desde primera hora para quien sale de madrugada.</p></div>
         <div class="punto"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M4 14h26v20H4zM30 20h8l6 7v7H30z"/><circle cx="12" cy="37" r="4"/><circle cx="36" cy="37" r="4"/></svg><h3>Sitio para el camión</h3><p>Aparcamiento para camiones y para coches, con luz por la noche.</p></div>
-        <div class="punto"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 18 24 8l18 10ZM24 18v24M14 42h20M10 30h28"/></svg><h3>Terraza</h3><p>Cuando hace bueno, puedes comer fuera.</p></div>
+        <div class="punto"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 18 24 8l18 10ZM24 18v24M14 42h20M10 30h28"/></svg><h3>Rápidos y bien servidos</h3><p>Lo que más valora quien para: servicio rápido, buen trato y raciones que llenan a buen precio.</p></div>
       </div>
     </div>
   </section>
