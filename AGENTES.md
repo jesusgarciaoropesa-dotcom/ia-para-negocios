@@ -15,6 +15,8 @@ tabla `centro.articulos`) y Jesús aprueba cada artículo en su panel "Centro de
 | Revisor (`iando-revisor`) | Martes | Comprueba datos, precios, enlaces y HTML → notas en `revision` |
 | Jesús | Cuando quiera | Aprueba (`aprobado`) o rechaza con comentario en el panel |
 | Publicador web (`iando-publicador`) | Cada día | Pasa los aprobados de `borradores` a `main` y los enlaza (`publicado`) |
+| Redes (`iando-redes`) | Jueves | 3 carruseles a partir de artículos publicados → `centro.publicaciones` (`para_revisar`). Método: [herramientas/redes/METODO.md](herramientas/redes/METODO.md) |
+| Publicador de redes (`publicar`, función de Supabase) | Cada 15 min | Sube a @iando.xyz y a la página de Facebook lo que Jesús aprueba |
 
 ## Ramas
 
