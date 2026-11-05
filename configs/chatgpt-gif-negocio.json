@@ -1,0 +1,77 @@
+{
+ "slug": "chatgpt-gif-negocio",
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "Novedad de ChatGPT",
+   "titulo": "ChatGPT ya crea GIFs para tu negocio",
+   "destacado": "GIFs",
+   "subtitulo": "Anima la foto de tu producto sin saber de diseño",
+   "voz": {
+    "titulo": "chat ye pe te ya crea gifs para tu negocio",
+    "texto": "Anima la foto de tu producto sin saber de diseño"
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "1",
+   "titulo": "Qué ha cambiado",
+   "texto": "Con ChatGPT Images 2.6 conviertes un texto o una foto en un GIF animado. Puedes ajustar la velocidad y editar cada fotograma.",
+   "reel": {
+    "texto": "Con Images 2.6, ChatGPT convierte un texto o una foto en un GIF animado."
+   },
+   "voz": {
+    "titulo": "Qué ha cambiado",
+    "texto": "Con la nueva versión de imágenes, chat ye pe te convierte un texto o una foto en un gif animado."
+   }
+  },
+  {
+   "tipo": "lista",
+   "titulo": "Ideas para tu negocio",
+   "destacado": "tu negocio",
+   "items": [
+    "El plato del día echando humo",
+    "Tu producto girando sobre la mesa",
+    "El cartel de la oferta que parpadea",
+    "Un antes y después de tu servicio"
+   ],
+   "reel": {
+    "items": [
+     "El plato del día echando humo",
+     "El cartel de la oferta que parpadea"
+    ]
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "2",
+   "titulo": "Cómo pedírselo",
+   "texto": "Sube una foto real de tu producto y dile qué quieres que se mueva, a qué velocidad y qué texto debe salir.",
+   "dato": "**Ejemplo:** «Anima esta foto: que salga vapor del café y aparezca el texto 2x1 hasta las 12».",
+   "reel": {
+    "texto": "Sube una foto real y dile qué se mueve, a qué velocidad y qué texto sale."
+   }
+  },
+  {
+   "tipo": "lista",
+   "titulo": "Antes de publicarlo",
+   "items": [
+    "Revisa que el texto salga bien escrito",
+    "Que tu producto no cambie de aspecto",
+    "No uses fotos de clientes sin su permiso"
+   ],
+   "reel": {
+    "items": [
+     "Revisa que el texto salga bien escrito",
+     "Que tu producto no cambie de aspecto"
+    ]
+   }
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "Más trucos de imágenes en iando.xyz",
+   "destacado": "iando.xyz",
+   "texto": "Cómo crear imágenes para tu negocio con ChatGPT."
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "slug": "gemini-pagina-negocios",
+ "slides": [
+  {"tipo": "portada", "kicker": "Novedad de Google", "titulo": "Gemini ya tiene una página para tu negocio", "destacado": "tu negocio", "subtitulo": "Qué puedes hacer desde ahí, paso a paso"},
+  {"tipo": "punto", "num": "1", "titulo": "Tu marca, siempre igual", "texto": "Sube tu web, tu logo, tus tipografías o tus colores. Gemini recuerda tu estilo y crea gráficos con él.", "dato": "**Pruébalo:** pídele el cartel de la oferta del viernes y saldrá con tus colores.", "reel": {"texto": "Sube tu web, tu logo y tus colores, y Gemini crea gráficos con tu estilo."}},
+  {"tipo": "punto", "num": "2", "titulo": "Tus números, en gráficos", "texto": "Dale hojas de cálculo, tickets o registros de compras y los convierte en gráficos y modelos interactivos.", "dato": "**Pregúntale:** ¿qué mes vendí más? ¿En qué se me va más dinero?", "reel": {"texto": "Dale tus hojas de cálculo o tus tickets y te los convierte en gráficos claros."}},
+  {"tipo": "lista", "titulo": "Se conecta con lo que ya usas", "destacado": "ya usas", "items": ["Perfil de Empresa, Google Ads y Workspace", "Canva y Adobe", "Shopify y Wix", "Xero, Zoho y Dropbox"], "reel": {"items": ["Perfil de Empresa, Google Ads y Workspace", "Canva, Shopify y Wix"]}},
+  {"tipo": "punto", "num": "3", "titulo": "Todo en un solo sitio", "texto": "Una página de inicio para negocios dentro de la app de Gemini: marca, finanzas y lo que buscan tus clientes, juntos.", "reel": {"texto": "Una página de inicio en la app de Gemini con marca, finanzas y clientes juntos."}},
+  {"tipo": "lista", "titulo": "Antes de lanzarte", "items": ["Revisa cada cifra antes de tomar decisiones", "No subas datos de clientes que no hagan falta", "Si aún no te aparece, Google lo está desplegando poco a poco"], "reel": {"items": ["Revisa cada cifra antes de decidir", "Si aún no te aparece, llegará en unos días"]}},
+  {"tipo": "cierre", "titulo": "La guía de Gemini está en iando.xyz", "destacado": "iando.xyz", "texto": "Planes, precios y cómo sacarle partido en tu empresa."}
+ ]
+}
