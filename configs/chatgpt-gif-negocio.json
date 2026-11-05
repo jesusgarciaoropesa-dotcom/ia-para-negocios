@@ -1,77 +1,20 @@
 {
  "slug": "chatgpt-gif-negocio",
+ "solo_reel": true,
  "slides": [
-  {
-   "tipo": "portada",
-   "kicker": "Novedad de ChatGPT",
-   "titulo": "ChatGPT ya crea GIFs para tu negocio",
-   "destacado": "GIFs",
-   "subtitulo": "Anima la foto de tu producto sin saber de diseño",
-   "voz": {
-    "titulo": "chat ye pe te ya crea gifs para tu negocio",
-    "texto": "Anima la foto de tu producto sin saber de diseño"
-   }
-  },
-  {
-   "tipo": "punto",
-   "num": "1",
-   "titulo": "Qué ha cambiado",
-   "texto": "Con ChatGPT Images 2.6 conviertes un texto o una foto en un GIF animado. Puedes ajustar la velocidad y editar cada fotograma.",
-   "reel": {
-    "texto": "Con Images 2.6, ChatGPT convierte un texto o una foto en un GIF animado."
-   },
-   "voz": {
-    "titulo": "Qué ha cambiado",
-    "texto": "Con la nueva versión de imágenes, chat ye pe te convierte un texto o una foto en un gif animado."
-   }
-  },
-  {
-   "tipo": "lista",
-   "titulo": "Ideas para tu negocio",
-   "destacado": "tu negocio",
-   "items": [
-    "El plato del día echando humo",
-    "Tu producto girando sobre la mesa",
-    "El cartel de la oferta que parpadea",
-    "Un antes y después de tu servicio"
-   ],
-   "reel": {
-    "items": [
-     "El plato del día echando humo",
-     "El cartel de la oferta que parpadea"
-    ]
-   }
-  },
-  {
-   "tipo": "punto",
-   "num": "2",
-   "titulo": "Cómo pedírselo",
-   "texto": "Sube una foto real de tu producto y dile qué quieres que se mueva, a qué velocidad y qué texto debe salir.",
-   "dato": "**Ejemplo:** «Anima esta foto: que salga vapor del café y aparezca el texto 2x1 hasta las 12».",
-   "reel": {
-    "texto": "Sube una foto real y dile qué se mueve, a qué velocidad y qué texto sale."
-   }
-  },
-  {
-   "tipo": "lista",
-   "titulo": "Antes de publicarlo",
-   "items": [
-    "Revisa que el texto salga bien escrito",
-    "Que tu producto no cambie de aspecto",
-    "No uses fotos de clientes sin su permiso"
-   ],
-   "reel": {
-    "items": [
-     "Revisa que el texto salga bien escrito",
-     "Que tu producto no cambie de aspecto"
-    ]
-   }
-  },
-  {
-   "tipo": "cierre",
-   "titulo": "Más trucos de imágenes en iando.xyz",
-   "destacado": "iando.xyz",
-   "texto": "Cómo crear imágenes para tu negocio con ChatGPT."
-  }
+  {"tipo": "media", "kicker": "Novedad de ChatGPT", "titulo": "Este GIF lo ha hecho ChatGPT en dos pasos", "destacado": "GIF", "archivo": "reels/fuentes-gif/cafe-croissant-chatgpt.gif", "pausa": 1.2,
+   "voz": {"titulo": "Este gif lo ha hecho chat ye pe te en dos pasos."}},
+  {"tipo": "media", "titulo": "Paso 1: la imagen", "destacado": "1:", "archivo": "reels/fuentes-gif/cafe-croissant-original.png",
+   "pie": "Le pedí una foto realista de un desayuno en un bar. Con una foto real de tu producto, todavía mejor.",
+   "voz": {"titulo": "Paso uno: la imagen."}},
+  {"tipo": "punto", "num": "2", "titulo": "Paso 2: pídele el GIF", "texto": "Sube la imagen y dile qué se mueve y qué texto sale.",
+   "dato": "«Convierte esta imagen en un GIF en bucle: vapor suave en el café y un cartel con el texto Desayuno 2,50 €. No cambies nada más.»",
+   "voz": {"titulo": "Paso dos: pídele el gif.", "texto": "Sube la imagen y dile qué se mueve y qué texto sale."}},
+  {"tipo": "media", "titulo": "El resultado", "destacado": "resultado", "archivo": "reels/fuentes-gif/cafe-croissant-chatgpt.gif",
+   "pie": "El cartel aparece solo y se repite en bucle. Listo para stories o WhatsApp.", "pausa": 1.0,
+   "voz": {"pie": "El cartel aparece solo y se repite en bucle. Listo para tus historias o tu guasap."}},
+  {"tipo": "lista", "titulo": "Antes de publicarlo", "items": ["Revisa que el texto esté bien escrito", "Mira que tu producto no haya cambiado", "Sale pequeño: ideal para stories y WhatsApp"],
+   "voz": {"titulo": "Antes de publicarlo"}},
+  {"tipo": "cierre", "titulo": "Más trucos de imágenes en iando.xyz", "destacado": "iando.xyz", "texto": "Cómo crear imágenes para tu negocio con ChatGPT."}
  ]
 }

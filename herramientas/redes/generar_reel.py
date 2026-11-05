@@ -12,7 +12,8 @@ en leerse. Se dibuja fotograma a fotograma con Chromium y se monta con ffmpeg en
 más reels/<slug>-portada.jpg para la portada del reel.
 
 Opcional en cada lámina: "reel" = {"titulo"?, "texto"?, "dato"?...} versión más corta solo para el
-vídeo (se ve y se lee en lugar de la del carrusel). "voz" = texto que se lee en lugar del de pantalla (si la pronunciación
+vídeo (se ve y se lee en lugar de la del carrusel). Solo en el reel: lámina "media" {kicker?, titulo, archivo (imagen o GIF), pie?, pausa?}
+para enseñar un ejemplo real (el GIF se anima en bucle al ritmo del vídeo). "voz" = texto que se lee en lugar del de pantalla (si la pronunciación
 de algo sale rara, escríbelo como se dice). Para comprobar lo que se va a leer: --guion.
 """
 import argparse, json, shutil, subprocess, sys, tempfile
@@ -67,6 +68,9 @@ li i{flex:none;width:64px;height:64px;border-radius:50%;background:#6366f1;displ
 .col li{font-size:38px;gap:16px}.col li i{width:46px;height:46px}
 .cta{margin-top:60px;background:rgba(255,255,255,.16);border:3px solid rgba(255,255,255,.4);border-radius:34px;padding:44px 48px;font-size:46px;line-height:1.35}
 .web{margin-top:70px;align-self:flex-start;background:#fff;color:#4f46e5;font-weight:800;font-size:54px;padding:28px 54px;border-radius:999px}
+.media{margin-top:56px;border-radius:40px;overflow:hidden;box-shadow:0 30px 80px rgba(30,27,75,.45);border:10px solid #fff;background:#fff}
+.media img,.media .spr{display:block;width:100%}
+.pie{font-size:46px;line-height:1.32;margin-top:44px;opacity:.95}
 .desliza{position:absolute;bottom:150px;left:0;right:0;text-align:center;font-size:38px;font-weight:600;opacity:.8}
 """
 
@@ -192,6 +196,33 @@ def parrafo(L, texto, voz_alt=None, cls="", fin_pausa=None):
     return " ".join(out)
 
 
+def media_html(s, ini):
+    """Imagen fija o GIF animado (como sprite CSS, para que siga al reloj del vídeo)."""
+    import base64, io
+    from PIL import Image
+    ruta = Path(s["archivo"])
+    im = Image.open(ruta)
+    ancho = 880
+    n = getattr(im, "n_frames", 1)
+    alto = round(im.size[1] * ancho / im.size[0])
+    if n == 1:
+        b = io.BytesIO(); im.convert("RGB").resize((ancho, alto), Image.LANCZOS).save(b, "JPEG", quality=90)
+        return f'<div class="media"><img src="data:image/jpeg;base64,{base64.b64encode(b.getvalue()).decode()}"></div>'
+    frames, dur = [], 0
+    for i in range(n):
+        im.seek(i); dur += im.info.get("duration", 100)
+        frames.append(im.convert("RGB").resize((ancho, alto), Image.LANCZOS))
+    hoja = Image.new("RGB", (ancho, alto * n))
+    for i, f in enumerate(frames):
+        hoja.paste(f, (0, i * alto))
+    b = io.BytesIO(); hoja.save(b, "JPEG", quality=88)
+    uri = base64.b64encode(b.getvalue()).decode()
+    nombre = f"gif{abs(hash(str(ruta))) % 10**6}"
+    return (f'<style>@keyframes {nombre}{{from{{background-position:0 0}}to{{background-position:0 -{alto * n}px}}}}</style>'
+            f'<div class="media"><div class="spr" style="height:{alto}px;background:url(data:image/jpeg;base64,{uri}) 0 0/{ancho}px {alto * n}px no-repeat;'
+            f'animation:{nombre} {dur / 1000:.2f}s steps({n}) {ini:.2f}s infinite"></div></div>')
+
+
 def escena(s, L, ini):
     """Devuelve (html de la escena, instante en que termina la voz)."""
     s = {**s, **(s.get("reel") or {})}   # versión corta para el vídeo, si la hay
@@ -212,6 +243,15 @@ def escena(s, L, ini):
         h += f'<div class="cta ap" {d(L.t + 0.2)}>{e(cta)}</div>'
         b, _ = L.di("Enlace en la bio.", 0)
         h += f'<span class="web pop" {d(b)}>Enlace en la bio 👆</span>'
+        return h
+    if t == "media":
+        h = f'<span class="kicker ap" {d(ini + 0.1)}>{e(s["kicker"])}</span>' if s.get("kicker") else ""
+        a, dur = L.di(s["titulo"], PAUSA["titulo"], voz_de(s, "titulo"))
+        h += f'<h2>{palabras(s["titulo"], s.get("destacado"), a, dur)}</h2>'
+        h += f'<div class="ap" {d(ini + 0.05)}>{media_html(s, ini)}</div>'
+        if s.get("pie"):
+            h += f'<p class="pie">{parrafo(L, s["pie"], voz_de(s, "pie"))}</p>'
+        L.t += float(s.get("pausa", 0.8))
         return h
     dentro = ""
     if t == "punto":
