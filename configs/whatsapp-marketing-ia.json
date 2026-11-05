@@ -1,12 +1,67 @@
 {
  "slug": "whatsapp-marketing-ia",
  "slides": [
-  {"tipo": "portada", "kicker": "WhatsApp + IA", "titulo": "Campañas de WhatsApp sin que te penalicen", "destacado": "sin que te penalicen", "subtitulo": "Lo que ha cambiado y cómo montarlas bien"},
-  {"tipo": "punto", "num": "1", "titulo": "Ahora pagas por mensaje", "texto": "Desde julio de 2025, Meta cobra cada mensaje de plantilla entregado, no la conversación de 24 horas.", "dato": "Tres mensajes de marketing al mismo cliente en un día = **tres mensajes cobrados**."},
-  {"tipo": "punto", "num": "2", "titulo": "Sin permiso, no hay campaña", "texto": "Cada mensaje de marketing necesita una plantilla aprobada por Meta y el consentimiento previo del cliente.", "dato": "Nunca reutilices una lista de contactos de otro canal sin un permiso claro."},
-  {"tipo": "punto", "num": "3", "titulo": "Cuida el texto de la plantilla", "texto": "Haz el borrador con ChatGPT y revisa que no suene agresivo ni poco transparente. Así evitas rechazos."},
-  {"tipo": "punto", "num": "4", "titulo": "Empieza con pocos envíos", "texto": "Prueba con un volumen pequeño antes de la campaña grande y detecta a tiempo los problemas de aprobación."},
-  {"tipo": "punto", "num": "5", "titulo": "72 horas gratis con anuncios", "texto": "Si el cliente te escribe desde un anuncio Click-to-WhatsApp y respondes en 24 horas, tienes 72 horas de mensajes gratis.", "dato": "Aprovéchalas para las **primeras conversaciones** con clientes nuevos."},
-  {"tipo": "cierre", "titulo": "La guía completa está en iando.xyz", "destacado": "iando.xyz", "texto": "Con las plataformas para automatizarlo y las reglas de plantillas."}
+  {
+   "tipo": "portada",
+   "kicker": "WhatsApp + IA",
+   "titulo": "Campañas de WhatsApp sin que te penalicen",
+   "destacado": "sin que te penalicen",
+   "subtitulo": "Lo que ha cambiado y cómo montarlas bien"
+  },
+  {
+   "tipo": "punto",
+   "num": "1",
+   "titulo": "Ahora pagas por mensaje",
+   "texto": "Desde julio de 2025, Meta cobra cada mensaje de plantilla entregado, no la conversación de 24 horas.",
+   "dato": "Tres mensajes de marketing al mismo cliente en un día = **tres mensajes cobrados**.",
+   "reel": {
+    "texto": "Meta ya no cobra por conversación: cobra cada mensaje de plantilla entregado."
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "2",
+   "titulo": "Sin permiso, no hay campaña",
+   "texto": "Cada mensaje de marketing necesita una plantilla aprobada por Meta y el consentimiento previo del cliente.",
+   "dato": "Nunca reutilices una lista de contactos de otro canal sin un permiso claro.",
+   "reel": {
+    "texto": "Cada mensaje de marketing necesita plantilla aprobada y permiso del cliente."
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "3",
+   "titulo": "Cuida el texto de la plantilla",
+   "texto": "Haz el borrador con ChatGPT y revisa que no suene agresivo ni poco transparente. Así evitas rechazos.",
+   "reel": {
+    "texto": "Haz el borrador con ChatGPT y revisa que no suene agresivo."
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "4",
+   "titulo": "Empieza con pocos envíos",
+   "texto": "Prueba con un volumen pequeño antes de la campaña grande y detecta a tiempo los problemas de aprobación.",
+   "reel": {
+    "texto": "Prueba primero con pocos envíos para detectar problemas a tiempo."
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "5",
+   "titulo": "72 horas gratis con anuncios",
+   "texto": "Si el cliente te escribe desde un anuncio Click-to-WhatsApp y respondes en 24 horas, tienes 72 horas de mensajes gratis.",
+   "dato": "Aprovéchalas para las **primeras conversaciones** con clientes nuevos.",
+   "reel": {
+    "texto": "Si te escriben desde un anuncio y respondes en 24 horas: 72 horas gratis.",
+    "dato": ""
+   }
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "La guía completa está en iando.xyz",
+   "destacado": "iando.xyz",
+   "texto": "Con las plataformas para automatizarlo y las reglas de plantillas."
+  }
  ]
 }

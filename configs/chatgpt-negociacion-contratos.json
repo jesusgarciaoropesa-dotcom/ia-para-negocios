@@ -1,13 +1,106 @@
 {
  "slug": "chatgpt-negociacion-contratos",
  "slides": [
-  {"tipo": "portada", "kicker": "ChatGPT", "titulo": "Prepara tu próxima negociación con ChatGPT", "destacado": "negociación", "subtitulo": "5 usos útiles (y cuándo llamar al abogado)"},
-  {"tipo": "punto", "num": "1", "titulo": "Ten claro tu plan B", "texto": "Pídele que te ayude a definir tu mejor alternativa si no hay acuerdo, y la de la otra parte.", "dato": "Se llama **BATNA**. Con las dos, ChatGPT te ayuda a estimar la zona de posible acuerdo."},
-  {"tipo": "punto", "num": "2", "titulo": "Anticipa sus objeciones", "texto": "Pídele tus 3 argumentos más sólidos y las 3 objeciones que te pondrán, con cómo responder a cada una."},
-  {"tipo": "punto", "num": "3", "titulo": "Ensaya antes de sentarte", "texto": "Que haga de la otra parte en un role-play y te dé feedback de tu táctica después de cada respuesta."},
-  {"tipo": "punto", "num": "4", "titulo": "Entiende el contrato", "texto": "Pídele un resumen de obligaciones, plazos, pagos, penalizaciones y las cláusulas que deberían preocuparte.", "dato": "**Prompt:** «Explícame esta cláusula en lenguaje simple. ¿Qué riesgos me impone? ¿Es estándar?»"},
-  {"tipo": "punto", "num": "5", "titulo": "Redacta la contraoferta", "texto": "Profesional, positiva, firme en lo importante y con la puerta abierta. Pídele un máximo de 200 palabras."},
-  {"tipo": "versus", "titulo": "ChatGPT o abogado", "izquierda": {"titulo": "ChatGPT te ayuda", "items": ["Entender el lenguaje legal", "Preparar la negociación", "Saber qué preguntar"]}, "derecha": {"titulo": "Mejor un abogado", "items": ["Contratos de más de 10.000 €", "Más de un año de duración", "Disputas y contratos laborales"]}},
-  {"tipo": "cierre", "titulo": "La guía completa está en iando.xyz", "destacado": "iando.xyz", "texto": "Con todos los prompts listos para copiar. Recuerda: ChatGPT no es asesoramiento legal."}
+  {
+   "tipo": "portada",
+   "kicker": "ChatGPT",
+   "titulo": "Prepara tu próxima negociación con ChatGPT",
+   "destacado": "negociación",
+   "subtitulo": "5 usos útiles (y cuándo llamar al abogado)",
+   "reel": {
+    "subtitulo": ""
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "1",
+   "titulo": "Ten claro tu plan B",
+   "texto": "Pídele que te ayude a definir tu mejor alternativa si no hay acuerdo, y la de la otra parte.",
+   "dato": "Se llama **BATNA**. Con las dos, ChatGPT te ayuda a estimar la zona de posible acuerdo.",
+   "reel": {
+    "texto": "Define con él tu mejor alternativa si no hay acuerdo, y la suya.",
+    "dato": ""
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "2",
+   "titulo": "Anticipa sus objeciones",
+   "texto": "Pídele tus 3 argumentos más sólidos y las 3 objeciones que te pondrán, con cómo responder a cada una.",
+   "reel": {
+    "texto": "Pídele tus mejores argumentos y las objeciones que te pondrán."
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "3",
+   "titulo": "Ensaya antes de sentarte",
+   "texto": "Que haga de la otra parte en un role-play y te dé feedback de tu táctica después de cada respuesta.",
+   "reel": {
+    "texto": "Que haga de la otra parte y te dé feedback de tu táctica."
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "4",
+   "titulo": "Entiende el contrato",
+   "texto": "Pídele un resumen de obligaciones, plazos, pagos, penalizaciones y las cláusulas que deberían preocuparte.",
+   "dato": "**Prompt:** «Explícame esta cláusula en lenguaje simple. ¿Qué riesgos me impone? ¿Es estándar?»",
+   "reel": {
+    "texto": "Pídele un resumen de plazos, pagos y cláusulas que deberían preocuparte.",
+    "dato": ""
+   }
+  },
+  {
+   "tipo": "punto",
+   "num": "5",
+   "titulo": "Redacta la contraoferta",
+   "texto": "Profesional, positiva, firme en lo importante y con la puerta abierta. Pídele un máximo de 200 palabras.",
+   "reel": {
+    "texto": "Firme en lo importante y de doscientas palabras como máximo."
+   }
+  },
+  {
+   "tipo": "versus",
+   "titulo": "ChatGPT o abogado",
+   "izquierda": {
+    "titulo": "ChatGPT te ayuda",
+    "items": [
+     "Entender el lenguaje legal",
+     "Preparar la negociación",
+     "Saber qué preguntar"
+    ]
+   },
+   "derecha": {
+    "titulo": "Mejor un abogado",
+    "items": [
+     "Contratos de más de 10.000 €",
+     "Más de un año de duración",
+     "Disputas y contratos laborales"
+    ]
+   },
+   "reel": {
+    "izquierda": {
+     "titulo": "ChatGPT te ayuda",
+     "items": [
+      "Entender el lenguaje legal",
+      "Preparar la negociación"
+     ]
+    },
+    "derecha": {
+     "titulo": "Mejor un abogado",
+     "items": [
+      "Contratos de más de 10.000 €",
+      "Disputas y contratos laborales"
+     ]
+    }
+   }
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "La guía completa está en iando.xyz",
+   "destacado": "iando.xyz",
+   "texto": "Con todos los prompts listos para copiar. Recuerda: ChatGPT no es asesoramiento legal."
+  }
  ]
 }
