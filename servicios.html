@@ -47,7 +47,7 @@
       <nav class="breadcrumb"><a href="./">Inicio</a><span class="breadcrumb-sep">/</span><span>Te lo monto</span></nav>
       <h1 style="margin-top:1.5rem;">¿No tienes tiempo de aplicar la IA en tu negocio? Te lo monto</h1>
       <p style="color:var(--color-text-muted);margin-top:0.75rem;font-size:1.05rem;">En esta web explico cómo usar la inteligencia artificial en una empresa pequeña. Si prefieres que te lo deje funcionando, sin tener que aprender nada técnico, también lo hago: webs, reservas online, redes sociales con agentes de IA y automatizaciones para negocios y autónomos.</p>
-      <p style="margin-top:1.5rem;"><a href="mailto:info@iando.xyz?subject=Quiero%20informaci%C3%B3n%20sobre%20vuestros%20servicios" class="btn btn-primary btn-lg">Cuéntame qué necesitas</a></p>
+      <p style="margin-top:1.5rem;"><a href="#contacto" class="btn btn-primary btn-lg">Cuéntame qué necesitas</a></p>
 
       <h2 style="margin-top:3rem;">Qué te puedo montar</h2>
       <div style="margin-top:1.25rem;display:flex;flex-direction:column;gap:1.25rem;">
@@ -90,11 +90,71 @@
       <p style="margin-top:1rem;"><strong>¿Qué pasa si después no quiero seguir?</strong><br><span style="color:var(--color-text-muted);">La web y los datos son tuyos. Si dejas el mantenimiento, te lo entrego todo para que lo lleve quien tú quieras.</span></p>
       <p style="margin-top:1rem;"><strong>¿Usáis la IA para todo?</strong><br><span style="color:var(--color-text-muted);">La uso donde ahorra tiempo de verdad (redactar, analizar, programar publicaciones), pero siempre con una persona revisando antes de que algo se publique o llegue a tus clientes.</span></p>
 
-      <div style="margin-top:3rem;padding:1.5rem;background:var(--color-bg-card);border-radius:0.75rem;border:1px solid var(--color-border);text-align:center;">
+      <section id="contacto" style="margin-top:3rem;padding:1.5rem;background:var(--color-bg-card);border-radius:0.75rem;border:1px solid var(--color-border);scroll-margin-top:90px;">
         <h2 style="margin:0 0 0.5rem;font-size:1.25rem;">¿Hablamos?</h2>
-        <p style="color:var(--color-text-muted);margin:0 0 1rem;">Escríbeme contando a qué se dedica tu negocio y qué te gustaría resolver. Te respondo en 1-2 días laborables.</p>
-        <a href="mailto:info@iando.xyz?subject=Quiero%20informaci%C3%B3n%20sobre%20vuestros%20servicios" class="btn btn-primary">info@iando.xyz</a>
-      </div>
+        <p style="color:var(--color-text-muted);margin:0 0 1.25rem;">Cuéntame a qué se dedica tu negocio y qué te gustaría resolver. Te respondo en 1-2 días laborables.</p>
+        <form id="form-contacto" class="fc" novalidate>
+          <div class="fc-dos">
+            <label>Tu nombre<input name="nombre" autocomplete="name" maxlength="120" required></label>
+            <label>Email o teléfono<input name="contacto" autocomplete="email" maxlength="160" required placeholder="Para poder responderte"></label>
+          </div>
+          <div class="fc-dos">
+            <label><span>Tu negocio <span class="fc-op">(opcional)</span></span><input name="negocio" maxlength="160" placeholder="Ej.: peluquería en Talavera"></label>
+            <label>Qué te interesa<select name="servicio">
+              <option value="">Aún no lo sé</option><option value="landing">Una web</option><option value="reservas">Citas y reservas online</option>
+              <option value="redes">Redes en piloto automático</option><option value="automatizacion">Automatizar tareas</option></select></label>
+          </div>
+          <label>Qué te gustaría resolver<textarea name="mensaje" rows="4" maxlength="2000"></textarea></label>
+          <label class="fc-trampa" aria-hidden="true">Web<input name="web" tabindex="-1" autocomplete="off"></label>
+          <label class="fc-check"><input type="checkbox" name="ok" required><span>He leído la <a href="politica-privacidad.html">política de privacidad</a> y acepto que uséis mis datos solo para responderme.</span></label>
+          <button class="btn btn-primary" type="submit">Enviar</button>
+          <p class="fc-estado" role="status" aria-live="polite"></p>
+        </form>
+        <p style="color:var(--color-text-muted);margin:1rem 0 0;font-size:0.9rem;">¿Prefieres el correo? Escribe a <strong>info@iando.xyz</strong> <button type="button" class="fc-copiar" data-copiar="info@iando.xyz">Copiar</button></p>
+      </section>
+      <style>
+        .fc { display: grid; gap: 0.9rem; }
+        .fc label { display: grid; gap: 0.35rem; font-weight: 600; font-size: 0.95rem; }
+        .fc input, .fc select, .fc textarea { font: inherit; font-weight: 400; padding: 0.7rem 0.85rem; border: 1px solid var(--color-border); border-radius: 0.5rem; background: var(--color-bg, #fff); color: inherit; width: 100%; box-sizing: border-box; }
+        .fc-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+        @media (max-width: 600px) { .fc-dos { grid-template-columns: 1fr; } }
+        .fc-op { font-weight: 400; color: var(--color-text-muted); }
+        .fc-check { grid-template-columns: auto 1fr !important; align-items: start; font-weight: 400 !important; font-size: 0.9rem !important; }
+        .fc-check input { width: 18px; height: 18px; margin-top: 3px; }
+        .fc-trampa { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+        .fc button[type=submit] { justify-self: start; }
+        .fc-estado { margin: 0; font-weight: 600; } .fc-estado.ok { color: #15803d; } .fc-estado.mal { color: #b91c1c; }
+        .fc-copiar { font: inherit; font-size: 0.85rem; border: 1px solid var(--color-border); background: transparent; border-radius: 0.4rem; padding: 0.1rem 0.5rem; cursor: pointer; color: inherit; }
+      </style>
+      <script>
+      (function () {
+        var f = document.getElementById("form-contacto"), est = f.querySelector(".fc-estado");
+        var KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdpbW9xcHVzcmRsdGxrcndzeWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MDA0NDIsImV4cCI6MjA5Nzk3NjQ0Mn0.xmxP3TGAkXNPsrIKSYj1A-NXrIN1JIyzl9Fv6_FP8Dw";
+        var msg = function (t, c) { est.textContent = t; est.className = "fc-estado " + (c || ""); };
+        f.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var d = new FormData(f);
+          if (!String(d.get("nombre") || "").trim()) return msg("Escribe tu nombre.", "mal");
+          if (!String(d.get("contacto") || "").trim()) return msg("Pon un email o un teléfono para poder responderte.", "mal");
+          if (!d.get("ok")) return msg("Marca la casilla de privacidad.", "mal");
+          var b = f.querySelector("button[type=submit]"); b.disabled = true; msg("Enviando…");
+          fetch("https://gimoqpusrdltlkrwsykr.supabase.co/rest/v1/rpc/contacto_iando", {
+            method: "POST", headers: { apikey: KEY, Authorization: "Bearer " + KEY, "Content-Type": "application/json" },
+            body: JSON.stringify({ p_nombre: d.get("nombre"), p_contacto: d.get("contacto"), p_negocio: d.get("negocio"),
+              p_servicio: d.get("servicio") || null, p_mensaje: d.get("mensaje"), p_web: d.get("web") })
+          }).then(function (r) { return r.json(); }).then(function (r) {
+            if (r && r.ok) { f.reset(); msg("¡Recibido! Te respondo en 1-2 días laborables.", "ok"); }
+            else msg((r && r.error) || "No se ha podido enviar. Escríbeme a info@iando.xyz.", "mal");
+          }).catch(function () { msg("No se ha podido enviar. Escríbeme a info@iando.xyz.", "mal"); })
+            .finally(function () { b.disabled = false; });
+        });
+        document.querySelectorAll("[data-copiar]").forEach(function (x) {
+          x.addEventListener("click", function () {
+            (navigator.clipboard ? navigator.clipboard.writeText(x.dataset.copiar) : Promise.reject()).then(function () { x.textContent = "Copiado"; }, function () { x.textContent = x.dataset.copiar; });
+          });
+        });
+      })();
+      </script>
     </div>
   </main>
 
