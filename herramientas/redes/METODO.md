@@ -25,15 +25,43 @@ Cada carrusel nace de **un artículo publicado** en iando.xyz:
    precio, nombre de plan o cifra tiene que estar en el artículo (y si es un precio o una función de
    una herramienta, comprobarlo con WebFetch en la web oficial; si no cuadra, no se pone).
    Nada de casos de clientes, testimonios, ejemplos con nombre de persona ni experiencia de Jesús.
-3. **Escribir la configuración** `configs/<slug>.json` (ver tipos de lámina en `generar_carrusel.py`):
-   - 6-9 láminas: `portada` → 4-6 de `punto`/`lista`/`versus` → `cierre`.
-   - Portada: promesa clara y concreta (número, beneficio o error a evitar). Título ≤ 8 palabras.
-   - Una idea por lámina, frases cortas: título ≤ 6 palabras, texto ≤ 25 palabras.
-   - `dato` solo con algo que ayude a actuar (herramienta, precio comprobado, paso).
-   - Cierre: "La guía completa está en iando.xyz" (u otro título) + el recuadro de "te lo monto".
+3. **Escribir la configuración** `configs/<slug>.json`. Formato completo y ejemplo de todos los tipos:
+   `herramientas/redes/ejemplo-visual.json` (es solo un ejemplo de formato: sus datos no valen).
+
+   **Regla principal: cada lámina ENSEÑA la idea, no la cuenta.** La competencia que funciona enseña la
+   herramienta funcionando (pantallas, resultados, números). Nada de láminas que sean solo una lista de
+   viñetas sobre fondo liso: como mucho **una** lámina de tipo `punto` o `lista` por carrusel (el
+   generador avisa si hay más).
+
+   | Si la idea es… | Usa | Qué se ve |
+   |---|---|---|
+   | Cómo se le pide algo a una IA / cómo contesta un cliente | `chat` | móvil con la conversación (`app`: `asistente` o `whatsapp`) |
+   | El resultado que entrega (comparativa, lista de precios, informe) | `tabla` | ventana con la tabla y un `globo` con lo importante |
+   | Para qué sirve en un negocio (tareas, casos de uso) | `tarjetas` | 2-4 tarjetas con icono |
+   | Cómo empezar / pasos a seguir | `pasos` | línea de 3-5 pasos numerados |
+   | La frase exacta para copiar | `prompt` | ventana con el prompt y los [huecos] en color |
+   | Un número que impacta (precio, tiempo, %) | `cifra` | número gigante + antes/después |
+   | Lo viejo frente a lo nuevo | `versus` | dos columnas con `mensajes`, `pasos` o `items` |
+
+   - 6-8 láminas: `portada` → 4-6 visuales → `cierre`. **Variedad**: no repitas tipo seguido.
+   - **Portada**: gancho con un ejemplo concreto, no un tema ("Le pides «búscame 3 proveedores» y te los
+     trae comparados", no "Agentes de IA: qué son"). Título ≤ 12 palabras. Si encaja, añade `chat` con la
+     conversación que lo demuestra (sale un móvil al lado y es lo que más para el scroll).
+   - Títulos ≤ 8 palabras; textos de apoyo ≤ 20 palabras. Usa `destacado` para la palabra clave.
+   - Iconos de `tarjetas`: nombres de la lista (`python3 herramientas/redes/generar_carrusel.py --iconos`).
+   - **Nada inventado también en lo visual**: los mensajes del chat, las filas de la tabla y las cifras
+     tienen que salir del artículo (o ser un ejemplo marcado como tal en el `globo`: "Ejemplo ilustrativo").
+     Nunca precios, tiempos o resultados que el artículo no diga. Nombres genéricos ("Proveedor A",
+     "Tu negocio"), nunca marcas o personas reales como si fueran clientes.
+   - **Cierre con palabra clave**: pon `"palabra": "UNA_PALABRA"` en la lámina `cierre` y también en la
+     publicación (campo `palabra`, ver abajo). Palabra corta, en mayúsculas y relacionada con el tema
+     (AGENTE, WHATSAPP, RESEÑAS…), distinta de las de las últimas 4 semanas. Sale «Comenta AGENTE y te
+     paso la guía por mensaje privado» y la función `comentarios` se la manda a quien comente.
 4. **Generar**: `python3 herramientas/redes/generar_carrusel.py configs/<slug>.json`.
    Si avisa de que una lámina se sale, acorta el texto y repite. **Mira las láminas** (Read de los
    JPG) antes de seguir: texto cortado, palabras raras, láminas vacías o repetidas → corregir.
+   Antes de diseñar, mira cómo lo hace la competencia: `centro.competencia_imagenes` (columna `analisis`
+   del Vigía y las `imagenes`, que puedes abrir con curl + Read) e inspírate en el formato, nunca copies.
 5. **Subir** `configs/` y `carruseles/<slug>/` a la rama `redes` (commit + push).
 6. **Crear la publicación** en `centro.publicaciones` (una por carrusel):
 
@@ -48,6 +76,8 @@ Cada carrusel nace de **un artículo publicado** en iando.xyz:
 | `texto_facebook` | Facebook (ver abajo) |
 | `hashtags` | 5-8, en español, del tema (`#inteligenciaartificial`, `#pymes`, `#autonomos`, `#automatizacion`…) |
 | `articulo` | `https://iando.xyz/articulos/<slug>.html` |
+| `palabra` | la palabra clave del cierre (p. ej. `AGENTE`) |
+| `guia` | lo que se manda a quien comenta la palabra: la URL del artículo (con `?utm_source=instagram&utm_medium=dm`) |
 | `programada_para` | lunes/miércoles/viernes 13:15 Europe/Madrid de la semana siguiente |
 | `estado` | `para_revisar` |
 | `revision` | `{"comprobado": [...], "dudas": [...], "fuentes": [...]}` |
@@ -63,6 +93,9 @@ quedan en pantalla); en la portada, título y subtítulo; en el cierre, solo el 
 1. **Escribe la versión corta para el vídeo**: en cada lámina de tipo `punto`, añade
    `"reel": {"texto": "..."}` con el texto resumido en **una frase de 10-16 palabras** (la misma
    idea, sin datos nuevos). Se ve y se lee en el reel en lugar del texto del carrusel.
+   Los tipos visuales se animan solos (los mensajes del chat entran uno a uno, las filas de la tabla, las
+   tarjetas y los pasos según se leen). Si con todas las láminas pasa de 60 s, quita del vídeo las menos
+   importantes con `"reel": {"omitir": true}` (mínimo: portada, 2-3 visuales y cierre).
 2. Comprueba lo que va a leer la voz: `python3 herramientas/redes/generar_reel.py configs/<slug>.json --guion`.
    - **Duración: 45-60 s.** Si pasa de 60 s, acorta más los `"reel"`.
    - Si alguna palabra se va a leer mal (siglas, marcas, inglés), añade en la lámina `"voz"` con cómo
@@ -86,8 +119,9 @@ quedan en pantalla); en la portada, título y subtítulo; en el cierre, solo el 
 
 - Español de España, de tú, claro, sin tecnicismos ni promesas exageradas ("multiplica tus ventas"…).
 - **Instagram (`texto`)**: primera línea = gancho (es lo único que se ve sin pulsar "más").
-  Después 3-5 frases cortas con lo que se aprende en el carrusel, una pregunta para comentar y el
-  cierre: "La guía completa, con el enlace de la bio 👉 iando.xyz". Máximo ~1.200 caracteres.
+  Después 3-5 frases cortas con lo que se aprende en el carrusel y el cierre con la palabra clave:
+  "Comenta «AGENTE» y te paso la guía por mensaje privado 📩" (y, debajo, "O en el enlace de la bio 👉
+  iando.xyz"). Máximo ~1.200 caracteres.
   En Instagram los enlaces no funcionan en el texto: no pongas URLs.
 - **Facebook (`texto_facebook`)**: el mismo mensaje más corto (3-4 frases) y el **enlace directo al
   artículo**. Si encaja, una línea final: "¿Prefieres que te lo monten? https://iando.xyz/servicios.html".

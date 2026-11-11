@@ -1,0 +1,84 @@
+{
+ "slug": "ejemplo-visual",
+ "_nota": "EJEMPLO DE FORMATO, no se publica. Los datos de verdad salen siempre del artículo.",
+ "palabra": "AGENTE",
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "Agentes de IA",
+   "titulo": "Le pides «búscame 3 proveedores» y te los trae comparados",
+   "destacado": "«búscame 3 proveedores»",
+   "subtitulo": "Así trabaja un agente de IA.",
+   "chat": {
+    "app": "asistente",
+    "nombre": "Tu agente",
+    "mensajes": [
+     {"de": "yo", "texto": "Búscame 3 proveedores de café para el bar, con precio por kilo y envío", "hora": "10:02"},
+     {"de": "ia", "texto": "Hecho. He mirado 9 webs. Te dejo los 3 mejores en una tabla.", "hora": "10:06"},
+     {"de": "ia", "texto": "¿Les pido presupuesto para 20 kg al mes?", "hora": "10:06"}
+    ],
+    "botones": ["Sí, a los 3", "Solo al primero"]
+   },
+   "reel": {"subtitulo": "Así trabaja un agente de IA."}
+  },
+  {
+   "tipo": "versus",
+   "titulo": "Chatbot contesta. Agente hace.",
+   "destacado": "hace.",
+   "izquierda": {"titulo": "Chatbot", "etiqueta": "Tú haces el trabajo", "mensajes": [
+     {"de": "yo", "texto": "¿Qué proveedores de café hay?"},
+     {"de": "ia", "texto": "Hay muchos. Te recomiendo buscar en Google y comparar."},
+     {"de": "yo", "texto": "¿Y precios?"},
+     {"de": "ia", "texto": "Depende. Consulta sus webs."}]},
+   "derecha": {"titulo": "Agente", "etiqueta": "Lo hace él", "pasos": ["Busca proveedores", "Entra en sus webs", "Apunta precio y envío", "Hace la tabla", "…Te pregunta antes de pedir"]},
+   "conclusion": "Tú decides. Él hace los pasos."
+  },
+  {
+   "tipo": "tabla",
+   "titulo": "Te entrega el trabajo hecho, no un consejo",
+   "destacado": "hecho",
+   "archivo": "proveedores-cafe.xlsx",
+   "columnas": ["Proveedor", "€/kg", "Envío"],
+   "filas": [["Proveedor A", {"t": "14,90 €", "bien": true}, {"t": "Gratis", "bien": true}], ["Proveedor B", "16,50 €", "24 h"], ["Proveedor C", {"t": "13,80 €", "bien": true}, {"t": "+6 €", "mal": true}]],
+   "globo": "**Ejemplo ilustrativo.** Tú solo revisas la tabla y eliges."
+  },
+  {
+   "tipo": "tarjetas",
+   "titulo": "3 tareas que le puedes encargar",
+   "destacado": "encargar",
+   "texto": "Si la haces cada semana y tiene varios pasos, es para un agente.",
+   "tarjetas": [
+    {"icono": "receipt", "titulo": "Juntar facturas del mes", "texto": "Las busca en el correo y te hace la tabla para la gestoría."},
+    {"icono": "tag", "titulo": "Vigilar precios", "texto": "Revisa las webs de la competencia y te avisa de cambios."},
+    {"icono": "star", "titulo": "Responder reseñas", "texto": "Te prepara la respuesta y tú solo la apruebas."}
+   ]
+  },
+  {
+   "tipo": "pasos",
+   "titulo": "Cómo empezar esta semana",
+   "pasos": [{"titulo": "Elige una tarea repetida", "texto": "Mejor si tiene varios pasos."}, {"titulo": "Pídele el resultado", "texto": "No le expliques cómo hacerlo."}, {"titulo": "Revisa antes de enviar", "texto": "Que te pregunte antes de comprar o mandar nada."}]
+  },
+  {
+   "tipo": "prompt",
+   "titulo": "Cómo pedírselo (cópialo)",
+   "app": "Agente",
+   "prompt": "Busca [qué], compáralos por [precio, plazo…] y dame una [tabla]. Pregúntame antes de comprar o enviar nada.",
+   "consejo": "El truco: pídele el **resultado** que quieres y dónde parar."
+  },
+  {
+   "tipo": "cifra",
+   "titulo": "Lo que cambia en tu semana",
+   "cifra": "4",
+   "unidad": "min",
+   "texto": "Ejemplo ilustrativo del formato.",
+   "compara": {"antes": "Una tarde entre webs y una libreta", "despues": "Revisar la tabla y elegir"}
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "¿Te lo montamos en tu negocio?",
+   "destacado": "tu negocio",
+   "texto": "La guía completa, con herramientas y precios, en iando.xyz.",
+   "palabra": "AGENTE"
+  }
+ ]
+}

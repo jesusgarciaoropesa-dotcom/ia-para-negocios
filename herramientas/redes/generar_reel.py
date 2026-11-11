@@ -12,7 +12,9 @@ en leerse. Se dibuja fotograma a fotograma con Chromium y se monta con ffmpeg en
 más reels/<slug>-portada.jpg para la portada del reel.
 
 Opcional en cada lámina: "reel" = {"titulo"?, "texto"?, "dato"?...} versión más corta solo para el
-vídeo (se ve y se lee en lugar de la del carrusel). Solo en el reel: lámina "media" {kicker?, titulo, archivo (imagen o GIF), pie?, pausa?}
+vídeo (se ve y se lee en lugar de la del carrusel); "reel": {"omitir": true} la quita del vídeo.
+Los tipos visuales (chat, tabla, tarjetas, pasos, prompt, cifra, versus con mensajes/pasos) se animan:
+los mensajes del chat entran uno a uno, las filas de la tabla, las tarjetas y los pasos al leerse. Solo en el reel: lámina "media" {kicker?, titulo, archivo (imagen o GIF), pie?, pausa?}
 para enseñar un ejemplo real (el GIF se anima en bucle al ritmo del vídeo). "voz" = texto que se lee en lugar del de pantalla (si la pronunciación
 de algo sale rara, escríbelo como se dice). Para comprobar lo que se va a leer: --guion.
 """
@@ -20,10 +22,14 @@ import argparse, json, shutil, subprocess, sys, tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from generar_carrusel import fuente, CHIP, CHECK, e, s_dato  # noqa: E402
+from generar_carrusel import fuente  # noqa: E402
+import componentes as C  # noqa: E402
+from componentes import e, icono, negrita as s_dato  # noqa: E402
+CHIP = icono("sparkles", 34, "#fff", 2.4)
+CHECK = C.OK.format(c="#fff")
 
 import re, wave
-CSS = "".join(fuente(p) for p in (400, 600, 800)) + """
+CSS = "".join(fuente(p) for p in (400, 600, 800)) + C.CSS + """
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:1080px;height:1920px;overflow:hidden;font-family:Inter,sans-serif;color:#fff;
  background:linear-gradient(150deg,#4338ca 0%,#6366f1 45%,#8b5cf6 100%)}
@@ -62,16 +68,21 @@ h2{font-weight:800;font-size:92px;line-height:1.05;letter-spacing:-2px}
 ul{list-style:none;display:flex;flex-direction:column;gap:34px;margin-top:60px}
 li{display:flex;gap:30px;align-items:flex-start;font-size:50px;line-height:1.28;color:#312e81}
 li i{flex:none;width:64px;height:64px;border-radius:50%;background:#6366f1;display:grid;place-items:center;margin-top:2px}
-.vs{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:56px}
-.col{background:#eef2ff;border-radius:30px;padding:40px 32px}
-.col h3{font-size:46px;font-weight:800;margin-bottom:26px;color:#4338ca}
-.col li{font-size:38px;gap:16px}.col li i{width:46px;height:46px}
 .cta{margin-top:60px;background:rgba(255,255,255,.16);border:3px solid rgba(255,255,255,.4);border-radius:34px;padding:44px 48px;font-size:46px;line-height:1.35}
 .web{margin-top:70px;align-self:flex-start;background:#fff;color:#4f46e5;font-weight:800;font-size:54px;padding:28px 54px;border-radius:999px}
 .media{margin-top:56px;border-radius:40px;overflow:hidden;box-shadow:0 30px 80px rgba(30,27,75,.45);border:10px solid #fff;background:#fff}
 .media img,.media .spr{display:block;width:100%}
 .pie{font-size:46px;line-height:1.32;margin-top:44px;opacity:.95}
 .desliza{position:absolute;bottom:150px;left:0;right:0;text-align:center;font-size:38px;font-weight:600;opacity:.8}
+.card.claro{zoom:1.16;width:766px;background:#f6f5fb;padding:54px 44px;display:flex;flex-direction:column;gap:34px}
+.card.claro h2{font-size:70px}
+.card.claro .sub2{font-size:36px;line-height:1.32;color:#55537a}
+.card.claro .vs{margin-top:0}
+.card.claro .col ul{margin-top:0}
+.portada-movil{display:flex;justify-content:center;margin-top:44px;zoom:1.05}
+.palabra{margin-top:60px;background:#ffd45c;color:#17162b;border-radius:40px;padding:44px 48px}
+.palabra b{display:block;font-size:76px;letter-spacing:-.02em;line-height:1.05}
+.palabra span{display:block;font-size:40px;font-weight:600;margin-top:10px}
 """
 
 
@@ -223,6 +234,113 @@ def media_html(s, ini):
             f'animation:{nombre} {dur / 1000:.2f}s steps({n}) {ini:.2f}s infinite"></div></div>')
 
 
+def entra(t, efecto="sube"):
+    """Atributo style para que un elemento aparezca en el instante t."""
+    return f'style="opacity:0;animation:{efecto} .55s cubic-bezier(.2,.8,.2,1) {t:.2f}s both"'
+
+
+def cabeza_clara(s, L, ini):
+    a, dur = L.di(s["titulo"], PAUSA["titulo"], voz_de(s, "titulo"))
+    h = f"<h2>{palabras(s['titulo'], s.get('destacado'), a, dur)}</h2>"
+    if s.get("texto") and s.get("tipo") != "cifra":
+        h += f'<p class="sub2">{parrafo(L, s["texto"], voz_de(s, "texto"))}</p>'
+    return h
+
+
+def chat_animado(c, L, paso=1.0):
+    """Los mensajes del chat aparecen uno a uno (sin voz) desde el instante actual."""
+    t0 = L.t
+    n = len(c.get("mensajes") or []) + (1 if c.get("botones") else 0)
+    tiempos = [t0 + k * paso for k in range(n)]
+    L.t = t0 + n * paso + 0.4
+    return lambda k: entra(tiempos[k]) if k < len(tiempos) else ""
+
+
+def escena_visual(s, L, ini):
+    """Escenas de los tipos visuales. Devuelve html o None si el tipo no es visual."""
+    t = s.get("tipo")
+    if t == "chat":
+        h = cabeza_clara(s, L, ini)
+        ap = chat_animado(s["chat"], L)
+        h += f'<div style="display:flex;justify-content:center">{C.movil(s["chat"], ap)}</div>'
+        if s.get("globo"):
+            a, _ = L.di(s["globo"], PAUSA["."], voz_de(s, "globo"))
+            h += C.globo(s["globo"], entra(a - 0.1))
+    elif t == "tabla":
+        h = cabeza_clara(s, L, ini)
+        t0 = L.t
+        n = len(s.get("filas", [])[:6])
+        h += f'<div {entra(t0 - 0.2)}>{C.tabla(s, lambda k: entra(t0 + 0.3 + k * 0.55, "aparece"))}</div>'
+        L.t = t0 + 0.6 + n * 0.55
+        if s.get("globo"):
+            a, _ = L.di(s["globo"], PAUSA["."], voz_de(s, "globo"))
+            h += C.globo(s["globo"], entra(a - 0.1))
+        else:
+            L.t += 1.0
+    elif t == "tarjetas":
+        h = cabeza_clara(s, L, ini)
+        tiempos = []
+        for tj in s.get("tarjetas", [])[:4]:
+            a, _ = L.di(tj.get("titulo", ""), PAUSA["item"], (tj.get("voz") or None))
+            tiempos.append(a)
+        h += C.tarjetas(s.get("tarjetas"), lambda k: entra(tiempos[k] - 0.15))
+        L.t += 0.6
+    elif t == "pasos":
+        h = cabeza_clara(s, L, ini)
+        tiempos = []
+        for p in s.get("pasos", [])[:5]:
+            p = p if isinstance(p, dict) else {"titulo": p}
+            a, _ = L.di(p.get("titulo", ""), PAUSA["item"], p.get("voz"))
+            tiempos.append(a)
+        h += C.pasos(s.get("pasos"), lambda k: entra(tiempos[k] - 0.15))
+        L.t += 0.6
+    elif t == "prompt":
+        h = cabeza_clara(s, L, ini)
+        h += C.caja_prompt(s, entra(L.t - 0.2))
+        L.t += min(4.0, 1.2 + len(str(s.get("prompt", ""))) / 40)   # tiempo para leerlo en pantalla
+        if s.get("consejo"):
+            a, _ = L.di(s["consejo"], PAUSA["."], voz_de(s, "consejo"))
+            h += C.globo(s["consejo"], entra(a - 0.1), lila=True, ic="wand-sparkles")
+    elif t == "cifra":
+        h = cabeza_clara(s, L, ini)
+        h += C.cifra(s, entra(L.t - 0.1, "pop"))
+        L.t += 0.5
+        if s.get("texto"):
+            h += f'<p class="sub2">{parrafo(L, s["texto"], voz_de(s, "texto"))}</p>'
+        c = s.get("compara")
+        if c:
+            ts = []
+            for lado in ("antes", "despues"):
+                tit = c.get(f"{lado}_titulo") or ("Sin IA" if lado == "antes" else "Con IA")
+                a, _ = L.di(f"{tit}: {c.get(lado, '')}", PAUSA["."])
+                ts.append(a)
+            h += C.compara(c, lambda k: entra(ts[k] - 0.1))
+    elif t == "versus":
+        h = cabeza_clara(s, L, ini)
+        cols = ""
+        for lado in ("izquierda", "derecha"):
+            c = s.get(lado, {})
+            a, _ = L.di(c.get("titulo", ""), PAUSA[":"])
+            ts = []
+            if c.get("mensajes"):
+                for k in range(len(c["mensajes"])):
+                    ts.append(L.t + k * 0.7)
+                L.t += len(c["mensajes"]) * 0.7 + 0.3
+            else:
+                for x in (c.get("pasos") or c.get("items") or [])[:6]:
+                    b, _ = L.di(str(x).lstrip("…"), PAUSA[","])
+                    ts.append(b)
+            cols += f'<div {entra(a - 0.1)}>{C.columna(c, lado, lambda k, ts=ts: entra(ts[k] - 0.1) if k < len(ts) else "")}</div>'
+            L.t += 0.2
+        h += f'<div class="vs">{cols}</div>'
+        if s.get("conclusion"):
+            a, _ = L.di(s["conclusion"], PAUSA["."])
+            h += f'<div class="conclu" {entra(a - 0.1)}>{s_dato(s["conclusion"])}</div>'
+    else:
+        return None
+    return f'<div class="card claro ap" {d(ini + 0.05)}>{h}</div>'
+
+
 def escena(s, L, ini):
     """Devuelve (html de la escena, instante en que termina la voz)."""
     s = {**s, **(s.get("reel") or {})}   # versión corta para el vídeo, si la hay
@@ -230,20 +348,37 @@ def escena(s, L, ini):
     L.t = ini + ENTRADA
     if t == "portada":
         a, dur = L.di(s["titulo"], PAUSA["titulo"], voz_de(s, "titulo"))
+        t_chat = L.t
         h = f'<span class="kicker ap" {d(ini + 0.2)}>{e(s.get("kicker"))}</span><h1>{palabras(s["titulo"], s.get("destacado"), a, dur)}</h1>'
         if s.get("subtitulo"):
             h += f'<p class="sub">{parrafo(L, s["subtitulo"], voz_de(s, "subtitulo"))}</p>'
+        if s.get("chat"):
+            h = h.replace("<h1>", '<h1 style="font-size:92px;margin-top:36px">', 1)
+            fin = L.t
+            L.t = t_chat
+            ap = chat_animado(s["chat"], L, 0.8)
+            L.t = max(L.t, fin)
+            h += f'<div class="portada-movil">{C.movil(s["chat"], ap, "transform:rotate(3deg)")}</div>'
         return h
     if t == "cierre":
         a, dur = L.di(s["titulo"], PAUSA["titulo"], voz_de(s, "titulo"))
         h = f'<h2 style="font-size:104px">{palabras(s["titulo"], s.get("destacado"), a, dur)}</h2>'
         if s.get("texto"):
             h += f'<p class="sub ap" {d(L.t - 0.2)}>{e(s["texto"])}</p>'
+        if s.get("palabra"):
+            pal = s["palabra"].upper()
+            b, _ = L.di(f"Comenta {pal}, y te paso la guía por mensaje.", 0, voz_de(s, "palabra"))
+            h += (f'<div class="palabra pop" {d(b)}><b>Comenta «{e(pal)}»</b>'
+                  f'<span>{e(s.get("cta") or "y te paso la guía por mensaje privado")}</span></div>')
+            return h
         cta = s.get("cta") or "¿Prefieres que te lo monten? Webs, reservas y automatizaciones para tu negocio."
         h += f'<div class="cta ap" {d(L.t + 0.2)}>{e(cta)}</div>'
         b, _ = L.di("Enlace en la bio.", 0)
         h += f'<span class="web pop" {d(b)}>Enlace en la bio 👆</span>'
         return h
+    if t in ("chat", "tabla", "tarjetas", "pasos", "prompt", "cifra") or (t == "versus" and any(
+            (s.get(l) or {}).get(k) for l in ("izquierda", "derecha") for k in ("mensajes", "pasos", "etiqueta"))) or (t == "versus" and s.get("conclusion")):
+        return escena_visual(s, L, ini)
     if t == "media":
         h = f'<span class="kicker ap" {d(ini + 0.1)}>{e(s["kicker"])}</span>' if s.get("kicker") else ""
         a, dur = L.di(s["titulo"], PAUSA["titulo"], voz_de(s, "titulo"))
@@ -294,7 +429,7 @@ def escena(s, L, ini):
 
 def montar(cfg, voz):
     L = Linea(voz)
-    slides = cfg["slides"]
+    slides = [s for s in cfg["slides"] if not (s.get("reel") or {}).get("omitir")]
     t, partes, portada_t = 0.0, [], 2.4
     for k, s in enumerate(slides):
         html = escena(s, L, t)
