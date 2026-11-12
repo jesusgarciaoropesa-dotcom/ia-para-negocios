@@ -13,9 +13,12 @@ import hashlib, json, sys, urllib.request
 from pathlib import Path
 
 VOZ = "Achird"
-ESTILO = ("Lee este texto en español de España (acento castellano peninsular), con voz natural y cercana, "
-          "como un creador de contenido explicando algo útil a un amigo en un reel: ritmo ágil, entonación viva, "
-          "sin sonar a anuncio ni a robot. Entre una frase y la siguiente deja siempre una pausa clara de casi un segundo.")
+ESTILO_LIBRE = ("Lee este texto en español de España (acento castellano peninsular), con voz natural y cercana, "
+                "como un creador de contenido explicando algo útil a un amigo en un reel: ritmo ágil, entonación viva, "
+                "sin sonar a anuncio ni a robot.")
+ESTILO = ESTILO_LIBRE[:-1] + ". Entre una frase y la siguiente deja siempre una pausa clara de casi un segundo."
+# El cupo gratuito de Google es de pocos audios al día: se pide UN audio por reel (todo el guion, con pausas
+# entre frases) y se trocea aquí. Si el troceo no cuadra, se piden audios por lámina como respaldo.
 RAW = "https://raw.githubusercontent.com/jesusgarciaoropesa-dotcom/otro/voces/"
 FUNCION = "https://gimoqpusrdltlkrwsykr.supabase.co/functions/v1/voz"
 CACHE = Path.home() / ".cache" / "voz-gemini"
@@ -25,17 +28,17 @@ def clave(texto, voz=VOZ, estilo=ESTILO):
     return hashlib.sha1(f"{voz}|{estilo}|{texto}".encode("utf-8")).hexdigest()[:16]
 
 
-def ruta(texto, voz=VOZ):
-    return f"reels/{clave(texto, voz)}.wav"
+def ruta(texto, voz=VOZ, estilo=ESTILO):
+    return f"reels/{clave(texto, voz, estilo)}.wav"
 
 
-def descargar(texto, voz=VOZ):
+def descargar(texto, voz=VOZ, estilo=ESTILO):
     """Devuelve (pcm int16 bytes, sr) del audio ya generado, o None si todavía no existe."""
     CACHE.mkdir(parents=True, exist_ok=True)
-    local = CACHE / f"{clave(texto, voz)}.wav"
+    local = CACHE / f"{clave(texto, voz, estilo)}.wav"
     if not local.exists():
         try:
-            with urllib.request.urlopen(RAW + ruta(texto, voz), timeout=30) as r:
+            with urllib.request.urlopen(RAW + ruta(texto, voz, estilo), timeout=30) as r:
                 local.write_bytes(r.read())
         except Exception:
             return None
@@ -44,11 +47,44 @@ def descargar(texto, voz=VOZ):
         return w.readframes(w.getnframes()), w.getframerate()
 
 
-def pedido(textos, voz=VOZ):
+def pedido(textos, voz=VOZ, estilo=ESTILO):
     """Lo que hay que mandar a la función `voz` (solo los textos que aún no tienen audio), en tandas de 6."""
-    faltan = [t for t in dict.fromkeys(textos) if descargar(t, voz) is None]
-    piezas = [{"ruta": ruta(t, voz), "texto": t} for t in faltan]
-    return [{"voz": voz, "estilo": ESTILO, "piezas": piezas[i:i + 6]} for i in range(0, len(piezas), 6)]
+    faltan = [t for t in dict.fromkeys(textos) if descargar(t, voz, estilo) is None]
+    piezas = [{"ruta": ruta(t, voz, estilo), "texto": t} for t in faltan]
+    return [{"voz": voz, "estilo": estilo, "piezas": piezas[i:i + 6]} for i in range(0, len(piezas), 6)]
+
+
+def partir_validado(pcm, sr, frases):
+    """Como partir(), pero devuelve None si algún trozo no cuadra con su frase (velocidad imposible)."""
+    trozos = partir(pcm, sr, [len(f) for f in frases])
+    for f, p in zip(frases, trozos):
+        seg = len(p) / 2 / sr
+        if seg < 0.25 or not (5 <= len(f) / max(seg, 0.01) <= 32):
+            return None
+    return trozos
+
+
+def guion_entero(frases_por_lamina):
+    """Une las frases de todas las láminas en un solo texto (un solo audio para todo el reel)."""
+    return " ".join(f for k in sorted(frases_por_lamina) for f in frases_por_lamina[k])
+
+
+def repartir_entero(frases_por_lamina, voz=VOZ):
+    """Si existe el audio del guion entero y se trocea bien, devuelve {lámina: [pcm por frase]} y sr."""
+    r = descargar(guion_entero(frases_por_lamina), voz)
+    if not r:
+        return None, None
+    pcm, sr = r
+    todas = [f for k in sorted(frases_por_lamina) for f in frases_por_lamina[k]]
+    trozos = partir_validado(pcm, sr, todas)
+    if not trozos:
+        return None, sr
+    out, i = {}, 0
+    for k in sorted(frases_por_lamina):
+        n = len(frases_por_lamina[k])
+        out[k] = trozos[i:i + n]
+        i += n
+    return out, sr
 
 
 def sql_pedido(tandas):

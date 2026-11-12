@@ -186,15 +186,10 @@ class Registro:
 
 
 class VozGemini:
-    """Segunda pasada: reparte el audio de Gemini de cada lámina entre sus frases."""
-    def __init__(self, registro, audios):
-        import voz_gemini as G
-        self.sr = 24000
-        self.cola = {}
-        for k, frs in registro.frases.items():
-            pcm, sr = audios[k]
-            self.sr = sr
-            self.cola[k] = G.partir(pcm, sr, [len(f) for f in frs])
+    """Segunda pasada: reparte el audio de Gemini entre las frases. `trozos` = {lámina: [pcm por frase]}."""
+    def __init__(self, trozos, sr):
+        self.sr = sr
+        self.cola = {k: list(v) for k, v in trozos.items()}
 
     def decir(self, texto, lamina=0):
         if not decir(texto):
@@ -531,13 +526,29 @@ def main():
         reg = Registro()
         montar(cfg, reg)
         textos = reg.textos()
+        # 1º: un solo audio para todo el guion (gasta 1 del cupo diario). 2º, si no se trocea bien: uno por lámina.
+        trozos, sr_ent = G.repartir_entero(reg.frases)
+        entero_existe = sr_ent is not None
+        audios = {}
+        if not trozos:   # audios por lámina ya hechos (de antes o como respaldo)
+            audios = {k: G.descargar(t) for k, t in textos.items()}
         if a.pedido_voz:
-            sentencias = G.sql_pedido(G.pedido(list(textos.values())))
-            print("\n".join(sentencias) if sentencias else "-- Ya están todos los audios de Gemini: genera el reel.")
+            if trozos or (audios and all(audios.values())):
+                print("-- Ya están todos los audios de Gemini: genera el reel.")
+            elif not entero_existe:
+                print("\n".join(G.sql_pedido(G.pedido([G.guion_entero(reg.frases)]))))
+            else:
+                print("-- El audio entero no se ha podido trocear bien: pido uno por lámina.", file=sys.stderr)
+                print("\n".join(G.sql_pedido(G.pedido(list(textos.values())))))
             return
-        audios = {k: G.descargar(t) for k, t in textos.items()}
-        if all(audios.values()):
-            voz = VozGemini(reg, audios)
+        if trozos:
+            voz = VozGemini(trozos, sr_ent)
+        elif audios and all(audios.values()):
+            por_lamina = {}
+            for k, frs in reg.frases.items():
+                pcm, sr = audios[k]
+                por_lamina[k] = G.partir(pcm, sr, [len(f) for f in frs])
+            voz = VozGemini(por_lamina, sr)
         else:
             faltan = sum(1 for v in audios.values() if not v)
             print(f"AVISO: faltan {faltan} audios de Gemini (lanza --pedido-voz y ejecuta su SQL). Uso la voz de Kokoro.", file=sys.stderr)
