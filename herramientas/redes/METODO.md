@@ -100,6 +100,18 @@ quedan en pantalla); en la portada, título y subtítulo; en el cierre, solo el 
    - **Duración: 45-60 s.** Si pasa de 60 s, acorta más los `"reel"`.
    - Si alguna palabra se va a leer mal (siglas, marcas, inglés), añade en la lámina `"voz"` con cómo
      se dice (`{"titulo": "...", "texto": "..."}`) o amplía `DICCIONARIO` en `generar_reel.py`.
+   **Voz (decidido por Jesús el 12-11-2026): voz natural de Gemini "Achird"**, no la de Kokoro. Esta máquina
+   no llega a Google, así que la voz se pide a Supabase:
+   - `python3 herramientas/redes/generar_reel.py configs/<slug>.json --pedido-voz` imprime 1-2 sentencias SQL.
+   - Ejecútalas con la herramienta SQL de Supabase (cada una devuelve un id de `net.http_post`). Espera ~90 s
+     y mira el resultado: `select status_code, content from net._http_response where id = <id>`. Si sale
+     `"faltan"` > 0 o no hay respuesta, vuelve a ejecutar la MISMA sentencia (lo ya hecho no se repite;
+     Google limita unos pocos audios por minuto, así que espera 1 minuto entre intentos).
+   - Vuelve a lanzar `--pedido-voz`: cuando diga "Ya están todos los audios", genera el reel.
+   - Si el texto cambia, cambian los audios: repite el pedido. Si tras 4 intentos sigue fallando, el
+     generador usa Kokoro solo; anótalo en `revision` ("reel con voz de respaldo").
+   - El JSON final del generador dice `"voz": "gemini"` o `"kokoro"`. Con Gemini, la voz pronuncia bien
+     ChatGPT, WhatsApp, etc.: no hace falta escribirlo "como se dice".
 3. Genera: `python3 herramientas/redes/generar_reel.py configs/<slug>.json` → `reels/<slug>.mp4` y
    `reels/<slug>-portada.jpg`. Tarda unos minutos. Mira la portada y 3-4 fotogramas
    (`ffmpeg -ss <segundo> -i reels/<slug>.mp4 -frames:v 1 f.jpg`) antes de seguir.
