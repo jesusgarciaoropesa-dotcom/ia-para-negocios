@@ -1,0 +1,59 @@
+{
+ "slug": "agentes-ia-empresas",
+ "_nota": "Versión reel con láminas visuales (12-11-2026). El carrusel original está en agentes-ia-empresas.json.",
+ "palabra": "AGENTE",
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "Agentes de IA",
+   "titulo": "Le das un objetivo y vuelve con el trabajo hecho",
+   "destacado": "el trabajo hecho",
+   "subtitulo": "Eso es un agente de IA.",
+   "chat": {
+    "app": "asistente",
+    "nombre": "Tu agente",
+    "mensajes": [
+     {"de": "yo", "texto": "Investiga los precios de mis 5 competidores y móntame una tabla comparativa"},
+     {"de": "ia", "texto": "Entendido. Entro en sus webs, apunto precios y ofertas y te dejo la tabla."},
+     {"de": "ia", "texto": "Solo te aviso si necesito que decidas algo importante."}
+    ]
+   }
+  },
+  {
+   "tipo": "versus",
+   "titulo": "Chatbot o agente",
+   "destacado": "agente",
+   "izquierda": {"titulo": "Chatbot", "etiqueta": "Tú haces los pasos", "mensajes": [
+     {"de": "yo", "texto": "¿Cómo comparo los precios de mi competencia?"},
+     {"de": "ia", "texto": "Puedes entrar en sus webs y apuntarlos en una hoja."}]},
+   "derecha": {"titulo": "Agente", "etiqueta": "Los hace él", "pasos": ["Navega por sus webs", "Apunta precios y ofertas", "Monta la tabla", "…Te avisa si hay que decidir"]},
+   "conclusion": "Es la diferencia entre **preguntar** y **delegar**."
+  },
+  {
+   "tipo": "tarjetas",
+   "titulo": "Dónde ahorra tiempo de verdad",
+   "destacado": "tiempo",
+   "tarjetas": [
+    {"icono": "file-text", "titulo": "Informes de varias fuentes", "texto": "Sin copiar y pegar a mano."},
+    {"icono": "tag", "titulo": "Precios de la competencia", "texto": "Y te devuelve la tabla comparativa."},
+    {"icono": "file-spreadsheet", "titulo": "Cruzar hojas de cálculo", "texto": "Y que te señale lo que no cuadra."}
+   ]
+  },
+  {
+   "tipo": "pasos",
+   "titulo": "Antes de darle acceso",
+   "pasos": [
+    {"titulo": "Que pida confirmación", "texto": "Antes de enviar emails, comprar o cambiar datos importantes."},
+    {"titulo": "Solo los permisos justos", "texto": "Los que necesita esa tarea, nada más."},
+    {"titulo": "Revisa siempre el resultado", "texto": "Se equivoca igual que un chatbot."}
+   ]
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "Empieza por una tarea pequeña",
+   "destacado": "tarea pequeña",
+   "texto": "La guía trae los agentes más usados y un prompt para empezar hoy.",
+   "palabra": "AGENTE"
+  }
+ ]
+}
