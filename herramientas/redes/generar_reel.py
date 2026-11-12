@@ -119,11 +119,24 @@ EMOJI = re.compile("[\U0001F000-\U0001FAFF☀-➿️‍]")
 NUM = ["", "Uno", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete", "Ocho", "Nueve", "Diez"]
 
 
+# Gemini pronuncia bien las marcas y siglas: solo se quitan símbolos y se cambia lo que no se lee bien
+DICCIONARIO_GEMINI = [
+    (r"\ben iando\.xyz", "en nuestra web"), (r"iando\.xyz", "iando"), (r"robots\.txt", "robots punto te equis te"),
+    (r"(\d)\s?€", r"\1 euros"), (r"€", "euros"), (r"(\d)\s?%", r"\1 por ciento"),
+    (r"\s=\s", ": "), (r"→", ","), (r"\*\*", ""), (r"[«»\"“”]", ""), (r"·", ","), (r"\s+-\s+", ", "),
+]
+MODO_VOZ = "kokoro"   # lo cambia main(): "gemini" (por defecto), "kokoro" o "ninguna"
+
+
 def decir(t):
     t = EMOJI.sub("", str(t or ""))
-    for a, b in DICCIONARIO:
+    for a, b in (DICCIONARIO_GEMINI if MODO_VOZ == "gemini" else DICCIONARIO):
         t = re.sub(a, b, t)
     return re.sub(r"\s+", " ", t).strip()
+
+
+def con_punto(txt):
+    return txt if re.search(r"[.,;:?!…]$", txt) else txt + "."
 
 
 def frases(t):
@@ -136,6 +149,7 @@ def frases(t):
 
 
 class Voz:
+    """Voz de Kokoro (la de antes) o sin voz (duraciones estimadas)."""
     def __init__(self, activa):
         self.activa, self.v, self.sr = activa, None, 24000
         if activa:
@@ -143,25 +157,62 @@ class Voz:
             self.v = Kokoro24(velocidad=VELOCIDAD)
             self.sr = self.v.sr
 
-    def decir(self, texto):
+    def decir(self, texto, lamina=0):
         """Devuelve (audio int16 bytes, segundos)."""
         txt = decir(texto)
         if not txt:
             return b"", 0.0
         if not self.activa:
             return b"", max(0.8, len(txt) / CPS_SIN_VOZ)
-        if not re.search(r"[.,;:?!]$", txt):
-            txt += "."
-        return self.v.decir(txt)
+        return self.v.decir(con_punto(txt))
+
+
+class Registro:
+    """Primera pasada: apunta qué frases se leen en cada lámina (para pedir la voz de Gemini por lámina)."""
+    sr = 24000
+
+    def __init__(self):
+        self.frases = {}
+
+    def decir(self, texto, lamina=0):
+        txt = decir(texto)
+        if not txt:
+            return b"", 0.0
+        self.frases.setdefault(lamina, []).append(con_punto(txt))
+        return b"", max(0.8, len(txt) / CPS_SIN_VOZ)
+
+    def textos(self):
+        return {k: " ".join(v) for k, v in self.frases.items()}
+
+
+class VozGemini:
+    """Segunda pasada: reparte el audio de Gemini de cada lámina entre sus frases."""
+    def __init__(self, registro, audios):
+        import voz_gemini as G
+        self.sr = 24000
+        self.cola = {}
+        for k, frs in registro.frases.items():
+            pcm, sr = audios[k]
+            self.sr = sr
+            self.cola[k] = G.partir(pcm, sr, [len(f) for f in frs])
+
+    def decir(self, texto, lamina=0):
+        if not decir(texto):
+            return b"", 0.0
+        trozos = self.cola.get(lamina) or []
+        if not trozos:
+            return b"", 0.6
+        pcm = trozos.pop(0)
+        return pcm, len(pcm) / 2 / self.sr
 
 
 class Linea:
     """Va colocando los trozos de voz en el tiempo."""
     def __init__(self, voz):
-        self.voz, self.t, self.trozos = voz, 0.0, []
+        self.voz, self.t, self.trozos, self.lamina = voz, 0.0, [], 0
 
     def di(self, texto, pausa, voz_alt=None):
-        audio, dur = self.voz.decir(voz_alt if voz_alt is not None else texto)
+        audio, dur = self.voz.decir(voz_alt if voz_alt is not None else texto, self.lamina)
         ini = self.t
         if dur:
             self.trozos.append((ini, audio, texto))
@@ -432,6 +483,7 @@ def montar(cfg, voz):
     slides = [s for s in cfg["slides"] if not (s.get("reel") or {}).get("omitir")]
     t, partes, portada_t = 0.0, [], 2.4
     for k, s in enumerate(slides):
+        L.lamina = k
         html = escena(s, L, t)
         fin_voz = L.t
         extra = 1.0 if s.get("tipo") == "cierre" else 0
@@ -464,10 +516,35 @@ def main():
     ap.add_argument("--salida", default="reels")
     ap.add_argument("--fps", type=int, default=30)
     ap.add_argument("--sin-voz", action="store_true")
+    ap.add_argument("--voz", choices=["gemini", "kokoro", "ninguna"], default="gemini",
+                    help="gemini = voz natural Achird (por defecto); kokoro = la de antes")
+    ap.add_argument("--pedido-voz", action="store_true",
+                    help="imprime las sentencias SQL para pedir a Supabase los audios de Gemini que faltan")
     ap.add_argument("--guion", action="store_true", help="solo muestra lo que se lee y cuándo")
     a = ap.parse_args()
+    global MODO_VOZ
+    MODO_VOZ = "ninguna" if a.sin_voz else a.voz
     cfg = json.loads(Path(a.config).read_text(encoding="utf-8"))
-    voz = Voz(not a.sin_voz)
+    voz_usada = MODO_VOZ
+    if MODO_VOZ == "gemini":
+        import voz_gemini as G
+        reg = Registro()
+        montar(cfg, reg)
+        textos = reg.textos()
+        if a.pedido_voz:
+            sentencias = G.sql_pedido(G.pedido(list(textos.values())))
+            print("\n".join(sentencias) if sentencias else "-- Ya están todos los audios de Gemini: genera el reel.")
+            return
+        audios = {k: G.descargar(t) for k, t in textos.items()}
+        if all(audios.values()):
+            voz = VozGemini(reg, audios)
+        else:
+            faltan = sum(1 for v in audios.values() if not v)
+            print(f"AVISO: faltan {faltan} audios de Gemini (lanza --pedido-voz y ejecuta su SQL). Uso la voz de Kokoro.", file=sys.stderr)
+            MODO_VOZ = voz_usada = "kokoro"
+            voz = Voz(True)
+    else:
+        voz = Voz(MODO_VOZ == "kokoro")
     html, total, trozos, portada_t = montar(cfg, voz)
     if a.guion:
         for ini, _, txt in trozos:
@@ -506,7 +583,7 @@ def main():
                     "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-profile:v", "high",
                     "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", str(mp4)], check=True)
     shutil.rmtree(tmp, ignore_errors=True)
-    print(json.dumps({"reel": str(mp4), "portada": str(out / f"{cfg['slug']}-portada.jpg"), "segundos": round(total, 1), "voz": bool(trozos)}, ensure_ascii=False))
+    print(json.dumps({"reel": str(mp4), "portada": str(out / f"{cfg['slug']}-portada.jpg"), "segundos": round(total, 1), "voz": voz_usada if trozos else "ninguna"}, ensure_ascii=False))
 
 
 if __name__ == "__main__":
