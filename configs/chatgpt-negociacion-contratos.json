@@ -1,70 +1,105 @@
 {
  "slug": "chatgpt-negociacion-contratos",
+ "palabra": "NEGOCIA",
  "slides": [
   {
    "tipo": "portada",
    "kicker": "ChatGPT",
-   "titulo": "Prepara tu próxima negociación con ChatGPT",
-   "destacado": "negociación",
-   "subtitulo": "5 usos útiles (y cuándo llamar al abogado)",
+   "titulo": "Ensaya tu próxima negociación antes de sentarte",
+   "destacado": "Ensaya",
+   "subtitulo": "ChatGPT hace de la otra parte.",
+   "chat": {
+    "app": "asistente",
+    "nombre": "ChatGPT",
+    "mensajes": [
+     {
+      "de": "yo",
+      "texto": "Actúa como la otra parte para practicar la negociación"
+     },
+     {
+      "de": "ia",
+      "texto": "Hecho. Te hago sus 3 primeras movidas."
+     },
+     {
+      "de": "ia",
+      "texto": "Después de cada respuesta tuya te doy feedback de tu táctica."
+     }
+    ]
+   },
    "reel": {
-    "subtitulo": ""
+    "subtitulo": "ChatGPT hace de la otra parte."
    }
   },
   {
-   "tipo": "punto",
-   "num": "1",
-   "titulo": "Ten claro tu plan B",
-   "texto": "Pídele que te ayude a definir tu mejor alternativa si no hay acuerdo, y la de la otra parte.",
-   "dato": "Se llama **BATNA**. Con las dos, ChatGPT te ayuda a estimar la zona de posible acuerdo.",
+   "tipo": "pasos",
+   "titulo": "Prepárate en 3 pasos",
+   "destacado": "3 pasos",
+   "pasos": [
+    {
+     "titulo": "Ten claro tu plan B (y el suyo)",
+     "texto": "Tu mejor alternativa si no hay acuerdo. Se llama BATNA."
+    },
+    {
+     "titulo": "Anticipa sus objeciones",
+     "texto": "Tus 3 mejores argumentos y las 3 pegas que te pondrán, con respuesta."
+    },
+    {
+     "titulo": "Ensaya con él",
+     "texto": "Que haga de la otra parte y te corrija después de cada respuesta."
+    }
+   ]
+  },
+  {
+   "tipo": "prompt",
+   "titulo": "Pídeselo así (cópialo)",
+   "app": "ChatGPT",
+   "prompt": "Voy a negociar [qué y con quién]. Mi objetivo: [lo que quiero]. Ayúdame a identificar mi BATNA y la suya, mis 3 mejores argumentos y las 3 objeciones que me pondrán.",
+   "consejo": "Cuanto más le cuentes de la **otra parte**, mejores objeciones te anticipa.",
    "reel": {
-    "texto": "Define con él tu mejor alternativa si no hay acuerdo, y la suya.",
-    "dato": ""
+    "omitir": true
    }
   },
   {
-   "tipo": "punto",
-   "num": "2",
-   "titulo": "Anticipa sus objeciones",
-   "texto": "Pídele tus 3 argumentos más sólidos y las 3 objeciones que te pondrán, con cómo responder a cada una.",
-   "reel": {
-    "texto": "Pídele tus mejores argumentos y las objeciones que te pondrán."
-   }
+   "tipo": "tarjetas",
+   "titulo": "Y te explica el contrato",
+   "destacado": "el contrato",
+   "texto": "Para contratos estándar y pequeños, una primera revisión:",
+   "tarjetas": [
+    {
+     "icono": "calendar",
+     "titulo": "Obligaciones y plazos",
+     "texto": "Qué hace cada parte y las fechas importantes."
+    },
+    {
+     "icono": "euro",
+     "titulo": "Pagos y penalizaciones",
+     "texto": "Y las condiciones para terminar el contrato."
+    },
+    {
+     "icono": "triangle-alert",
+     "titulo": "Las 3 cláusulas que preocupan",
+     "texto": "Las más inusuales, en lenguaje sencillo."
+    }
+   ]
   },
   {
-   "tipo": "punto",
-   "num": "3",
-   "titulo": "Ensaya antes de sentarte",
-   "texto": "Que haga de la otra parte en un role-play y te dé feedback de tu táctica después de cada respuesta.",
+   "tipo": "cifra",
+   "titulo": "La contraoferta, en 200 palabras como máximo",
+   "destacado": "contraoferta",
+   "cifra": "200",
+   "unidad": "palabras",
+   "texto": "Profesional, positiva, firme en lo importante y con la puerta abierta para seguir negociando.",
    "reel": {
-    "texto": "Que haga de la otra parte y te dé feedback de tu táctica."
-   }
-  },
-  {
-   "tipo": "punto",
-   "num": "4",
-   "titulo": "Entiende el contrato",
-   "texto": "Pídele un resumen de obligaciones, plazos, pagos, penalizaciones y las cláusulas que deberían preocuparte.",
-   "dato": "**Prompt:** «Explícame esta cláusula en lenguaje simple. ¿Qué riesgos me impone? ¿Es estándar?»",
-   "reel": {
-    "texto": "Pídele un resumen de plazos, pagos y cláusulas que deberían preocuparte.",
-    "dato": ""
-   }
-  },
-  {
-   "tipo": "punto",
-   "num": "5",
-   "titulo": "Redacta la contraoferta",
-   "texto": "Profesional, positiva, firme en lo importante y con la puerta abierta. Pídele un máximo de 200 palabras.",
-   "reel": {
-    "texto": "Firme en lo importante y de doscientas palabras como máximo."
+    "omitir": true
    }
   },
   {
    "tipo": "versus",
-   "titulo": "ChatGPT o abogado",
+   "titulo": "¿ChatGPT o abogado?",
    "izquierda": {
-    "titulo": "ChatGPT te ayuda",
+    "titulo": "ChatGPT",
+    "etiqueta": "Para prepararte",
+    "tono": "bien",
     "items": [
      "Entender el lenguaje legal",
      "Preparar la negociación",
@@ -72,35 +107,23 @@
     ]
    },
    "derecha": {
-    "titulo": "Mejor un abogado",
+    "titulo": "Abogado",
+    "etiqueta": "Siempre que haya…",
+    "tono": "bien",
     "items": [
-     "Contratos de más de 10.000 €",
-     "Más de un año de duración",
-     "Disputas y contratos laborales"
+     "Más de 10.000 €",
+     "Más de un año de contrato",
+     "Disputas o contratos laborales"
     ]
    },
-   "reel": {
-    "izquierda": {
-     "titulo": "ChatGPT te ayuda",
-     "items": [
-      "Entender el lenguaje legal",
-      "Preparar la negociación"
-     ]
-    },
-    "derecha": {
-     "titulo": "Mejor un abogado",
-     "items": [
-      "Contratos de más de 10.000 €",
-      "Disputas y contratos laborales"
-     ]
-    }
-   }
+   "conclusion": "ChatGPT **no es asesoramiento legal**."
   },
   {
    "tipo": "cierre",
-   "titulo": "La guía completa está en iando.xyz",
-   "destacado": "iando.xyz",
-   "texto": "Con todos los prompts listos para copiar. Recuerda: ChatGPT no es asesoramiento legal."
+   "titulo": "Todos los prompts, listos para copiar",
+   "destacado": "listos para copiar",
+   "texto": "Negociación, contratos y contraofertas, en la guía completa.",
+   "palabra": "NEGOCIA"
   }
  ]
 }
