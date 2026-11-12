@@ -110,7 +110,35 @@
     "globo": "Lista oficial de Meta. No bloquees el de las vistas previas."
    },
    "reel": {
-    "globo": "Lista oficial de Meta. **No bloquees** el de las vistas previas."
+    "globo": "Lista oficial de Meta. **No bloquees** el de las vistas previas.",
+    "columnas": [
+     "Rastreador",
+     "Uso",
+     "Bloquear"
+    ],
+    "filas": [
+     [
+      "meta-externalagent",
+      "IA",
+      {
+       "t": "Sí",
+       "bien": true
+      }
+     ],
+     [
+      "meta-externalads",
+      "Anuncios",
+      "Si no anuncias"
+     ],
+     [
+      "facebookexternalhit",
+      "Enlaces",
+      {
+       "t": "No",
+       "mal": true
+      }
+     ]
+    ]
    }
   },
   {
