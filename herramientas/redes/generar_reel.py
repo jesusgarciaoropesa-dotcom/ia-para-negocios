@@ -110,7 +110,7 @@ CPS_SIN_VOZ = 14    # caracteres por segundo cuando se genera sin voz
 # Cómo se dice lo que se escribe de otra forma (añade aquí lo que la voz lea raro)
 DICCIONARIO = [
     (r"\ben iando\.xyz", "en nuestra web"), (r"iando\.xyz", "iando"), (r"\bChatGPT\b", "chat ye pe te"), (r"\bGPT\b", "ye pe te"),
-    (r"Click-to-WhatsApp", "clic tu guasap"), (r"WhatsApp", "guasap"), (r"\bIA\b", "i a"),
+    (r"robots\.txt", "robots punto te equis te"), (r"Click-to-WhatsApp", "clic tu guasap"), (r"WhatsApp", "guasap"), (r"\bIA\b", "i a"),
     (r"\bCRM\b", "ce erre eme"), (r"\bAPI\b", "a pe i"), (r"\bSEO\b", "seo"), (r"\bPDF\b", "pe de efe"),
     (r"(\d)\s?€", r"\1 euros"), (r"€", "euros"), (r"(\d)\s?%", r"\1 por ciento"),
     (r"\s=\s", ": "), (r"→", ","), (r"\*\*", ""), (r"[«»\"“”]", ""), (r"·", ","), (r"\s+-\s+", ", "),

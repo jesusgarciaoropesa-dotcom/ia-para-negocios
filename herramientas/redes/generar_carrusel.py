@@ -21,6 +21,10 @@ Tipos de lámina (campo "tipo"); "destacado" = palabras del título en color:
   punto    {num?, icono?, titulo, texto, dato?}                     (solo texto: úsalo poco)
   lista    {titulo, items:[..] (3-5)}                               (solo texto: úsalo poco)
   cierre   {titulo, texto?, palabra?, cta?}                         → última. Con "palabra": «Comenta PALABRA y te paso la guía»
+
+Historias (opcional, a nivel de configuración): "historia": {texto?, pregunta, opciones?:[2-3]} pone en
+historia.jpg una caja de pregunta/encuesta; "historia_reel" (mismo formato) crea además historia-reel.jpg
+("Nuevo reel") para la publicación del reel. Regla de Jesús: toda publicación lleva historia con pregunta.
 """
 import argparse, base64, json, random, sys
 from pathlib import Path
@@ -65,7 +69,7 @@ h2{font-size:70px;line-height:1.05;letter-spacing:-.03em;font-weight:800}
 .desliza{position:absolute;bottom:56px;left:64px;font-size:30px;font-weight:700;color:#fff;background:rgba(255,255,255,.15);border-radius:40px;padding:12px 26px}
 .num{width:120px;height:120px;border-radius:32px;background:#5b5bd6;color:#fff;font-weight:800;font-size:64px;display:grid;place-items:center;margin-bottom:40px}
 .txt{font-size:42px;line-height:1.38;color:#3f3d66;margin-top:34px}
-.dato{background:#fff;border-left:12px solid #5b5bd6;border-radius:24px;padding:32px 36px;font-size:36px;line-height:1.35;color:#17162b;box-shadow:0 10px 30px rgba(40,30,120,.08);margin-top:44px}
+.dato{white-space:pre-line;background:#fff;border-left:12px solid #5b5bd6;border-radius:24px;padding:32px 36px;font-size:36px;line-height:1.35;color:#17162b;box-shadow:0 10px 30px rgba(40,30,120,.08);margin-top:44px}
 ul.lis{list-style:none;display:flex;flex-direction:column;gap:22px}
 ul.lis li{display:flex;gap:24px;align-items:center;font-size:38px;line-height:1.28;background:#fff;border-radius:26px;padding:24px 28px;box-shadow:0 10px 30px rgba(40,30,120,.07)}
 ul.lis li i{flex:none;width:56px;height:56px;border-radius:50%;background:#22a06b;display:grid;place-items:center}
@@ -181,8 +185,21 @@ def lamina(s, i, n):
     return "", m + cuerpo + pie(i, n)
 
 
-def historia(p):
+def encuesta(h):
+    """Caja de pregunta/encuesta para la historia (campo "historia" de la configuración)."""
+    if not h or not h.get("pregunta"):
+        return ""
+    ops = "".join(f'<div style="flex:1;background:#fff;color:#17162b;border-radius:24px;padding:22px 10px;text-align:center;font-size:36px;font-weight:800">{e(o)}</div>' for o in (h.get("opciones") or [])[:3])
+    return f'''<div style="position:absolute;left:80px;right:80px;bottom:250px;background:#ffd45c;color:#17162b;border-radius:40px;padding:40px 44px">
+      {f'<div style="font-size:30px;font-weight:700;margin-bottom:10px">{e(h["texto"])}</div>' if h.get("texto") else ''}
+      <div style="font-size:50px;font-weight:800;line-height:1.12;letter-spacing:-.02em">{e(h["pregunta"])}</div>
+      {f'<div style="display:flex;gap:20px;margin-top:28px">{ops}</div>' if ops else ''}</div>'''
+
+
+def historia(p, h=None, aviso="Nuevo post · míralo 👆"):
     movil = ""
+    if h and h.get("pregunta"):
+        p = {**p, "chat": None, "subtitulo": None}
     if p.get("chat"):
         movil = C.movil(p["chat"], estilo="transform:scale(1.1) rotate(4deg);margin:120px auto 0 170px")
     return f"""{red(1920)}<div class="marca" style="top:110px"><i>{icono("sparkles", 26, "#fff", 2.4)}</i>iando.xyz</div>
@@ -191,7 +208,8 @@ def historia(p):
       <h1 style="font-size:{86 if movil else 110}px">{resaltar(p['titulo'], p.get('destacado'))}</h1>
       {'' if movil else (f'<p class="sub" style="font-size:44px">{negrita(p["subtitulo"])}</p>' if p.get('subtitulo') else '')}
       {movil}</div>
-    <span class="desliza" style="left:80px;bottom:150px;font-size:36px">Nuevo post · míralo 👆</span>"""
+    {encuesta(h)}
+    <span class="desliza" style="left:80px;bottom:150px;font-size:36px">{e(aviso)}</span>"""
 
 
 def main():
@@ -242,9 +260,14 @@ def main():
             pg.screenshot(path=str(ruta), type="jpeg", quality=92)
             hechos.append(str(ruta))
         pg.set_viewport_size({"width": 1080, "height": 1920})
-        pg.set_content(f"<html><head><meta charset='utf-8'><style>{CSS}</style></head><body class='h'><div class='l osc'>{historia(slides[0])}</div></body></html>")
-        pg.wait_for_timeout(150)
-        pg.screenshot(path=str(out / "historia.jpg"), type="jpeg", quality=92)
+        # Historias: la del carrusel y, si la configuración trae "historia_reel", otra para el reel
+        for nombre, h, aviso in (("historia.jpg", cfg.get("historia"), "Nuevo post · míralo 👆"),
+                                 ("historia-reel.jpg", cfg.get("historia_reel"), "Nuevo reel · míralo 👆")):
+            if nombre == "historia-reel.jpg" and not h:
+                continue
+            pg.set_content(f"<html><head><meta charset='utf-8'><style>{CSS}</style></head><body class='h'><div class='l osc'>{historia(slides[0], h, aviso)}</div></body></html>")
+            pg.wait_for_timeout(150)
+            pg.screenshot(path=str(out / nombre), type="jpeg", quality=92)
         b.close()
     print(json.dumps({"laminas": hechos, "historia": str(out / "historia.jpg"), "avisos": avisos}, ensure_ascii=False, indent=1))
 

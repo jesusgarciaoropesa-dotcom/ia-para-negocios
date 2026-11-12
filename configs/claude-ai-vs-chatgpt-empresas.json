@@ -1,0 +1,179 @@
+{
+ "slug": "claude-ai-vs-chatgpt-empresas",
+ "palabra": "COMPARA",
+ "historia": {
+  "texto": "Claude o ChatGPT",
+  "pregunta": "¿Cuál usas en tu negocio?",
+  "opciones": [
+   "Claude",
+   "ChatGPT",
+   "Ninguna"
+  ]
+ },
+ "historia_reel": {
+  "texto": "Claude o ChatGPT",
+  "pregunta": "¿Has probado los dos?",
+  "opciones": [
+   "Sí",
+   "Aún no"
+  ]
+ },
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "Claude o ChatGPT",
+   "titulo": "¿Claude o ChatGPT? Depende de lo que le pidas",
+   "destacado": "lo que le pidas",
+   "subtitulo": "La guía rápida para elegir sin perder tiempo."
+  },
+  {
+   "tipo": "versus",
+   "titulo": "Cada uno brilla en una cosa",
+   "destacado": "brilla",
+   "izquierda": {
+    "titulo": "Claude",
+    "etiqueta": "Leer y escribir",
+    "items": [
+     "Contratos y documentos largos",
+     "Informes con tono natural",
+     "Más de 50 páginas de una vez"
+    ],
+    "tono": "bien"
+   },
+   "derecha": {
+    "titulo": "ChatGPT",
+    "etiqueta": "Crear y conectar",
+    "items": [
+     "Imágenes para presentaciones",
+     "Datos con Python",
+     "Microsoft 365, Zapier o Make"
+    ]
+   },
+   "conclusion": "No compiten: se complementan.",
+   "reel": {
+    "izquierda": {
+     "titulo": "Claude",
+     "etiqueta": "Leer y escribir",
+     "items": [
+      "Documentos largos",
+      "Informes con tono natural"
+     ],
+     "tono": "bien"
+    },
+    "derecha": {
+     "titulo": "ChatGPT",
+     "etiqueta": "Crear y conectar",
+     "items": [
+      "Imágenes",
+      "Datos con Python"
+     ]
+    }
+   }
+  },
+  {
+   "tipo": "tarjetas",
+   "titulo": "4 preguntas para decidir",
+   "destacado": "decidir",
+   "texto": "Si solo vas a pagar una, empieza por aquí.",
+   "tarjetas": [
+    {
+     "icono": "file-text",
+     "titulo": "¿Analizas o redactas documentos largos?",
+     "texto": "→ Claude"
+    },
+    {
+     "icono": "image",
+     "titulo": "¿Necesitas imágenes o datos con código?",
+     "texto": "→ ChatGPT"
+    },
+    {
+     "icono": "megaphone",
+     "titulo": "¿Haces marketing y quieres la misma voz?",
+     "texto": "→ Claude"
+    },
+    {
+     "icono": "laptop",
+     "titulo": "¿Trabajas con Microsoft 365?",
+     "texto": "→ ChatGPT"
+    }
+   ]
+  },
+  {
+   "tipo": "tabla",
+   "titulo": "Qué tarea, qué herramienta",
+   "destacado": "qué herramienta",
+   "archivo": "elegir-ia.xlsx",
+   "columnas": [
+    "Tarea",
+    "Mejor opción"
+   ],
+   "filas": [
+    [
+     "Resumir un contrato extenso",
+     {
+      "t": "Claude",
+      "bien": true
+     }
+    ],
+    [
+     "Redactar un informe o un memorando",
+     {
+      "t": "Claude",
+      "bien": true
+     }
+    ],
+    [
+     "Crear imágenes para una presentación",
+     {
+      "t": "ChatGPT",
+      "bien": true
+     }
+    ],
+    [
+     "Analizar un CSV con gráficas",
+     {
+      "t": "ChatGPT",
+      "bien": true
+     }
+    ],
+    [
+     "Integrarlo con Slack o Notion",
+     {
+      "t": "Claude",
+      "bien": true
+     }
+    ]
+   ],
+   "globo": "Según nuestra comparativa. Los dos tienen **versión gratis** para probar.",
+   "reel": {
+    "omitir": true
+   }
+  },
+  {
+   "tipo": "pasos",
+   "titulo": "Cómo empezar sin liarte",
+   "destacado": "sin liarte",
+   "pasos": [
+    {
+     "titulo": "Si es tu primera IA, ChatGPT Plus",
+     "texto": "Es la entrada más suave por su ecosistema."
+    },
+    {
+     "titulo": "Añade Claude con documentos largos",
+     "texto": "Cuando el volumen de trabajo lo justifique."
+    },
+    {
+     "titulo": "Usa cada una para lo suyo",
+     "texto": "Análisis y redacción, Claude. Imagen e integraciones, ChatGPT."
+    }
+   ]
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "¿Cuál usas tú en tu negocio?",
+   "destacado": "tu negocio",
+   "texto": "La comparativa completa, con planes y precios, en iando.xyz.",
+   "palabra": "COMPARA"
+  }
+ ]
+}

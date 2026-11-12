@@ -1,0 +1,143 @@
+{
+ "slug": "ia-restaurantes-hosteleria",
+ "palabra": "RESTAURANTE",
+ "historia": {
+  "texto": "IA para tu restaurante",
+  "pregunta": "¿Qué te quita más tiempo?",
+  "opciones": [
+   "Reseñas",
+   "Reservas",
+   "Carta"
+  ]
+ },
+ "historia_reel": {
+  "texto": "IA para tu restaurante",
+  "pregunta": "¿Respondes todas tus reseñas?",
+  "opciones": [
+   "Sí",
+   "No"
+  ]
+ },
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "IA para hostelería",
+   "titulo": "4 prompts para tu restaurante: reseñas, carta, escandallo y reservas",
+   "destacado": "4 prompts",
+   "subtitulo": "Cópialos y úsalos esta semana.",
+   "icono": "utensils",
+   "reel": {
+    "subtitulo": ""
+   }
+  },
+  {
+   "tipo": "chat",
+   "titulo": "Reseñas sin ponerte a la defensiva",
+   "destacado": "sin ponerte a la defensiva",
+   "chat": {
+    "app": "asistente",
+    "nombre": "Tu asistente de IA",
+    "mensajes": [
+     {
+      "de": "yo",
+      "texto": "Responde a esta reseña (3/5): «Buena comida, pero tardaron mucho». Máx. 80 palabras, sin ser defensivo.",
+      "hora": "11:20"
+     },
+     {
+      "de": "ia",
+      "texto": "Gracias por venir y contárnoslo. Tienes razón: la espera no fue la que merecías y ya lo hemos hablado con el equipo. ¡Esperamos verte pronto! — Tu restaurante",
+      "hora": "11:20"
+     }
+    ]
+   },
+   "globo": "**Ejemplo ilustrativo.** Léela antes de publicarla."
+  },
+  {
+   "tipo": "tarjetas",
+   "titulo": "La IA clasifica tu carta en 4 tipos",
+   "destacado": "4 tipos",
+   "texto": "Le das platos, precio y coste. Te dice qué subir, mover o quitar.",
+   "tarjetas": [
+    {
+     "icono": "star",
+     "titulo": "Estrella",
+     "texto": "Se vende mucho y deja buen margen."
+    },
+    {
+     "icono": "trending-up",
+     "titulo": "Caballo de batalla",
+     "texto": "Se vende mucho, pero deja poco margen."
+    },
+    {
+     "icono": "circle-help",
+     "titulo": "Puzzle",
+     "texto": "Buen margen, pero se pide poco."
+    },
+    {
+     "icono": "trending-down",
+     "titulo": "Perro",
+     "texto": "Poco margen y se pide poco."
+    }
+   ],
+   "reel": {
+    "texto": "Te dice qué subir, mover o quitar."
+   }
+  },
+  {
+   "tipo": "prompt",
+   "titulo": "El escandallo, sin calculadora",
+   "destacado": "sin calculadora",
+   "app": "ChatGPT",
+   "prompt": "Calcula el escandallo de este plato: [receta con cantidades]. Precios: [ingredientes por kg o litro]. Dame coste por ración, merma del 20 %, precio con margen del 65-70 % y con y sin IVA (10 %).",
+   "consejo": "Pídele siempre el precio **con y sin IVA**: en hostelería es del 10 %.",
+   "voz": {
+    "titulo": "El escandallo, sin calculadora",
+    "texto": "Le das la receta y los precios, y te calcula el coste por ración y el precio de venta."
+   }
+  },
+  {
+   "tipo": "pasos",
+   "titulo": "Tu chatbot de reservas, en 4 pasos",
+   "destacado": "chatbot de reservas",
+   "texto": "Atiende consultas en web y WhatsApp a cualquier hora.",
+   "pasos": [
+    {
+     "titulo": "Horarios, dirección y precio medio",
+     "texto": "Y tu política de reservas."
+    },
+    {
+     "titulo": "Opciones para celíacos y veganos",
+     "texto": "Y la información sobre alergias."
+    },
+    {
+     "titulo": "Tus 10 preguntas más frecuentes",
+     "texto": "Con su respuesta."
+    },
+    {
+     "titulo": "Tono cálido y hospitalario",
+     "texto": "Que suene a tu casa."
+    }
+   ],
+   "reel": {
+    "texto": ""
+   }
+  },
+  {
+   "tipo": "punto",
+   "icono": "handshake",
+   "titulo": "La IA no sustituye la hospitalidad",
+   "destacado": "hospitalidad",
+   "texto": "Se encarga de lo repetitivo y administrativo para que tu equipo tenga más tiempo para el cliente.",
+   "reel": {
+    "omitir": true
+   }
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "¿Qué te quita más tiempo en tu local?",
+   "destacado": "tu local",
+   "texto": "Todos los prompts, listos para copiar, en iando.xyz.",
+   "palabra": "RESTAURANTE"
+  }
+ ]
+}

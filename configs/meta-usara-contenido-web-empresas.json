@@ -1,0 +1,161 @@
+{
+ "slug": "meta-usara-contenido-web-empresas",
+ "palabra": "ROBOTS",
+ "historia": {
+  "texto": "Meta y la web de tu negocio",
+  "pregunta": "¿Sabías que Meta quería usar tu web?",
+  "opciones": [
+   "Sí",
+   "Ni idea"
+  ]
+ },
+ "historia_reel": {
+  "texto": "Meta y la web de tu negocio",
+  "pregunta": "¿Has mirado ya tu robots.txt?",
+  "opciones": [
+   "Sí",
+   "Aún no"
+  ]
+ },
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "Meta y tu web",
+   "titulo": "Meta quería usar la web de tu negocio. Lo ha pausado.",
+   "destacado": "Lo ha pausado.",
+   "subtitulo": "Qué pasó y qué puedes hacer tú ya."
+  },
+  {
+   "tipo": "cifra",
+   "titulo": "La fecha que ya no vale",
+   "cifra": "20",
+   "unidad": "nov",
+   "texto": "Meta: «Estas actualizaciones están en pausa y no entrarán en vigor el 20 de noviembre».",
+   "compara": {
+    "antes": "Nuevos términos para cuentas de empresa con web enlazada",
+    "despues": "En pausa y sin fecha nueva",
+    "antes_titulo": "Lo previsto",
+    "despues_titulo": "Ahora"
+   },
+   "voz": {
+    "titulo": "La fecha que ya no vale",
+    "texto": "Meta dice que lo ha pausado: no entra en vigor el veinte de noviembre."
+   },
+   "reel": {
+    "texto": "Meta dice que lo ha pausado: no entra en vigor el 20 de noviembre."
+   }
+  },
+  {
+   "tipo": "tarjetas",
+   "titulo": "¿Habría afectado a tu negocio?",
+   "destacado": "tu negocio",
+   "texto": "Según un análisis jurídico noruego, a cualquier cuenta de empresa con web enlazada.",
+   "tarjetas": [
+    {
+     "icono": "store",
+     "titulo": "Tiendas online",
+     "texto": "Fichas de producto y fotos."
+    },
+    {
+     "icono": "utensils",
+     "titulo": "Restaurantes",
+     "texto": "Carta, textos y fotos."
+    },
+    {
+     "icono": "building-2",
+     "titulo": "Inmobiliarias y clínicas",
+     "texto": "Servicios y artículos del blog."
+    }
+   ],
+   "reel": {
+    "omitir": true
+   }
+  },
+  {
+   "tipo": "tabla",
+   "titulo": "Los rastreadores de Meta",
+   "destacado": "rastreadores",
+   "archivo": "rastreadores-meta",
+   "columnas": [
+    "Rastreador",
+    "Para qué",
+    "¿Bloquear?"
+   ],
+   "filas": [
+    [
+     "meta-externalagent",
+     "Entrenar su IA",
+     {
+      "t": "Sí",
+      "bien": true
+     }
+    ],
+    [
+     "meta-externalads",
+     "Publicidad",
+     "Si no haces anuncios"
+    ],
+    [
+     "facebookexternalhit",
+     "Vista previa de enlaces",
+     {
+      "t": "No",
+      "mal": true
+     }
+    ]
+   ],
+   "globo": "Lista oficial de Meta. Sin **facebookexternalhit**, tus enlaces salen sin foto ni título.",
+   "voz": {
+    "titulo": "Los rastreadores de Meta",
+    "globo": "Lista oficial de Meta. No bloquees el de las vistas previas."
+   },
+   "reel": {
+    "globo": "Lista oficial de Meta. **No bloquees** el de las vistas previas."
+   }
+  },
+  {
+   "tipo": "punto",
+   "icono": "shield-check",
+   "titulo": "Dos líneas en tu robots.txt",
+   "destacado": "robots.txt",
+   "texto": "Así le pides a Meta que su rastreador de IA no lea tu web. El cambio tarda hasta 24 horas.",
+   "dato": "User-agent: meta-externalagent\nDisallow: /",
+   "reel": {
+    "texto": "Así le pides a Meta que su rastreador de IA no lea tu web."
+   }
+  },
+  {
+   "tipo": "pasos",
+   "titulo": "Qué hacer ahora",
+   "destacado": "ahora",
+   "pasos": [
+    {
+     "titulo": "No te asustes",
+     "texto": "Está en pausa y siguen los términos actuales."
+    },
+    {
+     "titulo": "Revisa tu robots.txt",
+     "texto": "Está en tudominio.com/robots.txt."
+    },
+    {
+     "titulo": "Mira qué web tienes enlazada",
+     "texto": "En tu página de Facebook y tu Instagram de empresa."
+    },
+    {
+     "titulo": "Si vuelven los términos, léelos",
+     "texto": "Se aceptan solo con seguir usando las cuentas."
+    }
+   ],
+   "voz": {
+    "titulo": "Qué hacer ahora"
+   }
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "¿Sabes qué dice tu robots.txt?",
+   "destacado": "robots.txt",
+   "texto": "La guía completa, con fuentes, en iando.xyz.",
+   "palabra": "ROBOTS"
+  }
+ ]
+}
