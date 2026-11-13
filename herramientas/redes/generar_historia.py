@@ -29,7 +29,11 @@ Tipos de escena (todas llevan "voz" = la frase que se lee y, opcional, "clave" =
   pasos     {"pasos": ["...", "..."]}                          pasos numerados que se encienden en orden
   dibujo    {"dibujo": "peluqueria", "vibrar": true, "reserva": false, "globo": {"titulo": "WhatsApp", "texto": "...", "color": "#25d366"}}
             ilustración de dibujos/<nombre>.svg (propias) con móvil que vibra, reserva confirmada y bocadillo
+  captura   {"imagen": "capturas/reserva-movil.png", "desplazar": true}  captura real (ruta relativa a la config)
+            dentro de un móvil; con desplazar, baja poco a poco como si se hiciera scroll
   cierre    {}  «Comenta PALABRA y te paso la guía». Opcional: "arriba", "palabra", "abajo" para otro cierre
+Opcional en la raíz de la config: "musica": "suave" | "animada" (bucles propios de musica.py, sin derechos de nadie):
+suena muy baja y baja sola cuando habla la voz.
 Nada inventado: todo lo que sale en pantalla y en la voz tiene que estar en el artículo.
 """
 import argparse, json, pathlib, subprocess, sys, wave
@@ -128,6 +132,7 @@ function construir(e,i){
   case "pasos": h = e.pasos.map((t,k)=>`<div class="card paso" data-k="${k}" style="top:${40+k*200}px"><div class="num">${k+1}</div>${esc(t)}</div>`).join(""); break;
   case "dibujo": h = `<div class="dib" style="position:absolute;left:90px;right:90px;top:30px">${window.DIBUJOS[e.dibujo]||""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
+  case "captura": h = `<div class="movil card" style="top:0"><div class="pant" style="background:#fff"><img src="${e.src}" style="width:100%;display:block;position:absolute;top:0;left:0"></div></div>`; break;
   case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div><div class="marca">iando.xyz</div>`; break;
   }
   if(e.sello) h += `<div class="sello ${e.tono==="verde"?"verde":""}">${esc(e.sello)}</div>`;
@@ -172,6 +177,10 @@ function animar(e,d,lt,dur){
     if(e.reserva){ const pa=d.querySelector("#pantalla"), ck=d.querySelector("#check"), a=pop(lt,0.3,.3); if(pa) pa.setAttribute("fill", a>.5?"#1f9d55":"#7b7bf0"); if(ck) ck.style.opacity=a; }
     const g=d.querySelector(".globo"); if(g){ const a=pop(lt,0.25,.35); g.style.opacity=a; g.style.transform=`translateY(${(1-a)*30}px) scale(${0.9+0.1*a})`; }
     break; }
+  case "captura": { const img=d.querySelector("img"), m=d.querySelector(".movil"), a=pop(lt,0,.35);
+    m.style.opacity=a; m.style.transform=`translateY(${(1-a)*60}px)`;
+    if(e.desplazar && img.naturalHeight){ const alto=img.clientHeight, vent=img.parentElement.clientHeight; const p=ease(Math.max(0,(lt-0.5)/(dur*0.8)));
+      img.style.top = (-(Math.max(0,alto-vent))*p)+"px"; } break; }
   case "cierre": { const a=pop(lt,0,.4), c=d.querySelector(".card"); c.style.opacity=a; c.style.transform=`scale(${0.85+0.15*a})`; break; }
   }
   if(e.sello){ const s=d.querySelector(".sello"), a=pop(lt,dur*0.45,.22); s.style.opacity=a; s.style.transform=`rotate(-7deg) scale(${2.2-1.2*a})`; }
@@ -201,6 +210,11 @@ def pagina(cfg, datos):
     for e in cfg["escenas"]:
         if e.get("tipo") == "dibujo" and e["dibujo"] not in dibujos:
             dibujos[e["dibujo"]] = (AQUI / "dibujos" / f"{e['dibujo']}.svg").read_text()
+    base = pathlib.Path(cfg.get("_ruta", ".")).parent
+    for e in cfg["escenas"]:
+        if e.get("tipo") == "captura":
+            src = e["imagen"]
+            e["src"] = src if src.startswith("http") else f"file://{(base / src).resolve()}"
     for i, e in enumerate(cfg["escenas"]):
         if e.get("tipo") == "tarjetas":
             for k, t in enumerate(e["items"]):
@@ -219,7 +233,7 @@ def main():
     ap.add_argument("--sin-voz", action="store_true")
     ap.add_argument("--salida", default=str(RAIZ / "reels"))
     a = ap.parse_args()
-    cfg = json.load(open(a.config))
+    cfg = json.load(open(a.config)); cfg["_ruta"] = a.config
     frases = [e["voz"].strip() for e in cfg["escenas"]]
     if a.pedido_voz:
         tandas = G.pedido(frases, estilo=G.ESTILO_LIBRE)
@@ -266,7 +280,18 @@ def main():
         pg.screenshot(path=str(salida / f"{cfg['slug']}-portada.jpg"), type="jpeg", quality=92)
         b.close()
     mp4 = salida / f"{cfg['slug']}.mp4"
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-framerate", str(FPS), "-i", str(tmp / "fr/%05d.jpg"), "-i", str(tmp / "voz.wav"),
+    audio = tmp / "voz.wav"
+    musica = cfg.get("musica")
+    if musica:   # música propia (musica.py) muy baja y que se aparta cuando habla la voz
+        pista = AQUI / "musica" / f"{musica}.wav"
+        if not pista.exists():
+            subprocess.run([sys.executable, str(AQUI / "musica.py")], check=True)
+        audio = tmp / "mezcla.wav"
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(tmp / "voz.wav"), "-stream_loop", "-1", "-i", str(pista), "-filter_complex",
+                        f"[0:a]aresample=44100,asplit=2[v][sc];[1:a]volume=0.22,atrim=0:{total:.2f},afade=t=in:d=0.6,afade=t=out:st={max(0, total - 1.2):.2f}:d=1.2[m];"
+                        "[m][sc]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=400[md];[v][md]amix=inputs=2:duration=first:normalize=0[out]",
+                        "-map", "[out]", "-ac", "1", str(audio)], check=True)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-framerate", str(FPS), "-i", str(tmp / "fr/%05d.jpg"), "-i", str(audio),
                     "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
                     "-shortest", "-movflags", "+faststart", str(mp4)], check=True)
     print(json.dumps({"reel": str(mp4), "portada": str(salida / f"{cfg['slug']}-portada.jpg"), "segundos": round(total, 1),
