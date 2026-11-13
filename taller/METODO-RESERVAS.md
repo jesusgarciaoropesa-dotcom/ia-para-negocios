@@ -30,8 +30,10 @@ dos negocios.
    `1` = lunes … `7` = domingo; día cerrado = `[]`. `intervalo_min` = cada cuánto empieza
    una cita (normalmente 30, o la duración si todas son iguales). Guarda el `negocio_id`
    en `centro.encargos.ficha.negocio_id`.
-3. **Maquetador**: monta la landing normal y pega el bloque `widget-reservas.html`
-   (sustituyendo `{{NEGOCIO_ID}}` y `{{WHATSAPP}}`) como sección `#reservar`. Los botones
+3. **Maquetador**: monta la landing normal (con su ficha de estilo y `DISENO.md`, como en la
+   landing) y pega el bloque `widget-reservas.html`
+   (sustituyendo `{{NEGOCIO_ID}}` y `{{WHATSAPP}}`) como sección `#reservar`, adaptando sus
+   colores y tipografías a la ficha de estilo. Los botones
    principales de la landing pasan a "Reservar cita" con `href="#reservar"`, y WhatsApp
    queda como alternativa.
 4. **Probador** (`taller-probador`), antes del Revisor:

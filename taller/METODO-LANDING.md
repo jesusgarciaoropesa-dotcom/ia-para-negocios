@@ -17,8 +17,9 @@ Archivos: rama `demos` de este repo → `demos/<slug>/index.html` (+ `capturas/`
 | 1 | Recepcionista | `ficha` (JSON) y, si falta algo imprescindible, `preguntas` → estado `preguntas` |
 | 2 | Investigador | `investigacion` (JSON) |
 | 3 | Redactor de textos | `textos` (JSON) |
-| 4 | Maquetador | `demos/<slug>/index.html` |
-| 5 | Revisor de calidad | `revision` (JSON) + capturas → estado `para_revisar` |
+| 3b | Diseñador | `ficha.estilo` (JSON) a partir de 2 webs de referencia (ver `DISENO.md`) |
+| 4 | Maquetador | `demos/<slug>/index.html` siguiendo la ficha de estilo y `DISENO.md` |
+| 5 | Revisor de calidad | `revision` (JSON, con `revision.diseno`) + capturas, revisión visual en rondas → estado `para_revisar` |
 | — | Jesús | aprueba o pide cambios (`comentario`) en el panel |
 | 6 | Entrega | publica en `main` → `https://iando.xyz/demos/<slug>/` y deja el mensaje para el cliente |
 
@@ -83,15 +84,24 @@ para que Jesús la pida, en vez de rellenar con platos genéricos.
   de clientes, certificaciones o precios que el cliente no haya dado. Si se quiere un
   dato y no está, se pone en `preguntas` para el cliente.
 
+### 3b. Ficha de estilo (Diseñador)
+
+Sigue la parte 1 de `taller/DISENO.md`: 2 webs de referencia del sector leídas con WebFetch,
+y de ahí y del negocio, la ficha de estilo en `ficha.estilo` (concepto, colores, tipografías,
+qué se ve al entrar, detalle memorable, estructura y qué evitar). Que no se parezca a las
+demos anteriores (`demos/NOTAS-DISENO.md`).
+
 ### 4. Maquetación
 
-Parte de `taller/plantilla-landing.html` y adáptala al negocio (no la dejes con
-aspecto de plantilla):
+Lee `taller/DISENO.md` (parte 2) antes de empezar. Parte de `taller/plantilla-landing.html`
+como base técnica (contacto, datos estructurados, accesibilidad), pero el diseño sale de la
+ficha de estilo: cambia lo que haga falta (estructura del inicio, orden y forma de las
+secciones, quitar las etiquetas `.eyebrow`, tarjetas…) para que no tenga aspecto de plantilla:
 
 - **Un solo archivo HTML** autocontenido (CSS y JS dentro). Fuentes de Google Fonts
   como mucho 2 familias. Sin librerías externas pesadas.
-- Paleta del negocio en las variables `--c-*`; titulares y cuerpo con tipografías que
-  encajen con el sector.
+- Paleta y tipografías de la ficha de estilo en las variables `--c-*` y `--f-*` (nunca
+  Inter, Roboto, Open Sans, Poppins o Montserrat salvo motivo claro).
 - Secciones: cabecera con nombre y botón WhatsApp → hero → servicios → por qué
   elegirnos → sobre el negocio → (galería solo si hay fotos reales) → horario y mapa →
   preguntas frecuentes → contacto → pie (aviso legal y privacidad mínimos).
@@ -108,9 +118,12 @@ aspecto de plantilla):
 
 `python3 taller/qa_landing.py demos/<slug>/index.html --capturas demos/<slug>/capturas`
 
-Comprueba y saca capturas (móvil y ordenador). Además, el Revisor lee las capturas y
-revisa a mano: que nada sea inventado, que los textos encajen con la ficha, que el
-diseño no parezca de plantilla y que el botón de WhatsApp funcione con el número bueno.
+Comprueba y saca capturas (móvil y ordenador): `errores` técnicos (se arreglan siempre),
+`avisos` y `avisos_diseno` (rasgos de plantilla o de IA). Además, el Revisor lee las capturas y
+revisa a mano: que nada sea inventado, que los textos encajen con la ficha y que el botón de
+WhatsApp funcione con el número bueno. Y hace la **revisión visual en rondas** de la parte 3 de
+`taller/DISENO.md` (5 notas de 1 a 5; si alguna baja de 4, corrige y repite; máximo 3 rondas),
+guarda `revision.diseno` y añade la línea de la demo a `demos/NOTAS-DISENO.md`.
 Errores pequeños se arreglan directamente; si hay algo grave, vuelve a la etapa que toque.
 
 ### 6. Entrega

@@ -6,7 +6,8 @@ Control de calidad de una landing del taller de iando.
 
 Abre la página con Chromium (Playwright) en móvil y en ordenador, saca capturas y
 comprueba lo que suele fallar. Devuelve un JSON con "errores" (hay que arreglarlos)
-y "avisos" (mirarlos). Sale con código 1 si hay errores.
+y "avisos" (mirarlos), y "avisos_diseno" (rasgos de plantilla o de web hecha con IA,
+ver taller/DISENO.md). Sale con código 1 si hay errores.
 
 Requiere: pip install playwright (en el entorno del taller ya está con Chromium).
 """
@@ -70,6 +71,38 @@ def revisar_html(t: str):
     return err, av, peso
 
 
+FUENTES_DE_SIEMPRE = ("Inter", "Roboto", "Open Sans", "Poppins", "Montserrat", "Lato", "Arial", "Helvetica")
+
+
+def revisar_diseno(t: str):
+    """Avisos de rasgos de plantilla / web hecha con IA (ver taller/DISENO.md). No son errores."""
+    av = []
+    fuentes = set(re.findall(r"family=([A-Za-z+]+)", t)) | set(re.findall(r"--f-[a-z]+:\s*['\"]?([A-Za-z ]+)", t))
+    fuentes = {f.replace("+", " ").strip() for f in fuentes}
+    tipicas = sorted(f for f in fuentes if f in FUENTES_DE_SIEMPRE)
+    if tipicas:
+        av.append(f"Diseño: tipografía de las de siempre ({', '.join(tipicas)}); elige una con carácter para este negocio")
+    mayus = len(re.findall(r'class="[^"]*\beyebrow\b', t))
+    if mayus > 1:
+        av.append(f"Diseño: {mayus} etiquetas en mayúsculas encima de titulares (.eyebrow); como mucho una")
+    if re.search(r"<h[12][^>]*>[^<]{0,120}<(em|span)[^>]*>", t, re.I):
+        av.append("Diseño: una palabra del titular destacada en otro color o cursiva; suele quedar a plantilla")
+    numeros = re.findall(r">\s*0[1-9]\s*<", t)
+    if len(numeros) >= 3:
+        av.append("Diseño: marcadores 01 / 02 / 03; úsalos solo si son pasos de verdad")
+    if re.search(r"(linear|radial)-gradient\([^)]*#(6366f1|7c3aed|8b5cf6|a855f7|4f46e5|6d28d9)", t, re.I):
+        av.append("Diseño: degradado morado de adorno (estilo por defecto de la IA)")
+    if re.search(r"#f4f1ea|#f5f0e8", t, re.I) and re.search(r"#d97757|#c96442", t, re.I):
+        av.append("Diseño: fondo crema con acento terracota (estilo por defecto de la IA)")
+    flechas = len(re.findall(r"→\s*</(a|button)>", t))
+    if flechas >= 3:
+        av.append(f"Diseño: {flechas} botones o enlaces terminan en «→»")
+    sombras = re.findall(r"box-shadow:\s*([^;]+);", t)
+    if len(sombras) >= 4 and len(set(sombras)) == 1:
+        av.append("Diseño: la misma sombra en todo; varía según la importancia o quítala")
+    return av
+
+
 def revisar_navegador(ruta: Path, capturas: Path | None):
     from playwright.sync_api import sync_playwright
     err, av, info = [], [], {}
@@ -121,7 +154,8 @@ def main():
         e2, a2, info = revisar_navegador(ruta, Path(a.capturas) if a.capturas else None)
     except Exception as e:
         e2, a2, info = [], [f"No se pudo abrir en el navegador: {e}"], {}
-    res = {"archivo": str(ruta), "peso_kb": peso // 1024, "errores": e1 + e2, "avisos": a1 + a2, **info}
+    res = {"archivo": str(ruta), "peso_kb": peso // 1024, "errores": e1 + e2, "avisos": a1 + a2,
+           "avisos_diseno": revisar_diseno(t), **info}
     if a.capturas:
         res["capturas"] = sorted(str(x) for x in Path(a.capturas).glob("*.png"))
     print(json.dumps(res, ensure_ascii=False, indent=1))
