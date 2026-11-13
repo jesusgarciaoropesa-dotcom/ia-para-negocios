@@ -15,7 +15,7 @@ Salida: reels/<slug>.mp4 y reels/<slug>-portada.jpg. Formato de la configuració
 Tipos de escena (todas llevan "voz" = la frase que se lee y, opcional, "clave" = palabra a subrayar,
 "sello" = texto de un sello que cae al final de la frase y "tono": "rojo" | "verde"):
   frase     {"texto": "4.000 €", "sub": "..."}                 texto gigante (ganchos, cifras redondas)
-  chat      {"nombre": "Chatbot", "mensajes": [{"de": "yo"|"ia", "texto": "..."}], "desde": 0}
+  chat      {"nombre": "Chatbot", "inicial": "IA", "color": "#25d366", "mensajes": [{"de": "yo"|"ia", "texto": "..."}], "desde": 0}
             los mensajes a partir de "desde" van apareciendo (el primero «yo» se escribe letra a letra)
   lista     {"items": ["..."], "marcar": false}                lista con casillas (marcar=true las va tachando)
   ventanas  {"titulos": ["Competidor A", ...], "etiqueta": "Agente de IA"}  ventanas que un cursor recorre ✓
@@ -27,7 +27,7 @@ Tipos de escena (todas llevan "voz" = la frase que se lee y, opcional, "clave" =
   prompt    {"app": "ChatGPT", "texto": "Voy a negociar [qué y con quién]…"}  se escribe solo; [huecos] en color
   tarjetas  {"items": [{"icono": "calendar", "titulo": "..."}]}  tarjetas con icono que entran una a una
   pasos     {"pasos": ["...", "..."]}                          pasos numerados que se encienden en orden
-  cierre    {}                                                  «Comenta PALABRA y te paso la guía»
+  cierre    {}  «Comenta PALABRA y te paso la guía». Opcional: "arriba", "palabra", "abajo" para otro cierre
 Nada inventado: todo lo que sale en pantalla y en la voz tiene que estar en el artículo.
 """
 import argparse, json, pathlib, subprocess, sys, wave
@@ -69,7 +69,7 @@ body{width:1080px;height:1920px;overflow:hidden;font-family:I,sans-serif;color:v
 .web{width:330px;height:220px;overflow:hidden}
 .web .barra{height:42px;background:#eceef3;display:flex;align-items:center;gap:9px;padding:0 16px;border-radius:34px 34px 0 0}
 .web .barra i{width:13px;height:13px;border-radius:50%;background:#d0d3dc}
-.web .tit{font-weight:800;font-size:28px;padding:22px 24px 10px}
+.web .tit{font-weight:800;font-size:25px;line-height:1.15;padding:18px 90px 8px 22px}
 .web .lin{height:16px;border-radius:8px;background:#eceef3;margin:12px 24px}
 .tick{position:absolute;right:18px;top:58px;width:60px;height:60px;border-radius:50%;background:var(--verde);color:#fff;display:grid;place-items:center;font-size:34px;font-weight:800}
 .cursor{position:absolute;width:60px;height:60px;z-index:9}
@@ -106,9 +106,9 @@ const POS = [[110,160],[640,160],[375,430],[110,700],[640,700],[375,950]];
 function construir(e,i){
   const d = document.createElement("div"); d.className = "esc"; d.id = "e"+i; let h = "";
   switch(e.tipo){
-  case "frase": h = `<div class="gigante" style="top:220px;font-size:${e.texto.length>8?150:220}px">${esc(e.texto)}</div>`+
+  case "frase": h = `<div class="gigante" style="top:220px;padding:0 90px;font-size:${e.texto.length>12?118:e.texto.length>8?150:220}px">${esc(e.texto)}</div>`+
      (e.sub?`<div style="position:absolute;top:560px;width:100%;text-align:center;font-size:44px;color:#4a4c60;padding:0 140px">${negrita(e.sub)}</div>`:""); break;
-  case "chat": h = `<div class="card centro"><div class="cab"><div class="av">IA</div>${esc(e.nombre||"Chat de IA")}</div>`+
+  case "chat": h = `<div class="card centro"><div class="cab"><div class="av"${e.color?` style="background:${e.color}"`:""}>${esc(e.inicial||"IA")}</div>${esc(e.nombre||"Chat de IA")}</div>`+
      e.mensajes.map((m,k)=>`<div class="bur ${m.de==="yo"?"yo":"ia"}" data-k="${k}">${esc(m.texto)}</div>`).join("")+`</div>`; break;
   case "lista": h = `<div class="card centro" style="left:170px;right:170px;top:60px">`+
      e.items.map((t,k)=>`<div class="li" data-k="${k}"><span class="caja">${e.marcar?"✓":""}</span>${esc(t)}</div>`).join("")+`</div>`; break;
@@ -124,7 +124,7 @@ function construir(e,i){
   case "prompt": h = `<div class="card centro" style="top:60px"><div class="cab"><div class="av">IA</div>${esc(e.app||"Tu asistente de IA")}</div><div class="ptxt" style="font-size:38px;line-height:1.4;min-height:300px;background:#f6f6fa;border-radius:22px;padding:26px 30px"></div></div>`; break;
   case "tarjetas": h = e.items.map((t,k)=>`<div class="card tarj" data-k="${k}" style="top:${40+k*220}px"><div class="ic">${window.ICONOS[i+"-"+k]||""}</div>${esc(t.titulo)}</div>`).join(""); break;
   case "pasos": h = e.pasos.map((t,k)=>`<div class="card paso" data-k="${k}" style="top:${40+k*200}px"><div class="num">${k+1}</div>${esc(t)}</div>`).join(""); break;
-  case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">Comenta</div><div class="pill">${esc(PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">y te paso la guía<br>por mensaje privado 📩</div></div><div class="marca">iando.xyz</div>`; break;
+  case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div><div class="marca">iando.xyz</div>`; break;
   }
   if(e.sello) h += `<div class="sello ${e.tono==="verde"?"verde":""}">${esc(e.sello)}</div>`;
   d.innerHTML = h; raiz.appendChild(d); return d;
