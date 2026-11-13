@@ -116,3 +116,21 @@ Móvil primero (360 px sin desplazamiento horizontal), foco de teclado visible, 
 
 Apunta en `demos/NOTAS-DISENO.md` (una línea por demo: negocio, concepto, tipografías,
 colores, detalle memorable) para que la siguiente demo no repita lo mismo.
+
+---
+
+## Ejemplo aprobado por Jesús (13-11-2026)
+
+`taller/ejemplos/mk-racing-antes-despues.png` (míralo con Read antes de diseñar). A la izquierda,
+la demo de Mk Racing hecha con la plantilla; a la derecha, la versión que le gustó. Lo que aprendimos:
+
+- **Una primera versión sobria (gris hormigón, sin moto) le pareció apagada.** Quiere fuerza:
+  un bloque grande con el color de la marca del cliente (si tiene logo, sus colores mandan),
+  sin miedo a usarlo a toda potencia.
+- **Que se vea lo que hace el negocio en grande**: la moto ocupaba medio inicio. Si hay fotos
+  reales del cliente, una foto grande; si no, una ilustración SVG propia, grande y con detalle
+  del negocio (su nombre o sus colores en ella).
+- Formas con movimiento cuando el sector lo pide (el corte en diagonal en un taller de motos).
+- Tipografía de rótulo con carácter para el titular, texto sencillo y legible.
+- El detalle memorable (el «parte de trabajo» con los servicios marcados) va en segundo plano,
+  no compite con la imagen principal.
