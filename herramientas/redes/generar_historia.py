@@ -27,6 +27,8 @@ Tipos de escena (todas llevan "voz" = la frase que se lee y, opcional, "clave" =
   prompt    {"app": "ChatGPT", "texto": "Voy a negociar [qué y con quién]…"}  se escribe solo; [huecos] en color
   tarjetas  {"items": [{"icono": "calendar", "titulo": "..."}]}  tarjetas con icono que entran una a una
   pasos     {"pasos": ["...", "..."]}                          pasos numerados que se encienden en orden
+  dibujo    {"dibujo": "peluqueria", "vibrar": true, "reserva": false, "globo": {"titulo": "WhatsApp", "texto": "...", "color": "#25d366"}}
+            ilustración de dibujos/<nombre>.svg (propias) con móvil que vibra, reserva confirmada y bocadillo
   cierre    {}  «Comenta PALABRA y te paso la guía». Opcional: "arriba", "palabra", "abajo" para otro cierre
 Nada inventado: todo lo que sale en pantalla y en la voz tiene que estar en el artículo.
 """
@@ -124,6 +126,8 @@ function construir(e,i){
   case "prompt": h = `<div class="card centro" style="top:60px"><div class="cab"><div class="av">IA</div>${esc(e.app||"Tu asistente de IA")}</div><div class="ptxt" style="font-size:38px;line-height:1.4;min-height:300px;background:#f6f6fa;border-radius:22px;padding:26px 30px"></div></div>`; break;
   case "tarjetas": h = e.items.map((t,k)=>`<div class="card tarj" data-k="${k}" style="top:${40+k*220}px"><div class="ic">${window.ICONOS[i+"-"+k]||""}</div>${esc(t.titulo)}</div>`).join(""); break;
   case "pasos": h = e.pasos.map((t,k)=>`<div class="card paso" data-k="${k}" style="top:${40+k*200}px"><div class="num">${k+1}</div>${esc(t)}</div>`).join(""); break;
+  case "dibujo": h = `<div class="dib" style="position:absolute;left:90px;right:90px;top:30px">${window.DIBUJOS[e.dibujo]||""}</div>`+
+     (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
   case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div><div class="marca">iando.xyz</div>`; break;
   }
   if(e.sello) h += `<div class="sello ${e.tono==="verde"?"verde":""}">${esc(e.sello)}</div>`;
@@ -161,6 +165,13 @@ function animar(e,d,lt,dur){
   case "tarjetas": case "pasos": { const sel = e.tipo==="tarjetas"?".tarj":".paso", n = (e.items||e.pasos).length;
     Q(d,sel).forEach(c=>{ const k=+c.dataset.k, a=pop(lt,k*dur*0.75/n,.3); c.style.opacity=a; c.style.transform=`translateX(${(1-a)*120}px)`;
       if(e.tipo==="pasos"){ const on = lt >= k*dur*0.75/n; c.querySelector(".num").style.background = on?"var(--indigo)":"#efeffb"; c.querySelector(".num").style.color = on?"#fff":"var(--indigo)"; } }); break; }
+  case "dibujo": { const tel=d.querySelector("#telefono"), on=d.querySelector("#ondas"), br=d.querySelector("#brazo");
+    if(tel){ tel.style.transform = e.vibrar ? `translateX(${Math.sin(lt*70)*4}px)` : "none"; }
+    if(on){ on.style.opacity = e.vibrar ? (0.4+0.6*Math.abs(Math.sin(lt*6))) : 0; }
+    if(br){ br.style.transformOrigin="736px 350px"; br.style.transformBox="view-box"; br.style.transform=`rotate(${Math.sin(lt*5)*4}deg)`; }
+    if(e.reserva){ const pa=d.querySelector("#pantalla"), ck=d.querySelector("#check"), a=pop(lt,0.3,.3); if(pa) pa.setAttribute("fill", a>.5?"#1f9d55":"#7b7bf0"); if(ck) ck.style.opacity=a; }
+    const g=d.querySelector(".globo"); if(g){ const a=pop(lt,0.25,.35); g.style.opacity=a; g.style.transform=`translateY(${(1-a)*30}px) scale(${0.9+0.1*a})`; }
+    break; }
   case "cierre": { const a=pop(lt,0,.4), c=d.querySelector(".card"); c.style.opacity=a; c.style.transform=`scale(${0.85+0.15*a})`; break; }
   }
   if(e.sello){ const s=d.querySelector(".sello"), a=pop(lt,dur*0.45,.22); s.style.opacity=a; s.style.transform=`rotate(-7deg) scale(${2.2-1.2*a})`; }
@@ -186,7 +197,10 @@ window.render = function(t){
 
 
 def pagina(cfg, datos):
-    iconos = {}
+    iconos, dibujos = {}, {}
+    for e in cfg["escenas"]:
+        if e.get("tipo") == "dibujo" and e["dibujo"] not in dibujos:
+            dibujos[e["dibujo"]] = (AQUI / "dibujos" / f"{e['dibujo']}.svg").read_text()
     for i, e in enumerate(cfg["escenas"]):
         if e.get("tipo") == "tarjetas":
             for k, t in enumerate(e["items"]):
@@ -195,7 +209,7 @@ def pagina(cfg, datos):
     return (f"<!doctype html><html lang='es'><head><meta charset='utf-8'><style>{css}</style></head><body>"
             f"<div id='cap'></div><div id='escenas'></div><script>window.DATOS={json.dumps(datos, ensure_ascii=False)};"
             f"window.ESCENAS={json.dumps(cfg['escenas'], ensure_ascii=False)};window.PALABRA={json.dumps(cfg.get('palabra', ''))};"
-            f"window.ICONOS={json.dumps(iconos)};{JS}</script></body></html>")
+            f"window.ICONOS={json.dumps(iconos)};window.DIBUJOS={json.dumps(dibujos)};{JS}</script></body></html>")
 
 
 def main():
