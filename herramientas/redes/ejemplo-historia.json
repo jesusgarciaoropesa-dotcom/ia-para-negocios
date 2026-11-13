@@ -1,0 +1,24 @@
+{
+ "slug": "agentes-ia-empresas-historia",
+ "_nota": "Ejemplo de reel «historia» (el que aprobó Jesús el 13-11-2026). Cada escena = una frase de la voz y lo que se ve mientras se dice.",
+ "palabra": "AGENTE",
+ "escenas": [
+  {"voz": "Le pides a la IA que compare los precios de tus cinco competidores.", "clave": "competidores",
+   "tipo": "chat", "nombre": "Chat de IA", "mensajes": [{"de": "yo", "texto": "Compara los precios de mis 5 competidores y hazme una tabla"}]},
+  {"voz": "Un chatbot te explica cómo hacerlo.", "clave": "chatbot",
+   "tipo": "chat", "nombre": "Chatbot", "desde": 1, "mensajes": [{"de": "yo", "texto": "Compara los precios de mis 5 competidores y hazme una tabla"}, {"de": "ia", "texto": "Puedes entrar en sus webs y apuntar los precios en una hoja."}]},
+  {"voz": "Y los pasos, los haces tú.", "clave": "tú", "tipo": "lista",
+   "items": ["Web del competidor A", "Web del competidor B", "Web del competidor C", "Web del competidor D", "Web del competidor E"], "sello": "TÚ HACES LOS PASOS"},
+  {"voz": "Un agente entra en sus webs,", "clave": "agente", "tipo": "ventanas", "etiqueta": "Agente de IA",
+   "titulos": ["Competidor A", "Competidor B", "Competidor C", "Competidor D", "Competidor E"]},
+  {"voz": "apunta precios y ofertas,", "clave": "precios", "tipo": "tabla", "columnas": ["Competidor", "Precios", "Ofertas"],
+   "filas": [["Competidor A", "", ""], ["Competidor B", "", ""], ["Competidor C", "", ""], ["Competidor D", "", ""], ["Competidor E", "", ""]]},
+  {"voz": "y te deja la tabla hecha.", "clave": "tabla", "tipo": "tabla", "completa": true, "sello": "TABLA HECHA", "tono": "verde",
+   "columnas": ["Competidor", "Precios", "Ofertas"],
+   "filas": [["Competidor A", "", ""], ["Competidor B", "", ""], ["Competidor C", "", ""], ["Competidor D", "", ""], ["Competidor E", "", ""]]},
+  {"voz": "Solo te avisa si tienes que decidir algo importante.", "clave": "importante", "tipo": "aviso", "app": "Tu agente",
+   "texto": "Necesito que decidas algo antes de seguir."},
+  {"voz": "Es la diferencia entre preguntar y delegar.", "clave": "delegar", "tipo": "versus", "a": "preguntar", "b": "delegar"},
+  {"voz": "Comenta AGENTE y te paso la guía.", "clave": "AGENTE", "tipo": "cierre"}
+ ]
+}

@@ -129,6 +129,23 @@ def lamina(s, i, n):
               {f'<p class="sub">{negrita(s["subtitulo"])}</p>' if s.get('subtitulo') else ''}</div>
             {C.movil(s['chat'], estilo='position:absolute;right:-50px;top:230px;transform:rotate(6deg)')}
             <span class="desliza">Desliza →</span>"""
+        elif s.get("duelo"):
+            def ficha(d, giro):
+                return (f'<div style="width:330px;height:330px;border-radius:56px;background:{d.get("color", "#fff")};'
+                        f'box-shadow:0 30px 70px rgba(10,6,50,.45);transform:rotate({giro}deg);display:flex;flex-direction:column;'
+                        f'align-items:center;justify-content:center;gap:26px">{icono(d.get("icono", "message-circle"), 120, d.get("tinta", "#1e1b4b"), 1.6)}'
+                        f'<b style="font-size:52px;letter-spacing:-1px;color:{d.get("tinta", "#1e1b4b")}">{e(d["nombre"])}</b></div>')
+            a, b = s["duelo"][:2]
+            cuerpo = f"""{red()}{m}
+            <div style="position:absolute;left:0;right:0;top:170px;display:flex;justify-content:center;align-items:center;gap:0">
+              {ficha(a, -6)}
+              <div style="width:130px;height:130px;margin:0 -34px;z-index:2;border-radius:50%;background:#ffd45c;color:#1e1b4b;font-weight:900;font-size:50px;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(0,0,0,.35)">VS</div>
+              {ficha(b, 6)}</div>
+            <div style="position:absolute;left:64px;right:64px;top:180px;bottom:170px;display:flex;flex-direction:column;justify-content:flex-end">
+              <span class="kick">{e(s.get('kicker'))}</span>
+              <h1>{resaltar(s['titulo'], s.get('destacado'))}</h1>
+              {f'<p class="sub">{negrita(s["subtitulo"])}</p>' if s.get('subtitulo') else ''}</div>
+            <span class="desliza">Desliza →</span>"""
         else:
             cuerpo = f"""{red()}{m}
             <div style="position:absolute;left:64px;right:64px;top:180px;bottom:170px;display:flex;flex-direction:column;justify-content:flex-end">

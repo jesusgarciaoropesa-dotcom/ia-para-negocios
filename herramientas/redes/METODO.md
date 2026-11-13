@@ -82,40 +82,42 @@ Cada carrusel nace de **un artículo publicado** en iando.xyz:
 | `estado` | `para_revisar` |
 | `revision` | `{"comprobado": [...], "dudas": [...], "fuentes": [...]}` |
 
-## Reel con voz (uno por carrusel)
+## Reel con voz (uno por carrusel) · formato «historia»
 
-Cada carrusel tiene también su **reel**: el mismo contenido animado, con voz en off y sin música,
-que sale **al día siguiente a las 19:30** (martes, jueves y sábado).
+Cada carrusel tiene también su **reel**, que sale **al día siguiente a las 19:30** (martes, jueves y sábado).
+**Formato (decidido por Jesús el 13-11-2026): reel «historia»**, como los reels explicativos que mejor funcionan:
+una voz natural cuenta una pequeña historia frase a frase; arriba van subtítulos de 2-3 palabras que se encienden
+palabra a palabra (la palabra clave subrayada en amarillo) y debajo, **una escena por frase** que enseña lo que dice
+la voz. Generador: `herramientas/redes/generar_historia.py` (tipos de escena explicados al principio del archivo;
+ejemplo completo y aprobado: `herramientas/redes/ejemplo-historia.json`).
 
-La voz lee el título y el texto de cada lámina (no los números ni el recuadro del dato, que se
-quedan en pantalla); en la portada, título y subtítulo; en el cierre, solo el título y "enlace en la bio".
-
-1. **Escribe la versión corta para el vídeo**: en cada lámina de tipo `punto`, añade
-   `"reel": {"texto": "..."}` con el texto resumido en **una frase de 10-16 palabras** (la misma
-   idea, sin datos nuevos). Se ve y se lee en el reel en lugar del texto del carrusel.
-   Los tipos visuales se animan solos (los mensajes del chat entran uno a uno, las filas de la tabla, las
-   tarjetas y los pasos según se leen). Si con todas las láminas pasa de 60 s, quita del vídeo las menos
-   importantes con `"reel": {"omitir": true}` (mínimo: portada, 2-3 visuales y cierre).
-2. Comprueba lo que va a leer la voz: `python3 herramientas/redes/generar_reel.py configs/<slug>.json --guion`.
-   - **Duración: 45-60 s.** Si pasa de 60 s, acorta más los `"reel"`.
-   - Si alguna palabra se va a leer mal (siglas, marcas, inglés), añade en la lámina `"voz"` con cómo
-     se dice (`{"titulo": "...", "texto": "..."}`) o amplía `DICCIONARIO` en `generar_reel.py`.
-   **Voz (decidido por Jesús el 12-11-2026): voz natural de Gemini "Achird"**, no la de Kokoro. Esta máquina
-   no llega a Google, así que la voz se pide a Supabase:
-   - `python3 herramientas/redes/generar_reel.py configs/<slug>.json --pedido-voz` imprime 1-2 sentencias SQL.
-   - Ejecútalas con la herramienta SQL de Supabase (cada una devuelve un id de `net.http_post`). Espera ~90 s
-     y mira el resultado: `select status_code, content from net._http_response where id = <id>`. Si sale
-     `"faltan"` > 0 o no hay respuesta, vuelve a ejecutar la MISMA sentencia (lo ya hecho no se repite;
-     Google limita unos pocos audios por minuto, así que espera 1 minuto entre intentos).
-   - Vuelve a lanzar `--pedido-voz`: cuando diga "Ya están todos los audios", genera el reel.
-   - Si el texto cambia, cambian los audios: repite el pedido. Si tras 4 intentos sigue fallando, el
-     generador usa Kokoro solo; anótalo en `revision` ("reel con voz de respaldo").
-   - El JSON final del generador dice `"voz": "gemini"` o `"kokoro"`. Con Gemini, la voz pronuncia bien
-     ChatGPT, WhatsApp, etc.: no hace falta escribirlo "como se dice".
-3. Genera: `python3 herramientas/redes/generar_reel.py configs/<slug>.json` → `reels/<slug>.mp4` y
-   `reels/<slug>-portada.jpg`. Tarda unos minutos. Mira la portada y 3-4 fotogramas
-   (`ffmpeg -ss <segundo> -i reels/<slug>.mp4 -frames:v 1 f.jpg`) antes de seguir.
-4. Sube `reels/` a la rama `redes` y crea otra publicación:
+1. **Escribe el guion como una historia, no como un resumen del carrusel** (`configs/<slug>-historia.json`):
+   - **Gancho** en la primera frase: una situación concreta o un dato que choque, sacado del artículo
+     («Le pides a la IA que compare los precios de tus cinco competidores»).
+   - **Problema o contraste** (cómo se hace hoy, lo que falla) → **cómo funciona**, paso a paso → **remate**
+     (la idea que se queda) → **cierre**: «Comenta PALABRA y te paso la guía» (escena `cierre`).
+   - **Frases cortas**: 4-12 palabras cada una, una idea por frase. Una frase larga se parte en dos escenas
+     (p. ej. la misma `tabla` vacía y luego `completa`).
+   - **8-16 escenas, 25-50 s.** El generador avisa si pasa de 60 s.
+   - En cada escena, `clave` = la palabra de la frase que se subraya (la importante).
+   - Elige el tipo que ENSEÑA la frase: `chat` (pedírselo a la IA / respuesta), `lista` (tareas a mano), `ventanas`
+     (la IA recorre webs o herramientas), `tabla` (el resultado que entrega), `cifra` (número que sube), `aviso`
+     (notificación), `versus` (antes → ahora), `prompt` (la frase para copiar), `tarjetas`, `pasos`, `frase` (texto
+     gigante para un gancho). No repitas el mismo tipo más de dos veces seguidas salvo que la escena continúe
+     (chat con `desde`, tabla que se completa). Usa `sello` (1-2 por reel) para remarcar un giro («TÚ HACES LOS PASOS»).
+   - **Nada inventado**: lo que dice la voz y lo que sale en pantalla está en el artículo. Nada de precios, tiempos
+     o resultados que el artículo no diga; en tablas sin datos del artículo, deja las celdas vacías (salen barras).
+2. **Voz** (Gemini «Achird»): `python3 herramientas/redes/generar_historia.py configs/<slug>-historia.json --pedido-voz`
+   imprime 1-3 sentencias SQL; ejecútalas con la herramienta SQL de Supabase, espera ~90 s y mira el resultado
+   (`select status_code, content from net._http_response where id = <id>`). Si sale `"faltan"` > 0, espera 1 minuto
+   y repite la MISMA sentencia. Repite `--pedido-voz` hasta que diga «Ya están todos los audios».
+   Puedes ver antes cómo queda sin voz con `--sin-voz` (no lo publiques así).
+3. **Genera**: `python3 herramientas/redes/generar_historia.py configs/<slug>-historia.json` → `reels/<slug>.mp4` y
+   `reels/<slug>-portada.jpg`. Mira la portada y 4-5 fotogramas (`ffmpeg -ss <segundo> -i reels/<slug>.mp4 -frames:v 1 f.jpg`):
+   texto cortado, escenas vacías o que no encajan con la frase → corrige y repite.
+4. **Si Gemini no da la voz tras 4 intentos**: haz el reel con el formato anterior (`generar_reel.py`, voz Kokoro de
+   respaldo, ver más abajo) y anótalo en `revision` («reel con formato anterior y voz de respaldo»).
+5. Sube `reels/` y la config a la rama `redes` y crea la publicación del reel:
 
 | Campo | Valor |
 |---|---|
@@ -125,7 +127,12 @@ quedan en pantalla); en la portada, título y subtítulo; en el cierre, solo el 
 | `historia` | vacío |
 | `texto` / `texto_facebook` | otra primera línea distinta a la del carrusel (que no parezca repetido) |
 | `programada_para` | el día siguiente al carrusel, 19:30 Europe/Madrid |
-| resto | igual que el carrusel (`articulo`, `hashtags`, `estado='para_revisar'`, `revision`) |
+| resto | igual que el carrusel (`articulo`, `hashtags`, `palabra`, `guia`, `estado='para_revisar'`, `revision`) |
+
+### Formato anterior (solo de respaldo): `generar_reel.py`
+El carrusel animado con voz: en cada lámina `punto` añade `"reel": {"texto": "..."}` (una frase de 10-16 palabras)
+y quita láminas con `"reel": {"omitir": true}` si pasa de 60 s. `--guion` enseña lo que leerá la voz; `--pedido-voz`
+pide la voz de Gemini igual que arriba; sin voz de Gemini usa Kokoro. Genera `reels/<slug>.mp4` y su portada.
 
 ## Textos
 
