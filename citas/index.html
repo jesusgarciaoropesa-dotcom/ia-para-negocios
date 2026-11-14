@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de citas</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- App instalable (PWA) -->
+<meta name="theme-color" content="#4A3328">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Citas">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F7F3EE; --rose:#E8D5C8; --earth:#7A5C4A; --earth-dark:#4A3328;
+    --white-warm:#FDFAF7; --ok:#5f7a3a; --bad:#9a3b3b; --warn:#b5892f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--earth-dark);line-height:1.6}
+  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600}
+  a{color:var(--earth)}
+  .wrap{max-width:900px;margin:0 auto;padding:20px}
+
+  /* Login */
+  #login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  .card{background:var(--white-warm);border:1px solid var(--rose);border-radius:18px;padding:28px;box-shadow:0 10px 40px rgba(74,51,40,.08)}
+  .login-card{width:100%;max-width:380px;text-align:center}
+  .login-card h1{font-size:1.6rem;margin-bottom:4px}
+  .login-card p{color:var(--earth);font-size:.9rem;margin-bottom:22px}
+  label{display:block;text-align:left;font-size:.8rem;font-weight:700;color:var(--earth);margin:14px 0 5px}
+  input,select{width:100%;min-width:0;max-width:100%;padding:11px 13px;border:1.5px solid var(--rose);border-radius:11px;font-family:inherit;font-size:1rem;background:var(--cream);color:var(--earth-dark)}
+  input[type=date]{-webkit-appearance:none;appearance:none}
+  input:focus,select:focus{outline:none;border-color:var(--earth);background:#fff}
+  button{font-family:inherit;cursor:pointer;border:none;border-radius:100px;font-weight:700}
+  .btn{background:var(--earth);color:#fff;padding:12px 22px;width:100%;margin-top:20px;font-size:1rem}
+  .btn:hover{background:var(--earth-dark)}
+  .btn:disabled{opacity:.6;cursor:default}
+  .msg{margin-top:14px;font-size:.9rem;min-height:1.2em}
+  .msg.err{color:var(--bad)} .msg.ok{color:var(--ok)}
+
+  /* Dashboard */
+  #app{display:none}
+  .topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 20px;background:var(--earth-dark);color:var(--white-warm)}
+  .topbar h1{font-size:1.15rem;color:#fff}
+  .topbar small{opacity:.7;font-weight:400;font-size:.75rem;display:block}
+  .logout{background:rgba(255,255,255,.12);color:#fff;padding:8px 16px;font-size:.85rem}
+  .tabs{display:flex;gap:8px;margin:20px 0}
+  .tab{background:var(--white-warm);border:1px solid var(--rose);color:var(--earth);padding:9px 18px;border-radius:100px;font-size:.9rem}
+  .tab.active{background:var(--earth);color:#fff;border-color:var(--earth)}
+  .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+  .chip{background:var(--white-warm);border:1px solid var(--rose);color:var(--earth);padding:6px 14px;border-radius:100px;font-size:.82rem}
+  .chip.active{background:var(--rose);color:var(--earth-dark);font-weight:700}
+
+  .reserva{background:var(--white-warm);border:1px solid var(--rose);border-radius:14px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .reserva .info{flex:1;min-width:200px}
+  .reserva .fecha{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--earth-dark)}
+  .reserva .serv{color:var(--earth);font-weight:700;font-size:.92rem;margin-top:2px}
+  .reserva .cli{font-size:.9rem;margin-top:4px}
+  .reserva .cli a{text-decoration:none}
+  .reserva .notas{font-size:.85rem;color:#8a7565;font-style:italic;margin-top:4px}
+  .estado{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.04em}
+  .e-pendiente{background:rgba(181,137,47,.15);color:var(--warn)}
+  .e-confirmada{background:rgba(95,122,58,.15);color:var(--ok)}
+  .e-cancelada{background:rgba(154,59,59,.12);color:var(--bad)}
+  .e-completada{background:rgba(122,92,74,.15);color:var(--earth)}
+  .acciones{display:flex;flex-direction:column;gap:6px;justify-content:center}
+  .acciones button{padding:7px 14px;font-size:.8rem;border-radius:100px}
+  .a-ok{background:var(--ok);color:#fff} .a-bad{background:transparent;color:var(--bad);border:1px solid var(--bad)}
+  .a-done{background:var(--earth);color:#fff}
+  .empty{text-align:center;color:var(--earth);padding:40px;font-style:italic}
+  .aviso-banner{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--earth-dark);color:#fff;padding:13px 20px;border-radius:12px;box-shadow:0 12px 34px rgba(0,0,0,.28);z-index:999;max-width:92%;font-size:.92rem;font-weight:700;cursor:pointer;transition:opacity .4s}
+  /* Agenda */
+  .agenda-nav{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .agenda-nav input{flex:1;text-align:center;font-weight:700}
+  .agenda-nav .chip{font-size:1.3rem;line-height:1;padding:6px 16px;font-weight:700}
+  .ag-resumen{text-align:center;font-size:.85rem;color:var(--earth);margin-bottom:14px;font-weight:700;letter-spacing:.02em}
+  .slot{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;margin-bottom:8px;border:1px solid var(--rose);background:var(--white-warm)}
+  .slot .hora{font-family:'Playfair Display',serif;font-weight:600;min-width:52px;color:var(--earth-dark)}
+  .slot .det{flex:1;min-width:0}
+  .slot .det b{font-weight:700}
+  .dot{width:11px;height:11px;border-radius:50%;flex:none}
+  .dot.g{background:var(--ok)} .dot.o{background:var(--earth)} .dot.b{background:#b9a99c}
+  .slot.libre{border-style:dashed;cursor:pointer}
+  .slot.libre .det{color:var(--ok);font-size:.9rem}
+  .slot.libre:active{background:rgba(95,122,58,.08)}
+  .slot.ocupado{background:var(--cream);border-color:var(--rose)}
+  .slot.bloqueado{opacity:.65}
+  .slot.bloqueado .det{color:#8a7565;font-size:.9rem}
+  /* Vista semana */
+  .wday{background:var(--white-warm);border:1px solid var(--rose);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+  .wday.hoy{border-color:var(--earth);border-width:2px}
+  .wday-head{display:flex;justify-content:space-between;align-items:center;font-family:'Playfair Display',serif;font-weight:600;margin-bottom:8px;cursor:pointer;text-transform:capitalize}
+  .wday-head .wsum{font-family:'Lato',sans-serif;font-size:.76rem;color:var(--earth);font-weight:700;text-transform:none}
+  .wchips{display:flex;flex-wrap:wrap;gap:6px}
+  .wchip{min-width:40px;text-align:center;padding:6px 4px;border-radius:8px;font-size:.8rem;font-weight:700}
+  .wchip.g{background:rgba(95,122,58,.13);color:var(--ok);border:1px dashed rgba(95,122,58,.45);cursor:pointer}
+  .wchip.o{background:var(--earth);color:#fff;cursor:pointer}
+  .wchip.b{background:#e7ded6;color:#a08b7c}
+  .row2{display:flex;gap:10px;flex-wrap:wrap} .row2>div{flex:1 1 120px;min-width:0}
+  .bloq{display:flex;justify-content:space-between;align-items:center;background:var(--white-warm);border:1px solid var(--rose);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+  .bloq .del{background:transparent;color:var(--bad);border:1px solid var(--bad);padding:5px 12px;font-size:.8rem}
+  .a-edit{background:transparent;color:var(--earth);border:1px solid var(--rose)}
+  /* Modal editar */
+  .modal-ov{position:fixed;inset:0;background:rgba(58,39,30,.55);display:none;align-items:flex-start;justify-content:center;padding:18px;z-index:1000;overflow-y:auto}
+  .modal-ov.open{display:flex}
+  .modal-card{background:var(--white-warm);border-radius:18px;padding:22px;width:100%;max-width:430px;box-shadow:0 20px 60px rgba(0,0,0,.3);margin:auto}
+  .modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .modal-top h3{font-size:1.3rem}
+  .modal-top .x{background:var(--cream);color:var(--earth);width:36px;height:36px;border-radius:50%;font-size:1rem;flex:none}
+  .btn-del{background:transparent;color:var(--bad);border:1.5px solid var(--bad);width:100%;padding:11px;border-radius:100px;margin-top:10px;font-weight:700}
+  .hide{display:none}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="card login-card">
+    <h1>Panel de citas</h1>
+    <p id="nombreNegocio">&nbsp;</p>
+    <label for="email">Correo</label>
+    <input id="email" type="email" placeholder="tu@correo.com" autocomplete="username">
+    <label for="pass">Contraseña</label>
+    <input id="pass" type="password" placeholder="••••••••" autocomplete="current-password">
+    <button class="btn" id="btnLogin">Entrar</button>
+    <div class="msg" id="loginMsg"></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="app">
+  <div class="topbar">
+    <div><h1>Panel de citas<small id="userEmail"></small></h1></div>
+    <div style="display:flex;gap:8px">
+      <button class="logout" id="btnAvisos">🔔 Activar avisos</button>
+      <button class="logout" id="btnLogout">Salir</button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="tabs">
+      <button class="tab active" data-tab="reservas">Reservas</button>
+      <button class="tab" data-tab="agenda">Agenda</button>
+      <button class="tab" data-tab="nueva">+ Nueva cita</button>
+      <button class="tab" data-tab="servicios">Servicios</button>
+      <button class="tab" data-tab="bloqueados">Días bloqueados</button>
+    </div>
+
+    <!-- Reservas -->
+    <div id="tab-reservas">
+      <div class="filters" id="filtros">
+        <button class="chip active" data-f="proximas">Próximas</button>
+        <button class="chip" data-f="pendiente">Pendientes</button>
+        <button class="chip" data-f="confirmada">Confirmadas</button>
+        <button class="chip" data-f="todas">Todas</button>
+      </div>
+      <div id="listaReservas"><div class="empty">Cargando…</div></div>
+    </div>
+
+    <!-- Agenda -->
+    <div id="tab-agenda" class="hide">
+      <div class="filters" id="agModo" style="justify-content:center">
+        <button class="chip active" data-modo="dia">Día</button>
+        <button class="chip" data-modo="semana">Semana</button>
+      </div>
+      <!-- Vista día -->
+      <div id="agVistaDia">
+        <div class="agenda-nav">
+          <button class="chip" id="agPrev" aria-label="Día anterior">‹</button>
+          <input id="agFecha" type="date">
+          <button class="chip" id="agNext" aria-label="Día siguiente">›</button>
+        </div>
+        <div class="ag-resumen" id="agResumen"></div>
+        <div id="agSlots"></div>
+      </div>
+      <!-- Vista semana -->
+      <div id="agVistaSemana" class="hide">
+        <div class="agenda-nav">
+          <button class="chip" id="wPrev" aria-label="Semana anterior">‹</button>
+          <div id="wRango" style="flex:1;text-align:center;font-weight:700;color:var(--earth-dark)"></div>
+          <button class="chip" id="wNext" aria-label="Semana siguiente">›</button>
+        </div>
+        <div id="wDias"></div>
+      </div>
+    </div>
+
+    <!-- Nueva cita -->
+    <div id="tab-nueva" class="hide">
+      <div class="card">
+        <h3 style="margin-bottom:14px;font-size:1.15rem">Crear una cita</h3>
+        <label>Nombre de la clienta</label>
+        <input id="nNombre" type="text" placeholder="Nombre">
+        <label>Teléfono</label>
+        <input id="nTelefono" type="tel" placeholder="6XX XXX XXX">
+        <label>Tratamiento</label>
+        <select id="nServicio"><option value="">Elige tratamiento</option></select>
+        <div class="row2">
+          <div><label>Día</label><input id="nFecha" type="date"></div>
+          <div><label>Hora</label><select id="nHora"><option value="">Hora</option></select></div>
+        </div>
+        <label>Estado</label>
+        <select id="nEstado">
+          <option value="confirmada">Confirmada</option>
+          <option value="pendiente">Pendiente</option>
+        </select>
+        <label>Notas (opcional)</label>
+        <input id="nNotas" type="text" placeholder="Observaciones">
+        <button class="btn" id="btnCrear">Crear cita</button>
+        <div class="msg" id="nMsg"></div>
+      </div>
+    </div>
+
+    <!-- Servicios -->
+    <div id="tab-servicios" class="hide">
+      <p style="color:var(--earth);font-size:.88rem;margin-bottom:14px">Edita el precio y la duración de cada tratamiento. El precio se refleja en tu web al instante.</p>
+      <div id="listaServicios"><div class="empty">Cargando…</div></div>
+      <div class="card" style="margin-top:8px">
+        <h3 style="margin-bottom:10px;font-size:1.05rem">Añadir servicio</h3>
+        <label>Nombre</label>
+        <input id="svNombre" type="text" placeholder="Nombre del tratamiento">
+        <div class="row2">
+          <div><label>Precio desde (€)</label><input id="svPrecio" type="number" min="0" placeholder="0"></div>
+          <div><label>Duración (min)</label><input id="svDur" type="number" min="5" step="5" placeholder="60"></div>
+        </div>
+        <button class="btn" id="btnAddServicio">Añadir servicio</button>
+        <div class="msg" id="svMsg"></div>
+      </div>
+    </div>
+
+    <!-- Bloqueados -->
+    <div id="tab-bloqueados" class="hide">
+      <div class="card" style="margin-bottom:18px">
+        <h3 style="margin-bottom:10px;font-size:1.05rem">Bloquear un día</h3>
+        <div class="row2">
+          <div><label>Fecha</label><input id="bFecha" type="date"></div>
+          <div><label>Motivo (opcional)</label><input id="bMotivo" type="text" placeholder="Vacaciones, festivo…"></div>
+        </div>
+        <button class="btn" id="btnBloq" style="margin-top:14px">Bloquear día</button>
+        <div class="msg" id="bloqMsg"></div>
+      </div>
+      <div id="listaBloqueados"><div class="empty">Cargando…</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR RESERVA -->
+<div class="modal-ov" id="edOverlay">
+  <div class="modal-card">
+    <div class="modal-top"><h3>Editar cita</h3><button class="x" id="edClose">✕</button></div>
+    <label>Nombre de la clienta</label>
+    <input id="edNombre" type="text">
+    <label>Teléfono</label>
+    <input id="edTelefono" type="tel">
+    <label>Tratamiento</label>
+    <select id="edServicio"></select>
+    <div class="row2">
+      <div><label>Día</label><input id="edFecha" type="date"></div>
+      <div><label>Hora</label><select id="edHora"></select></div>
+    </div>
+    <label>Estado</label>
+    <select id="edEstado">
+      <option value="pendiente">Pendiente</option>
+      <option value="confirmada">Confirmada</option>
+      <option value="completada">Completada</option>
+      <option value="cancelada">Cancelada</option>
+    </select>
+    <label>Notas</label>
+    <input id="edNotas" type="text" placeholder="Observaciones">
+    <button class="btn" id="edGuardar">Guardar cambios</button>
+    <button class="btn-del" id="edEliminar">Eliminar cita</button>
+    <div class="msg" id="edMsg"></div>
+  </div>
+</div>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SB_URL = "https://gimoqpusrdltlkrwsykr.supabase.co";
+const SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdpbW9xcHVzcmRsdGxrcndzeWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MDA0NDIsImV4cCI6MjA5Nzk3NjQ0Mn0.xmxP3TGAkXNPsrIKSYj1A-NXrIN1JIyzl9Fv6_FP8Dw";
+// Panel genérico del taller de iando: el negocio va en la dirección (admin.html?n=<id del negocio>)
+const NEGOCIO_ID = new URLSearchParams(location.search).get("n") || "";
+// Horario: se lee de negocios.config.horario ({"1": [["09:30","14:00"], ...], … "7": []}) con pasos de intervalo_min
+let CFG = { horario: null, intervalo_min: 30 };
+function horasParaFecha(f) {
+  const H = CFG.horario; const paso = Number(CFG.intervalo_min) || 30; const out = [];
+  if (!H) { for (let m = 9 * 60; m < 20 * 60; m += paso) out.push(String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0")); return out; }
+  const dias = f ? [String(((new Date(f + "T00:00:00").getDay() + 6) % 7) + 1)] : Object.keys(H);
+  const set = new Set();
+  dias.forEach(d => (H[d] || []).forEach(([a, b]) => {
+    const [ah, am] = a.split(":").map(Number), [bh, bm] = b.split(":").map(Number);
+    for (let m = ah * 60 + am; m < bh * 60 + bm; m += paso) set.add(String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"));
+  }));
+  return [...set].sort();
+}
+async function cargarNegocio() {
+  if (!NEGOCIO_ID) { document.getElementById("nombreNegocio").textContent = "Falta el negocio en la dirección (?n=…)"; return; }
+  const { data } = await sb.from("negocios").select("nombre,config").eq("id", NEGOCIO_ID).maybeSingle();
+  if (data) {
+    document.getElementById("nombreNegocio").textContent = data.nombre;
+    document.title = "Citas · " + data.nombre;
+    if (data.config && data.config.horario) CFG = { ...CFG, ...data.config };
+  }
+}
+function fillHoras(sel, fecha, seleccion) {
+  const actual = seleccion !== undefined ? seleccion : sel.value;
+  let list = horasParaFecha(fecha);
+  if (actual && !list.includes(actual)) list = list.concat([actual]).sort();
+  sel.innerHTML = '<option value="">Hora</option>';
+  list.forEach(v => { const o = document.createElement("option"); o.value = v; o.textContent = v; if (v === actual) o.selected = true; sel.appendChild(o); });
+}
+const sb = createClient(SB_URL, SB_ANON);
+cargarNegocio();
+
+
+const $ = (id) => document.getElementById(id);
+let filtroActual = "proximas";
+
+// Fechas en horario LOCAL (evita el desfase de un día con toISOString en España)
+const pad2 = (n) => String(n).padStart(2, "0");
+const iso = (d) => d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+const hoyLocal = () => iso(new Date());
+
+// ---- Auth ----
+async function init() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) mostrarApp(session.user);
+}
+$("btnLogin").addEventListener("click", login);
+$("pass").addEventListener("keydown", e => { if (e.key === "Enter") login(); });
+async function login() {
+  const msg = $("loginMsg"); msg.textContent = ""; msg.className = "msg";
+  const email = $("email").value.trim(), password = $("pass").value;
+  if (!email || !password) { msg.textContent = "Introduce correo y contraseña."; msg.className = "msg err"; return; }
+  $("btnLogin").disabled = true;
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+  $("btnLogin").disabled = false;
+  if (error) { msg.textContent = "Correo o contraseña incorrectos."; msg.className = "msg err"; return; }
+  mostrarApp(data.user);
+}
+$("btnLogout").addEventListener("click", async () => { if (pollTimer) clearInterval(pollTimer); await sb.auth.signOut(); location.reload(); });
+
+function mostrarApp(user) {
+  $("login").style.display = "none";
+  $("app").style.display = "block";
+  $("userEmail").textContent = user.email;
+  cargarReservas();
+  iniciarAvisos();
+}
+
+// ===== Avisos en vivo (con la app abierta) =====
+let lastSeen = null, pollTimer = null, audioCtx = null;
+
+$("btnAvisos").addEventListener("click", async () => {
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === "suspended") await audioCtx.resume();
+  } catch (e) {}
+  if ("Notification" in window && Notification.permission === "default") {
+    try { await Notification.requestPermission(); } catch (e) {}
+  }
+  $("btnAvisos").textContent = "🔔 Avisos activos";
+  beep();
+});
+
+function beep() {
+  try {
+    if (!audioCtx) return;
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.type = "sine"; o.frequency.value = 880; g.gain.value = 0.16;
+    o.start();
+    o.frequency.setValueAtTime(660, audioCtx.currentTime + 0.15);
+    o.stop(audioCtx.currentTime + 0.32);
+  } catch (e) {}
+}
+
+function mostrarBanner(txt) {
+  const b = document.createElement("div");
+  b.className = "aviso-banner";
+  b.textContent = "🔔 " + txt;
+  b.addEventListener("click", () => b.remove());
+  document.body.appendChild(b);
+  setTimeout(() => { b.style.opacity = "0"; setTimeout(() => b.remove(), 400); }, 7000);
+}
+
+function notificar(titulo, cuerpo) {
+  if ("Notification" in window && Notification.permission === "granted") {
+    try { new Notification(titulo, { body: cuerpo }); } catch (e) {}
+  }
+  mostrarBanner(titulo + " · " + cuerpo);
+  beep();
+}
+
+async function iniciarAvisos() {
+  const { data } = await sb.from("reservas").select("created_at")
+    .eq("negocio_id", NEGOCIO_ID).order("created_at", { ascending: false }).limit(1);
+  lastSeen = (data && data[0]) ? data[0].created_at : new Date().toISOString();
+  if (pollTimer) clearInterval(pollTimer);
+  pollTimer = setInterval(checkNuevas, 30000);
+}
+
+async function checkNuevas() {
+  if (!lastSeen) return;
+  const { data, error } = await sb.from("reservas")
+    .select("id,created_at,fecha,hora,clientes(nombre),servicios(nombre)")
+    .eq("negocio_id", NEGOCIO_ID).gt("created_at", lastSeen).order("created_at");
+  if (error || !data || !data.length) return;
+  data.forEach(r => {
+    const cli = (r.clientes && r.clientes.nombre) || "Cliente";
+    const serv = (r.servicios && r.servicios.nombre) || "";
+    notificar("Nueva reserva", cli + " · " + serv + " · " + fmtFecha(r.fecha) + " " + (r.hora || "").slice(0, 5));
+  });
+  lastSeen = data[data.length - 1].created_at;
+  if (!$("tab-reservas").classList.contains("hide")) cargarReservas();
+}
+
+// ---- Tabs ----
+document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+  t.classList.add("active");
+  const tab = t.dataset.tab;
+  $("tab-reservas").classList.toggle("hide", tab !== "reservas");
+  $("tab-agenda").classList.toggle("hide", tab !== "agenda");
+  $("tab-nueva").classList.toggle("hide", tab !== "nueva");
+  $("tab-servicios").classList.toggle("hide", tab !== "servicios");
+  $("tab-bloqueados").classList.toggle("hide", tab !== "bloqueados");
+  if (tab === "bloqueados") cargarBloqueados();
+  if (tab === "nueva") prepararNuevaCita();
+  if (tab === "agenda") prepararAgenda();
+  if (tab === "servicios") cargarServiciosAdmin();
+}));
+
+// ---- Filtros ----
+document.querySelectorAll("#filtros .chip").forEach(c => c.addEventListener("click", () => {
+  document.querySelectorAll("#filtros .chip").forEach(x => x.classList.remove("active"));
+  c.classList.add("active");
+  filtroActual = c.dataset.f;
+  cargarReservas();
+}));
+
+// ---- Reservas ----
+async function cargarReservas() {
+  const cont = $("listaReservas");
+  cont.innerHTML = '<div class="empty">Cargando…</div>';
+  let q = sb.from("reservas")
+    .select("id,fecha,hora,estado,notas,clientes(nombre,telefono),servicios(nombre)")
+    .eq("negocio_id", NEGOCIO_ID);
+  const hoy = hoyLocal();
+  if (filtroActual === "proximas") q = q.gte("fecha", hoy).neq("estado", "cancelada").order("fecha").order("hora");
+  else if (filtroActual === "pendiente") q = q.eq("estado", "pendiente").order("fecha").order("hora");
+  else if (filtroActual === "confirmada") q = q.eq("estado", "confirmada").order("fecha").order("hora");
+  else q = q.order("fecha", { ascending: false }).order("hora");
+
+  const { data, error } = await q;
+  if (error) { cont.innerHTML = '<div class="empty">Error al cargar: ' + error.message + '</div>'; return; }
+  if (!data.length) { cont.innerHTML = '<div class="empty">No hay reservas en esta vista.</div>'; return; }
+  cont.innerHTML = data.map(renderReserva).join("");
+}
+
+function fmtFecha(f) {
+  const d = new Date(f + "T00:00:00");
+  return d.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
+}
+function esc(s){ return (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function renderReserva(r) {
+  const cli = r.clientes || {}, serv = r.servicios || {};
+  const tel = esc(cli.telefono || "");
+  let acc = "";
+  if (r.estado === "pendiente") acc += `<button class="a-ok" data-act="confirmada" data-id="${r.id}">Confirmar</button>`;
+  if (r.estado === "confirmada") acc += `<button class="a-done" data-act="completada" data-id="${r.id}">Completada</button>`;
+  if (r.estado !== "cancelada" && r.estado !== "completada") acc += `<button class="a-bad" data-act="cancelada" data-id="${r.id}">Cancelar</button>`;
+  acc += `<button class="a-edit" data-edit="${r.id}">Editar</button>`;
+  return `<div class="reserva">
+    <div class="info">
+      <div class="fecha">${fmtFecha(r.fecha)} · ${(r.hora||"").slice(0,5)}</div>
+      <div class="serv">${esc(serv.nombre || "—")}</div>
+      <div class="cli">${esc(cli.nombre || "Sin nombre")} · <a href="tel:${tel}">${tel}</a></div>
+      ${r.notas ? `<div class="notas">"${esc(r.notas)}"</div>` : ""}
+      <div style="margin-top:8px"><span class="estado e-${r.estado}">${r.estado}</span></div>
+    </div>
+    <div class="acciones">${acc}</div>
+  </div>`;
+}
+
+$("listaReservas").addEventListener("click", async (e) => {
+  const ed = e.target.closest("button[data-edit]");
+  if (ed) { abrirDetalleReserva(ed.dataset.edit); return; }
+  const btn = e.target.closest("button[data-act]");
+  if (!btn) return;
+  btn.disabled = true;
+  const { error } = await sb.from("reservas").update({ estado: btn.dataset.act }).eq("id", btn.dataset.id);
+  if (error) { alert("No se pudo actualizar: " + error.message); btn.disabled = false; return; }
+  cargarReservas();
+});
+
+// ---- Agenda (huecos libres / ocupados por día) ----
+function slotsDelDia() { return HORAS.slice(); }
+function prepararAgenda() {
+  if (!$("agFecha").value) $("agFecha").value = hoyLocal();
+  const enSemana = document.querySelector('#agModo .chip[data-modo="semana"]').classList.contains("active");
+  if (enSemana) { if (!semanaRef) semanaRef = $("agFecha").value; cargarSemana(); }
+  else cargarAgenda();
+}
+function shiftDia(n) {
+  const d = new Date($("agFecha").value + "T00:00:00");
+  d.setDate(d.getDate() + n);
+  $("agFecha").value = iso(d);
+  cargarAgenda();
+}
+$("agPrev").addEventListener("click", () => shiftDia(-1));
+$("agNext").addEventListener("click", () => shiftDia(1));
+$("agFecha").addEventListener("change", cargarAgenda);
+
+async function cargarAgenda() {
+  const fecha = $("agFecha").value;
+  if (!fecha) return;
+  $("agSlots").innerHTML = '<div class="empty">Cargando…</div>';
+  $("agResumen").textContent = "";
+  const [resR, resB] = await Promise.all([
+    sb.from("reservas").select("id,hora,estado,clientes(nombre),servicios(nombre)")
+      .eq("negocio_id", NEGOCIO_ID).eq("fecha", fecha).neq("estado", "cancelada"),
+    sb.from("dias_bloqueados").select("hora_inicio,hora_fin,motivo")
+      .eq("negocio_id", NEGOCIO_ID).eq("fecha", fecha)
+  ]);
+  const reservas = resR.data || [], bloqueos = resB.data || [];
+  let libres = 0, ocup = 0;
+  const html = horasParaFecha(fecha).map(slot => {
+    const r = reservas.find(x => (x.hora || "").slice(0, 5) === slot);
+    const b = bloqueos.find(x =>
+      (!x.hora_inicio && !x.hora_fin) ||
+      (x.hora_inicio && x.hora_fin && slot >= x.hora_inicio.slice(0, 5) && slot < x.hora_fin.slice(0, 5)));
+    if (r) {
+      ocup++;
+      const cli = (r.clientes && r.clientes.nombre) || "Cliente";
+      const serv = (r.servicios && r.servicios.nombre) || "";
+      return `<div class="slot ocupado" data-id="${r.id}" style="cursor:pointer"><span class="dot o"></span><span class="hora">${slot}</span>
+        <div class="det"><b>${esc(cli)}</b><div style="font-size:.85rem;color:var(--earth)">${esc(serv)}</div></div>
+        <span class="estado e-${r.estado}">${r.estado}</span></div>`;
+    }
+    if (b) {
+      return `<div class="slot bloqueado"><span class="dot b"></span><span class="hora">${slot}</span>
+        <div class="det">Bloqueado${b.motivo ? " · " + esc(b.motivo) : ""}</div></div>`;
+    }
+    libres++;
+    return `<div class="slot libre" data-hora="${slot}"><span class="dot g"></span><span class="hora">${slot}</span>
+      <div class="det">Libre · toca para reservar</div></div>`;
+  }).join("");
+  $("agSlots").innerHTML = html;
+  $("agResumen").textContent = `${libres} libres · ${ocup} ocupados`;
+}
+
+$("agSlots").addEventListener("click", async (e) => {
+  const oc = e.target.closest(".slot.ocupado");
+  if (oc) { abrirDetalleReserva(oc.dataset.id); return; }
+  const s = e.target.closest(".slot.libre");
+  if (!s) return;
+  const fecha = $("agFecha").value, hora = s.dataset.hora;
+  document.querySelector('.tab[data-tab="nueva"]').click();
+  await prepararNuevaCita();
+  $("nFecha").value = fecha;
+  fillHoras($("nHora"), fecha, hora);
+});
+
+// ---- Agenda: vista semanal ----
+let semanaRef = null;
+document.querySelectorAll("#agModo .chip").forEach(c => c.addEventListener("click", () => {
+  document.querySelectorAll("#agModo .chip").forEach(x => x.classList.remove("active"));
+  c.classList.add("active");
+  const modo = c.dataset.modo;
+  $("agVistaDia").classList.toggle("hide", modo !== "dia");
+  $("agVistaSemana").classList.toggle("hide", modo !== "semana");
+  if (modo === "semana") {
+    if (!semanaRef) semanaRef = $("agFecha").value || hoyLocal();
+    cargarSemana();
+  } else {
+    cargarAgenda();
+  }
+}));
+
+function lunesDe(fechaStr) {
+  const d = new Date(fechaStr + "T00:00:00");
+  const dow = (d.getDay() + 6) % 7; // 0 = lunes
+  d.setDate(d.getDate() - dow);
+  return d;
+}
+function shiftSemana(n) {
+  const l = lunesDe(semanaRef);
+  l.setDate(l.getDate() + n * 7);
+  semanaRef = iso(l);
+  cargarSemana();
+}
+$("wPrev").addEventListener("click", () => shiftSemana(-1));
+$("wNext").addEventListener("click", () => shiftSemana(1));
+
+const DIAS_SEM = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+function fmtCorta(d) { return d.toLocaleDateString("es-ES", { day: "numeric", month: "short" }); }
+
+async function cargarSemana() {
+  $("wDias").innerHTML = '<div class="empty">Cargando…</div>';
+  const lunes = lunesDe(semanaRef);
+  const dias = [];
+  for (let i = 0; i < 6; i++) { const d = new Date(lunes); d.setDate(d.getDate() + i); dias.push(d); }
+  const desde = iso(dias[0]), hasta = iso(dias[dias.length - 1]);
+  $("wRango").textContent = fmtCorta(dias[0]) + " – " + fmtCorta(dias[dias.length - 1]);
+  const [resR, resB] = await Promise.all([
+    sb.from("reservas").select("id,fecha,hora,estado,clientes(nombre)")
+      .eq("negocio_id", NEGOCIO_ID).gte("fecha", desde).lte("fecha", hasta).neq("estado", "cancelada"),
+    sb.from("dias_bloqueados").select("fecha,hora_inicio,hora_fin")
+      .eq("negocio_id", NEGOCIO_ID).gte("fecha", desde).lte("fecha", hasta)
+  ]);
+  const reservas = resR.data || [], bloqueos = resB.data || [];
+  const hoy = hoyLocal();
+  $("wDias").innerHTML = dias.map((d, i) => {
+    const f = iso(d);
+    let libres = 0, ocup = 0;
+    const chips = horasParaFecha(f).map(h => {
+      const r = reservas.find(x => x.fecha === f && (x.hora || "").slice(0, 5) === h);
+      const b = bloqueos.find(x => x.fecha === f &&
+        ((!x.hora_inicio && !x.hora_fin) ||
+         (x.hora_inicio && x.hora_fin && h >= x.hora_inicio.slice(0, 5) && h < x.hora_fin.slice(0, 5))));
+      const et = h.slice(0, 2);
+      if (r) { ocup++; const cli = (r.clientes && r.clientes.nombre) || "Cita"; return `<span class="wchip o" data-id="${r.id}" data-fecha="${f}" title="${esc(cli)}">${et}</span>`; }
+      if (b) return `<span class="wchip b" title="Bloqueado">${et}</span>`;
+      libres++;
+      return `<span class="wchip g" data-fecha="${f}" data-hora="${h}">${et}</span>`;
+    }).join("");
+    return `<div class="wday${f === hoy ? " hoy" : ""}">
+      <div class="wday-head" data-fecha="${f}"><span>${DIAS_SEM[i]} ${d.getDate()}</span><span class="wsum">${libres} libres · ${ocup} ocup.</span></div>
+      <div class="wchips">${chips}</div>
+    </div>`;
+  }).join("");
+}
+
+$("wDias").addEventListener("click", async (e) => {
+  const chip = e.target.closest(".wchip");
+  const head = e.target.closest(".wday-head");
+  if (chip && chip.classList.contains("o")) { abrirDetalleReserva(chip.dataset.id); return; }
+  if (chip && chip.classList.contains("g")) {
+    document.querySelector('.tab[data-tab="nueva"]').click();
+    await prepararNuevaCita();
+    $("nFecha").value = chip.dataset.fecha;
+    fillHoras($("nHora"), chip.dataset.fecha, chip.dataset.hora);
+    return;
+  }
+  const fecha = (chip && chip.dataset.fecha) || (head && head.dataset.fecha);
+  if (fecha) {
+    document.querySelector('#agModo .chip[data-modo="dia"]').click();
+    $("agFecha").value = fecha;
+    cargarAgenda();
+  }
+});
+
+// ---- Nueva cita (creada por la administradora) ----
+let SERVICIOS_ADMIN = [];
+async function asegurarServicios() {
+  if (!SERVICIOS_ADMIN.length) {
+    const { data } = await sb.from("servicios").select("id,nombre").eq("negocio_id", NEGOCIO_ID).order("nombre");
+    SERVICIOS_ADMIN = data || [];
+  }
+  return SERVICIOS_ADMIN;
+}
+function fillServicioSelect(sel, selectedId) {
+  sel.innerHTML = "";
+  SERVICIOS_ADMIN.forEach(s => { const o = document.createElement("option"); o.value = s.id; o.textContent = s.nombre; if (s.id === selectedId) o.selected = true; sel.appendChild(o); });
+}
+async function prepararNuevaCita() {
+  await asegurarServicios();
+  const sel = $("nServicio");
+  if (sel.options.length <= 1) {
+    SERVICIOS_ADMIN.forEach(s => { const o = document.createElement("option"); o.value = s.id; o.textContent = s.nombre; sel.appendChild(o); });
+  }
+  $("nFecha").min = hoyLocal();
+  fillHoras($("nHora"), $("nFecha").value);
+}
+$("nFecha").addEventListener("change", () => fillHoras($("nHora"), $("nFecha").value));
+$("btnCrear").addEventListener("click", async () => {
+  const msg = $("nMsg"); msg.textContent = ""; msg.className = "msg";
+  const nombre = $("nNombre").value.trim(), telefono = $("nTelefono").value.trim();
+  const servicio_id = $("nServicio").value, fecha = $("nFecha").value, hora = $("nHora").value;
+  const estado = $("nEstado").value, notas = $("nNotas").value.trim();
+  if (!nombre || !telefono || !servicio_id || !fecha || !hora) {
+    msg.textContent = "Completa nombre, teléfono, tratamiento, día y hora."; msg.className = "msg err"; return;
+  }
+  $("btnCrear").disabled = true;
+  try {
+    let clienteId;
+    const { data: cli } = await sb.from("clientes").select("id").eq("negocio_id", NEGOCIO_ID).eq("telefono", telefono).limit(1);
+    if (cli && cli.length) {
+      clienteId = cli[0].id;
+      await sb.from("clientes").update({ nombre }).eq("id", clienteId);
+    } else {
+      const { data: nu, error: e1 } = await sb.from("clientes").insert({ negocio_id: NEGOCIO_ID, telefono, nombre }).select("id").single();
+      if (e1) throw e1; clienteId = nu.id;
+    }
+    const { error: e2 } = await sb.from("reservas").insert({
+      negocio_id: NEGOCIO_ID, cliente_id: clienteId, servicio_id, fecha, hora, estado, notas: notas || null
+    });
+    if (e2) throw e2;
+    msg.textContent = "¡Cita creada correctamente!"; msg.className = "msg ok";
+    ["nNombre", "nTelefono", "nNotas"].forEach(id => $(id).value = "");
+    $("nServicio").value = ""; $("nHora").value = "";
+    if (lastSeen) lastSeen = new Date().toISOString(); // evita auto-aviso de la cita que acabo de crear
+  } catch (err) {
+    msg.textContent = "Error: " + (err.message || err); msg.className = "msg err";
+  } finally {
+    $("btnCrear").disabled = false;
+  }
+});
+
+// ---- Servicios (editar precio / duración, añadir, eliminar) ----
+function rebuildNservicioSelect() {
+  const nsel = $("nServicio"); if (!nsel) return;
+  const val = nsel.value;
+  nsel.innerHTML = '<option value="">Elige tratamiento</option>';
+  SERVICIOS_ADMIN.forEach(s => { const o = document.createElement("option"); o.value = s.id; o.textContent = s.nombre; nsel.appendChild(o); });
+  nsel.value = val;
+}
+async function cargarServiciosAdmin() {
+  const cont = $("listaServicios");
+  cont.innerHTML = '<div class="empty">Cargando…</div>';
+  const { data, error } = await sb.from("servicios")
+    .select("id,nombre,precio_desde,duracion_minutos").eq("negocio_id", NEGOCIO_ID).order("nombre");
+  if (error) { cont.innerHTML = '<div class="empty">Error: ' + error.message + '</div>'; return; }
+  SERVICIOS_ADMIN = data || [];
+  rebuildNservicioSelect();
+  if (!SERVICIOS_ADMIN.length) { cont.innerHTML = '<div class="empty">Aún no hay servicios.</div>'; return; }
+  cont.innerHTML = SERVICIOS_ADMIN.map(s => `
+    <div class="card srv-row" data-id="${s.id}" style="margin-bottom:10px;padding:16px">
+      <input class="srv-nombre" type="text" value="${esc(s.nombre)}" style="font-weight:700">
+      <div class="row2" style="margin-top:8px">
+        <div><label>Precio desde (€)</label><input class="srv-precio" type="number" min="0" value="${s.precio_desde}"></div>
+        <div><label>Duración (min)</label><input class="srv-dur" type="number" min="5" step="5" value="${s.duracion_minutos}"></div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn srv-save" style="margin-top:0;flex:1">Guardar</button>
+        <button class="btn-del srv-del" style="margin-top:0;width:auto;flex:0 0 auto;padding:11px 16px">Eliminar</button>
+      </div>
+      <div class="msg srv-rowmsg" style="margin-top:8px"></div>
+    </div>`).join("");
+}
+
+$("listaServicios").addEventListener("click", async (e) => {
+  const row = e.target.closest(".srv-row");
+  if (!row) return;
+  const id = row.dataset.id;
+  const msg = row.querySelector(".srv-rowmsg");
+  msg.textContent = ""; msg.className = "msg srv-rowmsg";
+  if (e.target.closest(".srv-save")) {
+    const nombre = row.querySelector(".srv-nombre").value.trim();
+    const precio = parseInt(row.querySelector(".srv-precio").value, 10);
+    const dur = parseInt(row.querySelector(".srv-dur").value, 10);
+    if (!nombre || isNaN(precio) || isNaN(dur)) { msg.textContent = "Revisa los datos."; msg.className = "msg srv-rowmsg err"; return; }
+    const btn = e.target.closest(".srv-save"); btn.disabled = true;
+    const { error } = await sb.from("servicios").update({ nombre, precio_desde: precio, duracion_minutos: dur }).eq("id", id);
+    btn.disabled = false;
+    if (error) { msg.textContent = "Error: " + error.message; msg.className = "msg srv-rowmsg err"; return; }
+    const item = SERVICIOS_ADMIN.find(x => x.id === id);
+    if (item) { item.nombre = nombre; item.precio_desde = precio; item.duracion_minutos = dur; }
+    rebuildNservicioSelect();
+    msg.textContent = "Guardado ✓"; msg.className = "msg srv-rowmsg ok";
+  } else if (e.target.closest(".srv-del")) {
+    if (!confirm("¿Eliminar este servicio? No es posible si tiene citas asociadas.")) return;
+    const { error } = await sb.from("servicios").delete().eq("id", id);
+    if (error) {
+      msg.textContent = (error.code === "23503" || /foreign key/i.test(error.message))
+        ? "No se puede: tiene citas asociadas." : ("Error: " + error.message);
+      msg.className = "msg srv-rowmsg err"; return;
+    }
+    cargarServiciosAdmin();
+  }
+});
+
+$("btnAddServicio").addEventListener("click", async () => {
+  const msg = $("svMsg"); msg.textContent = ""; msg.className = "msg";
+  const nombre = $("svNombre").value.trim();
+  const precio = parseInt($("svPrecio").value, 10);
+  const dur = parseInt($("svDur").value, 10);
+  if (!nombre) { msg.textContent = "Pon un nombre."; msg.className = "msg err"; return; }
+  const { error } = await sb.from("servicios").insert({
+    negocio_id: NEGOCIO_ID, nombre, precio_desde: isNaN(precio) ? 0 : precio, duracion_minutos: isNaN(dur) ? 60 : dur
+  });
+  if (error) { msg.textContent = "Error: " + error.message; msg.className = "msg err"; return; }
+  $("svNombre").value = ""; $("svPrecio").value = ""; $("svDur").value = "";
+  msg.textContent = "Servicio añadido ✓"; msg.className = "msg ok";
+  cargarServiciosAdmin();
+});
+
+// ---- Ver / editar una reserva ----
+let edReservaId = null, edClienteId = null;
+
+function refrescarVistaActual() {
+  if (!$("tab-reservas").classList.contains("hide")) cargarReservas();
+  else if (!$("tab-agenda").classList.contains("hide")) {
+    if (!$("agVistaSemana").classList.contains("hide")) cargarSemana();
+    else cargarAgenda();
+  }
+}
+
+async function abrirDetalleReserva(id) {
+  const { data, error } = await sb.from("reservas")
+    .select("id,fecha,hora,estado,notas,cliente_id,servicio_id,clientes(nombre,telefono)")
+    .eq("id", id).single();
+  if (error || !data) { alert("No se pudo cargar la cita."); return; }
+  await asegurarServicios();
+  edReservaId = data.id; edClienteId = data.cliente_id;
+  fillServicioSelect($("edServicio"), data.servicio_id);
+  $("edNombre").value = (data.clientes && data.clientes.nombre) || "";
+  $("edTelefono").value = (data.clientes && data.clientes.telefono) || "";
+  $("edFecha").value = data.fecha;
+  fillHoras($("edHora"), data.fecha, (data.hora || "").slice(0, 5));
+  $("edEstado").value = data.estado;
+  $("edNotas").value = data.notas || "";
+  $("edMsg").textContent = ""; $("edMsg").className = "msg";
+  $("edOverlay").classList.add("open");
+}
+function cerrarEdit() { $("edOverlay").classList.remove("open"); }
+$("edClose").addEventListener("click", cerrarEdit);
+$("edOverlay").addEventListener("click", (e) => { if (e.target === $("edOverlay")) cerrarEdit(); });
+$("edFecha").addEventListener("change", () => fillHoras($("edHora"), $("edFecha").value));
+
+$("edGuardar").addEventListener("click", async () => {
+  const msg = $("edMsg"); msg.textContent = ""; msg.className = "msg";
+  const nombre = $("edNombre").value.trim(), telefono = $("edTelefono").value.trim();
+  const servicio_id = $("edServicio").value, fecha = $("edFecha").value;
+  const hora = $("edHora").value, estado = $("edEstado").value, notas = $("edNotas").value.trim();
+  if (!nombre || !telefono || !servicio_id || !fecha || !hora) {
+    msg.textContent = "Completa nombre, teléfono, tratamiento, día y hora."; msg.className = "msg err"; return;
+  }
+  $("edGuardar").disabled = true;
+  try {
+    if (edClienteId) {
+      const { error: ec } = await sb.from("clientes").update({ nombre, telefono }).eq("id", edClienteId);
+      if (ec) throw ec;
+    }
+    const { error: er } = await sb.from("reservas")
+      .update({ servicio_id, fecha, hora, estado, notas: notas || null }).eq("id", edReservaId);
+    if (er) throw er;
+    msg.textContent = "Cambios guardados."; msg.className = "msg ok";
+    refrescarVistaActual();
+    setTimeout(cerrarEdit, 600);
+  } catch (err) {
+    msg.textContent = "Error: " + (err.message || err); msg.className = "msg err";
+  } finally {
+    $("edGuardar").disabled = false;
+  }
+});
+
+$("edEliminar").addEventListener("click", async () => {
+  if (!confirm("¿Eliminar esta cita definitivamente? (Si solo quieres anularla, usa el estado 'Cancelada').")) return;
+  const { error } = await sb.from("reservas").delete().eq("id", edReservaId);
+  if (error) { alert("No se pudo eliminar: " + error.message); return; }
+  cerrarEdit();
+  refrescarVistaActual();
+});
+
+// ---- Días bloqueados ----
+async function cargarBloqueados() {
+  const cont = $("listaBloqueados");
+  cont.innerHTML = '<div class="empty">Cargando…</div>';
+  const hoy = hoyLocal();
+  const { data, error } = await sb.from("dias_bloqueados")
+    .select("id,fecha,motivo").eq("negocio_id", NEGOCIO_ID).gte("fecha", hoy).order("fecha");
+  if (error) { cont.innerHTML = '<div class="empty">Error: ' + error.message + '</div>'; return; }
+  if (!data.length) { cont.innerHTML = '<div class="empty">No hay días bloqueados próximos.</div>'; return; }
+  cont.innerHTML = data.map(b => `<div class="bloq">
+    <div><b>${fmtFecha(b.fecha)}</b>${b.motivo ? ' · ' + esc(b.motivo) : ''}</div>
+    <button class="del" data-id="${b.id}">Quitar</button></div>`).join("");
+}
+$("btnBloq").addEventListener("click", async () => {
+  const msg = $("bloqMsg"); msg.textContent = ""; msg.className = "msg";
+  const fecha = $("bFecha").value, motivo = $("bMotivo").value.trim();
+  if (!fecha) { msg.textContent = "Elige una fecha."; msg.className = "msg err"; return; }
+  const { error } = await sb.from("dias_bloqueados").insert({ negocio_id: NEGOCIO_ID, fecha, motivo: motivo || null });
+  if (error) { msg.textContent = "Error: " + error.message; msg.className = "msg err"; return; }
+  $("bFecha").value = ""; $("bMotivo").value = "";
+  msg.textContent = "Día bloqueado."; msg.className = "msg ok";
+  cargarBloqueados();
+});
+$("listaBloqueados").addEventListener("click", async (e) => {
+  const btn = e.target.closest("button[data-id]");
+  if (!btn) return;
+  if (!confirm("¿Quitar el bloqueo de este día?")) return;
+  const { error } = await sb.from("dias_bloqueados").delete().eq("id", btn.dataset.id);
+  if (error) { alert("No se pudo quitar: " + error.message); return; }
+  cargarBloqueados();
+});
+
+init();
+</script>
+</body>
+</html>
