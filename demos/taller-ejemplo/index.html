@@ -346,8 +346,9 @@
               <label>Nombre<input id="rv-nombre" autocomplete="name" maxlength="120" required></label>
               <label>Teléfono<input id="rv-tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="600 000 000" required></label>
             </div>
+            <label>Correo electrónico<input id="rv-email" type="email" inputmode="email" autocomplete="email" maxlength="160" placeholder="tu@correo.com" required></label>
             <label>Coche y lo que notas (opcional)<textarea id="rv-notas" rows="2" maxlength="500" placeholder="Modelo, matrícula o lo que le pasa"></textarea></label>
-            <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos solo para gestionar esta cita.</label>
+            <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos para gestionar esta cita y que me envíen por correo la confirmación, un recordatorio y, después, un enlace para dejar mi opinión.</label>
             <button class="btn btn-res" type="submit" id="rv-enviar">Pedir mi cita</button>
             <p id="rv-estado" class="rv-estado" role="status" aria-live="polite"></p>
           </form>
@@ -421,10 +422,12 @@
       if (!hora) return estado("Elige una hora.", "mal");
       if (!nombre) return estado("Escribe tu nombre.", "mal");
       if (!/^(34)?[6-9]\d{8}$/.test(tel)) return estado("Revisa el teléfono (9 cifras).", "mal");
+      var email = $("rv-email").value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(email)) return estado("Revisa el correo electrónico.", "mal");
       if (!$("rv-ok").checked) return estado("Marca la casilla de privacidad.", "mal");
       $("rv-enviar").disabled = true; estado("Pidiendo la cita…");
       fetch(SB + "/rest/v1/rpc/reservar_hueco", { method: "POST", headers: H, body: JSON.stringify({
-        p_negocio_id: NEGOCIO, p_nombre: nombre, p_telefono: tel.slice(-9), p_email: null,
+        p_negocio_id: NEGOCIO, p_nombre: nombre, p_telefono: tel.slice(-9), p_email: email,
         p_servicio_id: serv, p_fecha: $("rv-fecha").value, p_hora: hora, p_notas: $("rv-notas").value.trim() || null }) })
         .then(function (r) { return r.json(); })
         .then(function (res) {

@@ -317,8 +317,9 @@
             <label>Nombre<input id="rv-nombre" autocomplete="name" maxlength="120" required></label>
             <label>Teléfono<input id="rv-tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="600 000 000" required></label>
           </div>
+          <label>Correo electrónico<input id="rv-email" type="email" inputmode="email" autocomplete="email" maxlength="160" placeholder="tu@correo.com" required></label>
           <label>Algo que debamos saber (opcional)<textarea id="rv-notas" rows="2" maxlength="400" placeholder="Trona, celíacos, terraza…"></textarea></label>
-          <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos solo para gestionar esta reserva.</label>
+          <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos para gestionar esta reserva y que me envíen por correo la confirmación, un recordatorio y, después, un enlace para dejar mi opinión.</label>
           <div class="resumen" id="rv-resumen" aria-live="polite"><span>Tu mesa:</span> <b id="rv-res-txt">elige turno, personas, día y hora</b></div>
           <button class="btn btn-res" type="submit" id="rv-enviar">Reservar mesa</button>
           <p id="rv-estado" class="rv-estado" role="status" aria-live="polite"></p>
@@ -497,11 +498,13 @@
     if (!sel.hora) return estado("Elige una hora.", "mal");
     if (!nombre) return estado("Escribe tu nombre.", "mal");
     if (!/^(34)?[6-9]\d{8}$/.test(tel)) return estado("Revisa el teléfono (9 cifras).", "mal");
+    var email = $("rv-email").value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(email)) return estado("Revisa el correo electrónico.", "mal");
     if (!$("rv-ok").checked) return estado("Marca la casilla de privacidad.", "mal");
     var notas = sel.personas + " personas" + ($("rv-notas").value.trim() ? " · " + $("rv-notas").value.trim() : "");
     $("rv-enviar").disabled = true; estado("Reservando…");
     fetch(SB + "/rest/v1/rpc/reservar_hueco", { method: "POST", headers: H, body: JSON.stringify({
-      p_negocio_id: NEGOCIO, p_nombre: nombre, p_telefono: tel.slice(-9), p_email: null,
+      p_negocio_id: NEGOCIO, p_nombre: nombre, p_telefono: tel.slice(-9), p_email: email,
       p_servicio_id: servicios[sel.turno].id, p_fecha: sel.fecha, p_hora: sel.hora, p_notas: notas }) })
       .then(function (r) { return r.json(); })
       .then(function (res) {

@@ -73,6 +73,7 @@ with sync_playwright() as p:
             pg.click("#rv-horas button >> nth=2")
             pg.fill("#rv-nombre", "Marta")
             pg.fill("#rv-tel", "600 123 456")
+            pg.fill("#rv-email", "antonio@ejemplo.com")
             pg.fill("#rv-notas", "Seat Ibiza, chirría la rueda delantera")
             pg.check("#rv-ok")
             pg.add_style_tag(content=".wa-flota{display:none!important}")

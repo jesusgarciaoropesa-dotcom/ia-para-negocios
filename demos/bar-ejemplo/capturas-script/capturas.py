@@ -82,7 +82,7 @@ with sync_playwright() as p:
             pg.click('[data-turno="cenar"]'); pg.click('[data-p="4"]')
             dias = pg.locator("#rv-dias .opc"); dias.nth(min(3, dias.count() - 1)).click(); pg.wait_for_timeout(400)
             pg.click('#rv-horas [data-h="21:30"]')
-            pg.fill("#rv-nombre", "Lucía (ejemplo)"); pg.fill("#rv-tel", "600 000 000"); pg.check("#rv-ok")
+            pg.fill("#rv-nombre", "Lucía (ejemplo)"); pg.fill("#rv-tel", "600 000 000"); pg.fill("#rv-email", "lucia@ejemplo.com"); pg.check("#rv-ok")
             pg.locator("#rv-form legend").first.scroll_into_view_if_needed(); pg.evaluate("window.scrollBy(0,-20)")
             pg.wait_for_timeout(300); pg.screenshot(path=str(out / "movil-reserva.png"))
             pg.locator("#rv-dias").scroll_into_view_if_needed(); pg.evaluate("window.scrollBy(0, 120)"); pg.wait_for_timeout(200)
