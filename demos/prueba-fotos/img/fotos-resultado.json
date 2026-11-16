@@ -1,14 +1,13 @@
 [
  {
   "nombre": "inicio",
-  "url": "https://unsplash.com/photos/mechanic-working-on-a-car-engine-in-a-workshop-XP8o9_Arwqg",
-  "ok": false,
-  "error": "HTTP Error 401: Unauthorized"
- },
- {
-  "nombre": "servicio-motor",
-  "url": "https://unsplash.com/photos/a-man-working-on-a-car-engine-in-a-garage-XO44m5KK5Gk",
-  "ok": false,
-  "error": "HTTP Error 401: Unauthorized"
+  "url": "https://images.unsplash.com/photo-1771340012319-0b4fca008b54?fm=jpg&q=60&w=3000&auto=format&fit=crop",
+  "ok": true,
+  "archivo": "img/inicio.jpg",
+  "tamano": [
+   1600,
+   900
+  ],
+  "kb": 212
  }
 ]
