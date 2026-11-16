@@ -16,10 +16,17 @@
   :root{
     --cream:#F7F3EE; --rose:#E8D5C8; --earth:#7A5C4A; --earth-dark:#4A3328;
     --white-warm:#FDFAF7; --ok:#5f7a3a; --bad:#9a3b3b; --warn:#b5892f;
+    --f-tit:'Playfair Display',serif; --f-txt:'Lato',sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--earth-dark);line-height:1.6}
-  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600}
+  body{font-family:var(--f-txt);background:var(--cream);color:var(--earth-dark);line-height:1.6}
+  h1,h2,h3{font-family:var(--f-tit);font-weight:600}
+  .marca{display:flex;align-items:center;gap:10px}
+  .marca svg{height:38px;width:auto;display:block}
+  .topbar h1 small{font-family:var(--f-txt)}
+  .login-card .marca{justify-content:center;margin-bottom:10px}
+  .login-card .marca{background:var(--earth-dark);border-radius:14px;padding:12px 16px;width:fit-content;margin:0 auto 12px}
+  .login-card .marca svg{height:48px}
   a{color:var(--earth)}
   .wrap{max-width:900px;margin:0 auto;padding:20px}
 
@@ -55,7 +62,7 @@
 
   .reserva{background:var(--white-warm);border:1px solid var(--rose);border-radius:14px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
   .reserva .info{flex:1;min-width:200px}
-  .reserva .fecha{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--earth-dark)}
+  .reserva .fecha{font-family:var(--f-tit);font-size:1.05rem;color:var(--earth-dark)}
   .reserva .serv{color:var(--earth);font-weight:700;font-size:.92rem;margin-top:2px}
   .reserva .cli{font-size:.9rem;margin-top:4px}
   .reserva .cli a{text-decoration:none}
@@ -77,7 +84,7 @@
   .agenda-nav .chip{font-size:1.3rem;line-height:1;padding:6px 16px;font-weight:700}
   .ag-resumen{text-align:center;font-size:.85rem;color:var(--earth);margin-bottom:14px;font-weight:700;letter-spacing:.02em}
   .slot{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;margin-bottom:8px;border:1px solid var(--rose);background:var(--white-warm)}
-  .slot .hora{font-family:'Playfair Display',serif;font-weight:600;min-width:52px;color:var(--earth-dark)}
+  .slot .hora{font-family:var(--f-tit);font-weight:600;min-width:52px;color:var(--earth-dark)}
   .slot .det{flex:1;min-width:0}
   .slot .det b{font-weight:700}
   .dot{width:11px;height:11px;border-radius:50%;flex:none}
@@ -91,8 +98,8 @@
   /* Vista semana */
   .wday{background:var(--white-warm);border:1px solid var(--rose);border-radius:12px;padding:10px 12px;margin-bottom:8px}
   .wday.hoy{border-color:var(--earth);border-width:2px}
-  .wday-head{display:flex;justify-content:space-between;align-items:center;font-family:'Playfair Display',serif;font-weight:600;margin-bottom:8px;cursor:pointer;text-transform:capitalize}
-  .wday-head .wsum{font-family:'Lato',sans-serif;font-size:.76rem;color:var(--earth);font-weight:700;text-transform:none}
+  .wday-head{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-tit);font-weight:600;margin-bottom:8px;cursor:pointer;text-transform:capitalize}
+  .wday-head .wsum{font-family:var(--f-txt);font-size:.76rem;color:var(--earth);font-weight:700;text-transform:none}
   .wchips{display:flex;flex-wrap:wrap;gap:6px}
   .wchip{min-width:40px;text-align:center;padding:6px 4px;border-radius:8px;font-size:.8rem;font-weight:700}
   .wchip.g{background:rgba(95,122,58,.13);color:var(--ok);border:1px dashed rgba(95,122,58,.45);cursor:pointer}
@@ -118,6 +125,7 @@
 <!-- LOGIN -->
 <div id="login">
   <div class="card login-card">
+    <div class="marca" id="logoLogin" hidden></div>
     <h1>Panel de citas</h1>
     <p id="nombreNegocio">&nbsp;</p>
     <label for="email">Correo</label>
@@ -132,7 +140,7 @@
 <!-- DASHBOARD -->
 <div id="app">
   <div class="topbar">
-    <div><h1>Panel de citas<small id="userEmail"></small></h1></div>
+    <div class="marca"><span id="logoTop" hidden></span><h1><span id="tituloPanel">Panel de citas</span><small id="userEmail"></small></h1></div>
     <div style="display:flex;gap:8px">
       <button class="logout" id="btnAvisos">🔔 Activar avisos</button>
       <button class="logout" id="btnLogout">Salir</button>
@@ -300,6 +308,38 @@ async function cargarNegocio() {
     document.getElementById("nombreNegocio").textContent = data.nombre;
     document.title = "Citas · " + data.nombre;
     if (data.config && data.config.horario) CFG = { ...CFG, ...data.config };
+    if (data.config && data.config.tema) aplicarTema(data.config.tema, data.nombre);
+  }
+}
+// Aspecto de cada negocio: negocios.config.tema = {"nombre", "colores": {"fondo","tarjeta","borde","primario","oscuro"},
+// "fuentes": {"titulos","texto"} (Google Fonts), "logo_svg": "<svg…>"}. Sin tema se queda el aspecto de siempre.
+function aplicarTema(t, nombre) {
+  const raiz = document.documentElement.style, c = t.colores || {}, hex = (v) => /^#[0-9a-f]{3,8}$/i.test(v || "");
+  const mapa = { fondo: "--cream", tarjeta: "--white-warm", borde: "--rose", primario: "--earth", oscuro: "--earth-dark" };
+  Object.entries(mapa).forEach(([k, v]) => { if (hex(c[k])) raiz.setProperty(v, c[k]); });
+  if (hex(c.oscuro)) { const m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = c.oscuro; }
+  // Cada fuente como en Google Fonts: "Karla:wght@400;700" o solo "Alfa Slab One" (peso normal)
+  const f = t.fuentes || {}, limpia = (s) => String(s || "").replace(/[^A-Za-z0-9 :@;.,]/g, "").trim();
+  const pf = limpia(f.titulos), px = limpia(f.texto), ft = pf.split(":")[0].trim(), fx = px.split(":")[0].trim();
+  if (ft || fx) {
+    const fam = [pf, px].filter(Boolean).map((x) => "family=" + x.replace(/ /g, "+")).join("&");
+    const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?" + fam + "&display=swap"; document.head.appendChild(l);
+    if (ft) raiz.setProperty("--f-tit", "'" + ft + "', Georgia, serif");
+    if (fx) raiz.setProperty("--f-txt", "'" + fx + "', system-ui, sans-serif");
+  }
+  const nom = t.nombre || nombre;
+  document.getElementById("tituloPanel").textContent = t.logo_svg ? "Reservas" : nom;
+  document.getElementById("nombreNegocio").textContent = "Reservas de " + nom;
+  document.title = "Reservas · " + nom;
+  if (t.logo_svg && /^\s*<svg[\s>]/i.test(t.logo_svg)) {
+    // Se pinta en línea (para que use las fuentes del negocio) quitando scripts, enlaces y eventos
+    const doc = new DOMParser().parseFromString(t.logo_svg, "image/svg+xml"), svg = doc.documentElement;
+    if (svg && svg.nodeName.toLowerCase() === "svg" && !doc.querySelector("parsererror")) {
+      svg.querySelectorAll("script,foreignObject,a,use,image,iframe,style").forEach((n) => n.remove());
+      [svg, ...svg.querySelectorAll("*")].forEach((n) => [...n.attributes].forEach((at) => { if (/^on|href$/i.test(at.name)) n.removeAttribute(at.name); }));
+      svg.setAttribute("role", "img"); svg.setAttribute("aria-label", nom);
+      ["logoTop", "logoLogin"].forEach((id) => { const el = document.getElementById(id); el.innerHTML = ""; el.appendChild(document.importNode(svg, true)); el.hidden = false; });
+    }
   }
 }
 function fillHoras(sel, fecha, seleccion) {

@@ -27,6 +27,16 @@ dos negocios.
        "intervalo_min": 30, "antelacion_horas": 2, "dias_max": 60, "zona": "Europe/Madrid"}') returning id;
    insert into public.servicios (negocio_id, nombre, precio_desde, duracion_minutos) values (...);
    ```
+   Además, para que **el panel de citas tenga el aspecto del negocio**, añade al `config` la clave `tema`
+   (sale de `ficha.estilo` y del logotipo de la demo; sin `tema` el panel se ve con el aspecto genérico):
+   ```json
+   "tema": {"nombre": "Tu bar",
+            "colores": {"fondo": "#…", "tarjeta": "#…", "borde": "#… (suave)", "primario": "#… (botones)", "oscuro": "#… (barra de arriba, con texto blanco)"},
+            "fuentes": {"titulos": "Alfa Slab One", "texto": "Karla:wght@400;700"},
+            "logo_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" …>…</svg>"}
+   ```
+   Las fuentes se escriben como en Google Fonts (con `:wght@…` solo si la familia tiene esos pesos). El logo
+   va sobre el color `oscuro`: que se lea encima. Si el logo se cambia al maquetar, actualiza también el `tema`.
    `1` = lunes … `7` = domingo; día cerrado = `[]`. `intervalo_min` = cada cuánto empieza
    una cita (normalmente 30, o la duración si todas son iguales). Guarda el `negocio_id`
    en `centro.encargos.ficha.negocio_id`.
