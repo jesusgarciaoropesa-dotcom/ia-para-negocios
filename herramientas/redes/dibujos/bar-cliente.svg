@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="Cliente en casa escribiendo para reservar mesa">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#fbf1e4"/>
+<rect x="0" y="600" width="900" height="160" rx="20" fill="#d9c7ae"/>
+<rect x="640" y="90" width="180" height="230" rx="10" fill="#cfe2f7" stroke="#8a5a34" stroke-width="12"/><path d="M730 90 v230 M640 205 h180" stroke="#8a5a34" stroke-width="8"/>
+<rect x="80" y="110" width="160" height="110" rx="10" fill="#f28c8c" opacity=".5"/>
+<path d="M120 420 h560 a40 40 0 0 1 40 40 v130 h-640 v-130 a40 40 0 0 1 40 -40z" fill="#5b5bd6"/>
+<rect x="80" y="380" width="640" height="80" rx="40" fill="#4848c4"/>
+<rect x="100" y="580" width="24" height="40" fill="#17162b"/><rect x="676" y="580" width="24" height="40" fill="#17162b"/>
+<g transform="translate(400 270) scale(1.0)">
+  <path d="M-70 90 Q0 50 70 90 L84 300 L-84 300 Z" fill="#e6a23c"/>
+  <rect x="-16" y="40" width="32" height="40" fill="#e9b38f"/>
+  <circle cx="0" cy="0" r="50" fill="#e9b38f"/>
+  <path d="M-50 0 Q-54 -56 2 -56 Q56 -56 52 0 Q40 -30 0 -30 Q-36 -30 -50 0 Z" fill="#5b2a6e"/>
+  <circle cx="-18" cy="6" r="5" fill="#17162b"/><circle cx="18" cy="6" r="5" fill="#17162b"/>
+  <path d="M-10 26 q10 6 20 0" stroke="#17162b" stroke-width="5" fill="none" stroke-linecap="round"/>
+</g>
+<g id="telefono"><rect x="430" y="420" width="70" height="120" rx="14" fill="#17162b"/>
+  <rect x="437" y="430" width="56" height="96" rx="8" fill="#7b7bf0" id="pantalla"/>
+  <path id="check" d="M448 478 l10 10 l18 -22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></g>
+  <ellipse cx="465" cy="532" rx="34" ry="20" fill="#e9b38f"/>
+<path d="M340 380 Q380 460 440 520" stroke="#e9b38f" stroke-width="28" fill="none" stroke-linecap="round"/>
+<path d="M470 380 Q500 430 480 520" stroke="#e9b38f" stroke-width="28" fill="none" stroke-linecap="round"/>
+</svg>

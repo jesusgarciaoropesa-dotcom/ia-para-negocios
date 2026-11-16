@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="Cliente junto a su coche averiado escribiendo al taller">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#dfe8f3"/>
+<rect x="0" y="600" width="900" height="160" rx="20" fill="#8e98a5"/><path d="M60 680 h140 M300 680 h140 M540 680 h140" stroke="#fff" stroke-width="10" stroke-dasharray="40 30"/>
+<path d="M40 560 Q50 480 130 470 L200 410 Q230 390 280 390 L410 390 Q450 392 480 420 L540 470 Q610 480 620 560 Z" fill="#2f8a57"/>
+<path d="M215 420 L280 408 L340 408 L340 468 L180 470 Z" fill="#cfe2f7"/><path d="M360 408 L410 408 Q442 412 466 440 L490 468 L360 468 Z" fill="#cfe2f7"/>
+<path d="M500 462 L560 330 L640 360 L600 478 Z" fill="#21704a"/>
+<rect x="40" y="540" width="580" height="30" rx="12" fill="#21704a"/>
+<circle cx="150" cy="580" r="50" fill="#17162b"/><circle cx="150" cy="580" r="20" fill="#b8bcc6"/><circle cx="500" cy="580" r="50" fill="#17162b"/><circle cx="500" cy="580" r="20" fill="#b8bcc6"/>
+<g fill="#b8bcc6" opacity=".8"><circle cx="560" cy="400" r="30"/><circle cx="590" cy="350" r="38"/><circle cx="545" cy="320" r="26"/></g>
+<g transform="translate(730 300) scale(1.0)">
+  <path d="M-70 90 Q0 50 70 90 L84 300 L-84 300 Z" fill="#e6a23c"/>
+  <rect x="-16" y="40" width="32" height="40" fill="#e9b38f"/>
+  <circle cx="0" cy="0" r="50" fill="#e9b38f"/>
+  <path d="M-50 0 Q-54 -56 2 -56 Q56 -56 52 0 Q40 -30 0 -30 Q-36 -30 -50 0 Z" fill="#2b1d14"/>
+  <circle cx="-18" cy="6" r="5" fill="#17162b"/><circle cx="18" cy="6" r="5" fill="#17162b"/>
+  <path d="M-10 26 q10 6 20 0" stroke="#17162b" stroke-width="5" fill="none" stroke-linecap="round"/>
+</g>
+<g id="telefono"><rect x="690" y="400" width="70" height="120" rx="14" fill="#17162b"/>
+  <rect x="697" y="410" width="56" height="96" rx="8" fill="#7b7bf0" id="pantalla"/>
+  <path id="check" d="M708 458 l10 10 l18 -22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></g>
+  <ellipse cx="725" cy="512" rx="34" ry="20" fill="#e9b38f"/>
+<path d="M670 390 Q680 450 700 500" stroke="#e9b38f" stroke-width="28" fill="none" stroke-linecap="round"/>
+</svg>

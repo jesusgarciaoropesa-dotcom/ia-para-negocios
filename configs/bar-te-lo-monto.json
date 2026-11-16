@@ -4,15 +4,15 @@
  "musica": "animada",
  "escenas": [
   {
-   "voz": "¿Cuántas mesas pierdes por no coger el teléfono?",
+   "voz": "¿Cuántas mesas pierdes cada fin de semana sin enterarte?",
    "clave": "mesas",
    "tipo": "frase",
    "texto": "¿Cuántas mesas pierdes?",
-   "sub": "por no poder coger el teléfono"
+   "sub": "cada fin de semana, **sin enterarte**"
   },
   {
-   "voz": "Es la hora de las comidas y la barra está llena.",
-   "clave": "llena",
+   "voz": "Sábado, dos de la tarde. La barra a tope… y suena el teléfono.",
+   "clave": "teléfono",
    "tipo": "dibujo",
    "dibujo": "bar",
    "vibrar": true,
@@ -23,69 +23,95 @@
    }
   },
   {
-   "voz": "Alguien escribe para reservar mesa el sábado.",
-   "clave": "reservar",
+   "voz": "Al otro lado, una familia quiere mesa para cuatro.",
+   "clave": "cuatro",
    "tipo": "dibujo",
-   "dibujo": "bar",
+   "dibujo": "bar-cliente",
    "vibrar": true,
    "globo": {
-    "titulo": "WhatsApp · Cliente",
-    "texto": "¿Tenéis mesa para cuatro el sábado a las dos?",
+    "titulo": "WhatsApp · a Tu bar",
+    "texto": "¡Hola! ¿Tenéis mesa para cuatro hoy a las dos?",
     "color": "#1f9d55"
    }
   },
   {
-   "voz": "Y cuando por fin contestas, ya ha reservado en otro sitio.",
-   "clave": "otro",
+   "voz": "Nadie contesta. Y mira lo que pasa…",
+   "clave": "pasa",
    "tipo": "dibujo",
    "dibujo": "bar",
+   "vibrar": true,
    "globo": {
-    "titulo": "Cliente",
-    "texto": "Nada, ya está, gracias 🙂",
+    "titulo": "3 llamadas perdidas",
+    "texto": "Luego llamo…",
     "color": "#6b6d80"
-   },
+   }
+  },
+  {
+   "voz": "Reservan en el bar de enfrente.",
+   "clave": "enfrente",
+   "tipo": "dibujo",
+   "dibujo": "bar-enfrente",
    "sello": "MESA PERDIDA"
   },
   {
-   "voz": "¿Y si reservaran solos, desde tu web, a cualquier hora?",
-   "clave": "solos",
+   "voz": "Pero tiene arreglo. Y es más fácil de lo que piensas.",
+   "clave": "arreglo",
    "tipo": "frase",
-   "texto": "Reservan solos",
-   "sub": "desde tu web, **a cualquier hora**"
+   "texto": "Tiene arreglo",
+   "sub": "y es **más fácil** de lo que piensas"
   },
   {
-   "voz": "Eligen el día, la hora y cuántos son.",
-   "clave": "hora",
-   "tipo": "tarjetas",
-   "items": [
-    {
-     "icono": "calendar",
-     "titulo": "Eligen día y hora"
-    },
-    {
-     "icono": "mail",
-     "titulo": "Confirmación por email"
-    },
-    {
-     "icono": "bell",
-     "titulo": "Recordatorio automático"
-    }
-   ]
+   "voz": "Una web donde reservan solos: eligen el día, la hora y cuántos son.",
+   "clave": "solos",
+   "tipo": "dibujo",
+   "dibujo": "movil-reserva-mesa"
   },
   {
-   "voz": "Y a ti te llega al móvil sin dejar de servir.",
+   "voz": "Y a ti te llega al móvil, sin dejar de servir.",
    "clave": "móvil",
    "tipo": "dibujo",
    "dibujo": "bar",
    "reserva": true,
    "globo": {
     "titulo": "Tus reservas · ahora",
-    "texto": "Nueva reserva: mesa para 4, sábado a las 14:00",
+    "texto": "Nueva reserva: mesa para 4, hoy a las 14:00",
     "color": "#1f9d55"
    }
   },
   {
-   "voz": "Ya funciona en una barbería y en un centro de estética.",
+   "voz": "Con confirmación y recordatorio por email, para que no te dejen la mesa vacía.",
+   "clave": "recordatorio",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "mail",
+     "titulo": "Confirmación al reservar"
+    },
+    {
+     "icono": "bell",
+     "titulo": "Recordatorio antes de venir"
+    },
+    {
+     "icono": "calendar",
+     "titulo": "Todas las reservas en tu panel"
+    }
+   ]
+  },
+  {
+   "voz": "Y ahora, un truco que puedes hacer hoy mismo.",
+   "clave": "truco",
+   "tipo": "frase",
+   "texto": "Un truco para hoy",
+   "sub": "gratis y en **cinco minutos**"
+  },
+  {
+   "voz": "Pon el enlace de reservas en tu ficha de Google y en tu Instagram: ahí es donde te buscan.",
+   "clave": "Google",
+   "tipo": "dibujo",
+   "dibujo": "movil-google-bar"
+  },
+  {
+   "voz": "Esto ya funciona en una barbería, un centro de estética, un espacio de eventos y un hostal.",
    "clave": "funciona",
    "tipo": "lista",
    "marcar": true,
@@ -99,27 +125,31 @@
    "tono": "verde"
   },
   {
-   "voz": "La web, desde trescientos cincuenta euros, a precio cerrado.",
-   "clave": "cerrado",
-   "tipo": "cifra",
-   "valor": "350",
-   "unidad": "€ · precio cerrado",
-   "texto": "Las reservas, con presupuesto cerrado según lo que necesites."
+   "voz": "Y antes de decidir nada, te enseño la tuya hecha, con tu nombre.",
+   "clave": "nombre",
+   "tipo": "chat",
+   "nombre": "Jesús · iando",
+   "inicial": "J",
+   "mensajes": [
+    {
+     "de": "ia",
+     "texto": "Mira, así quedaría la tuya 👇"
+    },
+    {
+     "de": "ia",
+     "texto": "Con tu nombre, tu horario y tus servicios."
+    }
+   ],
+   "sello": "SIN COMPROMISO",
+   "tono": "verde"
   },
   {
-   "voz": "Y es tuya: la web y los datos.",
-   "clave": "tuya",
-   "tipo": "frase",
-   "texto": "Es tuya",
-   "sub": "Si un día lo dejas, **te lo entrego todo**."
-  },
-  {
-   "voz": "Comenta MESA y te enseño la tuya hecha, con tu nombre.",
+   "voz": "Comenta MESA y te la preparo.",
    "clave": "MESA",
    "tipo": "cierre",
    "arriba": "Comenta",
    "palabra": "MESA",
-   "abajo": "y te enseño **tu web con tu nombre**"
+   "abajo": "y te enseño **la tuya con tu nombre**"
   }
  ]
 }

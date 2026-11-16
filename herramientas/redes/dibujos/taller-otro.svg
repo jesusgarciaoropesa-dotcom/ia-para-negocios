@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="El cliente se va con el coche a otro taller">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#e9edf2"/>
+<rect x="0" y="620" width="900" height="140" rx="20" fill="#8e98a5"/>
+<rect x="60" y="160" width="520" height="460" fill="#cdd5df"/><rect x="80" y="180" width="480" height="80" rx="10" fill="#17162b"/>
+<text x="320" y="234" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="44" fill="#ffd43b">OTRO TALLER</text>
+<rect x="120" y="300" width="400" height="320" rx="6" fill="#5c6675"/><path d="M120 350 h400 M120 400 h400 M120 450 h400" stroke="#4b5462" stroke-width="8"/>
+<path d="M560 600 Q570 530 640 520 L700 470 Q725 455 760 455 L840 455 L880 520 L880 600 Z" fill="#2f8a57"/>
+<circle cx="640" cy="610" r="40" fill="#17162b"/><circle cx="840" cy="610" r="40" fill="#17162b"/>
+<path d="M600 560 l-60 0 M610 590 l-80 0" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+</svg>

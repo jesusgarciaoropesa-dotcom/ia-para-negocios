@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="Mecánico debajo de un coche mientras suena el móvil">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#e9edf2"/>
+<rect x="0" y="560" width="900" height="200" rx="20" fill="#8e98a5"/>
+<rect x="40" y="60" width="380" height="240" rx="14" fill="#cdd5df"/><path d="M40 120 h380 M40 180 h380 M40 240 h380" stroke="#b6c0cc" stroke-width="10"/>
+<path d="M120 470 Q130 390 210 380 L280 320 Q310 300 360 300 L490 300 Q530 302 560 330 L620 380 Q690 390 700 470 Z" fill="#c4452f"/>
+<path d="M295 330 L360 318 L420 318 L420 378 L260 380 Z" fill="#cfe2f7"/><path d="M440 318 L490 318 Q522 322 546 350 L570 378 L440 378 Z" fill="#cfe2f7"/>
+<rect x="120" y="450" width="580" height="30" rx="12" fill="#a63826"/>
+<circle cx="230" cy="490" r="52" fill="#17162b"/><circle cx="230" cy="490" r="22" fill="#b8bcc6"/><circle cx="590" cy="490" r="52" fill="#17162b"/><circle cx="590" cy="490" r="22" fill="#b8bcc6"/>
+<rect x="330" y="520" width="200" height="26" rx="8" fill="#5b5bd6"/>
+<rect x="520" y="500" width="150" height="34" rx="14" fill="#3a5288"/><rect x="660" y="500" width="150" height="34" rx="14" fill="#3a5288"/>
+<rect x="650" y="496" width="40" height="42" rx="10" fill="#17162b"/><rect x="800" y="496" width="40" height="42" rx="10" fill="#17162b"/>
+<g id="telefono"><rect x="120" y="600" width="110" height="64" rx="12" fill="#17162b"/><rect x="130" y="608" width="90" height="48" rx="7" fill="#7b7bf0" id="pantalla"/></g>
+<g id="ondas" stroke="#e0413a" stroke-width="7" fill="none" stroke-linecap="round">
+  <path d="M115 602 q-14 30 0 60"/><path d="M97 590 q-24 42 0 84"/>
+  <path d="M235 602 q14 30 0 60"/><path d="M253 590 q24 42 0 84"/></g>
+</svg>

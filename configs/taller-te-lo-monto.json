@@ -8,84 +8,104 @@
    "clave": "citas",
    "tipo": "frase",
    "texto": "¿Cuántas citas pierdes?",
-   "sub": "mientras estás **debajo de un coche**?"
+   "sub": "mientras estás **debajo de un coche**"
   },
   {
-   "voz": "Estás con las manos llenas de grasa y suena el móvil.",
-   "clave": "grasa",
+   "voz": "Estás cambiando una pieza… y el móvil no para de sonar.",
+   "clave": "sonar",
    "tipo": "dibujo",
-   "dibujo": "taller",
-   "vibrar": true,
-   "globo": {
-    "titulo": "Teléfono",
-    "texto": "Llamada entrante…",
-    "color": "#e0413a"
-   }
+   "dibujo": "taller-bajo-coche",
+   "vibrar": true
   },
   {
-   "voz": "Otro te escribe: ¿me miráis los frenos esta semana?",
-   "clave": "frenos",
+   "voz": "Es un cliente con el coche echando humo.",
+   "clave": "humo",
    "tipo": "dibujo",
-   "dibujo": "taller",
+   "dibujo": "taller-cliente",
    "vibrar": true,
    "globo": {
-    "titulo": "WhatsApp · Cliente",
-    "texto": "¿Me miráis los frenos esta semana?",
+    "titulo": "WhatsApp · a Tu taller",
+    "texto": "¿Me lo podéis mirar esta semana? Hace un ruido raro",
     "color": "#1f9d55"
    }
   },
   {
-   "voz": "Y cuando puedes contestar, se ha ido a otro taller.",
-   "clave": "otro",
+   "voz": "Cuando por fin te limpias las manos, ya es tarde. Mira…",
+   "clave": "tarde",
    "tipo": "dibujo",
    "dibujo": "taller",
    "globo": {
     "titulo": "2 llamadas perdidas",
     "texto": "Luego le llamo…",
     "color": "#6b6d80"
-   },
+   }
+  },
+  {
+   "voz": "Se ha ido a otro taller.",
+   "clave": "otro",
+   "tipo": "dibujo",
+   "dibujo": "taller-otro",
    "sello": "CLIENTE PERDIDO"
   },
   {
-   "voz": "¿Y si pidieran cita solos, desde tu web?",
-   "clave": "solos",
+   "voz": "Pero tiene arreglo, y no tienes que soltar la llave.",
+   "clave": "llave",
    "tipo": "frase",
-   "texto": "Piden cita solos",
-   "sub": "desde tu web, **a cualquier hora**"
+   "texto": "Tiene arreglo",
+   "sub": "y **sin soltar la llave**"
   },
   {
-   "voz": "Eligen lo que necesitan, el día y la hora.",
-   "clave": "necesitan",
-   "tipo": "tarjetas",
-   "items": [
-    {
-     "icono": "calendar",
-     "titulo": "Eligen servicio, día y hora"
-    },
-    {
-     "icono": "mail",
-     "titulo": "Confirmación por email"
-    },
-    {
-     "icono": "bell",
-     "titulo": "Recordatorio automático"
-    }
-   ]
+   "voz": "Una web donde piden cita solos: eligen qué le pasa al coche, el día y la hora.",
+   "clave": "solos",
+   "tipo": "dibujo",
+   "dibujo": "movil-cita-taller"
   },
   {
-   "voz": "Y tú ves la agenda de la semana desde el móvil.",
-   "clave": "agenda",
+   "voz": "Y tú lo ves en el móvil cuando paras.",
+   "clave": "móvil",
    "tipo": "dibujo",
    "dibujo": "taller",
    "reserva": true,
    "globo": {
     "titulo": "Tus citas · ahora",
-    "texto": "Nueva cita: revisión de frenos, jueves a las 9:00",
+    "texto": "Nueva cita: revisión de frenos, sábado a las 9:00",
     "color": "#1f9d55"
    }
   },
   {
-   "voz": "Ya funciona en una barbería y en un centro de estética.",
+   "voz": "Con confirmación y recordatorio por email, para que no se olviden de traer el coche.",
+   "clave": "recordatorio",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "mail",
+     "titulo": "Confirmación al pedir cita"
+    },
+    {
+     "icono": "bell",
+     "titulo": "Recordatorio el día antes"
+    },
+    {
+     "icono": "calendar",
+     "titulo": "La semana organizada en tu panel"
+    }
+   ]
+  },
+  {
+   "voz": "Y un truco que puedes hacer hoy mismo.",
+   "clave": "truco",
+   "tipo": "frase",
+   "texto": "Un truco para hoy",
+   "sub": "gratis y en **cinco minutos**"
+  },
+  {
+   "voz": "Pon el enlace para pedir cita en tu ficha de Google: cuando se les rompe el coche, buscan ahí.",
+   "clave": "Google",
+   "tipo": "dibujo",
+   "dibujo": "movil-google-taller"
+  },
+  {
+   "voz": "Esto ya funciona en una barbería, un centro de estética, un espacio de eventos y un hostal.",
    "clave": "funciona",
    "tipo": "lista",
    "marcar": true,
@@ -99,27 +119,31 @@
    "tono": "verde"
   },
   {
-   "voz": "La web, desde trescientos cincuenta euros, a precio cerrado.",
-   "clave": "cerrado",
-   "tipo": "cifra",
-   "valor": "350",
-   "unidad": "€ · precio cerrado",
-   "texto": "Las reservas, con presupuesto cerrado según lo que necesites."
+   "voz": "Y antes de decidir nada, te enseño la tuya hecha, con tu nombre.",
+   "clave": "nombre",
+   "tipo": "chat",
+   "nombre": "Jesús · iando",
+   "inicial": "J",
+   "mensajes": [
+    {
+     "de": "ia",
+     "texto": "Mira, así quedaría la tuya 👇"
+    },
+    {
+     "de": "ia",
+     "texto": "Con tu nombre, tu horario y tus servicios."
+    }
+   ],
+   "sello": "SIN COMPROMISO",
+   "tono": "verde"
   },
   {
-   "voz": "Y es tuya: la web y los datos.",
-   "clave": "tuya",
-   "tipo": "frase",
-   "texto": "Es tuya",
-   "sub": "Si un día lo dejas, **te lo entrego todo**."
-  },
-  {
-   "voz": "Comenta TALLER y te enseño la tuya hecha, con tu nombre.",
+   "voz": "Comenta TALLER y te la preparo.",
    "clave": "TALLER",
    "tipo": "cierre",
    "arriba": "Comenta",
    "palabra": "TALLER",
-   "abajo": "y te enseño **tu web con tu nombre**"
+   "abajo": "y te enseño **la tuya con tu nombre**"
   }
  ]
 }
