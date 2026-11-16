@@ -1,0 +1,125 @@
+{
+ "slug": "taller-te-lo-monto",
+ "palabra": "TALLER",
+ "musica": "animada",
+ "escenas": [
+  {
+   "voz": "¿Cuántas citas pierdes mientras estás debajo de un coche?",
+   "clave": "citas",
+   "tipo": "frase",
+   "texto": "¿Cuántas citas pierdes?",
+   "sub": "mientras estás **debajo de un coche**?"
+  },
+  {
+   "voz": "Estás con las manos llenas de grasa y suena el móvil.",
+   "clave": "grasa",
+   "tipo": "dibujo",
+   "dibujo": "taller",
+   "vibrar": true,
+   "globo": {
+    "titulo": "Teléfono",
+    "texto": "Llamada entrante…",
+    "color": "#e0413a"
+   }
+  },
+  {
+   "voz": "Otro te escribe: ¿me miráis los frenos esta semana?",
+   "clave": "frenos",
+   "tipo": "dibujo",
+   "dibujo": "taller",
+   "vibrar": true,
+   "globo": {
+    "titulo": "WhatsApp · Cliente",
+    "texto": "¿Me miráis los frenos esta semana?",
+    "color": "#1f9d55"
+   }
+  },
+  {
+   "voz": "Y cuando puedes contestar, se ha ido a otro taller.",
+   "clave": "otro",
+   "tipo": "dibujo",
+   "dibujo": "taller",
+   "globo": {
+    "titulo": "2 llamadas perdidas",
+    "texto": "Luego le llamo…",
+    "color": "#6b6d80"
+   },
+   "sello": "CLIENTE PERDIDO"
+  },
+  {
+   "voz": "¿Y si pidieran cita solos, desde tu web?",
+   "clave": "solos",
+   "tipo": "frase",
+   "texto": "Piden cita solos",
+   "sub": "desde tu web, **a cualquier hora**"
+  },
+  {
+   "voz": "Eligen lo que necesitan, el día y la hora.",
+   "clave": "necesitan",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "calendar",
+     "titulo": "Eligen servicio, día y hora"
+    },
+    {
+     "icono": "mail",
+     "titulo": "Confirmación por email"
+    },
+    {
+     "icono": "bell",
+     "titulo": "Recordatorio automático"
+    }
+   ]
+  },
+  {
+   "voz": "Y tú ves la agenda de la semana desde el móvil.",
+   "clave": "agenda",
+   "tipo": "dibujo",
+   "dibujo": "taller",
+   "reserva": true,
+   "globo": {
+    "titulo": "Tus citas · ahora",
+    "texto": "Nueva cita: revisión de frenos, jueves a las 9:00",
+    "color": "#1f9d55"
+   }
+  },
+  {
+   "voz": "Ya funciona en una barbería y en un centro de estética.",
+   "clave": "funciona",
+   "tipo": "lista",
+   "marcar": true,
+   "items": [
+    "Barbería",
+    "Centro de estética",
+    "Espacio de eventos",
+    "Hostal"
+   ],
+   "sello": "YA FUNCIONA",
+   "tono": "verde"
+  },
+  {
+   "voz": "La web, desde trescientos cincuenta euros, a precio cerrado.",
+   "clave": "cerrado",
+   "tipo": "cifra",
+   "valor": "350",
+   "unidad": "€ · precio cerrado",
+   "texto": "Las reservas, con presupuesto cerrado según lo que necesites."
+  },
+  {
+   "voz": "Y es tuya: la web y los datos.",
+   "clave": "tuya",
+   "tipo": "frase",
+   "texto": "Es tuya",
+   "sub": "Si un día lo dejas, **te lo entrego todo**."
+  },
+  {
+   "voz": "Comenta TALLER y te enseño la tuya hecha, con tu nombre.",
+   "clave": "TALLER",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "TALLER",
+   "abajo": "y te enseño **tu web con tu nombre**"
+  }
+ ]
+}

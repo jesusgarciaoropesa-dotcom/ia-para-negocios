@@ -1,0 +1,125 @@
+{
+ "slug": "bar-te-lo-monto",
+ "palabra": "MESA",
+ "musica": "animada",
+ "escenas": [
+  {
+   "voz": "¿Cuántas mesas pierdes por no coger el teléfono?",
+   "clave": "mesas",
+   "tipo": "frase",
+   "texto": "¿Cuántas mesas pierdes?",
+   "sub": "por no poder coger el teléfono"
+  },
+  {
+   "voz": "Es la hora de las comidas y la barra está llena.",
+   "clave": "llena",
+   "tipo": "dibujo",
+   "dibujo": "bar",
+   "vibrar": true,
+   "globo": {
+    "titulo": "Teléfono",
+    "texto": "Llamada entrante…",
+    "color": "#e0413a"
+   }
+  },
+  {
+   "voz": "Alguien escribe para reservar mesa el sábado.",
+   "clave": "reservar",
+   "tipo": "dibujo",
+   "dibujo": "bar",
+   "vibrar": true,
+   "globo": {
+    "titulo": "WhatsApp · Cliente",
+    "texto": "¿Tenéis mesa para cuatro el sábado a las dos?",
+    "color": "#1f9d55"
+   }
+  },
+  {
+   "voz": "Y cuando por fin contestas, ya ha reservado en otro sitio.",
+   "clave": "otro",
+   "tipo": "dibujo",
+   "dibujo": "bar",
+   "globo": {
+    "titulo": "Cliente",
+    "texto": "Nada, ya está, gracias 🙂",
+    "color": "#6b6d80"
+   },
+   "sello": "MESA PERDIDA"
+  },
+  {
+   "voz": "¿Y si reservaran solos, desde tu web, a cualquier hora?",
+   "clave": "solos",
+   "tipo": "frase",
+   "texto": "Reservan solos",
+   "sub": "desde tu web, **a cualquier hora**"
+  },
+  {
+   "voz": "Eligen el día, la hora y cuántos son.",
+   "clave": "hora",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "calendar",
+     "titulo": "Eligen día y hora"
+    },
+    {
+     "icono": "mail",
+     "titulo": "Confirmación por email"
+    },
+    {
+     "icono": "bell",
+     "titulo": "Recordatorio automático"
+    }
+   ]
+  },
+  {
+   "voz": "Y a ti te llega al móvil sin dejar de servir.",
+   "clave": "móvil",
+   "tipo": "dibujo",
+   "dibujo": "bar",
+   "reserva": true,
+   "globo": {
+    "titulo": "Tus reservas · ahora",
+    "texto": "Nueva reserva: mesa para 4, sábado a las 14:00",
+    "color": "#1f9d55"
+   }
+  },
+  {
+   "voz": "Ya funciona en una barbería y en un centro de estética.",
+   "clave": "funciona",
+   "tipo": "lista",
+   "marcar": true,
+   "items": [
+    "Barbería",
+    "Centro de estética",
+    "Espacio de eventos",
+    "Hostal"
+   ],
+   "sello": "YA FUNCIONA",
+   "tono": "verde"
+  },
+  {
+   "voz": "La web, desde trescientos cincuenta euros, a precio cerrado.",
+   "clave": "cerrado",
+   "tipo": "cifra",
+   "valor": "350",
+   "unidad": "€ · precio cerrado",
+   "texto": "Las reservas, con presupuesto cerrado según lo que necesites."
+  },
+  {
+   "voz": "Y es tuya: la web y los datos.",
+   "clave": "tuya",
+   "tipo": "frase",
+   "texto": "Es tuya",
+   "sub": "Si un día lo dejas, **te lo entrego todo**."
+  },
+  {
+   "voz": "Comenta MESA y te enseño la tuya hecha, con tu nombre.",
+   "clave": "MESA",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "MESA",
+   "abajo": "y te enseño **tu web con tu nombre**"
+  }
+ ]
+}

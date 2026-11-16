@@ -258,6 +258,7 @@ def main():
     ap.add_argument("config")
     ap.add_argument("--pedido-voz", action="store_true")
     ap.add_argument("--sin-voz", action="store_true")
+    ap.add_argument("--kokoro", action="store_true", help="voz de respaldo (Kokoro em_alex) para pruebas, sin gastar cupo de Gemini")
     ap.add_argument("--salida", default=str(RAIZ / "reels"))
     a = ap.parse_args()
     cfg = json.load(open(a.config)); cfg["_ruta"] = a.config
@@ -265,7 +266,15 @@ def main():
     if a.pedido_voz:
         print(pedido_voz(frases))
         return
-    voces = None if a.sin_voz else voces_reel(frases)
+    if a.kokoro:
+        from voz_kokoro import Kokoro24
+        kok = Kokoro24(velocidad=1.08)
+        voces = []
+        for f in frases:
+            pcm, _ = kok.decir(f)
+            voces.append((pcm, kok.sr))
+    else:
+        voces = None if a.sin_voz else voces_reel(frases)
     datos, pcms, sr, t = [], [], 24000, INICIO
     for k, (e, f) in enumerate(zip(cfg["escenas"], frases)):
         r = voces[k] if voces else None
@@ -322,7 +331,7 @@ def main():
                     "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
                     "-shortest", "-movflags", "+faststart", str(mp4)], check=True)
     print(json.dumps({"reel": str(mp4), "portada": str(salida / f"{cfg['slug']}-portada.jpg"), "segundos": round(total, 1),
-                      "voz": "ninguna" if a.sin_voz else "gemini"}, ensure_ascii=False))
+                      "voz": "kokoro" if a.kokoro else ("ninguna" if a.sin_voz else "gemini")}, ensure_ascii=False))
 
 
 if __name__ == "__main__":
