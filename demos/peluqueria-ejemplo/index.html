@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Peluquería en Oropesa | Pide cita online</title>
-<meta name="description" content="Peluquería en Oropesa (Toledo): corte, tinte, mechas y peinado. Mira las horas libres y reserva tu cita desde el móvil en un minuto.">
+<title>Peluquería con cita online | Tu peluquería</title>
+<meta name="description" content="Peluquería con cita online: corte, tinte, mechas y peinado. Mira las horas libres y reserva tu cita desde el móvil en un minuto.">
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Peluquería en Oropesa | Pide cita online">
+<meta property="og:title" content="Peluquería con cita online | Tu peluquería">
 <meta property="og:description" content="Mira las horas libres y reserva tu cita desde el móvil en un minuto.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#1f5c4a">
@@ -18,10 +18,9 @@
   "@context": "https://schema.org",
   "@type": "HairSalon",
   "name": "Peluquería de ejemplo",
-  "description": "Peluquería en Oropesa (Toledo) con reserva de cita online.",
+  "description": "Peluquería con reserva de cita online.",
   "telephone": "+34637847114",
-  "address": { "@type": "PostalAddress", "streetAddress": "Calle de ejemplo, 1", "addressLocality": "Oropesa", "addressRegion": "Toledo", "addressCountry": "ES" },
-  "areaServed": "Oropesa y comarca de La Jara y el Campo Arañuelo",
+  "address": { "@type": "PostalAddress", "streetAddress": "Calle de ejemplo, 1", "addressCountry": "ES" },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "09:30", "closes": "14:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "16:30", "closes": "20:00" },
@@ -180,6 +179,7 @@
   .horario td:last-child { text-align: right; font-weight: 600; }
   .horario tr.cerrado td { color: #6b7770; font-weight: 400; }
   .mapa { border: 0; width: 100%; height: 340px; border-radius: 12px; }
+  .mapa-ej { display: grid; place-items: center; text-align: center; padding: 20px; min-height: 260px; color: currentColor; opacity: .85; font-weight: 600; background-color: rgba(127,127,127,.08); background-image: linear-gradient(rgba(127,127,127,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(127,127,127,.14) 1px, transparent 1px); background-size: 28px 28px; }
 
   /* Preguntas */
   details { border-bottom: 1px solid #d9e2dc; padding: 16px 0; }
@@ -224,13 +224,13 @@
   <section class="hero">
     <div class="contenedor hero-grid">
       <div class="texto">
-        <h1>Tu peluquería en Oropesa, con cita desde el móvil</h1>
+        <h1>Tu peluquería, con cita desde el móvil</h1>
         <p class="sub">Elige servicio, día y hora libre. Sin llamar y sin esperar a que te contesten.</p>
         <div class="acciones">
           <a class="btn btn-res" href="#reservar">Reservar cita</a>
           <a class="btn btn-2" href="tel:+34637847114">Llamar al 637 847 114</a>
         </div>
-        <p class="datos"><strong>Martes a sábado</strong> · Calle de ejemplo, 1 · Oropesa (Toledo)</p>
+        <p class="datos"><strong>Martes a sábado</strong> · Calle de ejemplo, 1</p>
       </div>
       <div class="hero-ilus">
         <svg viewBox="0 0 520 470" role="img" aria-label="Ilustración: sillón de peluquería frente a un espejo redondo con el nombre Tu peluquería, tijeras, peine y secador en la repisa">
@@ -242,7 +242,6 @@
           <path d="M178 118l20-20" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".6"/>
           <text x="268" y="150" text-anchor="middle" font-family="Bricolage Grotesque, Georgia, serif" font-weight="800" font-size="40" fill="#1f5c4a">Tu</text>
           <text x="268" y="194" text-anchor="middle" font-family="Bricolage Grotesque, Georgia, serif" font-weight="800" font-size="40" fill="#1f5c4a">peluquería</text>
-          <text x="268" y="226" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="600" font-size="15" fill="#1f5c4a" letter-spacing="1">Oropesa</text>
           <!-- repisa -->
           <rect x="100" y="300" width="336" height="14" rx="4" fill="#f2a48c"/>
           <!-- secador -->
@@ -317,7 +316,7 @@
         <p class="alt">¿Prefieres hablar? <a href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20pedir%20cita" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> o llama al <a href="tel:+34637847114">637 847 114</a>.</p>
       </div>
       <div class="libreta">
-        <div class="libreta-cab"><strong>Citas</strong><span>Tu peluquería · Oropesa</span></div>
+        <div class="libreta-cab"><strong>Citas</strong><span>Tu peluquería</span></div>
         <form id="rv-form" class="rv" novalidate>
           <label>Servicio<select id="rv-serv" required><option value="">Cargando servicios…</option></select></label>
           <div><span class="rv-lab" id="rv-dias-lab">Día</span>
@@ -448,9 +447,9 @@
           <tr><td>Sábado</td><td>9:00–14:00</td></tr>
           <tr class="cerrado"><td>Domingo</td><td>Cerrado</td></tr>
         </tbody></table>
-        <p style="margin-top:16px">Calle de ejemplo, 1 · Oropesa (Toledo)</p>
+        <p style="margin-top:16px">Calle de ejemplo, 1</p>
       </div>
-      <iframe class="mapa" title="Mapa de Oropesa (Toledo)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Oropesa%2C%20Toledo&output=embed"></iframe>
+      <div class="mapa mapa-ej" role="img" aria-label="Aquí irá el mapa de Google con la dirección del negocio"><span>Aquí irá el mapa de Google<br>con la dirección de tu negocio</span></div>
     </div>
   </section>
 
@@ -478,7 +477,7 @@
 
 <footer>
   <div class="contenedor">
-    <p><strong>Peluquería de ejemplo</strong> · Calle de ejemplo, 1, Oropesa (Toledo) · <a href="tel:+34637847114">637 847 114</a></p>
+    <p><strong>Peluquería de ejemplo</strong> · Calle de ejemplo, 1 · <a href="tel:+34637847114">637 847 114</a></p>
     <p>Negocio ficticio: esta es una web de ejemplo para enseñar cómo funciona la reserva online. Los datos que envíes solo se usan para gestionar la cita.</p>
     <p style="opacity:.75">Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
   </div>
