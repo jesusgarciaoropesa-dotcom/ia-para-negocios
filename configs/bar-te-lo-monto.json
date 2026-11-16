@@ -63,10 +63,17 @@
    "sub": "y es **más fácil** de lo que piensas"
   },
   {
-   "voz": "Una web donde reservan solos: eligen el día, la hora y cuántos son.",
+   "voz": "Una web donde reservan solos: eligen cuántos son, el día y la hora.",
    "clave": "solos",
-   "tipo": "dibujo",
-   "dibujo": "movil-reserva-mesa"
+   "tipo": "captura",
+   "imagen": "cap-bar/movil-reserva-hora.png",
+   "desplazar": true
+  },
+  {
+   "voz": "En un minuto, mesa reservada. Sin llamar.",
+   "clave": "reservada",
+   "tipo": "captura",
+   "imagen": "cap-bar/movil-reserva-hecha.png"
   },
   {
    "voz": "Y a ti te llega al móvil, sin dejar de servir.",
@@ -81,23 +88,10 @@
    }
   },
   {
-   "voz": "Con confirmación y recordatorio por email, para que no te dejen la mesa vacía.",
-   "clave": "recordatorio",
-   "tipo": "tarjetas",
-   "items": [
-    {
-     "icono": "mail",
-     "titulo": "Confirmación al reservar"
-    },
-    {
-     "icono": "bell",
-     "titulo": "Recordatorio antes de venir"
-    },
-    {
-     "icono": "calendar",
-     "titulo": "Todas las reservas en tu panel"
-    }
-   ]
+   "voz": "Y tú lo tienes todo ordenado en tu panel, con confirmación y recordatorio para el cliente.",
+   "clave": "panel",
+   "tipo": "captura",
+   "imagen": "cap-bar/panel-movil.png"
   },
   {
    "voz": "Y ahora, un truco que puedes hacer hoy mismo.",

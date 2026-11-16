@@ -57,8 +57,9 @@
   {
    "voz": "Una web donde piden cita solos: eligen qué le pasa al coche, el día y la hora.",
    "clave": "solos",
-   "tipo": "dibujo",
-   "dibujo": "movil-cita-taller"
+   "tipo": "captura",
+   "imagen": "cap-taller/movil-pedir-cita.png",
+   "desplazar": true
   },
   {
    "voz": "Y tú lo ves en el móvil cuando paras.",
@@ -73,23 +74,10 @@
    }
   },
   {
-   "voz": "Con confirmación y recordatorio por email, para que no se olviden de traer el coche.",
-   "clave": "recordatorio",
-   "tipo": "tarjetas",
-   "items": [
-    {
-     "icono": "mail",
-     "titulo": "Confirmación al pedir cita"
-    },
-    {
-     "icono": "bell",
-     "titulo": "Recordatorio el día antes"
-    },
-    {
-     "icono": "calendar",
-     "titulo": "La semana organizada en tu panel"
-    }
-   ]
+   "voz": "Y la semana organizada en tu panel, con confirmación y recordatorio para que no se olviden del coche.",
+   "clave": "panel",
+   "tipo": "captura",
+   "imagen": "cap-taller/panel-movil.png"
   },
   {
    "voz": "Y un truco que puedes hacer hoy mismo.",
