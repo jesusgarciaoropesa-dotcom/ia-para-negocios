@@ -70,3 +70,14 @@ dos negocios.
   Mientras sea demo, Jesús entra con su propio usuario: el Configurador ya lo añade al crear el negocio con
   `insert into public.negocio_admins (user_id, negocio_id) select user_id, '<negocio_id>' from public.negocio_admins where negocio_id = (select id from public.negocios where nombre = 'WTJ Barber Shop') limit 1;`
 - Cuando el cliente paga: quitar `"demo": true` del config y llevar la web a su dominio.
+
+## Correos al cliente (confirmación, recordatorio y reseña)
+
+- El formulario pide **correo obligatorio** (va en `clientes.email` a través de `reservar_hueco`).
+- La función `reservas-correos` (código en `taller/reservas/correos/index.ts`) manda, con los colores y el nombre del `tema`:
+  confirmación al reservar, recordatorio el día a las 8:00 (la tarde anterior a las 20:00 si la cita es antes de las 10:30)
+  y petición de reseña 2 h después de la cita (de 9 a 21 h). Marca lo enviado en `reservas.notificaciones_enviadas`.
+- Solo funciona en negocios con `config.correos.activo = true`:
+  `"correos": {"activo": true, "telefono": "…", "whatsapp": "34…", "responder_a": "correo del negocio", "direccion": "…", "resena_url": "https://g.page/r/…/review"}`.
+  Sin `resena_url` no se pide reseña. En demos ficticias se deja apagado.
+- Hace falta la clave `RESEND_API_KEY` en Supabase (y el dominio verificado en Resend); sin ella la función no envía nada.
