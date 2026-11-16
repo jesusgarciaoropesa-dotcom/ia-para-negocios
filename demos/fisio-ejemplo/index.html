@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fisioterapia con cita online | Tu fisio</title>
+<meta name="description" content="Clínica de fisioterapia con cita online: primera valoración, sesiones, punción seca y masaje descontracturante. Mira las horas libres y pide cita en el móvil.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Fisioterapia con cita online | Tu fisio">
+<meta property="og:description" content="Mira las horas libres de la clínica y pide tu cita de fisio desde el móvil en un minuto.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#c2255c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Physiotherapy",
+  "name": "Fisio de ejemplo",
+  "description": "Clínica de fisioterapia con cita online: primera valoración, sesiones de fisioterapia, punción seca y masaje descontracturante.",
+  "telephone": "+34637847114",
+  "address": { "@type": "PostalAddress", "streetAddress": "Calle de ejemplo, 3", "addressCountry": "ES" },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "14:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "16:00", "closes": "20:30" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "Es mi primera vez, ¿qué cita pido?", "acceptedAnswer": { "@type": "Answer", "text": "La primera valoración. Así vemos qué te pasa y te decimos qué sesiones te convienen." } },
+  { "@type": "Question", "name": "¿Qué traigo a la cita?", "acceptedAnswer": { "@type": "Answer", "text": "Ropa cómoda y, si los tienes, informes o pruebas relacionados con lo que te pasa." } },
+  { "@type": "Question", "name": "¿Necesito volante del médico?", "acceptedAnswer": { "@type": "Answer", "text": "No para pedir cita con nosotros. Si tienes un informe, tráelo y lo tenemos en cuenta." } },
+  { "@type": "Question", "name": "¿Puedo cambiar o anular la cita?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Escríbenos por WhatsApp o llámanos y la pasamos a otro hueco." } },
+  { "@type": "Question", "name": "¿Qué horario tenéis?", "acceptedAnswer": { "@type": "Answer", "text": "De lunes a viernes, de 9:00 a 14:00 y de 16:00 a 20:30. Sábado y domingo, cerrado." } }
+] }
+</script>
+<style>
+  :root {
+    --c-primario: #c2255c;   /* rosa del vendaje neuromuscular: bloque de marca */
+    --c-rosa-osc: #a81d4f;
+    --c-rosa-vivo: #e8467f;
+    --c-oscuro: #1c2230;     /* tinta */
+    --c-fondo: #fbfaf8;
+    --c-suave: #fbeaf0;
+    --c-borde: #ecd3dc;
+    --c-texto: #1c2230;
+    --c-gris: #5a6070;
+    --c-wa: #1f8a4c;
+    --f-titulos: "Young Serif", Georgia, "Times New Roman", serif;
+    --f-texto: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --ancho: 1140px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; font-family: var(--f-texto); color: var(--c-texto); background: var(--c-fondo); line-height: 1.6; font-size: 17px; }
+  img, svg { max-width: 100%; display: block; }
+  a { color: var(--c-primario); }
+  h1, h2, h3 { font-family: var(--f-titulos); font-weight: 400; color: var(--c-oscuro); line-height: 1.1; margin: 0 0 .45em; letter-spacing: -.01em; }
+  h1 { font-size: clamp(2.2rem, 5.6vw, 3.6rem); }
+  h2 { font-size: clamp(1.7rem, 3.8vw, 2.45rem); }
+  h3 { font-size: 1.2rem; }
+  .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 20px; }
+  section { padding: 80px 0; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; min-height: 52px; padding: 0 26px; border-radius: 999px; font-weight: 700; font-size: 1.05rem; text-decoration: none; border: 2px solid transparent; cursor: pointer; font-family: inherit; }
+  .btn-res { background: var(--c-oscuro); color: #fff; }
+  .btn-res:hover { background: #2c3446; }
+  .btn-rosa { background: var(--c-primario); color: #fff; }
+  .btn-rosa:hover { background: var(--c-rosa-osc); }
+  .btn-2 { background: transparent; color: inherit; border-color: currentColor; }
+  :focus-visible { outline: 3px solid var(--c-oscuro); outline-offset: 3px; }
+  .hero :focus-visible, .cierre :focus-visible { outline-color: #fff; }
+
+  /* Franja de demo */
+  .franja { background: var(--c-oscuro); color: #fff; font-size: .88rem; text-align: center; padding: 8px 16px; }
+  .franja a { color: #ffb3cc; font-weight: 700; }
+
+  /* Cabecera */
+  header { background: var(--c-fondo); border-bottom: 1px solid var(--c-borde); }
+  .barra { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 70px; }
+  .marca { display: flex; align-items: center; text-decoration: none; }
+  .marca svg { height: 40px; width: auto; }
+  nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav a { color: var(--c-oscuro); text-decoration: none; font-weight: 600; font-size: .98rem; }
+  nav a:hover { color: var(--c-primario); }
+  .barra .btn { min-height: 44px; padding: 0 20px; font-size: .98rem; }
+  @media (max-width: 860px) { nav { display: none; } }
+
+  /* Inicio: la sala de la clínica */
+  .hero { background: var(--c-primario); color: #fff; padding: 46px 0 0; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 32px; align-items: end; }
+  .hero h1 { color: #fff; }
+  .hero .texto { padding-bottom: 70px; }
+  .hero p.sub { font-size: 1.2rem; max-width: 33ch; color: #fff; margin: 0; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .hero .btn-2 { color: #fff; }
+  .hero .datos { margin: 26px 0 0; font-size: 1rem; color: #ffe3ec; }
+  .hero .datos strong { color: #fff; }
+  .hero-ilus svg { width: 100%; height: auto; }
+  @media (max-width: 860px) {
+    .hero { padding-top: 28px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 16px; }
+    .hero .texto { padding-bottom: 0; }
+    .hero h1 { font-size: 2.1rem; }
+    .hero p.sub { font-size: 1.05rem; }
+    .acciones { margin-top: 20px; gap: 10px; }
+    .acciones .btn { padding: 0 18px; flex: 1 1 auto; }
+    .hero .datos { margin-top: 16px; font-size: .95rem; }
+    .hero-ilus { margin: 0 -20px; }
+  }
+
+  /* ¿Qué cita pido? */
+  .citas-cab { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 26px; }
+  .citas-cab p { margin: 0; max-width: 40ch; color: var(--c-gris); }
+  .citas { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--c-oscuro); }
+  .citas li { display: grid; grid-template-columns: 1fr 1.1fr auto; gap: 8px 30px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--c-borde); }
+  .citas .preg { font-family: var(--f-titulos); font-size: 1.36rem; line-height: 1.2; color: var(--c-oscuro); margin: 0; }
+  .citas .serv { margin: 0; }
+  .citas .serv strong { display: block; font-size: 1.08rem; color: var(--c-primario); }
+  .citas .serv span { color: var(--c-gris); font-size: .98rem; }
+  .citas .min { font-weight: 700; font-size: .95rem; background: var(--c-suave); color: var(--c-rosa-osc); padding: 6px 14px; border-radius: 999px; white-space: nowrap; }
+  @media (max-width: 760px) {
+    .citas-cab { grid-template-columns: 1fr; gap: 14px; }
+    .citas li { grid-template-columns: 1fr auto; padding: 20px 0; }
+    .citas .preg { grid-column: 1 / -1; font-size: 1.2rem; }
+  }
+
+  /* Reservas: la hoja de cita sujeta con vendaje */
+  #reservar { background: var(--c-suave); }
+  .res-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 56px; align-items: start; }
+  .res-intro p { max-width: 34ch; }
+  .res-intro ol { padding-left: 1.2em; margin: 18px 0 0; }
+  .res-intro li { margin-bottom: 6px; }
+  .res-intro .alt { margin-top: 22px; font-size: .98rem; }
+  .res-grid > *, .rv > *, .rv > div { min-width: 0; }
+  @media (max-width: 860px) { .res-grid { grid-template-columns: 1fr; gap: 26px; } }
+  .hoja { position: relative; background: #fff; border-radius: 4px; box-shadow: 0 1px 0 var(--c-borde), 0 22px 46px rgba(168,29,79,.14); margin-top: 26px; }
+  .tira { position: absolute; z-index: 2; width: 132px; height: 34px; border-radius: 17px; pointer-events: none;
+          background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.10) 0 2px, transparent 2px 7px); }
+  .tira-1 { background-color: var(--c-rosa-vivo); top: -12px; left: -30px; transform: rotate(-38deg); }
+  .tira-2 { background-color: var(--c-oscuro); top: -6px; left: -18px; width: 96px; transform: rotate(32deg); opacity: .92; }
+  .tira-3 { background-color: var(--c-rosa-vivo); top: -14px; right: -26px; transform: rotate(36deg); }
+  .hoja-cab { padding: 26px 26px 18px 70px; border-bottom: 2px solid var(--c-oscuro); margin: 0 0 0; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .hoja-cab strong { font-family: var(--f-titulos); font-weight: 400; font-size: 1.55rem; line-height: 1.1; color: var(--c-oscuro); }
+  .hoja-cab span { font-size: .92rem; color: var(--c-gris); font-weight: 600; }
+  .hoja-cuerpo { padding: 24px 26px 28px; }
+  .rv { display: grid; gap: 22px; }
+  .rv-lab, .rv label { display: grid; gap: 8px; font-weight: 700; color: var(--c-oscuro); font-size: .98rem; }
+  .rv input, .rv textarea { font: inherit; font-weight: 400; padding: 12px 14px; border: 2px solid #dccbd2; border-radius: 10px; background: #fff; color: inherit; min-height: 50px; width: 100%; }
+  .rv input:focus, .rv textarea:focus { border-color: var(--c-primario); outline: none; box-shadow: 0 0 0 3px rgba(194,37,92,.18); }
+  .rv-servs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rv-servs button { text-align: left; min-height: 62px; padding: 10px 14px; border: 2px solid #dccbd2; border-radius: 10px; background: #fff; font: inherit; cursor: pointer; color: var(--c-oscuro); line-height: 1.25; }
+  .rv-servs button b { display: block; font-size: 1rem; }
+  .rv-servs button small { color: var(--c-gris); font-size: .88rem; }
+  .rv-servs button[aria-checked="true"] { border-color: var(--c-primario); background: var(--c-primario); color: #fff; }
+  .rv-servs button[aria-checked="true"] small { color: #ffe3ec; }
+  .rv-dias, .rv-horas { display: flex; flex-wrap: wrap; gap: 8px; }
+  .rv-dias { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+  .rv-dias button { flex: 0 0 auto; min-width: 62px; min-height: 68px; border-radius: 10px; border: 2px solid #dccbd2; background: #fff; font: inherit; cursor: pointer; line-height: 1.15; padding: 6px 8px; color: var(--c-oscuro); }
+  .rv-dias button b { display: block; font-family: var(--f-titulos); font-weight: 400; font-size: 1.35rem; }
+  .rv-dias button small { font-size: .8rem; text-transform: capitalize; }
+  .rv-dias button[aria-pressed="true"] { background: var(--c-primario); border-color: var(--c-primario); color: #fff; }
+  .rv-otro { font-weight: 400 !important; font-size: .92rem !important; color: var(--c-gris) !important; grid-template-columns: auto 1fr; align-items: center; margin-top: 4px; }
+  .rv-otro input { min-height: 44px; max-width: 200px; padding: 6px 10px; }
+  .rv-horas button { min-height: 46px; min-width: 76px; border-radius: 999px; border: 2px solid #dccbd2; background: #fff; font: inherit; font-weight: 700; cursor: pointer; color: var(--c-oscuro); }
+  .rv-horas button[aria-checked="true"] { background: var(--c-oscuro); color: #fff; border-color: var(--c-oscuro); }
+  .rv-ayuda { margin: 0; font-weight: 400; color: var(--c-gris); font-size: .96rem; }
+  .rv-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .rv-check { grid-template-columns: auto 1fr !important; align-items: start; font-weight: 400 !important; }
+  .rv-check input { min-height: 0; width: 22px; height: 22px; margin-top: 2px; accent-color: var(--c-primario); }
+  .rv .btn-rosa { width: 100%; font-size: 1.1rem; min-height: 56px; }
+  .rv-estado { margin: 0; font-weight: 700; }
+  .rv-estado.ok { color: #1a6b3d; } .rv-estado.mal { color: #b42318; }
+  .rv a.btn-2 { color: var(--c-oscuro); }
+  @media (max-width: 560px) {
+    .rv-dos { grid-template-columns: 1fr; }
+    .hoja-cab { padding: 24px 18px 16px 56px; }
+    .hoja-cuerpo { padding: 22px 16px 24px; }
+    .tira { width: 104px; height: 28px; }
+    .tira-2 { width: 76px; }
+    .tira-3 { right: -18px; }
+  }
+  @media (max-width: 380px) { .rv-servs { grid-template-columns: 1fr; } }
+
+  /* Tres frases */
+  .frases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .frases h3 { margin-bottom: .35em; }
+  .frases p { margin: 0; color: #3b4152; }
+  @media (max-width: 860px) { .frases { grid-template-columns: 1fr; gap: 24px; } }
+
+  /* Horario y mapa */
+  #horario { background: #fff; }
+  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
+  @media (max-width: 860px) { .dos { grid-template-columns: 1fr; } }
+  .horario { width: 100%; border-collapse: collapse; }
+  .horario td { padding: 10px 0; border-bottom: 1px solid #ece6e8; }
+  .horario td:last-child { text-align: right; font-weight: 700; }
+  .horario tr.cerrado td { color: var(--c-gris); font-weight: 400; }
+  .mapa { border: 0; width: 100%; height: 340px; border-radius: 12px; background: var(--c-suave); }
+  .mapa-ej { display: grid; place-items: center; text-align: center; padding: 20px; min-height: 260px; color: currentColor; opacity: .85; font-weight: 600; background-color: rgba(127,127,127,.08); background-image: linear-gradient(rgba(127,127,127,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(127,127,127,.14) 1px, transparent 1px); background-size: 28px 28px; }
+
+  /* Preguntas */
+  details { border-bottom: 1px solid var(--c-borde); padding: 16px 0; }
+  summary { cursor: pointer; font-weight: 700; font-size: 1.08rem; color: var(--c-oscuro); min-height: 32px; }
+  details p { margin: 10px 0 0; max-width: 65ch; }
+
+  /* Cierre y pie */
+  .cierre { background: var(--c-oscuro); color: #fff; }
+  .cierre h2 { color: #fff; }
+  .cierre p { color: #d9dce4; max-width: 44ch; }
+  .cierre .btn-2 { color: #fff; }
+  footer { background: #12161f; color: rgba(255,255,255,.85); padding: 36px 0 100px; font-size: .94rem; }
+  footer a { color: #fff; }
+
+  /* Botón flotante de WhatsApp */
+  .wa-flota { position: fixed; right: 16px; bottom: 16px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: var(--c-wa); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .wa-flota svg { width: 30px; height: 30px; color: #fff; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<div class="franja">Web de ejemplo hecha por iando · ¿Quieres la tuya? <a href="https://wa.me/34637847114?text=Hola%20Jes%C3%BAs%2C%20he%20visto%20la%20web%20de%20ejemplo%20de%20la%20cl%C3%ADnica%20de%20fisio%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></div>
+
+<header>
+  <div class="contenedor barra">
+    <a class="marca" href="#inicio" aria-label="Tu fisio, inicio">
+      <svg viewBox="0 0 150 44" role="img" aria-label="Tu fisio">
+        <rect x="4" y="16.5" width="34" height="11" rx="5.5" fill="#1c2230" transform="rotate(35 21 22)"/>
+        <rect x="4" y="16.5" width="34" height="11" rx="5.5" fill="#e8467f" transform="rotate(-35 21 22)"/>
+        <text x="48" y="30" fill="#1c2230" font-family="Young Serif, Georgia, serif" font-size="23">Tu fisio</text>
+      </svg>
+    </a>
+    <nav aria-label="Secciones"><ul><li><a href="#servicios">Tratamientos</a></li><li><a href="#reservar">Pedir cita</a></li><li><a href="#horario">Horario</a></li><li><a href="#preguntas">Preguntas</a></li></ul></nav>
+    <a class="btn btn-rosa" href="#reservar">Pedir cita</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="contenedor hero-grid">
+      <div class="texto">
+        <h1>Pide tu cita de fisio sin llamar</h1>
+        <p class="sub">Elige el tratamiento, el día y una hora libre. En un minuto y a cualquier hora, desde el móvil.</p>
+        <div class="acciones">
+          <a class="btn btn-res" href="#reservar">Pedir cita</a>
+          <a class="btn btn-2" href="tel:+34637847114">Llamar al 637 847 114</a>
+        </div>
+        <p class="datos"><strong>Lunes a viernes</strong> · 9:00–14:00 y 16:00–20:30</p>
+      </div>
+      <div class="hero-ilus">
+        <svg viewBox="20 40 560 400" role="img" aria-label="Ilustración: sala de la clínica con la camilla preparada, una toalla doblada, un rodillo, un rollo de vendaje rosa y un cartel de la columna en la pared">
+          <!-- pared -->
+          <rect x="0" y="0" width="600" height="440" fill="#c2255c"/>
+          <rect x="0" y="56" width="600" height="314" fill="#b3205a"/>
+          <!-- ventana con persiana -->
+          <rect x="388" y="86" width="140" height="132" rx="4" fill="#fbeaf0"/>
+          <g stroke="#e9c3d1" stroke-width="5"><line x1="392" y1="104" x2="524" y2="104"/><line x1="392" y1="122" x2="524" y2="122"/><line x1="392" y1="140" x2="524" y2="140"/><line x1="392" y1="158" x2="524" y2="158"/></g>
+          <rect x="388" y="86" width="140" height="132" rx="4" fill="none" stroke="#fff" stroke-width="6"/>
+          <!-- cartel de la columna -->
+          <rect x="78" y="80" width="108" height="168" rx="3" fill="#fff"/>
+          <text x="132" y="102" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="11" fill="#1c2230">Tu fisio</text>
+          <g fill="#f6c9d8"><rect x="122" y="112" width="20" height="9" rx="4"/><rect x="121" y="124" width="22" height="9" rx="4"/><rect x="120" y="136" width="24" height="10" rx="4"/><rect x="119" y="149" width="26" height="10" rx="4"/><rect x="118" y="162" width="28" height="11" rx="4"/><rect x="118" y="176" width="28" height="11" rx="4"/><rect x="118" y="190" width="28" height="11" rx="4"/><rect x="119" y="204" width="26" height="11" rx="4"/></g>
+          <path d="M120 220c4 12 20 12 24 0" fill="#e8467f"/>
+          <g stroke="#1c2230" stroke-width="1.6" opacity=".35"><line x1="94" y1="132" x2="112" y2="132"/><line x1="94" y1="168" x2="112" y2="168"/><line x1="152" y1="150" x2="170" y2="150"/><line x1="152" y1="196" x2="170" y2="196"/></g>
+          <!-- reloj -->
+          <circle cx="268" cy="118" r="30" fill="#fff"/><circle cx="268" cy="118" r="30" fill="none" stroke="#1c2230" stroke-width="4"/>
+          <path d="M268 118V98M268 118l14 8" stroke="#1c2230" stroke-width="4" stroke-linecap="round"/>
+          <!-- suelo -->
+          <rect x="0" y="370" width="600" height="70" fill="#a81d4f"/>
+          <ellipse cx="300" cy="388" rx="210" ry="10" fill="#8f1843"/>
+          <!-- camilla: patas -->
+          <g fill="#d7d9df"><rect x="140" y="300" width="10" height="84" rx="3"/><rect x="452" y="300" width="10" height="84" rx="3"/><rect x="200" y="300" width="10" height="84" rx="3"/><rect x="392" y="300" width="10" height="84" rx="3"/></g>
+          <rect x="146" y="338" width="250" height="8" rx="3" fill="#bfc3cc"/>
+          <!-- camilla: tablero -->
+          <rect x="112" y="268" width="378" height="38" rx="12" fill="#1c2230"/>
+          <rect x="112" y="268" width="378" height="10" rx="5" fill="#323a4d"/>
+          <path d="M112 286h378" stroke="#2a3142" stroke-width="2"/>
+          <!-- agujero facial y cojín -->
+          <rect x="430" y="254" width="66" height="22" rx="11" fill="#fbeaf0"/>
+          <!-- papel de camilla -->
+          <rect x="150" y="262" width="270" height="10" rx="3" fill="#ffffff"/>
+          <!-- toalla doblada -->
+          <rect x="176" y="232" width="94" height="32" rx="6" fill="#ffffff"/>
+          <rect x="176" y="244" width="94" height="6" fill="#e8467f"/>
+          <rect x="176" y="232" width="94" height="8" rx="4" fill="#f4eef0"/>
+          <!-- rollo de vendaje sobre la camilla -->
+          <circle cx="330" cy="246" r="18" fill="#e8467f"/><circle cx="330" cy="246" r="7" fill="#fbeaf0"/>
+          <path d="M346 254c18 6 30 6 44 2" stroke="#e8467f" stroke-width="10" stroke-linecap="round" fill="none"/>
+          <!-- rodillo en el suelo -->
+          <rect x="430" y="352" width="104" height="28" rx="14" fill="#fbeaf0"/>
+          <ellipse cx="522" cy="366" rx="9" ry="14" fill="#e9c3d1"/>
+          <!-- mancuernas -->
+          <g fill="#1c2230"><rect x="62" y="364" width="12" height="18" rx="3"/><rect x="92" y="364" width="12" height="18" rx="3"/><rect x="72" y="370" width="22" height="6" rx="2"/></g>
+          <!-- planta -->
+          <rect x="70" y="316" width="36" height="40" rx="4" fill="#fbeaf0"/>
+          <g fill="#1c2230"><path d="M88 316c-20-10-24-30-14-40 6 14 14 22 14 40Z"/><path d="M88 316c18-12 22-32 10-42-4 16-12 24-10 42Z"/><path d="M88 316c0-18 2-36 0-50-6 14-4 32 0 50Z"/></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="contenedor">
+      <div class="citas-cab">
+        <h2>¿Qué cita pido?</h2>
+        <p>Busca tu caso y pide hora para ese tratamiento. Al lado, lo que dura la cita.</p>
+      </div>
+      <ul class="citas">
+        <li><p class="preg">¿Es la primera vez que vienes?</p><p class="serv"><strong>Primera valoración</strong><span>Nos cuentas qué te pasa, te exploramos y te explicamos cómo lo vamos a trabajar.</span></p><span class="min">45 min</span></li>
+        <li><p class="preg">¿Ya has venido antes?</p><p class="serv"><strong>Sesión de fisioterapia</strong><span>Terapia manual y ejercicios, siguiendo lo que vimos en la valoración.</span></p><span class="min">50 min</span></li>
+        <li><p class="preg">¿Te la ha propuesto tu fisio?</p><p class="serv"><strong>Punción seca</strong><span>Técnica con una aguja muy fina en puntos de tensión del músculo. Se hace solo si tu fisio lo ve indicado.</span></p><span class="min">30 min</span></li>
+        <li><p class="preg">¿Llevas la espalda cargada?</p><p class="serv"><strong>Masaje descontracturante</strong><span>Masaje para la espalda, el cuello o las piernas cargadas.</span></p><span class="min">45 min</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ RESERVAS (taller de iando) ============ -->
+  <section id="reservar">
+    <div class="contenedor res-grid">
+      <div class="res-intro">
+        <h2>Pide tu cita</h2>
+        <p>Las horas que ves son las que quedan libres de verdad en la agenda de la clínica.</p>
+        <ol>
+          <li>Elige el tratamiento.</li>
+          <li>Toca el día y una hora libre.</li>
+          <li>Deja tu nombre, teléfono y correo.</li>
+        </ol>
+        <p class="alt">¿Prefieres hablar? <a href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20de%20fisio" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> o llama al <a href="tel:+34637847114">637 847 114</a>.</p>
+      </div>
+      <div class="hoja">
+        <span class="tira tira-1" aria-hidden="true"></span><span class="tira tira-2" aria-hidden="true"></span><span class="tira tira-3" aria-hidden="true"></span>
+        <div class="hoja-cab"><strong>Hoja de cita</strong><span>Tu fisio</span></div>
+        <div class="hoja-cuerpo">
+          <form id="rv-form" class="rv" novalidate>
+            <div><span class="rv-lab" id="rv-serv-lab">Tratamiento</span>
+              <div id="rv-servs" class="rv-servs" role="radiogroup" aria-labelledby="rv-serv-lab"><p class="rv-ayuda">Cargando tratamientos…</p></div>
+            </div>
+            <div><span class="rv-lab" id="rv-dias-lab">Día</span>
+              <div id="rv-dias" class="rv-dias" role="group" aria-labelledby="rv-dias-lab"></div>
+              <label class="rv-otro">¿Otro día?<input type="date" id="rv-fecha" required></label>
+            </div>
+            <div><span class="rv-lab">Hora</span><div id="rv-horas" class="rv-horas" role="radiogroup" aria-label="Horas libres"><p class="rv-ayuda">Elige primero el tratamiento y el día.</p></div></div>
+            <div class="rv-dos">
+              <label>Nombre<input id="rv-nombre" autocomplete="name" maxlength="120" required></label>
+              <label>Teléfono<input id="rv-tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="600 000 000" required></label>
+            </div>
+            <label>Correo electrónico<input id="rv-email" type="email" inputmode="email" autocomplete="email" maxlength="160" placeholder="tu@correo.com" required></label>
+            <label>¿Algo que debamos saber? (opcional)<textarea id="rv-notas" rows="2" maxlength="500" placeholder="Qué te molesta o desde cuándo"></textarea></label>
+            <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos para gestionar esta cita y que me envíen por correo la confirmación, un recordatorio y, después, un enlace para dejar mi opinión.</label>
+            <button class="btn btn-rosa" type="submit" id="rv-enviar">Pedir mi cita</button>
+            <p id="rv-estado" class="rv-estado" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+  (function () {
+    var SB = "https://gimoqpusrdltlkrwsykr.supabase.co";
+    var KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdpbW9xcHVzcmRsdGxrcndzeWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MDA0NDIsImV4cCI6MjA5Nzk3NjQ0Mn0.xmxP3TGAkXNPsrIKSYj1A-NXrIN1JIyzl9Fv6_FP8Dw";
+    var NEGOCIO = "beeb6aaf-606b-4217-bf45-388965f660ac";
+    var WHATSAPP = "34637847114";
+    var ABIERTO = [1, 2, 3, 4, 5]; /* getDay(): lunes a viernes */
+    var ORDEN = ["Primera valoración", "Sesión de fisioterapia", "Punción seca", "Masaje descontracturante"];
+    var H = { apikey: KEY, Authorization: "Bearer " + KEY, "Content-Type": "application/json" };
+    var $ = function (id) { return document.getElementById(id); };
+    var hora = null, serv = "", servicios = [];
+    var estado = function (t, cls) { var e = $("rv-estado"); e.textContent = t; e.className = "rv-estado " + (cls || ""); };
+    var hoy = new Date(); var iso = function (d) { return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
+    $("rv-fecha").min = iso(hoy); $("rv-fecha").max = iso(new Date(hoy.getTime() + 60 * 864e5));
+
+    /* Botones de día: los próximos 10 días abiertos */
+    var dias = $("rv-dias"), html = "", n = 0;
+    for (var i = 0; n < 10 && i < 30; i++) {
+      var d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + i);
+      if (ABIERTO.indexOf(d.getDay()) < 0) continue;
+      var et = i === 0 ? "hoy" : i === 1 ? "mañana" : d.toLocaleDateString("es-ES", { weekday: "short" }).replace(".", "");
+      html += '<button type="button" aria-pressed="false" data-f="' + iso(d) + '"><small>' + et + "</small><b>" + d.getDate() + "</b><small>" + d.toLocaleDateString("es-ES", { month: "short" }).replace(".", "") + "</small></button>";
+      n++;
+    }
+    dias.innerHTML = html;
+    function marcarDia(f) { dias.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.f === f ? "true" : "false"); }); }
+    dias.querySelectorAll("button").forEach(function (b) { b.onclick = function () { $("rv-fecha").value = b.dataset.f; marcarDia(b.dataset.f); cargarHoras(); }; });
+
+    function marcarServ(id) { serv = id; $("rv-servs").querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-checked", b.dataset.id === id ? "true" : "false"); }); }
+    fetch(SB + "/rest/v1/servicios?select=id,nombre,precio_desde,duracion_minutos&order=nombre&negocio_id=eq." + NEGOCIO, { headers: H })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (s) {
+        servicios = s.slice().sort(function (a, b) { var x = ORDEN.indexOf(a.nombre), y = ORDEN.indexOf(b.nombre); return (x < 0 ? 99 : x) - (y < 0 ? 99 : y); });
+        var esc = function (t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
+        $("rv-servs").innerHTML = servicios.map(function (x) {
+          return '<button type="button" role="radio" aria-checked="false" data-id="' + x.id + '"><b>' + esc(x.nombre) + "</b><small>" + x.duracion_minutos + " min" + (x.precio_desde ? " · desde " + x.precio_desde + " €" : "") + "</small></button>";
+        }).join("");
+        $("rv-servs").querySelectorAll("button").forEach(function (b) { b.onclick = function () { marcarServ(b.dataset.id); cargarHoras(); }; });
+      })
+      .catch(function () { $("rv-servs").innerHTML = '<p class="rv-ayuda">No se pudieron cargar los tratamientos.</p>'; estado("La cita online no está disponible ahora. Escríbenos por WhatsApp.", "mal"); });
+
+    function cargarHoras() {
+      hora = null;
+      var f = $("rv-fecha").value, box = $("rv-horas");
+      if (!serv || !f) { box.innerHTML = '<p class="rv-ayuda">' + (!serv ? "Elige primero el tratamiento." : "Toca un día.") + "</p>"; return; }
+      box.innerHTML = '<p class="rv-ayuda">Buscando horas libres…</p>';
+      fetch(SB + "/rest/v1/rpc/huecos_libres", { method: "POST", headers: H, body: JSON.stringify({ p_negocio_id: NEGOCIO, p_servicio_id: serv, p_fecha: f }) })
+        .then(function (r) { return r.json(); })
+        .then(function (horas) {
+          if (!Array.isArray(horas) || !horas.length) { box.innerHTML = '<p class="rv-ayuda">No quedan horas libres ese día. Prueba con otro.</p>'; return; }
+          box.innerHTML = horas.map(function (h) { var v = String(h).slice(0, 5); return '<button type="button" role="radio" aria-checked="false" data-h="' + v + '">' + v + "</button>"; }).join("");
+          box.querySelectorAll("button").forEach(function (b) {
+            b.onclick = function () { box.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-checked", "false"); }); b.setAttribute("aria-checked", "true"); hora = b.dataset.h; };
+          });
+        })
+        .catch(function () { box.innerHTML = '<p class="rv-ayuda">No se pudieron cargar las horas. Inténtalo de nuevo.</p>'; });
+    }
+    $("rv-fecha").onchange = function () { marcarDia($("rv-fecha").value); cargarHoras(); };
+
+    $("rv-form").onsubmit = function (e) {
+      e.preventDefault();
+      var nombre = $("rv-nombre").value.trim(), tel = $("rv-tel").value.replace(/\D/g, "");
+      if (!serv || !$("rv-fecha").value) return estado("Elige el tratamiento y el día.", "mal");
+      if (!hora) return estado("Elige una hora.", "mal");
+      if (!nombre) return estado("Escribe tu nombre.", "mal");
+      if (!/^(34)?[6-9]\d{8}$/.test(tel)) return estado("Revisa el teléfono (9 cifras).", "mal");
+      var email = $("rv-email").value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(email)) return estado("Revisa el correo electrónico.", "mal");
+      if (!$("rv-ok").checked) return estado("Marca la casilla de privacidad.", "mal");
+      $("rv-enviar").disabled = true; estado("Pidiendo la cita…");
+      fetch(SB + "/rest/v1/rpc/reservar_hueco", { method: "POST", headers: H, body: JSON.stringify({
+        p_negocio_id: NEGOCIO, p_nombre: nombre, p_telefono: tel.slice(-9), p_email: email,
+        p_servicio_id: serv, p_fecha: $("rv-fecha").value, p_hora: hora, p_notas: $("rv-notas").value.trim() || null }) })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res && res.ok) {
+            var s = servicios.find(function (x) { return x.id === serv; }) || {};
+            var f = new Date($("rv-fecha").value + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
+            var hh = hora;
+            estado("¡Cita apuntada! " + (s.nombre || "") + " el " + f + " a las " + hh + ". Te confirmaremos en breve.", "ok");
+            $("rv-form").reset(); marcarDia(""); marcarServ(""); $("rv-horas").innerHTML = ""; hora = null;
+            if (WHATSAPP && /^\d+$/.test(WHATSAPP)) {
+              var a = document.createElement("a"); a.className = "btn btn-2"; a.target = "_blank"; a.rel = "noopener";
+              a.href = "https:" + "//wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hola, acabo de pedir cita para " + (s.nombre || "") + " el " + f + " a las " + hh + " a nombre de " + nombre + ".");
+              a.textContent = "Avisar por WhatsApp (opcional)"; $("rv-estado").after(a);
+            }
+          } else { estado((res && res.error) || "No se pudo pedir la cita. Inténtalo de nuevo.", "mal"); cargarHoras(); }
+        })
+        .catch(function () { estado("No se pudo pedir la cita. Escríbenos por WhatsApp.", "mal"); })
+        .finally(function () { $("rv-enviar").disabled = false; });
+    };
+  })();
+  </script>
+  <!-- ============ /RESERVAS ============ -->
+
+  <section>
+    <div class="contenedor frases">
+      <div><h3>Ves las horas libres de verdad</h3><p>Solo salen los huecos que quedan, según lo que dura cada tratamiento.</p></div>
+      <div><h3>Pides cita a cualquier hora</h3><p>Aunque estemos en plena sesión o la clínica esté cerrada.</p></div>
+      <div><h3>Si prefieres, por WhatsApp</h3><p>Escríbenos o llámanos al <a href="tel:+34637847114">637 847 114</a>.</p></div>
+    </div>
+  </section>
+
+  <section id="horario">
+    <div class="contenedor dos">
+      <div>
+        <h2>Cuándo y dónde</h2>
+        <table class="horario"><tbody>
+          <tr><td>Lunes</td><td>9:00–14:00 · 16:00–20:30</td></tr>
+          <tr><td>Martes</td><td>9:00–14:00 · 16:00–20:30</td></tr>
+          <tr><td>Miércoles</td><td>9:00–14:00 · 16:00–20:30</td></tr>
+          <tr><td>Jueves</td><td>9:00–14:00 · 16:00–20:30</td></tr>
+          <tr><td>Viernes</td><td>9:00–14:00 · 16:00–20:30</td></tr>
+          <tr class="cerrado"><td>Sábado</td><td>Cerrado</td></tr>
+          <tr class="cerrado"><td>Domingo</td><td>Cerrado</td></tr>
+        </tbody></table>
+        <p style="margin-top:16px">Calle de ejemplo, 3</p>
+      </div>
+      <div class="mapa mapa-ej" role="img" aria-label="Aquí irá el mapa de Google con la dirección del negocio"><span>Aquí irá el mapa de Google<br>con la dirección de tu negocio</span></div>
+    </div>
+  </section>
+
+  <section id="preguntas">
+    <div class="contenedor" style="max-width:820px">
+      <h2>Lo que más nos preguntan</h2>
+      <details><summary>Es mi primera vez, ¿qué cita pido?</summary><p>La primera valoración. Así vemos qué te pasa y te decimos qué sesiones te convienen.</p></details>
+      <details><summary>¿Qué traigo a la cita?</summary><p>Ropa cómoda y, si los tienes, informes o pruebas relacionados con lo que te pasa.</p></details>
+      <details><summary>¿Necesito volante del médico?</summary><p>No para pedir cita con nosotros. Si tienes un informe, tráelo y lo tenemos en cuenta.</p></details>
+      <details><summary>¿Puedo cambiar o anular la cita?</summary><p>Sí. Escríbenos por WhatsApp o llámanos y la pasamos a otro hueco.</p></details>
+      <details><summary>¿Qué horario tenéis?</summary><p>De lunes a viernes, de 9:00 a 14:00 y de 16:00 a 20:30. Sábado y domingo, cerrado.</p></details>
+    </div>
+  </section>
+
+  <section id="contacto" class="cierre">
+    <div class="contenedor">
+      <h2>¿Te buscamos hueco esta semana?</h2>
+      <p>Coge hora en un minuto o escríbenos si no sabes qué cita pedir.</p>
+      <div class="acciones">
+        <a class="btn btn-rosa" href="#reservar">Pedir cita</a>
+        <a class="btn btn-2" href="https://wa.me/34637847114?text=Hola%2C%20no%20s%C3%A9%20qu%C3%A9%20cita%20pedir" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <p><strong>Fisio de ejemplo</strong> · Calle de ejemplo, 3 · <a href="tel:+34637847114">637 847 114</a></p>
+    <p>Negocio ficticio: esta es una web de ejemplo para enseñar cómo funciona la cita online. Los datos que envíes solo se usan para gestionar la cita.</p>
+    <p style="opacity:.75">Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
+  </div>
+</footer>
+
+<a class="wa-flota" href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20de%20fisio" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.3-.9 2.1 0 .9.4 1.8 1 2.6 1.1 1.6 2.5 2.9 4.2 3.7.6.3 1.1.4 1.5.5.6.2 1.2.1 1.7 0 .5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></svg>
+</a>
+</body>
+</html>
