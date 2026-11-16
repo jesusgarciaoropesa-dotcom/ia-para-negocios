@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="Local cerrado de noche">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#1d2140"/>
+<circle cx="760" cy="110" r="50" fill="#f4e7b0"/><circle cx="782" cy="96" r="44" fill="#1d2140"/>
+<g fill="#fff" opacity=".8"><circle cx="120" cy="80" r="3"/><circle cx="300" cy="50" r="2"/><circle cx="520" cy="90" r="3"/><circle cx="640" cy="40" r="2"/><circle cx="420" cy="140" r="2"/><circle cx="200" cy="160" r="2"/></g>
+<rect x="0" y="640" width="900" height="120" rx="20" fill="#3a3f5c"/>
+<rect x="120" y="200" width="660" height="440" fill="#4a4f70"/>
+<rect x="150" y="225" width="600" height="80" rx="10" fill="#17162b"/>
+<text x="450" y="280" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="48" fill="#ffd43b" opacity=".55">TU TALLER</text>
+<rect x="170" y="330" width="560" height="310" fill="#6b7190"/>
+<g stroke="#5a6080" stroke-width="10"><path d="M170 350 h560"/><path d="M170 380 h560"/><path d="M170 410 h560"/><path d="M170 440 h560"/><path d="M170 470 h560"/><path d="M170 500 h560"/><path d="M170 530 h560"/><path d="M170 560 h560"/><path d="M170 590 h560"/><path d="M170 620 h560"/></g>
+<rect x="330" y="420" width="240" height="110" rx="12" fill="#fff"/>
+<text x="450" y="472" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="42" fill="#c4452f">CERRADO</text>
+<text x="450" y="508" text-anchor="middle" font-family="Arial" font-weight="700" font-size="22" fill="#17162b">Abrimos a las 8:30</text>
+<rect x="80" y="380" width="20" height="260" fill="#2c3050"/><circle cx="90" cy="372" r="26" fill="#f4e7b0" opacity=".85"/>
+<path d="M30 640 L90 400 L150 640 Z" fill="#f4e7b0" opacity=".12"/>
+</svg>

@@ -56,11 +56,30 @@
    "sello": "MESA PERDIDA"
   },
   {
-   "voz": "Pero tiene arreglo. Y es más fácil de lo que piensas.",
+   "voz": "Y por la noche, con el bar cerrado, pasa lo mismo.",
+   "clave": "cerrado",
+   "tipo": "dibujo",
+   "dibujo": "bar-cerrado"
+  },
+  {
+   "voz": "A las once y media alguien quiere mesa para mañana… y no hay nadie para contestar.",
+   "clave": "mañana",
+   "tipo": "dibujo",
+   "dibujo": "bar-cliente",
+   "globo": {
+    "titulo": "WhatsApp · 23:37",
+    "texto": "¿Mañana tenéis mesa para seis a las dos?",
+    "color": "#1f9d55",
+    "x": 440,
+    "y": 40
+   }
+  },
+  {
+   "voz": "Pero las dos cosas tienen arreglo.",
    "clave": "arreglo",
    "tipo": "frase",
    "texto": "Tiene arreglo",
-   "sub": "y es **más fácil** de lo que piensas"
+   "sub": "ocupado **o cerrado**"
   },
   {
    "voz": "Una web donde reservan solos: eligen cuántos son, el día y la hora.",
@@ -70,20 +89,20 @@
    "desplazar": true
   },
   {
-   "voz": "En un minuto, mesa reservada. Sin llamar.",
+   "voz": "En un minuto, mesa reservada. Sin llamar, a cualquier hora, aunque esté cerrado.",
    "clave": "reservada",
    "tipo": "captura",
    "imagen": "cap-bar/movil-reserva-hecha.png"
   },
   {
-   "voz": "Y a ti te llega al móvil, sin dejar de servir.",
-   "clave": "móvil",
+   "voz": "Y por la mañana, al abrir, te encuentras las reservas hechas.",
+   "clave": "mañana",
    "tipo": "dibujo",
    "dibujo": "bar",
    "reserva": true,
    "globo": {
-    "titulo": "Tus reservas · ahora",
-    "texto": "Nueva reserva: mesa para 4, hoy a las 14:00",
+    "titulo": "Mientras estaba cerrado",
+    "texto": "3 reservas nuevas para hoy",
     "color": "#1f9d55"
    }
   },

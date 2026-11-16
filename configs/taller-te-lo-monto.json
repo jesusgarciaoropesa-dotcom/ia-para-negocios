@@ -48,28 +48,47 @@
    "sello": "CLIENTE PERDIDO"
   },
   {
-   "voz": "Pero tiene arreglo, y no tienes que soltar la llave.",
+   "voz": "Y por la noche, con el taller cerrado, igual.",
+   "clave": "cerrado",
+   "tipo": "dibujo",
+   "dibujo": "taller-cerrado"
+  },
+  {
+   "voz": "El cliente se acuerda a las once de la noche… y no hay nadie para darle cita.",
+   "clave": "noche",
+   "tipo": "dibujo",
+   "dibujo": "bar-cliente",
+   "globo": {
+    "titulo": "WhatsApp · 23:05",
+    "texto": "¿Mañana me podéis pasar la ITV previa?",
+    "color": "#1f9d55",
+    "x": 440,
+    "y": 40
+   }
+  },
+  {
+   "voz": "Pero las dos cosas tienen arreglo.",
    "clave": "llave",
    "tipo": "frase",
    "texto": "Tiene arreglo",
-   "sub": "y **sin soltar la llave**"
+   "sub": "ocupado **o cerrado**"
   },
   {
-   "voz": "Una web donde piden cita solos: eligen qué le pasa al coche, el día y la hora.",
+   "voz": "Una web donde piden cita solos, a cualquier hora: eligen qué le pasa al coche, el día y la hora.",
    "clave": "solos",
    "tipo": "captura",
    "imagen": "cap-taller/movil-pedir-cita.png",
    "desplazar": true
   },
   {
-   "voz": "Y tú lo ves en el móvil cuando paras.",
-   "clave": "móvil",
+   "voz": "Y por la mañana, al abrir, tienes la agenda del día hecha.",
+   "clave": "mañana",
    "tipo": "dibujo",
    "dibujo": "taller",
    "reserva": true,
    "globo": {
-    "titulo": "Tus citas · ahora",
-    "texto": "Nueva cita: revisión de frenos, sábado a las 9:00",
+    "titulo": "Mientras estaba cerrado",
+    "texto": "2 citas nuevas: frenos 9:00 · pre-ITV 10:00",
     "color": "#1f9d55"
    }
   },
