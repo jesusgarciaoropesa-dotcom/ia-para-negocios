@@ -1,5 +1,102 @@
 # Taller de iando · Guía de diseño
 
+## 0. Estilo «escaparate» (decidido por Jesús el 17-11-2026) — MANDA sobre el resto de la guía
+
+Jesús ha visto este estilo y le gusta más que el anterior. Míralo con Read antes de diseñar:
+`taller/ejemplos/escaparate-taller.jpg`, `escaparate-bar.jpg` y `escaparate-pelu-fisio.jpg`.
+Lo que hace que funcione: **fotos reales y grandes del sector**, todo lo importante en la
+primera página (servicios, reserva, opiniones y dónde está) y un aspecto de negocio serio.
+Inspirarse en esa estructura; nunca copiar sus textos, logotipos ni imágenes.
+
+### 0.1 Estructura de la página (de arriba abajo)
+1. **Cabecera**: logotipo (SVG con el nombre y debajo una línea de qué es: «Mecánica y servicio
+   del automóvil»), menú corto (4-6 enlaces) y el botón principal en el color de acento
+   («Reservar cita», «Reservar mesa»).
+2. **Inicio a sangre con una foto grande del sector** (todo el ancho, 75-90 % del alto de la
+   pantalla en ordenador), con un degradado oscuro (o claro, según la paleta) hacia el lado del
+   texto para que se lea. Titular grande en dos líneas que diga lo que gana el cliente
+   (se permite una parte del titular en el color de acento, como en las referencias), una frase
+   de qué hace el negocio y que se reserva online, y dos botones: el principal (reservar) y uno
+   secundario con borde (llamar, ver la carta).
+3. **Franja de 3 garantías** con icono SVG y dos líneas cada una («Reserva online 24 horas»,
+   «Cocina casera»…). Solo cosas ciertas del negocio o del servicio de reservas.
+4. **Servicios / carta**: rejilla de 5-8 tarjetas, cada una con **una foto de ese servicio**, el
+   nombre encima de la foto sobre un degradado y, si cabe, una línea («Pastillas, discos y
+   líquido»). En móvil, 2 columnas o carrusel horizontal.
+5. **Bloque de reserva en la propia página de inicio**: a la izquierda título («Reserva tu cita
+   sin llamar»), una frase y una firma manuscrita corta (fuente tipo Caveat/Kalam); a la
+   derecha el widget de reservas con los pasos numerados (Servicio · Fecha y hora · Tus datos ·
+   Confirmación — aquí los números sí son pasos de verdad). Fondo que contraste con lo de
+   alrededor (bloque oscuro sobre fondo claro o al revés).
+6. **Opiniones + dónde estamos + mapa** en una misma franja: nota media y número de reseñas de
+   Google, una o tres reseñas cortas, dirección, teléfono, botón «Ver en Google Maps» y el mapa
+   (iframe sin clave: `https://maps.google.com/maps?q=<dirección codificada>&z=15&output=embed`,
+   con `loading="lazy"`).
+7. **Pie**: logotipo, Aviso legal · Privacidad · Cookies, redes que tenga, y el botón flotante
+   de WhatsApp abajo a la derecha en todas las pantallas.
+En negocios de comida, añade una franja final con llamada a reservar («¿Te apetece una buena
+tapa?») como en `escaparate-bar.jpg`.
+
+### 0.2 Paleta y letra por sector (punto de partida; los colores de la marca del cliente mandan)
+- Taller, motor: grafito casi negro + naranja; sans de rótulo gruesa (Barlow, Archivo, Saira).
+- Bar, restaurante: crema cálido + teja + verde oliva; titulares con serifa (Playfair, DM Serif,
+  Fraunces) y texto sans.
+- Peluquería, estética: negro + dorado suave, o blanco + rosa empolvado; sans elegante.
+- Fisio, clínica, salud: blanco + azul intenso; sans limpia (Manrope, Figtree, Plus Jakarta).
+- Gimnasio: negro + un color vivo (amarillo, rojo); sans condensada.
+- Autoescuela: blanco + un color fuerte de marca (rojo, verde); sans redonda.
+Que dos demos seguidas del mismo sector no salgan iguales: cambia al menos acento y tipografía.
+
+### 0.3 Fotos (libres, gratis y sin pedirle nada a Jesús)
+Si el encargo trae fotos del cliente, mandan esas. Si no, **fotos de Unsplash con licencia
+Unsplash (libre, uso comercial, sin atribución obligatoria)**. Nunca Unsplash+ (de pago), ni
+Getty, ni Shutterstock, ni fotos sacadas de webs de otros negocios.
+1. Busca con WebSearch `unsplash.com/photos <tema en inglés>` (p. ej. «mechanic brake disc»,
+   «spanish tapas croquetas», «physiotherapist knee»). Hace falta 1 foto de inicio + 1 por
+   servicio (+ 1 del local si la estructura la usa).
+2. Abre cada página con WebFetch pidiendo: la URL completa de la imagen
+   (`https://images.unsplash.com/photo-…`), si es Unsplash+ y la descripción. Descarta las de
+   `plus.unsplash.com` o `premium_photo`, las que tengan marcas o matrículas muy visibles,
+   texto en otro idioma o un ambiente que no pegue con un negocio de pueblo de España.
+3. Escribe `demos/<slug>/fotos.json`:
+   `{"fotos": [{"nombre": "inicio", "url": "https://images.unsplash.com/photo-…", "ancho": 1800, "alto": 1000},
+   {"nombre": "frenos", "url": "…", "ancho": 640, "alto": 480}]}`
+   (`foco_y` opcional, de 0 a 1, para elegir qué parte vertical se queda al recortar).
+4. Commit y push a `demos`. La acción de GitHub «Fotos de las demos» las baja, recorta y sube a
+   `demos/<slug>/img/<nombre>.jpg` en 1-2 minutos. Espera con un bucle (`until git fetch -q origin
+   demos && git show origin/demos:demos/<slug>/img/fotos-resultado.json; do sleep 10; done`, máximo
+   5 minutos), haz `git pull --rebase` y lee `fotos-resultado.json`: las que tengan `ok: false`,
+   cámbialas por otras y repite.
+5. **Mira cada foto con Read** (reducida con Pillow si pesa) y comprueba que enseña lo que dice
+   la tarjeta (regla de Jesús: las imágenes tienen que corresponder a lo que se dice). Si no,
+   cámbiala.
+6. En el HTML: rutas relativas `img/<nombre>.jpg`, `width`/`height`, `alt` descriptivo, la del
+   inicio con `fetchpriority="high"` y el resto con `loading="lazy"`.
+
+### 0.4 Opiniones: nunca inventadas
+- Negocio real: solo la nota media y el número de reseñas reales de su ficha de Google y 1-3
+  reseñas reales cortas (nombre de pila e inicial). Si la investigación no las tiene, pon la
+  nota real con «Ver reseñas en Google», o quita las reseñas y deja solo dónde estamos y el mapa.
+- Demos ficticias («… de ejemplo», para reels): se pueden poner reseñas de ejemplo, con
+  «Reseñas de ejemplo» en letra pequeña bajo el bloque.
+- Sin fotos de caras en las reseñas: círculo con las iniciales.
+
+### 0.5 Qué cambia del resto de la guía
+- La ficha de estilo (parte 1) se sigue haciendo, pero su `estructura` es la de 0.1 y su
+  `inicio` es siempre la foto grande; las webs de referencia sirven para colores, letra y fotos.
+- De la lista «Lo que delata una web hecha con IA» (parte 2) ya no se aplican: tarjetas con foto
+  para los servicios, pasos numerados en la reserva, una parte del titular en color de acento y
+  la flecha en el botón «Continuar». El resto sigue (nada de relleno, textos ciertos, móvil
+  primero, contraste, un solo color de acento).
+- En la revisión visual (parte 3), la nota «Sin rasgos de IA» pasa a ser **«Como las
+  referencias escaparate»** (fotos grandes y bien elegidas, todo lo importante en la primera
+  página, aspecto de negocio serio). Añade una nota más: **«Fotos que corresponden»**.
+- El ejemplo de Mk Racing (final de la guía) queda como referencia de fuerza de color, no de
+  estructura.
+
+---
+
+
 Decidido por Jesús el 13-11-2026: las demos no pueden tener «aspecto de web hecha con IA».
 Cada negocio tiene que parecer **suyo**: si tapas el nombre, se tiene que notar que es una
 peluquería de Lagartera y no un bar de Talavera. La guía tiene tres partes, que van en este orden:
@@ -8,6 +105,7 @@ peluquería de Lagartera y no un bar de Talavera. La guía tiene tres partes, qu
 2. **Criterios de diseño** al maquetar.
 3. **Revisión visual en rondas** con las capturas (antes de dar la demo por buena).
 
+Lo de abajo es la guía de antes (13-11-2026); vale salvo donde la parte 0 diga otra cosa.
 Léela entera antes de maquetar (etapa Maquetador) y otra vez antes de revisar.
 
 ---
