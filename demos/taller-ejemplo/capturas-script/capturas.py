@@ -1,14 +1,14 @@
 """Capturas de la demo y del panel con las fuentes y los datos servidos en local
 (la máquina del taller no llega a Google Fonts ni a Supabase). Datos de ejemplo ficticios."""
-import json, re, sys
+import json, os, re, sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-REPO = Path("/home/claude/ia-para-negocios")
-DEMO = REPO / "demos/taller-ejemplo-oropesa/index.html"
+REPO = Path(__file__).resolve().parents[3]
+DEMO = REPO / "demos/taller-ejemplo/index.html"
 ADMIN = REPO / "taller/reservas/admin.html"
-OUT = REPO / "demos/taller-ejemplo-oropesa/capturas"
-FM = Path("/tmp/claude-0/-home-claude/b571e787-0c66-5096-bbd6-4d5f69e766b1/scratchpad/fonts/node_modules")
+OUT = REPO / "demos/taller-ejemplo/capturas"
+FM = Path(os.environ.get("FONTS_DIR", "fonts/node_modules"))  # npm i @fontsource-variable/archivo @fontsource/atkinson-hyperlegible @fontsource/playfair-display @fontsource/lato
 MOCK = Path(__file__).with_name("mock-supabase.js")
 NEG = "cae3656f-c76b-490b-b0e4-4aef72d08952"
 
@@ -51,7 +51,7 @@ def rutas(ctx):
         r.fulfill(status=200, content_type="application/json", body=json.dumps(body), headers={"access-control-allow-origin": "*"})
     ctx.route("https://gimoqpusrdltlkrwsykr.supabase.co/**", sb)
     ctx.route("https://www.google.com/maps**", lambda r: r.fulfill(status=200, content_type="text/html",
-              body="<body style='margin:0;background:#dfe5f0;font:15px sans-serif;display:grid;place-items:center;height:100vh;color:#4d5866'>Mapa de Oropesa (Toledo)</body>"))
+              body="<body style='margin:0;background:#dfe5f0;font:15px sans-serif;display:grid;place-items:center;height:100vh;color:#4d5866'>Mapa</body>"))
 
 
 with sync_playwright() as p:

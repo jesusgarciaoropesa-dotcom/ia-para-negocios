@@ -23,6 +23,10 @@ Archivos: rama `demos` de este repo → `demos/<slug>/index.html` (+ `capturas/`
 | — | Jesús | aprueba o pide cambios (`comentario`) en el panel |
 | 6 | Entrega | publica en `main` → `https://iando.xyz/demos/<slug>/` y deja el mensaje para el cliente |
 
+> **Demos de ejemplo (ficticias, para reels)** — decidido por Jesús el 16-11-2026: no llevan pueblo ni
+> localidad en ningún sitio (ni en textos, ni en SEO, ni en el slug, ni en el mapa: en su lugar va un hueco
+> «Aquí irá el mapa de Google con la dirección de tu negocio»). El slug es solo negocio: `bar-ejemplo`.
+
 ### 1. Ficha (Recepcionista)
 
 Campos: `negocio`, `sector`, `tipo_schema` (LocalBusiness más concreto: HairSalon,

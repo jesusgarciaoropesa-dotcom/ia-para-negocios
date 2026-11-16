@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Taller mecánico en Oropesa | Pide cita online</title>
-<meta name="description" content="Taller mecánico en Oropesa (Toledo): frenos, cambio de aceite, pre-ITV y diagnosis de averías. Mira las horas libres y pide cita desde el móvil.">
+<title>Taller mecánico con cita online | Tu taller</title>
+<meta name="description" content="Taller mecánico con cita online: frenos, cambio de aceite, pre-ITV y diagnosis de averías. Mira las horas libres y pide cita desde el móvil.">
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Taller mecánico en Oropesa | Pide cita online">
+<meta property="og:title" content="Taller mecánico con cita online | Tu taller">
 <meta property="og:description" content="Mira las horas libres del taller y pide cita desde el móvil en un minuto.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#1d3b84">
@@ -18,10 +18,9 @@
   "@context": "https://schema.org",
   "@type": "AutoRepair",
   "name": "Taller de ejemplo",
-  "description": "Taller mecánico en Oropesa (Toledo) con cita online: frenos, cambio de aceite y filtros, pre-ITV y diagnosis de averías.",
+  "description": "Taller mecánico con cita online: frenos, cambio de aceite y filtros, pre-ITV y diagnosis de averías.",
   "telephone": "+34637847114",
-  "address": { "@type": "PostalAddress", "streetAddress": "Calle de ejemplo, 2", "addressLocality": "Oropesa", "addressRegion": "Toledo", "addressCountry": "ES" },
-  "areaServed": "Oropesa y comarca del Campo Arañuelo",
+  "address": { "@type": "PostalAddress", "streetAddress": "Calle de ejemplo, 2", "addressCountry": "ES" },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:30", "closes": "13:30" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "15:30", "closes": "19:00" }
@@ -192,6 +191,7 @@
   .horario td:last-child { text-align: right; font-weight: 700; }
   .horario tr.cerrado td { color: #5f6976; font-weight: 400; }
   .mapa { border: 0; width: 100%; height: 340px; border-radius: 8px; background: var(--c-suave); }
+  .mapa-ej { display: grid; place-items: center; text-align: center; padding: 20px; min-height: 260px; color: currentColor; opacity: .85; font-weight: 600; background-color: rgba(127,127,127,.08); background-image: linear-gradient(rgba(127,127,127,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(127,127,127,.14) 1px, transparent 1px); background-size: 28px 28px; }
 
   /* Preguntas */
   details { border-bottom: 1px solid #c8ced6; padding: 16px 0; }
@@ -235,7 +235,7 @@
   <section class="hero">
     <div class="contenedor hero-grid">
       <div class="texto">
-        <h1>Tu taller en Oropesa, con cita desde el móvil</h1>
+        <h1>Tu taller, con cita desde el móvil</h1>
         <p class="sub">Elige qué necesita tu coche, el día y la hora libre. Sin llamar y sin esperar a que te cojan el teléfono.</p>
         <div class="acciones">
           <a class="btn btn-res" href="#reservar">Pedir cita</a>
@@ -255,7 +255,7 @@
           <!-- rótulo -->
           <rect x="196" y="58" width="208" height="66" rx="4" fill="#f2c230"/>
           <text x="300" y="98" text-anchor="middle" font-family="Archivo, Arial Black, sans-serif" font-weight="800" font-size="30" fill="#151a22" style="font-stretch:125%">Tu taller</text>
-          <text x="300" y="116" text-anchor="middle" font-family="Atkinson Hyperlegible, sans-serif" font-weight="700" font-size="12" fill="#151a22" letter-spacing="2">OROPESA</text>
+          <text x="300" y="116" text-anchor="middle" font-family="Atkinson Hyperlegible, sans-serif" font-weight="700" font-size="12" fill="#151a22" letter-spacing="2">MECÁNICA GENERAL</text>
           <!-- panel de herramientas -->
           <rect x="62" y="150" width="96" height="110" rx="3" fill="#24479c"/>
           <g fill="#3a5fb5">
@@ -331,7 +331,7 @@
       </div>
       <div class="etiqueta">
         <svg class="etiqueta-anilla" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="30" fill="none" stroke="#6c788a" stroke-width="5"/><circle cx="40" cy="40" r="30" fill="none" stroke="#d5dbe4" stroke-width="1.6"/></svg>
-        <div class="etiqueta-cab"><strong>Cita en el taller</strong><span>Tu taller · Oropesa</span></div>
+        <div class="etiqueta-cab"><strong>Cita en el taller</strong><span>Tu taller</span></div>
         <div class="etiqueta-cuerpo">
           <form id="rv-form" class="rv" novalidate>
             <div><span class="rv-lab" id="rv-serv-lab">Trabajo</span>
@@ -469,9 +469,9 @@
           <tr class="cerrado"><td>Sábado</td><td>Cerrado</td></tr>
           <tr class="cerrado"><td>Domingo</td><td>Cerrado</td></tr>
         </tbody></table>
-        <p style="margin-top:16px">Calle de ejemplo, 2 · Oropesa (Toledo)</p>
+        <p style="margin-top:16px">Calle de ejemplo, 2</p>
       </div>
-      <iframe class="mapa" title="Mapa de Oropesa (Toledo)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Oropesa%2C%20Toledo&output=embed"></iframe>
+      <div class="mapa mapa-ej" role="img" aria-label="Aquí irá el mapa de Google con la dirección del negocio"><span>Aquí irá el mapa de Google<br>con la dirección de tu negocio</span></div>
     </div>
   </section>
 
@@ -500,7 +500,7 @@
 
 <footer>
   <div class="contenedor">
-    <p><strong>Taller de ejemplo</strong> · Calle de ejemplo, 2, Oropesa (Toledo) · <a href="tel:+34637847114">637 847 114</a></p>
+    <p><strong>Taller de ejemplo</strong> · Calle de ejemplo, 2 · <a href="tel:+34637847114">637 847 114</a></p>
     <p>Negocio ficticio: esta es una web de ejemplo para enseñar cómo funciona la cita online. Los datos que envíes solo se usan para gestionar la cita.</p>
     <p style="opacity:.75">Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
   </div>

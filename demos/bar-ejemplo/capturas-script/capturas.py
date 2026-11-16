@@ -30,7 +30,8 @@ RES = [  # reservas de ejemplo para el panel (ficticias)
     {"id": "r3", "fecha": d(2), "hora": "13:30:00", "estado": "pendiente", "notas": "2 personas", "created_at": d(0) + "T12:00:00Z", "clientes": {"nombre": "Marta (ejemplo)", "telefono": "600000003"}, "servicios": {"nombre": "Mesa para comer"}},
     {"id": "r4", "fecha": d(4), "hora": "20:30:00", "estado": "confirmada", "notas": "8 personas · cumpleaños", "created_at": d(0) + "T13:00:00Z", "clientes": {"nombre": "Javier (ejemplo)", "telefono": "600000004"}, "servicios": {"nombre": "Mesa para cenar"}},
 ]
-CFG = {"horario": {"1": [], **{str(i): [["13:30", "16:00"], ["20:30", "23:00"]] for i in range(2, 8)}}, "intervalo_min": 30}
+TEMA = {'nombre': 'Tu bar', 'colores': {'fondo': '#fdfcf9', 'tarjeta': '#ffffff', 'borde': '#ead5d8', 'primario': '#7b1f2e', 'oscuro': '#3a1c20'}, 'fuentes': {'titulos': 'Alfa Slab One', 'texto': 'Karla:wght@400;700'}, 'logo_svg': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 54" role="img" aria-label="Tu bar"> <rect x="2" y="2" width="146" height="50" rx="8" fill="#fdfcf9"/> <rect x="7" y="7" width="136" height="40" rx="5" fill="none" stroke="#1e3f94" stroke-width="2"/> <text x="75" y="37" text-anchor="middle" font-family="Alfa Slab One, Rockwell, Georgia, serif" font-size="25" fill="#7b1f2e">Tu bar</text> </svg>'}
+CFG = {"horario": {"1": [], **{str(i): [["13:30", "16:00"], ["20:30", "23:00"]] for i in range(2, 8)}}, "intervalo_min": 30, "tema": TEMA}
 
 FAKE_SB = """
 const DATA = %s;

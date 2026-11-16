@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bar en Oropesa | Reserva tu mesa online</title>
-<meta name="description" content="Bar de tapas y comidas en Oropesa (Toledo). Mira las mesas libres para comer o cenar y resérvala desde el móvil en un minuto, sin llamar.">
+<title>Bar de tapas con reserva online | Tu bar</title>
+<meta name="description" content="Bar de tapas y comidas con reserva de mesa online. Mira las mesas libres para comer o cenar y resérvala desde el móvil en un minuto, sin llamar.">
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Bar en Oropesa | Reserva tu mesa online">
+<meta property="og:title" content="Bar de tapas con reserva online | Tu bar">
 <meta property="og:description" content="Mira las mesas libres para comer o cenar y resérvala desde el móvil en un minuto.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#7b1f2e">
@@ -18,12 +18,11 @@
   "@context": "https://schema.org",
   "@type": "BarOrPub",
   "name": "Bar de ejemplo",
-  "description": "Bar de tapas y comidas en Oropesa (Toledo) con reserva de mesa online.",
+  "description": "Bar de tapas y comidas con reserva de mesa online.",
   "telephone": "+34637847114",
   "servesCuisine": "Tapas",
   "acceptsReservations": true,
-  "address": { "@type": "PostalAddress", "streetAddress": "Calle de ejemplo, 1", "addressLocality": "Oropesa", "addressRegion": "Toledo", "addressCountry": "ES" },
-  "areaServed": "Oropesa y comarca del Campo Arañuelo",
+  "address": { "@type": "PostalAddress", "streetAddress": "Calle de ejemplo, 1", "addressCountry": "ES" },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "13:30", "closes": "16:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "20:30", "closes": "23:00" }
@@ -177,6 +176,7 @@
   .horario td:last-child { text-align: right; font-weight: 700; }
   .horario .cerrado td { color: #6b7389; font-weight: 400; }
   .mapa { width: 100%; height: 320px; border: 2px solid var(--c-oscuro); border-radius: 14px; background: var(--c-suave); }
+  .mapa-ej { display: grid; place-items: center; text-align: center; padding: 20px; min-height: 260px; color: currentColor; opacity: .85; font-weight: 600; background-color: rgba(127,127,127,.08); background-image: linear-gradient(rgba(127,127,127,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(127,127,127,.14) 1px, transparent 1px); background-size: 28px 28px; }
 
   #preguntas details { border-bottom: 1.5px solid #d6dcea; padding: 16px 0; }
   #preguntas summary { cursor: pointer; font-weight: 700; font-size: 1.08rem; list-style-position: outside; }
@@ -219,7 +219,7 @@
   <section class="inicio">
     <div class="contenedor">
       <div>
-        <h1>Tu mesa en Oropesa, reservada desde el móvil</h1>
+        <h1>Tu mesa, reservada desde el móvil</h1>
         <p class="sub">Elige comida o cena, cuántos sois y la hora. <span class="largo">Sin llamar y sin esperar a que haya un hueco en la barra para cogerte el teléfono.</span><span class="corto">Sin llamar.</span></p>
         <div class="acciones">
           <a class="btn btn-res" href="#reservar">Reservar mesa</a>
@@ -377,9 +377,9 @@
           <tr><td>Sábado</td><td>13:30–16:00 · 20:30–23:00</td></tr>
           <tr><td>Domingo</td><td>13:30–16:00 · 20:30–23:00</td></tr>
         </tbody></table>
-        <p style="margin-top:16px">Calle de ejemplo, 1 · Oropesa (Toledo)</p>
+        <p style="margin-top:16px">Calle de ejemplo, 1</p>
       </div>
-      <iframe class="mapa" title="Mapa de Oropesa (Toledo)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Oropesa%2C%20Toledo&output=embed"></iframe>
+      <div class="mapa mapa-ej" role="img" aria-label="Aquí irá el mapa de Google con la dirección del negocio"><span>Aquí irá el mapa de Google<br>con la dirección de tu negocio</span></div>
     </div>
   </section>
 
@@ -407,7 +407,7 @@
 
 <footer>
   <div class="contenedor">
-    <p><strong>Bar de ejemplo</strong> · Calle de ejemplo, 1, Oropesa (Toledo) · <a href="tel:+34637847114">637 847 114</a></p>
+    <p><strong>Bar de ejemplo</strong> · Calle de ejemplo, 1 · <a href="tel:+34637847114">637 847 114</a></p>
     <p>Negocio ficticio: esta es una web de ejemplo para enseñar cómo funciona la reserva de mesa online. Los datos que envíes solo se usan para gestionar la reserva.</p>
     <p style="opacity:.75">Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
   </div>
