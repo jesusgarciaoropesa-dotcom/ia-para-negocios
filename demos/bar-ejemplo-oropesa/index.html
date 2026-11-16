@@ -9,7 +9,7 @@
 <meta property="og:title" content="Bar en Oropesa | Reserva tu mesa online">
 <meta property="og:description" content="Mira las mesas libres para comer o cenar y resérvala desde el móvil en un minuto.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#1e3f94">
+<meta name="theme-color" content="#7b1f2e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Karla:wght@400;700&display=swap" rel="stylesheet">
@@ -40,12 +40,13 @@
 </script>
 <style>
   :root {
-    --c-primario: #1e3f94;   /* azul cobalto de azulejo */
-    --c-oscuro: #16213d;
+    --c-primario: #7b1f2e;   /* granate de vino tinto: bloque de marca */
+    --c-oscuro: #2a1519;
     --c-fondo: #fdfcf9;
     --c-suave: #e8edf7;
-    --c-texto: #16213d;
-    --c-acento: #f0b323;     /* amarillo de azulejo: botón principal, texto oscuro encima */
+    --c-texto: #2a1519;
+    --c-acento: #7b1f2e;     /* botón principal: granate (blanco hueso sobre los bloques granate) */
+    --c-azulejo: #1e3f94;
     --c-wa: #1f8a4c;
     --f-titulos: "Alfa Slab One", "Rockwell", Georgia, serif;
     --f-texto: "Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -63,18 +64,20 @@
   p { margin: 0 0 1em; max-width: 62ch; }
   .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 20px; }
   section { padding: 64px 0; }
-  :focus-visible { outline: 3px solid var(--c-acento); outline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--c-azulejo); outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
 
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 10px; font-weight: 700; font-size: 1.05rem; text-decoration: none; border: 2px solid transparent; cursor: pointer; font-family: inherit; }
-  .btn-res { background: var(--c-acento); color: var(--c-oscuro); }
-  .btn-res:hover { background: #ffc53d; }
+  .btn-res { background: var(--c-acento); color: #fff; }
+  .btn-res:hover { background: #8f2738; }
+  .cab .btn-res, .inicio .btn-res, .cierre .btn-res { background: #fdfcf9; color: var(--c-primario); }
+  .cab .btn-res:hover, .inicio .btn-res:hover, .cierre .btn-res:hover { background: #fff; }
   .btn-2 { background: transparent; color: #fff; border-color: rgba(255,255,255,.7); }
   .btn-2:hover { background: rgba(255,255,255,.1); }
   .btn-claro { background: #fff; color: var(--c-primario); border-color: var(--c-primario); }
 
   .franja { background: var(--c-oscuro); color: #fff; font-size: .88rem; text-align: center; padding: 8px 16px; }
-  .franja a { color: var(--c-acento); font-weight: 700; }
+  .franja a { color: #f3c4a2; font-weight: 700; }
 
   header.cab { background: var(--c-primario); }
   header.cab .contenedor { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; padding-bottom: 14px; }
@@ -91,7 +94,7 @@
   .inicio .sub { font-size: 1.15rem; color: rgba(255,255,255,.92); max-width: 34em; }
   .inicio .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 18px; }
   .inicio .datos { font-size: .98rem; color: rgba(255,255,255,.85); margin-bottom: 44px; }
-  .inicio .datos strong { color: var(--c-acento); }
+  .inicio .datos strong { color: #fff; }
   .inicio .sub .corto { display: none; }
   @media (max-width: 860px) { .inicio .sub .corto { display: inline; } }
   .barra { width: 100%; height: auto; margin-right: -20px; }
@@ -107,7 +110,7 @@
     .barra { max-width: 520px; }
   }
 
-  .zocalo { height: 64px; background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23fdfcf9'/%3E%3Crect x='.5' y='.5' width='63' height='63' fill='none' stroke='%231e3f94' stroke-opacity='.35'/%3E%3Cpath d='M32 6c5 9 5 17 0 26c-5-9-5-17 0-26zM32 58c-5-9-5-17 0-26c5 9 5 17 0 26zM6 32c9-5 17-5 26 0c-9 5-17 5-26 0zM58 32c-9 5-17 5-26 0c9-5 17-5 26 0z' fill='%231e3f94'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23f0b323'/%3E%3Cpath d='M0 8a8 8 0 0 0 8-8H0zM64 8a8 8 0 0 1-8-8h8zM0 56a8 8 0 0 1 8 8H0zM64 56a8 8 0 0 0-8 8h8z' fill='%23f0b323'/%3E%3C/svg%3E"); background-size: 64px 64px; border-top: 6px solid var(--c-oscuro); border-bottom: 6px solid var(--c-oscuro); }
+  .zocalo { height: 64px; background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23fdfcf9'/%3E%3Crect x='.5' y='.5' width='63' height='63' fill='none' stroke='%231e3f94' stroke-opacity='.35'/%3E%3Cpath d='M32 6c5 9 5 17 0 26c-5-9-5-17 0-26zM32 58c-5-9-5-17 0-26c5 9 5 17 0 26zM6 32c9-5 17-5 26 0c-9 5-17 5-26 0zM58 32c-9 5-17 5-26 0c9-5 17-5 26 0z' fill='%231e3f94'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23f0b323'/%3E%3Cpath d='M0 8a8 8 0 0 0 8-8H0zM64 8a8 8 0 0 1-8-8h8zM0 56a8 8 0 0 1 8 8H0zM64 56a8 8 0 0 0-8 8h8z' fill='%23f0b323'/%3E%3C/svg%3E"); background-size: 64px 64px; border-top: 6px solid #3a1c20; border-bottom: 6px solid #3a1c20; }
 
   /* Reservas */
   #reservar { padding-top: 56px; }
@@ -146,7 +149,7 @@
   .rv-estado.mal { color: #b42318; }
   .hecha { display: none; text-align: center; padding: 10px 4px; }
   .hecha.si { display: block; }
-  .hecha .sello { width: 74px; height: 74px; margin: 0 auto 12px; border-radius: 50%; background: var(--c-acento); display: grid; place-items: center; }
+  .hecha .sello { width: 74px; height: 74px; margin: 0 auto 12px; border-radius: 50%; background: var(--c-primario); display: grid; place-items: center; }
   .hecha h3 { font-size: 1.6rem; margin-bottom: .3em; }
   .hecha p { margin: 0 auto 16px; }
   .btn-otra { background: none; color: var(--c-primario); text-decoration: underline; min-height: 44px; }
@@ -156,13 +159,13 @@
   .carta { background: var(--c-suave); }
   .carta-caja { display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: center; }
   .platos { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 32px; }
-  .platos li { font-family: var(--f-titulos); font-size: 1.3rem; color: var(--c-primario); padding: 10px 0; border-bottom: 2px dotted rgba(30,63,148,.35); break-inside: avoid; }
+  .platos li { font-family: var(--f-titulos); font-size: 1.3rem; color: var(--c-azulejo); padding: 10px 0; border-bottom: 2px dotted rgba(30,63,148,.35); break-inside: avoid; }
   .nota-ej { font-size: .95rem; color: #4a5470; }
   @media (max-width: 860px) { .carta-caja { grid-template-columns: 1fr; gap: 12px; } }
   @media (max-width: 420px) { .platos { columns: 1; } }
 
   .tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
-  .tres div { padding: 0 28px; border-left: 3px solid var(--c-acento); }
+  .tres div { padding: 0 28px; border-left: 3px solid var(--c-azulejo); }
   .tres h3 { font-size: 1.25rem; }
   .tres p { margin: 0; }
   @media (max-width: 760px) { .tres { grid-template-columns: 1fr; gap: 26px; } .tres div { padding: 0 0 0 18px; } }
@@ -200,9 +203,9 @@
   <div class="contenedor">
     <a class="logo" href="#" aria-label="Tu bar, inicio">
       <svg viewBox="0 0 150 54" role="img" aria-label="Tu bar">
-        <rect x="2" y="2" width="146" height="50" rx="8" fill="#f0b323"/>
-        <rect x="7" y="7" width="136" height="40" rx="5" fill="none" stroke="#16213d" stroke-width="2"/>
-        <text x="75" y="37" text-anchor="middle" font-family="Alfa Slab One, Rockwell, Georgia, serif" font-size="25" fill="#16213d">Tu bar</text>
+        <rect x="2" y="2" width="146" height="50" rx="8" fill="#fdfcf9"/>
+        <rect x="7" y="7" width="136" height="40" rx="5" fill="none" stroke="#1e3f94" stroke-width="2"/>
+        <text x="75" y="37" text-anchor="middle" font-family="Alfa Slab One, Rockwell, Georgia, serif" font-size="25" fill="#7b1f2e">Tu bar</text>
       </svg>
     </a>
     <div class="cab-acc">
@@ -236,14 +239,14 @@
         </g>
         <!-- cartel colgado -->
         <line x1="236" y1="48" x2="236" y2="74" stroke="#16213d" stroke-width="2"/><line x1="324" y1="48" x2="324" y2="74" stroke="#16213d" stroke-width="2"/>
-        <rect x="210" y="74" width="140" height="52" rx="6" fill="#16213d"/>
+        <rect x="210" y="74" width="140" height="52" rx="6" fill="#2a1519"/>
         <text x="280" y="102" text-anchor="middle" font-family="Karla, sans-serif" font-weight="700" font-size="15" fill="#f0b323">HOY EN LA BARRA</text>
         <text x="280" y="118" text-anchor="middle" font-family="Karla, sans-serif" font-size="12" fill="#ffffff">tortilla · croquetas · migas</text>
         <!-- encimera -->
         <rect x="0" y="256" width="560" height="18" rx="3" fill="#c9d1de"/>
         <rect x="0" y="270" width="560" height="6" fill="#8d97ab"/>
         <!-- frente de la barra con azulejo -->
-        <rect x="10" y="276" width="540" height="104" fill="#16213d"/>
+        <rect x="10" y="276" width="540" height="104" fill="#3a1c20"/>
         <g fill="#fdfcf9">
           <rect x="22" y="290" width="40" height="40"/><rect x="66" y="290" width="40" height="40"/><rect x="110" y="290" width="40" height="40"/><rect x="154" y="290" width="40" height="40"/><rect x="198" y="290" width="40" height="40"/><rect x="242" y="290" width="40" height="40"/><rect x="286" y="290" width="40" height="40"/><rect x="330" y="290" width="40" height="40"/><rect x="374" y="290" width="40" height="40"/><rect x="418" y="290" width="40" height="40"/><rect x="462" y="290" width="40" height="40"/><rect x="506" y="290" width="40" height="40"/>
         </g>
@@ -321,7 +324,7 @@
           <p id="rv-estado" class="rv-estado" role="status" aria-live="polite"></p>
         </form>
         <div class="rv hecha" id="rv-hecha" role="status" aria-live="polite">
-          <div class="sello" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#16213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+          <div class="sello" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
           <h3>¡Mesa reservada!</h3>
           <p id="rv-hecha-txt"></p>
           <div class="acciones">
