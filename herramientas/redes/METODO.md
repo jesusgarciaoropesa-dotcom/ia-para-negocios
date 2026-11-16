@@ -124,7 +124,7 @@ ejemplo completo y aprobado: `herramientas/redes/ejemplo-historia.json`).
 | `tipo` | `reel` |
 | `archivos` | `{https://raw.githubusercontent.com/jesusgarciaoropesa-dotcom/ia-para-negocios/redes/reels/<slug>.mp4}` |
 | `portada` | la URL raw de `reels/<slug>-portada.jpg` |
-| `historia` | vacío |
+| `historia` | la URL raw de `carruseles/<slug>/historia-reel.jpg` (decidido por Jesús el 16-11-2026: los reels también llevan historia). La genera `generar_carrusel.py` si la config del carrusel trae `"historia_reel": {"texto", "pregunta", "opciones"}` (encuesta distinta de la del carrusel) |
 | `texto` / `texto_facebook` | otra primera línea distinta a la del carrusel (que no parezca repetido) |
 | `programada_para` | el día siguiente al carrusel, 19:30 Europe/Madrid |
 | resto | igual que el carrusel (`articulo`, `hashtags`, `palabra`, `guia`, `estado='para_revisar'`, `revision`) |
