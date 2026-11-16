@@ -13,7 +13,7 @@
   <circle cx="0" cy="0" r="50" fill="#e9b38f"/>
   <path d="M-50 0 Q-54 -56 2 -56 Q56 -56 52 0 Q40 -30 0 -30 Q-36 -30 -50 0 Z" fill="#2b1d14"/>
   <circle cx="-18" cy="6" r="5" fill="#17162b"/><circle cx="18" cy="6" r="5" fill="#17162b"/>
-  <path d="M-10 26 q10 6 20 0" stroke="#17162b" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M-12 32 q12 -10 24 0" stroke="#17162b" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M-30 -10 l18 6 M30 -10 l-18 6" stroke="#2b1d14" stroke-width="6" stroke-linecap="round"/>
 </g>
 <g id="telefono"><rect x="690" y="400" width="70" height="120" rx="14" fill="#17162b"/>
   <rect x="697" y="410" width="56" height="96" rx="8" fill="#7b7bf0" id="pantalla"/>

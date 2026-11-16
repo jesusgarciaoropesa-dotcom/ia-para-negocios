@@ -130,7 +130,7 @@ function construir(e,i){
   case "prompt": h = `<div class="card centro" style="top:60px"><div class="cab"><div class="av">IA</div>${esc(e.app||"Tu asistente de IA")}</div><div class="ptxt" style="font-size:38px;line-height:1.4;min-height:300px;background:#f6f6fa;border-radius:22px;padding:26px 30px"></div></div>`; break;
   case "tarjetas": h = e.items.map((t,k)=>`<div class="card tarj" data-k="${k}" style="top:${40+k*220}px"><div class="ic">${window.ICONOS[i+"-"+k]||""}</div>${esc(t.titulo)}</div>`).join(""); break;
   case "pasos": h = e.pasos.map((t,k)=>`<div class="card paso" data-k="${k}" style="top:${40+k*200}px"><div class="num">${k+1}</div>${esc(t)}</div>`).join(""); break;
-  case "dibujo": h = `<div class="dib" style="position:absolute;left:90px;right:90px;top:30px">${window.DIBUJOS[e.dibujo]||""}</div>`+
+  case "dibujo": h = `<div class="dib" style="position:absolute;left:-10px;right:-10px;top:0;transform-origin:50% 55%">${window.DIBUJOS[e.dibujo]||""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
   case "captura": h = `<div class="movil card" style="top:0"><div class="pant" style="background:#fff"><img src="${e.src}" style="width:100%;display:block;position:absolute;top:0;left:0"></div></div>`; break;
   case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div><div class="marca">iando.xyz</div>`; break;
@@ -171,6 +171,8 @@ function animar(e,d,lt,dur){
     Q(d,sel).forEach(c=>{ const k=+c.dataset.k, a=pop(lt,k*dur*0.75/n,.3); c.style.opacity=a; c.style.transform=`translateX(${(1-a)*120}px)`;
       if(e.tipo==="pasos"){ const on = lt >= k*dur*0.75/n; c.querySelector(".num").style.background = on?"var(--indigo)":"#efeffb"; c.querySelector(".num").style.color = on?"#fff":"var(--indigo)"; } }); break; }
   case "dibujo": { const tel=d.querySelector("#telefono"), on=d.querySelector("#ondas"), br=d.querySelector("#brazo");
+    const dib=d.querySelector(".dib"); if(dib){ const z=1+0.05*ease(Math.min(1,lt/Math.max(dur,0.1))); dib.style.transform=`scale(${z})`; }
+    d.querySelectorAll(".sudor").forEach((g,k)=>{ const c=((lt*1.3+k*0.4)%1); g.style.transform=`translateY(${c*40}px)`; g.style.opacity=1-c; });
     if(tel){ tel.style.transform = e.vibrar ? `translateX(${Math.sin(lt*70)*4}px)` : "none"; }
     if(on){ on.style.opacity = e.vibrar ? (0.4+0.6*Math.abs(Math.sin(lt*6))) : 0; }
     if(br){ br.style.transformOrigin="736px 350px"; br.style.transformBox="view-box"; br.style.transform=`rotate(${Math.sin(lt*5)*4}deg)`; }
