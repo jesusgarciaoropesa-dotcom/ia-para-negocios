@@ -1,0 +1,158 @@
+{
+ "slug": "claude-ai-vs-chatgpt-empresas",
+ "_nota": "Reel «historia» (16-11-2026, retocado a petición de Jesús). Datos del artículo claude-ai-vs-chatgpt-empresas.",
+ "palabra": "COMPARA",
+ "musica": "suave",
+ "escenas": [
+  {
+   "voz": "¿Claude o ChatGPT? Si solo vas a pagar una, hazte cuatro preguntas.",
+   "clave": "cuatro",
+   "tipo": "frase",
+   "texto": "¿Claude o ChatGPT?",
+   "sub": "Si solo vas a pagar **una**"
+  },
+  {
+   "voz": "Y quédate al final: te digo cómo empezar sin liarte.",
+   "clave": "empezar",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "file-text",
+     "titulo": "Documentos largos"
+    },
+    {
+     "icono": "image",
+     "titulo": "Imágenes y datos"
+    },
+    {
+     "icono": "megaphone",
+     "titulo": "Marketing"
+    },
+    {
+     "icono": "laptop",
+     "titulo": "Microsoft 365"
+    }
+   ]
+  },
+  {
+   "voz": "Primera: ¿analizas o redactas documentos largos?",
+   "clave": "documentos",
+   "tipo": "chat",
+   "nombre": "Claude",
+   "inicial": "C",
+   "color": "#d97757",
+   "mensajes": [
+    {
+     "de": "yo",
+     "texto": "Resume este contrato de 60 páginas y señala lo importante"
+    }
+   ]
+  },
+  {
+   "voz": "Ahí gana Claude: lee más de cincuenta páginas de una vez.",
+   "clave": "Claude",
+   "tipo": "chat",
+   "nombre": "Claude",
+   "inicial": "C",
+   "color": "#d97757",
+   "desde": 1,
+   "mensajes": [
+    {
+     "de": "yo",
+     "texto": "Resume este contrato de 60 páginas y señala lo importante"
+    },
+    {
+     "de": "ia",
+     "texto": "Aquí tienes el resumen y las cláusulas que conviene revisar."
+    }
+   ],
+   "sello": "CLAUDE",
+   "tono": "verde"
+  },
+  {
+   "voz": "Segunda: ¿necesitas imágenes o analizar datos con código?",
+   "clave": "imágenes",
+   "tipo": "lista",
+   "items": [
+    "Imágenes para presentaciones",
+    "Analizar un CSV",
+    "Gráficas con Python"
+   ]
+  },
+  {
+   "voz": "Eso lo hace mejor ChatGPT.",
+   "clave": "ChatGPT",
+   "tipo": "versus",
+   "a": "Claude",
+   "b": "ChatGPT"
+  },
+  {
+   "voz": "Tercera: ¿haces marketing y quieres la misma voz en todo?",
+   "clave": "voz",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "megaphone",
+     "titulo": "Posts"
+    },
+    {
+     "icono": "mail",
+     "titulo": "Newsletter"
+    },
+    {
+     "icono": "globe",
+     "titulo": "Textos de tu web"
+    }
+   ]
+  },
+  {
+   "voz": "Claude mantiene el tono en los textos largos.",
+   "clave": "tono",
+   "tipo": "frase",
+   "texto": "Claude",
+   "sub": "El mismo **tono** de principio a fin"
+  },
+  {
+   "voz": "Y la cuarta: ¿tu equipo trabaja con Microsoft 365?",
+   "clave": "Microsoft",
+   "tipo": "ventanas",
+   "etiqueta": "Microsoft 365",
+   "titulos": [
+    "Word",
+    "Excel",
+    "Outlook",
+    "Teams"
+   ]
+  },
+  {
+   "voz": "Entonces, ChatGPT.",
+   "clave": "ChatGPT",
+   "tipo": "frase",
+   "texto": "ChatGPT",
+   "sub": "Se integra con **Microsoft 365**"
+  },
+  {
+   "voz": "¿Y cómo empiezas? Si es tu primera IA, ChatGPT Plus.",
+   "clave": "primera",
+   "tipo": "pasos",
+   "pasos": [
+    "Primera IA: ChatGPT Plus",
+    "Documentos largos: añade Claude",
+    "Cada una para lo suyo"
+   ]
+  },
+  {
+   "voz": "No compiten: se complementan.",
+   "clave": "complementan",
+   "tipo": "versus",
+   "a": "rivales",
+   "b": "aliadas"
+  },
+  {
+   "voz": "Comenta COMPARA y te paso la comparativa.",
+   "clave": "COMPARA",
+   "tipo": "cierre",
+   "abajo": "y te paso la **comparativa** por mensaje privado 📩"
+  }
+ ]
+}

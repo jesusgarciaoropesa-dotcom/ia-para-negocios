@@ -1,0 +1,203 @@
+{
+ "slug": "ia-restaurantes-hosteleria",
+ "_nota": "Reel «historia» (16-11-2026, retocado a petición de Jesús). Datos y prompts del artículo ia-restaurantes-hosteleria.",
+ "palabra": "RESTAURANTE",
+ "musica": "suave",
+ "escenas": [
+  {
+   "voz": "Te dejan una reseña de tres estrellas. ¿Qué contestas?",
+   "clave": "tres",
+   "tipo": "frase",
+   "texto": "★★★",
+   "sub": "«Buena comida, pero tardaron mucho»"
+  },
+  {
+   "voz": "La IA te ayuda en cuatro cosas de tu restaurante.",
+   "clave": "cuatro",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "star",
+     "titulo": "Reseñas"
+    },
+    {
+     "icono": "utensils",
+     "titulo": "Carta"
+    },
+    {
+     "icono": "calculator",
+     "titulo": "Escandallo"
+    },
+    {
+     "icono": "calendar",
+     "titulo": "Reservas"
+    }
+   ]
+  },
+  {
+   "voz": "Y la última contesta a tus clientes a cualquier hora.",
+   "clave": "hora",
+   "tipo": "aviso",
+   "app": "WhatsApp",
+   "texto": "¿Tenéis mesa para cuatro el sábado?"
+  },
+  {
+   "voz": "Uno: pégale la reseña y pídele una respuesta.",
+   "clave": "reseña",
+   "tipo": "chat",
+   "nombre": "Tu asistente de IA",
+   "mensajes": [
+    {
+     "de": "yo",
+     "texto": "Responde a esta reseña (3/5): «Buena comida, pero tardaron mucho». Máx. 80 palabras, sin ser defensivo."
+    }
+   ]
+  },
+  {
+   "voz": "Máximo ochenta palabras, y sin ponerte a la defensiva.",
+   "clave": "defensiva",
+   "tipo": "chat",
+   "nombre": "Tu asistente de IA",
+   "desde": 1,
+   "mensajes": [
+    {
+     "de": "yo",
+     "texto": "Responde a esta reseña (3/5): «Buena comida, pero tardaron mucho». Máx. 80 palabras, sin ser defensivo."
+    },
+    {
+     "de": "ia",
+     "texto": "Gracias por venir y contárnoslo. Tienes razón: la espera no fue la que merecías. ¡Esperamos verte pronto!"
+    }
+   ]
+  },
+  {
+   "voz": "Dos: pásale tu carta con precio y coste.",
+   "clave": "carta",
+   "tipo": "tabla",
+   "columnas": [
+    "Plato",
+    "Precio",
+    "Coste"
+   ],
+   "filas": [
+    [
+     "Plato 1",
+     "",
+     ""
+    ],
+    [
+     "Plato 2",
+     "",
+     ""
+    ],
+    [
+     "Plato 3",
+     "",
+     ""
+    ],
+    [
+     "Plato 4",
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "voz": "Te clasifica los platos en cuatro tipos.",
+   "clave": "tipos",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "star",
+     "titulo": "Estrella"
+    },
+    {
+     "icono": "trending-up",
+     "titulo": "Caballo de batalla"
+    },
+    {
+     "icono": "circle-help",
+     "titulo": "Puzzle"
+    },
+    {
+     "icono": "trending-down",
+     "titulo": "Perro"
+    }
+   ]
+  },
+  {
+   "voz": "Y te dice qué subir, mover o quitar.",
+   "clave": "quitar",
+   "tipo": "lista",
+   "marcar": true,
+   "items": [
+    "Subir de precio",
+    "Mover en la carta",
+    "Quitar de la carta"
+   ]
+  },
+  {
+   "voz": "Tres: dale la receta y los precios.",
+   "clave": "receta",
+   "tipo": "prompt",
+   "app": "ChatGPT",
+   "texto": "Calcula el escandallo de este plato: [receta con cantidades]. Precios: [ingredientes por kg o litro]."
+  },
+  {
+   "voz": "Te calcula el coste por ración y el precio de venta.",
+   "clave": "ración",
+   "tipo": "tabla",
+   "columnas": [
+    "Concepto",
+    "Resultado"
+   ],
+   "filas": [
+    [
+     "Coste por ración",
+     ""
+    ],
+    [
+     "Merma (20 %)",
+     ""
+    ],
+    [
+     "Precio de venta",
+     ""
+    ]
+   ]
+  },
+  {
+   "voz": "Con y sin IVA, que en hostelería es del diez por ciento.",
+   "clave": "IVA",
+   "tipo": "cifra",
+   "valor": "10",
+   "unidad": "% de IVA",
+   "texto": "Pídele el precio **con y sin IVA**"
+  },
+  {
+   "voz": "Cuatro: un chatbot de reservas para tu web y WhatsApp.",
+   "clave": "chatbot",
+   "tipo": "pasos",
+   "pasos": [
+    "Horarios y dirección",
+    "Celíacos y veganos",
+    "Tus 10 preguntas frecuentes",
+    "Tono cálido"
+   ]
+  },
+  {
+   "voz": "La IA hace lo repetitivo. La hospitalidad sigue siendo tuya.",
+   "clave": "hospitalidad",
+   "tipo": "frase",
+   "texto": "Hospitalidad",
+   "sub": "La IA hace **lo repetitivo**",
+   "sello": "ES TUYA",
+   "tono": "verde"
+  },
+  {
+   "voz": "Comenta RESTAURANTE y te paso la guía.",
+   "clave": "RESTAURANTE",
+   "tipo": "cierre"
+  }
+ ]
+}

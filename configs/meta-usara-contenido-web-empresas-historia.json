@@ -1,0 +1,134 @@
+{
+ "slug": "meta-usara-contenido-web-empresas",
+ "_nota": "Reel «historia» (16-11-2026, retocado a petición de Jesús). Datos del artículo y de la lista oficial de rastreadores de Meta.",
+ "palabra": "ROBOTS",
+ "musica": "suave",
+ "escenas": [
+  {
+   "voz": "Meta quería usar la web de tu negocio desde el 20 de noviembre.",
+   "clave": "web",
+   "tipo": "frase",
+   "texto": "Tu web",
+   "sub": "Meta quería usarla desde el **20 de noviembre**"
+  },
+  {
+   "voz": "Al final te enseño las dos líneas para pedirle que no la lea.",
+   "clave": "líneas",
+   "tipo": "cifra",
+   "valor": "2",
+   "unidad": "líneas",
+   "texto": "en tu **robots.txt**"
+  },
+  {
+   "voz": "Primero, la noticia: lo ha pausado.",
+   "clave": "pausado",
+   "tipo": "aviso",
+   "app": "Meta",
+   "texto": "«Estas actualizaciones están en pausa y no entrarán en vigor el 20 de noviembre»"
+  },
+  {
+   "voz": "Siguen los términos de antes, y sin fecha nueva.",
+   "clave": "fecha",
+   "tipo": "versus",
+   "a": "20 nov",
+   "b": "sin fecha"
+  },
+  {
+   "voz": "Pero puede volver con otra redacción.",
+   "clave": "volver",
+   "tipo": "frase",
+   "texto": "¿Y si vuelve?",
+   "sub": "Mejor tenerlo **preparado**"
+  },
+  {
+   "voz": "Meta lee las webs con varios rastreadores.",
+   "clave": "rastreadores",
+   "tipo": "tabla",
+   "columnas": [
+    "Rastreador",
+    "Uso",
+    "¿Bloquear?"
+   ],
+   "filas": [
+    [
+     "meta-externalagent",
+     "IA",
+     ""
+    ],
+    [
+     "meta-externalads",
+     "Anuncios",
+     ""
+    ],
+    [
+     "facebookexternalhit",
+     "Enlaces",
+     ""
+    ]
+   ]
+  },
+  {
+   "voz": "El de su IA lo puedes bloquear. El de las vistas previas, no.",
+   "clave": "previas",
+   "tipo": "tabla",
+   "completa": true,
+   "columnas": [
+    "Rastreador",
+    "Uso",
+    "¿Bloquear?"
+   ],
+   "filas": [
+    [
+     "meta-externalagent",
+     "IA",
+     "Sí"
+    ],
+    [
+     "meta-externalads",
+     "Anuncios",
+     "Si no anuncias"
+    ],
+    [
+     "facebookexternalhit",
+     "Enlaces",
+     "No"
+    ]
+   ]
+  },
+  {
+   "voz": "Sin él, tus enlaces salen sin foto ni título.",
+   "clave": "foto",
+   "tipo": "frase",
+   "texto": "Sin foto ni título",
+   "sub": "si bloqueas **facebookexternalhit**",
+   "sello": "NO LO BLOQUEES"
+  },
+  {
+   "voz": "Y estas son las dos líneas para tu robots.txt.",
+   "clave": "dos",
+   "tipo": "prompt",
+   "app": "robots.txt",
+   "texto": "User-agent: meta-externalagent Disallow: /"
+  },
+  {
+   "voz": "El cambio tarda hasta 24 horas en notarse.",
+   "clave": "24",
+   "tipo": "cifra",
+   "valor": "24",
+   "unidad": "horas",
+   "texto": "Lo dice Meta en su documentación"
+  },
+  {
+   "voz": "Ojo: es una petición, no un candado.",
+   "clave": "petición",
+   "tipo": "versus",
+   "a": "candado",
+   "b": "petición"
+  },
+  {
+   "voz": "Comenta ROBOTS y te paso la guía.",
+   "clave": "ROBOTS",
+   "tipo": "cierre"
+  }
+ ]
+}
