@@ -108,7 +108,7 @@ ejemplo completo y aprobado: `herramientas/redes/ejemplo-historia.json`).
    - **Nada inventado**: lo que dice la voz y lo que sale en pantalla está en el artículo. Nada de precios, tiempos
      o resultados que el artículo no diga; en tablas sin datos del artículo, deja las celdas vacías (salen barras).
 2. **Voz** (Gemini «Achird»): `python3 herramientas/redes/generar_historia.py configs/<slug>-historia.json --pedido-voz`
-   imprime 1-3 sentencias SQL; ejecútalas con la herramienta SQL de Supabase, espera ~90 s y mira el resultado
+   imprime 1 sentencia SQL (pide UN solo audio con todo el guion, para gastar poco cupo de Gemini; el generador lo trocea por frases); ejecútalas con la herramienta SQL de Supabase, espera ~90 s y mira el resultado
    (`select status_code, content from net._http_response where id = <id>`). Si sale `"faltan"` > 0, espera 1 minuto
    y repite la MISMA sentencia. Repite `--pedido-voz` hasta que diga «Ya están todos los audios».
    Puedes ver antes cómo queda sin voz con `--sin-voz` (no lo publiques así).

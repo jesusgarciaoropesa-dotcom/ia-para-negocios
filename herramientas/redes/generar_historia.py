@@ -226,6 +226,33 @@ def pagina(cfg, datos):
             f"window.ICONOS={json.dumps(iconos)};window.DIBUJOS={json.dumps(dibujos)};{JS}</script></body></html>")
 
 
+# Voz: el cupo gratuito de Gemini es de pocos audios al día, así que se pide UN SOLO audio con el guion entero
+# (con pausas entre frases, estilo G.ESTILO) y aquí se trocea por frases. Si el troceo no cuadra, se piden las
+# frases sueltas como respaldo. Los reels hechos antes con un audio por frase (G.ESTILO_LIBRE) siguen valiendo.
+def voces_reel(frases):
+    """Lista de (pcm, sr) por frase, o None en las frases que aún no tienen audio."""
+    sueltas = [G.descargar(f, estilo=G.ESTILO_LIBRE) for f in frases]
+    if all(sueltas):
+        return sueltas
+    entero = G.descargar(" ".join(frases), estilo=G.ESTILO)
+    if entero:
+        trozos = G.partir_validado(entero[0], entero[1], frases)
+        if trozos:
+            return [(t, entero[1]) for t in trozos]
+    return sueltas
+
+
+def pedido_voz(frases):
+    voces = voces_reel(frases)
+    if all(voces):
+        return "Ya están todos los audios."
+    if G.descargar(" ".join(frases), estilo=G.ESTILO) is None:
+        tandas = G.pedido([" ".join(frases)], estilo=G.ESTILO)          # un solo audio para todo el reel
+    else:   # el audio entero existe pero no se trocea bien: frases sueltas de respaldo
+        tandas = G.pedido([f for f, v in zip(frases, voces) if not v], estilo=G.ESTILO_LIBRE)
+    return "\n".join(G.sql_pedido(tandas)) if tandas else "Ya están todos los audios."
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("config")
@@ -236,12 +263,12 @@ def main():
     cfg = json.load(open(a.config)); cfg["_ruta"] = a.config
     frases = [e["voz"].strip() for e in cfg["escenas"]]
     if a.pedido_voz:
-        tandas = G.pedido(frases, estilo=G.ESTILO_LIBRE)
-        print("\n".join(G.sql_pedido(tandas)) if tandas else "Ya están todos los audios.")
+        print(pedido_voz(frases))
         return
+    voces = None if a.sin_voz else voces_reel(frases)
     datos, pcms, sr, t = [], [], 24000, INICIO
-    for e, f in zip(cfg["escenas"], frases):
-        r = None if a.sin_voz else G.descargar(f, estilo=G.ESTILO_LIBRE)
+    for k, (e, f) in enumerate(zip(cfg["escenas"], frases)):
+        r = voces[k] if voces else None
         if r:
             pcm, sr = r
             pcm = G.recortar(pcm, sr)
