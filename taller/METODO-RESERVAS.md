@@ -51,9 +51,12 @@ dos negocios.
      debe devolver las horas esperadas según el horario.
    - Reserva de prueba como `anon`: `set role anon; select public.reservar_hueco(..., 'PRUEBA taller', '600000000', ...); reset role;`
      debe dar `ok: true`; repetirla a la misma hora debe dar error.
-   - **Borra** la reserva y el cliente de prueba (`delete from public.reservas where id = …;
-     delete from public.clientes where negocio_id = … and telefono = '600000000';`).
-   - Apunta el resultado en `revision.prueba_reservas`.
+   - **No borres** la reserva ni el cliente de prueba (el borrado pide confirmación y en las pasadas
+     automáticas nadie la responde, y el encargo se queda atascado). Déjalos y apunta en
+     `revision.prueba_reservas` sus datos (fecha, hora, teléfono `600000000`) y en `revision.notas`
+     que Jesús puede borrarlos desde el panel o con este SQL:
+     `delete from public.reservas where negocio_id = '<id>' and cliente_id in (select id from public.clientes where negocio_id = '<id>' and telefono = '600000000'); delete from public.clientes where negocio_id = '<id>' and telefono = '600000000';`
+     (decidido por Jesús el 16-11-2026).
 5. **Revisor de calidad**: como en la landing (el script no puede llamar a Supabase desde
    el taller; la prueba real es la del Probador).
 
