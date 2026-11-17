@@ -1,0 +1,192 @@
+{
+ "slug": "bar-2-cerrado-animado",
+ "palabra": "MESA",
+ "musica": "animada",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "Tu bar cierra a las doce. Tus clientes, no.",
+   "clave": "clientes",
+   "tipo": "frase",
+   "texto": "Tu bar cierra",
+   "sub": "tus clientes, **no**"
+  },
+  {
+   "voz": "Persiana bajada y a casa.",
+   "clave": "Persiana",
+   "tipo": "anim",
+   "imagen": "img/anim-bar-noche.jpg",
+   "plantilla": "persiana",
+   "params": {
+    "hueco": [
+     236,
+     440,
+     578,
+     414
+    ],
+    "faroles": [
+     [
+      209,
+      478
+     ],
+     [
+      797,
+      478
+     ]
+    ],
+    "cartel": [
+     525,
+     560
+    ],
+    "cielo": [
+     300,
+     10,
+     700,
+     150,
+     22
+    ],
+    "modo": "baja"
+   }
+  },
+  {
+   "voz": "A las once y media alguien quiere mesa para mañana.",
+   "clave": "mañana",
+   "tipo": "anim",
+   "imagen": "img/dib-cliente-sofa.jpg",
+   "plantilla": "sofa",
+   "params": {
+    "telefono": [
+     592,
+     536
+    ],
+    "reloj": [
+     250,
+     170
+    ],
+    "cielo": [
+     410,
+     40,
+     280,
+     420,
+     14
+    ],
+    "desde": [
+     23,
+     30
+    ],
+    "hasta": [
+     23,
+     37
+    ]
+   },
+   "figura": "img/dib-cliente-sofa-figura.png",
+   "globo": {
+    "titulo": "WhatsApp · 23:37",
+    "texto": "¿Mañana tenéis mesa para seis a las dos?",
+    "color": "#1f9d55",
+    "x": 470,
+    "y": 40,
+    "escribiendo": true,
+    "retraso": 0.5
+   }
+  },
+  {
+   "voz": "Si nadie contesta, busca otro sitio.",
+   "clave": "otro",
+   "tipo": "anim",
+   "imagen": "img/dib-bar-enfrente.jpg",
+   "plantilla": "terraza",
+   "params": {
+    "cartel": [
+     512,
+     520
+    ],
+    "vapor": [
+     [
+      100,
+      850
+     ],
+     [
+      440,
+      770
+     ],
+     [
+      640,
+      800
+     ]
+    ]
+   },
+   "sello": "MESA PERDIDA",
+   "paneo": 2
+  },
+  {
+   "voz": "Con reservas online reserva a cualquier hora, aunque esté cerrado.",
+   "clave": "cualquier",
+   "tipo": "captura",
+   "imagen": "cap-bar/movil-pedir-cita.png"
+  },
+  {
+   "voz": "Y por la mañana, al abrir, las reservas ya están hechas.",
+   "clave": "hechas",
+   "tipo": "anim",
+   "imagen": "img/anim-bar-noche.jpg",
+   "plantilla": "persiana",
+   "params": {
+    "hueco": [
+     236,
+     440,
+     578,
+     414
+    ],
+    "faroles": [
+     [
+      209,
+      478
+     ],
+     [
+      797,
+      478
+     ]
+    ],
+    "cartel": [
+     525,
+     560
+    ],
+    "cielo": [
+     300,
+     10,
+     700,
+     150,
+     22
+    ],
+    "modo": "sube",
+    "sol": [
+     880,
+     90
+    ]
+   },
+   "globo": {
+    "titulo": "Mientras estaba cerrado",
+    "texto": "Reservas nuevas para hoy",
+    "color": "#1f9d55",
+    "x": 120,
+    "y": 40,
+    "retraso": 2.2
+   }
+  },
+  {
+   "voz": "Todas ordenadas en tu panel.",
+   "clave": "panel",
+   "tipo": "captura",
+   "imagen": "cap-bar/panel-movil.png"
+  },
+  {
+   "voz": "Comenta MESA y te enseño la tuya, con tu nombre.",
+   "clave": "MESA",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "MESA",
+   "abajo": "y te enseño **la tuya con tu nombre**"
+  }
+ ]
+}

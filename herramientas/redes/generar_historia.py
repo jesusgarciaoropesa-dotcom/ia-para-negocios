@@ -163,6 +163,29 @@ function construir(e,i){
   case "pasos": h = e.pasos.map((t,k)=>`<div class="card paso" data-k="${k}" style="top:${40+k*200}px"><div class="num">${k+1}</div>${esc(t)}</div>`).join(""); break;
   case "dibujo": h = `<div class="dib" style="position:absolute;left:-10px;right:-10px;top:0;transform-origin:50% 55%">${window.DIBUJOS[e.dibujo]||""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
+  case "anim": { // escena animada: imagen (IA) + capas que se mueven, según plantilla (persiana, sofa, terraza)
+     const P=e.plantilla, q=e.params||{}; let svg="";
+     const NS='<defs><pattern id="lamas'+i+'" width="10" height="26" patternUnits="userSpaceOnUse"><rect width="10" height="26" fill="#8d97a6"/><rect y="20" width="10" height="6" fill="#5f6876"/><rect y="2" width="10" height="3" fill="#b3bcc8"/></pattern><radialGradient id="halo'+i+'"><stop offset="0" stop-color="#ffd870" stop-opacity=".85"/><stop offset="1" stop-color="#ffd870" stop-opacity="0"/></radialGradient><linearGradient id="alba'+i+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb36b" stop-opacity=".95"/><stop offset=".55" stop-color="#ffd9a0" stop-opacity=".55"/><stop offset="1" stop-color="#fff2d6" stop-opacity="0"/></linearGradient></defs>';
+     const estrellas = (zona)=>{ let r=""; for(let k=0;k<(zona[4]||20);k++){ const x=zona[0]+((k*137)%100)/100*zona[2], y=zona[1]+((k*71)%100)/100*zona[3]; r+=`<circle class="est" data-f="${(k*1.7)%6}" data-v="${1+(k%3)*0.6}" cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${1.6+(k%3)}" fill="#fff"/>`;} return r; };
+     if(P==="persiana"){ const [hx,hy,hw,hh]=q.hueco, [cx,cy]=q.cartel;
+       svg = `<rect class="noche" width="1024" height="1024" fill="#0b0a2e" opacity="0"/>`+
+         (q.cielo?`<g class="cielo">${estrellas(q.cielo)}</g>`:"")+
+         (q.modo==="sube"?`<rect class="alba" x="0" y="0" width="1024" height="${q.cielo?q.cielo[1]+q.cielo[3]+80:260}" fill="url(#alba${i})" opacity="0"/><circle class="sol" cx="${q.sol?q.sol[0]:880}" cy="${q.sol?q.sol[1]:120}" r="46" fill="#ffd34d" opacity="0"/>`:"")+
+         (q.faroles||[]).map((f,k)=>`<circle class="halo" cx="${f[0]}" cy="${f[1]}" r="70" fill="url(#halo${i})"/><rect class="apaga" x="${f[0]-19}" y="${f[1]-38}" width="38" height="70" rx="8" fill="#2a2440" opacity="0"/>`).join("")+
+         `<clipPath id="hueco${i}"><rect x="${hx}" y="${hy}" width="${hw}" height="${hh}"/></clipPath><g clip-path="url(#hueco${i})"><g class="persiana"><rect x="${hx}" y="0" width="${hw}" height="${hh}" fill="url(#lamas${i})"/><rect x="${hx}" y="${hh-10}" width="${hw}" height="14" fill="#3e4552"/><rect x="${hx+hw/2-20}" y="${hh-18}" width="40" height="10" rx="4" fill="#2b313b"/></g></g>`+
+         `<g class="cartel"><line x1="${cx}" y1="${cy}" x2="${cx-35}" y2="${cy+50}" stroke="#2b313b" stroke-width="4"/><line x1="${cx}" y1="${cy}" x2="${cx+35}" y2="${cy+50}" stroke="#2b313b" stroke-width="4"/><circle cx="${cx}" cy="${cy}" r="7" fill="#2b313b"/><rect class="tabla" x="${cx-100}" y="${cy+48}" width="200" height="78" rx="12" fill="#fff" stroke="#e0413a" stroke-width="6"/><text class="letrero" x="${cx}" y="${cy+100}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="34" fill="#e0413a">CERRADO</text></g>`;
+     } else if(P==="sofa"){ const [tx,ty]=q.telefono, [rx,ry]=q.reloj;
+       svg = (q.cielo?`<g class="cielo">${estrellas(q.cielo)}</g>`:"")+
+         `<circle class="brillo" cx="${tx}" cy="${ty}" r="60" fill="#9fd0ff" opacity="0" style="mix-blend-mode:screen"/>`+
+         `<g class="ondas" fill="none" stroke="#25d366" stroke-width="5" stroke-linecap="round"><path d="M${tx-62} ${ty-30} q-18 30 0 60"/><path d="M${tx+62} ${ty-30} q18 30 0 60"/><path d="M${tx-84} ${ty-46} q-26 46 0 92"/><path d="M${tx+84} ${ty-46} q26 46 0 92"/></g>`+
+         `<g class="reloj"><circle cx="${rx}" cy="${ry}" r="62" fill="#fff" stroke="#2b2a3f" stroke-width="9"/>${[0,1,2,3,4,5,6,7,8,9,10,11].map(k=>`<line x1="${rx}" y1="${ry-50}" x2="${rx}" y2="${ry-42}" stroke="#2b2a3f" stroke-width="4" transform="rotate(${k*30} ${rx} ${ry})"/>`).join("")}<line class="horas" x1="${rx}" y1="${ry}" x2="${rx}" y2="${ry-30}" stroke="#2b2a3f" stroke-width="8" stroke-linecap="round"/><line class="minutos" x1="${rx}" y1="${ry}" x2="${rx}" y2="${ry-46}" stroke="#e0413a" stroke-width="5" stroke-linecap="round"/><circle cx="${rx}" cy="${ry}" r="6" fill="#2b2a3f"/><rect x="${rx-58}" y="${ry+72}" width="116" height="40" rx="10" fill="#2b2a3f"/><text class="digital" x="${rx}" y="${ry+101}" text-anchor="middle" font-family="Arial" font-weight="700" font-size="26" fill="#fff">23:30</text></g>`;
+     } else if(P==="terraza"){ const [cx,cy]=q.cartel;
+       svg = (q.vapor||[]).map(v=>[0,1,2].map(k=>`<circle class="vapor" data-k="${k}" cx="${v[0]}" cy="${v[1]}" r="12" fill="#fff" opacity="0"/>`).join("")).join("")+
+         `<g class="neon"><rect x="${cx-120}" y="${cy-42}" width="240" height="84" rx="16" fill="#1b1530" stroke="#2bd46b" stroke-width="5"/><text x="${cx}" y="${cy+16}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="44" fill="#57ff95" style="filter:drop-shadow(0 0 8px #2bd46b)">ABIERTO</text></g>`;
+     }
+     h = `<div class="dib card" style="position:absolute;left:40px;right:40px;top:0;height:920px;overflow:hidden;padding:0"><div class="capa" style="position:absolute;inset:0;transform-origin:50% 55%"><img class="fondo" src="${e.src}" style="width:100%;height:100%;object-fit:cover;display:block">${e.figsrc?`<img class="fig" src="${e.figsrc}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 90%">`:""}<svg viewBox="0 0 1024 1024" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%">${NS}${svg}</svg></div></div>`+
+       (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b><span class="gtxt">${esc(e.globo.texto)}</span>${e.globo.escribiendo?`<span class="gpuntos" style="font-size:44px;letter-spacing:4px;color:#9aa0b0">•••</span>`:""}</div>`:"");
+     break; }
   case "foto": h = `<div class="dib card" style="position:absolute;left:40px;right:40px;top:0;height:920px;overflow:hidden;padding:0;transform-origin:50% 50%"><img class="fondo" src="${e.src}" style="width:100%;height:100%;object-fit:cover;display:block;object-position:${e.foco||"50% 50%"};transform-origin:50% 50%">${e.figsrc?`<img class="fig" src="${e.figsrc}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${e.foco||"50% 50%"};transform-origin:50% 90%">`:""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
   case "captura": h = `<div class="movil card" style="top:0"><div class="pant" style="background:#fff"><img src="${e.src}" style="width:100%;display:block;position:absolute;top:0;left:0"></div></div>`; break;
@@ -203,6 +226,41 @@ function animar(e,d,lt,dur){
   case "tarjetas": case "pasos": { const sel = e.tipo==="tarjetas"?".tarj":".paso", n = (e.items||e.pasos).length;
     Q(d,sel).forEach(c=>{ const k=+c.dataset.k, a=pop(lt,k*dur*0.75/n,.3); c.style.opacity=a; c.style.transform=`translateX(${(1-a)*120}px)`;
       if(e.tipo==="pasos"){ const on = lt >= k*dur*0.75/n; c.querySelector(".num").style.background = on?"var(--indigo)":"#efeffb"; c.querySelector(".num").style.color = on?"#fff":"var(--indigo)"; } }); break; }
+  case "anim": { const P=e.plantilla, q=e.params||{}, p=ease(Math.min(1,lt/Math.max(dur,0.1))), $$=(c)=>d.querySelectorAll(c), $1=(c)=>d.querySelector(c);
+    const cl=x=>Math.max(0,Math.min(1,x));
+    $1(".capa").style.transform=`scale(${1.02+0.05*p}) translateX(${(e.paneo||0)*p}%)`;
+    const fg=$1(".fig"); if(fg) fg.style.transform=`scale(${1.03+0.06*p}) translateY(${Math.sin(lt*2.4)*4}px)`;
+    $$(".est").forEach(c=>c.setAttribute("opacity", 0.3+0.7*Math.abs(Math.sin(lt*(+c.dataset.v)+(+c.dataset.f)))));
+    $1(".dib").style.opacity=pop(lt,0,.25);
+    if(P==="persiana"){ const [hx,hy,hw,hh]=q.hueco, [cx,cy]=q.cartel, sube=q.modo==="sube";
+      const T0=sube?0.35:0.35, TD=Math.min(2.4, dur*0.5);
+      let k=cl((lt-T0)/TD); const reb=k<.82?ease(k/.82):1-Math.sin((k-.82)/.18*Math.PI)*0.025;
+      const bajada = sube ? 1-ease(k) : reb;   // 1 = cerrada
+      const vib=(k>0&&k<1)?Math.sin(lt*60)*1.2:0;
+      $1(".persiana").setAttribute("transform",`translate(${vib} ${hy+hh*bajada-hh})`);
+      const tOff = sube ? -1 : T0+TD+0.15;
+      const off = sube ? 1 : cl((lt-tOff)/0.5), parpa=(!sube && lt>tOff && lt<tOff+0.5)?(Math.sin(lt*90)>0?1:0.3):1;
+      $$(".halo").forEach(x=>x.style.opacity=(1-off)*parpa); $$(".apaga").forEach(x=>x.setAttribute("opacity",off*0.75));
+      const noche=$1(".noche"); noche.setAttribute("opacity", sube ? 0.28*(1-cl(lt/(TD+0.6))) : 0.28*off);
+      if(sube){ const a=cl(lt/(TD+0.8)); $1(".alba").setAttribute("opacity",a*0.9); const sol=$1(".sol"); sol.setAttribute("opacity",a); sol.setAttribute("transform",`translate(0 ${60*(1-a)})`); $$(".est").forEach(c=>c.setAttribute("opacity",(1-a)*0.8)); }
+      const ca=$1(".cartel"); ca.style.transformOrigin=`${cx}px ${cy}px`; ca.style.transformBox="view-box";
+      if(!sube){ const tc=T0+TD*0.9, a=cl((lt-tc)/0.35); const ang=a<1?-60*(1-a):Math.sin((lt-tc-0.35)*6)*14*Math.exp(-(lt-tc-0.35)*0.9); ca.style.opacity=a; ca.style.transform=`rotate(${ang}deg)`; }
+      else { // el cartel sube con la persiana y da la vuelta: ABIERTO
+        const tg=T0+TD+0.1, g=cl((lt-tg)/0.5); ca.style.opacity=1; ca.style.transform=`translate(0px, ${-(1-bajada)*0}px) scaleX(${Math.abs(Math.cos(g*Math.PI))||0.02})`;
+        const L=$1(".letrero"), Tb=$1(".tabla"); if(g>0.5){ L.textContent="ABIERTO"; L.setAttribute("fill","#1f9d55"); Tb.setAttribute("stroke","#1f9d55"); } }
+    } else if(P==="sofa"){ const [rx,ry]=q.reloj;
+      const ini=(q.desde||[23,30]), fin=(q.hasta||[23,37]); const mins=ini[1]+(fin[1]-ini[1])*cl(lt/(dur*0.9));
+      $1(".minutos").setAttribute("transform",`rotate(${mins*6} ${rx} ${ry})`); $1(".horas").setAttribute("transform",`rotate(${(ini[0]%12)*30+mins*0.5} ${rx} ${ry})`);
+      $1(".digital").textContent=`${ini[0]}:${String(Math.floor(mins)).padStart(2,"0")}`;
+      $1(".brillo").setAttribute("opacity", 0.25+0.35*Math.abs(Math.sin(lt*3)));
+      const env=cl((lt-0.9)/0.3)*(1-cl((lt-2.2)/0.3)); $1(".ondas").style.opacity=env*(0.4+0.6*Math.abs(Math.sin(lt*7)));
+      const gp=$1(".gpuntos"), gt=$1(".gtxt"); if(gp){ const esc_=lt<1.5; gp.style.display=esc_?"inline":"none"; gt.style.display=esc_?"none":"inline"; gp.style.opacity=0.5+0.5*Math.abs(Math.sin(lt*6)); }
+    } else if(P==="terraza"){
+      const n=$1(".neon"); n.style.opacity = lt<0.6 ? (Math.sin(lt*70)>0?1:0.15) : (0.85+0.15*Math.sin(lt*9));
+      $$(".vapor").forEach(v=>{ const k=+v.dataset.k, c=((lt*0.7+k/3)%1); v.setAttribute("transform",`translate(${Math.sin(c*6+k)*8} ${-c*90})`); v.setAttribute("opacity",(1-c)*0.55); v.setAttribute("r",10+c*18); });
+    }
+    const g=$1(".globo"); if(g){ const a=pop(lt,e.globo.retraso??0.35,.35); g.style.opacity=a; g.style.transform=`translateY(${(1-a)*30}px) scale(${0.9+0.1*a})`; }
+    break; }
   case "foto": { // 2,5D: el fondo se acerca despacio y el personaje (recortado) un poco más y respira -> profundidad
     const p=ease(Math.min(1,lt/Math.max(dur,0.1))), f=d.querySelector(".fondo"), fg=d.querySelector(".fig"), c=d.querySelector(".dib");
     const dx=(e.paneo||0)*p; if(f) f.style.transform=`scale(${1.02+0.06*p}) translateX(${dx}%)`;
@@ -254,7 +312,7 @@ def pagina(cfg, datos):
             dibujos[e["dibujo"]] = (AQUI / "dibujos" / f"{e['dibujo']}.svg").read_text()
     base = pathlib.Path(cfg.get("_ruta", ".")).parent
     for e in cfg["escenas"]:
-        if e.get("tipo") in ("captura", "foto"):
+        if e.get("tipo") in ("captura", "foto", "anim"):
             src = e["imagen"]
             e["src"] = src if src.startswith("http") else f"file://{(base / src).resolve()}"
             if e.get("figura"):
