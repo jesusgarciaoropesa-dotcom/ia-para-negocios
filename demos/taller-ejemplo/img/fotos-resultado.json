@@ -1,14 +1,25 @@
 [
  {
   "nombre": "inicio",
-  "url": "https://images.unsplash.com/photo-1792326103553-4e4e8964279e?w=2000&q=80&fm=jpg&fit=max",
+  "url": "https://images.unsplash.com/photo-1771340012319-0b4fca008b54?w=2400&q=80&fm=jpg&fit=max",
   "ok": true,
   "archivo": "img/inicio.jpg",
   "tamano": [
    1800,
    1000
   ],
-  "kb": 158
+  "kb": 256
+ },
+ {
+  "nombre": "inicio-b",
+  "url": "https://images.unsplash.com/photo-1643700973089-baa86a1ab9ee?w=2400&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/inicio-b.jpg",
+  "tamano": [
+   1800,
+   1000
+  ],
+  "kb": 193
  },
  {
   "nombre": "frenos",
