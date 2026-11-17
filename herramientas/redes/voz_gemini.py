@@ -146,5 +146,77 @@ def partir(pcm, sr, pesos):
     return [recortar(a16[limites[k]:limites[k + 1]].tobytes(), sr) for k in range(n)]
 
 
+def partir_alineado(pcm, sr, frases):
+    """Trocea el audio de un guion entero en len(frases) trozos eligiendo, entre todos los silencios, los
+    que mejor cuadran con donde debería acabar cada frase según su longitud (Gemini también hace pausas
+    dentro de una frase, tras «?» o «:», así que no vale coger sin más los silencios más largos).
+    Devuelve la lista de pcm, o None si algún trozo sale con una velocidad imposible."""
+    import numpy as np
+    n = len(frases)
+    a16 = np.frombuffer(pcm, dtype="<i2")
+    if n <= 1:
+        return [recortar(pcm, sr)]
+    a = a16.astype(np.float32)
+    hop = int(0.01 * sr)
+    energia = np.array([np.sqrt(np.mean(a[i:i + hop] ** 2)) for i in range(0, max(1, len(a) - hop), hop)])
+    umbral = max(250.0, float(np.percentile(energia, 20)) * 1.5)
+    callado = energia < umbral
+    voz = np.where(~callado)[0]
+    if not len(voz):
+        return None
+    ini, fin = int(voz[0]), int(voz[-1])
+    cands, i = [], ini
+    while i <= fin:
+        if callado[i]:
+            j = i
+            while j <= fin and callado[j]:
+                j += 1
+            if j - i >= 10:
+                cands.append(((i + j) // 2, j - i))
+            i = j
+        else:
+            i += 1
+    if len(cands) < n - 1:
+        return None
+    pesos = [len(f) + 6 for f in frases]          # +6: cada frase lleva su pausa
+    suma, acum, objetivos = float(sum(pesos)), 0, []
+    for k in range(n - 1):
+        acum += pesos[k]
+        objetivos.append(ini + (fin - ini) * acum / suma)
+    span = float(fin - ini)
+    m = len(cands)
+    def coste(k, c):
+        pos, largo = cands[c]
+        return ((pos - objetivos[k]) / span) ** 2 * 400 - min(largo, 80) / 80.0
+    INF = float("inf")
+    dp = [[INF] * m for _ in range(n - 1)]
+    prev = [[-1] * m for _ in range(n - 1)]
+    for c in range(m):
+        dp[0][c] = coste(0, c)
+    for k in range(1, n - 1):
+        mejor, arg = INF, -1
+        for c in range(m):
+            if c - 1 >= 0 and dp[k - 1][c - 1] < mejor:
+                mejor, arg = dp[k - 1][c - 1], c - 1
+            if arg >= 0:
+                dp[k][c] = mejor + coste(k, c)
+                prev[k][c] = arg
+    c = min(range(m), key=lambda x: dp[n - 2][x])
+    if dp[n - 2][c] == INF:
+        return None
+    elegidos = []
+    for k in range(n - 2, -1, -1):
+        elegidos.append(cands[c][0])
+        c = prev[k][c]
+    cortes = [p * hop for p in reversed(elegidos)]
+    limites = [0] + cortes + [len(a16)]
+    trozos = [recortar(a16[limites[k]:limites[k + 1]].tobytes(), sr) for k in range(n)]
+    for f, t in zip(frases, trozos):
+        seg = len(t) / 2 / sr
+        if seg < 0.25 or not (4 <= len(f) / max(seg, 0.01) <= 32):
+            return None
+    return trozos
+
+
 if __name__ == "__main__":
     print(__doc__)

@@ -238,7 +238,12 @@ def voces_reel(frases):
         return sueltas
     entero = G.descargar(" ".join(frases), estilo=G.ESTILO)
     if entero:
-        trozos = G.partir_validado(entero[0], entero[1], frases)
+        try:
+            import alinear_voz
+            trozos = alinear_voz.alinear(entero[0], entero[1], frases)
+        except Exception as e:   # sin Kokoro o librosa: troceo por silencios, menos fino
+            print(f"AVISO: alineado con Kokoro no disponible ({e}); troceo por silencios", file=sys.stderr)
+            trozos = G.partir_alineado(entero[0], entero[1], frases)
         if trozos:
             return [(t, entero[1]) for t in trozos]
     return sueltas
