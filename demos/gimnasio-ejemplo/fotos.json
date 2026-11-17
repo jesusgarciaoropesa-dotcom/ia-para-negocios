@@ -1,0 +1,64 @@
+{
+ "fotos": [
+  {
+   "nombre": "inicio",
+   "url": "https://images.unsplash.com/photo-1758875569256-f37c438cac65?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 1800,
+   "alto": 1000
+  },
+  {
+   "nombre": "inicio-b",
+   "url": "https://images.unsplash.com/photo-1758875570600-8daf8d2f05f3?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 1800,
+   "alto": 1000
+  },
+  {
+   "nombre": "personal",
+   "url": "https://images.unsplash.com/photo-1758875569334-27579a49ed0b?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "personal-b",
+   "url": "https://images.unsplash.com/photo-1648542036561-e1d66a5ae2b1?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "funcional",
+   "url": "https://images.unsplash.com/photo-1758875570600-8daf8d2f05f3?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "funcional-b",
+   "url": "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "valoracion",
+   "url": "https://images.unsplash.com/photo-1758875569399-99a7d80ace43?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "valoracion-b",
+   "url": "https://images.unsplash.com/photo-1758875569414-120ebc62ada3?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "sala",
+   "url": "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "pesas",
+   "url": "https://images.unsplash.com/photo-1632077804406-188472f1a810?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  }
+ ]
+}
