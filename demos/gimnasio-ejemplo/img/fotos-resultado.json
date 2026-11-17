@@ -1,0 +1,46 @@
+[
+ {
+  "nombre": "inicio",
+  "url": "https://images.unsplash.com/photo-1758875569256-f37c438cac65?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/inicio.jpg",
+  "tamano": [
+   1800,
+   1000
+  ],
+  "kb": 144
+ },
+ {
+  "nombre": "personal",
+  "url": "https://images.unsplash.com/photo-1648542036561-e1d66a5ae2b1?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/personal.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 34
+ },
+ {
+  "nombre": "funcional",
+  "url": "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/funcional.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 49
+ },
+ {
+  "nombre": "valoracion",
+  "url": "https://images.unsplash.com/photo-1758875569399-99a7d80ace43?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/valoracion.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 41
+ }
+]

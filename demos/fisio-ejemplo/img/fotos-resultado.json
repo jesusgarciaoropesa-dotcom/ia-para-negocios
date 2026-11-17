@@ -1,0 +1,57 @@
+[
+ {
+  "nombre": "inicio",
+  "url": "https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/inicio.jpg",
+  "tamano": [
+   1800,
+   1000
+  ],
+  "kb": 113
+ },
+ {
+  "nombre": "valoracion",
+  "url": "https://images.unsplash.com/photo-1706353399656-210cca727a33?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/valoracion.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 26
+ },
+ {
+  "nombre": "sesion",
+  "url": "https://images.unsplash.com/photo-1645005512968-0c1fe99f0093?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/sesion.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 40
+ },
+ {
+  "nombre": "puncion",
+  "url": "https://images.unsplash.com/photo-1598555763574-dca77e10427e?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/puncion.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 25
+ },
+ {
+  "nombre": "masaje",
+  "url": "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/masaje.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 23
+ }
+]

@@ -1,0 +1,90 @@
+[
+ {
+  "nombre": "inicio",
+  "url": "https://images.unsplash.com/photo-1771340012319-0b4fca008b54?w=2400&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/inicio.jpg",
+  "tamano": [
+   1800,
+   1000
+  ],
+  "kb": 256
+ },
+ {
+  "nombre": "frenos",
+  "url": "https://images.unsplash.com/photo-1760317890314-e964ffd7e6a6?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/frenos.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 36
+ },
+ {
+  "nombre": "aceite",
+  "url": "https://images.unsplash.com/photo-1771340742493-52fbd5476ccb?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/aceite.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 42
+ },
+ {
+  "nombre": "diagnosis",
+  "url": "https://images.unsplash.com/photo-1658351354155-e854d19233e0?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/diagnosis.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 42
+ },
+ {
+  "nombre": "preitv",
+  "url": "https://images.unsplash.com/photo-1616761879141-f485e5fed5df?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/preitv.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 24
+ },
+ {
+  "nombre": "neumaticos",
+  "url": "https://images.unsplash.com/photo-1792793182756-de1abcba6d70?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/neumaticos.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 35
+ },
+ {
+  "nombre": "bateria",
+  "url": "https://images.unsplash.com/photo-1765211003026-f7666ea3a948?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/bateria.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 54
+ },
+ {
+  "nombre": "aire",
+  "url": "https://images.unsplash.com/photo-1623592395693-48c0ac5c5068?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/aire.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 33
+ }
+]

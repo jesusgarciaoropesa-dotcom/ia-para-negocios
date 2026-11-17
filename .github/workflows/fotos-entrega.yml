@@ -1,0 +1,33 @@
+name: Fotos de las demos entregadas
+# Red de seguridad: cuando llega a main una demo (demos/<slug>/index.html), copia desde la rama
+# demos las fotos de demos/<slug>/img/ que la página usa y no estén en main.
+on:
+  push:
+    branches: [main]
+    paths: ["demos/*/index.html"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fotos-entrega
+  cancel-in-progress: false
+jobs:
+  fotos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - name: Copiar fotos que faltan
+        run: |
+          git fetch -q --depth 1 origin demos
+          for p in demos/*/index.html; do
+            d=$(dirname "$p")
+            for f in $(grep -o 'img/[A-Za-z0-9._-]*\.\(jpg\|jpeg\|png\|webp\)' "$p" | sort -u); do
+              [ -f "$d/$f" ] || git checkout FETCH_HEAD -- "$d/$f" 2>/dev/null || echo "No está en demos: $d/$f"
+            done
+          done
+          git config user.name "fotos-demos"; git config user.email "actions@users.noreply.github.com"
+          git add demos/*/img 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git commit -m "Fotos de las demos entregadas"
+          for i in 1 2 3 4 5; do git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0; sleep 5; done; exit 1
