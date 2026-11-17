@@ -1,109 +1,53 @@
 {
  "fotos": [
   {
-   "nombre": "c-inicio-a",
-   "url": "https://images.unsplash.com/photo-1761839256840-7780a45b85dc?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-inicio-b",
+   "nombre": "inicio",
    "url": "https://images.unsplash.com/photo-1629397685944-7073f5589754?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
+   "ancho": 1800,
+   "alto": 1000,
+   "foco_y": 0.35
   },
   {
-   "nombre": "c-inicio-c",
-   "url": "https://images.unsplash.com/photo-1785456283212-338f5bc44d50?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-inicio-d",
-   "url": "https://images.unsplash.com/photo-1675034743339-0b0747047727?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-inicio-e",
-   "url": "https://images.unsplash.com/photo-1695527081848-1e46c06e6458?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-mujer-a",
+   "nombre": "corte-mujer",
    "url": "https://images.unsplash.com/photo-1700760934268-8aa0ef52ce0a?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
+   "ancho": 600,
+   "alto": 750,
+   "foco_y": 0.5
   },
   {
-   "nombre": "c-mujer-b",
-   "url": "https://images.unsplash.com/photo-1634480258143-ffb5e6df0029?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-mujer-c",
-   "url": "https://images.unsplash.com/photo-1707812343087-c9ff9e5abb43?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-hombre-a",
-   "url": "https://images.unsplash.com/photo-1761931403671-d020a14928d9?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-hombre-b",
+   "nombre": "corte-hombre",
    "url": "https://images.unsplash.com/photo-1634480257305-7f4ca3582e6a?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
+   "ancho": 600,
+   "alto": 750,
+   "foco_y": 0.5
   },
   {
-   "nombre": "c-hombre-c",
-   "url": "https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-peinar-a",
+   "nombre": "lavar-peinar",
    "url": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
+   "ancho": 600,
+   "alto": 750,
+   "foco_y": 0.5
   },
   {
-   "nombre": "c-peinar-b",
-   "url": "https://images.unsplash.com/photo-1717160675643-53a7a2ebaa9f?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-peinar-c",
-   "url": "https://images.unsplash.com/photo-1734111719430-fe4a3973f8af?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-tinte-a",
-   "url": "https://images.unsplash.com/photo-1595475884562-073c30d45670?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-tinte-b",
-   "url": "https://images.unsplash.com/photo-1554519515-242161756769?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-mechas-a",
-   "url": "https://images.unsplash.com/photo-1558265246-e84a824bcd83?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-mechas-b",
+   "nombre": "tinte",
    "url": "https://images.unsplash.com/photo-1605980766335-d3a41c7332a1?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
+   "ancho": 600,
+   "alto": 750,
+   "foco_y": 0.5
   },
   {
-   "nombre": "c-trat-a",
-   "url": "https://images.unsplash.com/photo-1785323451868-edd1e693daa6?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
+   "nombre": "mechas",
+   "url": "https://images.unsplash.com/photo-1707812343087-c9ff9e5abb43?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 600,
+   "alto": 750,
+   "foco_y": 0.4
   },
   {
-   "nombre": "c-trat-b",
-   "url": "https://images.unsplash.com/photo-1470259078422-826894b933aa?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
-  },
-  {
-   "nombre": "c-trat-c",
-   "url": "https://images.unsplash.com/photo-1770576568718-6747e3d85de8?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 900
+   "nombre": "tratamiento",
+   "url": "https://images.unsplash.com/photo-1717160675643-53a7a2ebaa9f?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 600,
+   "alto": 750,
+   "foco_y": 0.5
   }
  ]
 }
