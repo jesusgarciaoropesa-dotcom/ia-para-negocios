@@ -11,17 +11,6 @@
   "kb": 256
  },
  {
-  "nombre": "inicio-b",
-  "url": "https://images.unsplash.com/photo-1643700973089-baa86a1ab9ee?w=2400&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/inicio-b.jpg",
-  "tamano": [
-   1800,
-   1000
-  ],
-  "kb": 193
- },
- {
   "nombre": "frenos",
   "url": "https://images.unsplash.com/photo-1760317890314-e964ffd7e6a6?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,

@@ -49,6 +49,8 @@ def rutas(ctx):
         else: body = []
         r.fulfill(status=200, content_type="application/json", body=json.dumps(body), headers={"access-control-allow-origin": "*"})
     ctx.route("https://gimoqpusrdltlkrwsykr.supabase.co/**", sb)
+    ctx.route(re.compile(r"https://maps\.google\.com/"), lambda r: r.fulfill(status=200, content_type="text/html",
+              body="<body style='margin:0;height:100vh;background:#e8eaed linear-gradient(90deg,transparent 47%,#fff 47%,#fff 53%,transparent 53%),linear-gradient(0deg,transparent 47%,#fde293 47%,#fde293 53%,transparent 53%);display:grid;place-items:center;font:600 15px sans-serif;color:#3c4043'><span style='background:#fff;padding:6px 10px;border-radius:6px;box-shadow:0 1px 4px #0003'>&#128205; Oropesa (Toledo)</span></body>"))
     ctx.route("https://www.google.com/maps**", lambda r: r.fulfill(status=200, content_type="text/html",
               body="<body style='margin:0;background:#dfe5f0;font:15px sans-serif;display:grid;place-items:center;height:100vh;color:#4d5866'>Mapa</body>"))
 
@@ -61,6 +63,10 @@ with sync_playwright() as p:
         rutas(ctx)
         pg = ctx.new_page()
         pg.goto(DEMO.as_uri(), wait_until="networkidle")
+        pg.locator(".mapa").scroll_into_view_if_needed()
+        pg.wait_for_timeout(1200)
+        pg.evaluate("scrollTo(0, 0)")
+        pg.wait_for_timeout(300)
         pg.evaluate("document.fonts.ready")
         pg.wait_for_timeout(500)
         pg.screenshot(path=str(OUT / f"{nombre}-inicio.png"))

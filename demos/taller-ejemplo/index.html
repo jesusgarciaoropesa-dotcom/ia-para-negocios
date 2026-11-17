@@ -74,19 +74,20 @@
   header { position: sticky; top: 0; z-index: 20; background: rgba(20,22,25,.96); border-bottom: 1px solid #23272c; backdrop-filter: blur(6px); }
   .cab { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 72px; }
   .logo { display: block; text-decoration: none; }
-  .logo svg { height: 46px; width: auto; display: block; }
+  .logo svg { height: 74px; width: auto; display: block; }
   nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
   nav a { text-decoration: none; font-weight: 600; font-size: .98rem; color: #e4e5e8; padding: 8px 0; border-bottom: 2px solid transparent; }
   nav a:hover { color: var(--naranja); border-color: var(--naranja); }
   .cab .btn { min-height: 46px; padding: 0 18px; font-size: .98rem; border-radius: 12px; }
   @media (max-width: 960px) { nav { display: none; } }
-  @media (max-width: 420px) { .logo svg { height: 40px; } .cab .btn { padding: 0 14px; } .cab .btn .ico { display: none; } }
+  @media (max-width: 420px) { .logo svg { height: 56px; } .cab .btn { padding: 0 14px; } .cab .btn .ico { display: none; } }
 
   /* Inicio con foto a sangre */
   .inicio { position: relative; min-height: clamp(540px, 68vh, 660px); display: flex; align-items: center; overflow: hidden; isolation: isolate; }
-  .inicio > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; z-index: -2; filter: brightness(1.18) contrast(1.05); }
+  .inicio > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 0% 60%; z-index: -2; }
+  @media (min-width: 721px) { .inicio > img { width: 122%; right: auto; } }
   .inicio::before { content: ""; position: absolute; inset: 0; z-index: -1;
-    background: linear-gradient(90deg, rgba(14,15,17,.92) 0%, rgba(14,15,17,.72) 32%, rgba(14,15,17,.12) 60%, rgba(14,15,17,0) 100%), linear-gradient(0deg, rgba(14,15,17,.6) 0%, rgba(14,15,17,0) 22%); }
+    background: linear-gradient(90deg, rgba(14,15,17,.9) 0%, rgba(14,15,17,.78) 30%, rgba(14,15,17,.25) 52%, rgba(14,15,17,0) 64%); }
   .inicio-txt { max-width: 760px; padding: 48px 0 56px; }
   .inicio h1 { font-size: clamp(2.3rem, 5.4vw, 3.7rem); font-weight: 800; color: #fff; }
   .inicio h1 span { color: var(--naranja); }
@@ -95,10 +96,10 @@
   .horario-mini { margin: 24px 0 0 !important; max-width: none !important; font-size: 1rem !important; display: flex; align-items: center; gap: 10px; color: var(--gris); font-size: .98rem; }
   .horario-mini .ico { color: var(--naranja); width: 20px; height: 20px; }
   @media (max-width: 720px) {
-    .inicio { align-items: flex-end; min-height: 640px; }
-    .inicio > img { object-position: 52% 50%; }
-    .inicio::before { background: linear-gradient(0deg, rgba(14,15,17,.97) 0%, rgba(14,15,17,.88) 46%, rgba(14,15,17,.35) 75%, rgba(14,15,17,.15) 100%); }
-    .inicio-txt { padding: 120px 0 36px; }
+    .inicio { align-items: flex-start; min-height: 0; }
+    .inicio > img { height: 300px; bottom: auto; object-position: 60% 62%; }
+    .inicio::before { background: linear-gradient(180deg, rgba(20,22,25,0) 0, rgba(20,22,25,0) 190px, #141619 300px); }
+    .inicio-txt { padding: 262px 0 32px; }
     .botones .btn { flex: 1 1 100%; }
   }
 
@@ -118,8 +119,8 @@
   }
 
   /* Servicios con foto */
-  section { padding: 76px 0; }
-  .titulo-linea { display: flex; align-items: center; gap: 22px; margin-bottom: 34px; }
+  section { padding: 50px 0; }
+  .titulo-linea { display: flex; align-items: center; gap: 22px; margin-bottom: 26px; }
   .titulo-linea::before, .titulo-linea::after { content: ""; flex: 1; height: 2px; background: var(--naranja); opacity: .85; }
   .titulo-linea h2 { text-align: center; }
   .rejilla { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
@@ -185,7 +186,7 @@
   .pasos li.hecho::after, .pasos li.activo::after { background: var(--naranja); }
   .pasos li.activo { color: var(--tinta); }
   .pasos li.activo::before { background: var(--naranja); border-color: var(--naranja); color: #17120a; box-shadow: 0 0 0 5px rgba(243,147,37,.22); }
-  @media (max-width: 420px) { .pasos li { font-size: .94rem; line-height: 1.15; } }
+  @media (max-width: 420px) { .pasos { grid-template-columns: 1fr 1fr 1fr 1.35fr; column-gap: 4px; } .pasos li { font-size: .94rem; line-height: 1.15; } .res-caja { padding-left: 14px; padding-right: 14px; } }
 
   .paso[hidden] { display: none; }
   .paso h3 { font-family: var(--f-txt); font-size: 1.15rem; font-weight: 700; margin: 0 0 12px; }
@@ -234,6 +235,32 @@
   .rv-hecha .botones { justify-content: center; margin-top: 18px; }
   .btn-wa { background: var(--wa); color: #0b2a17; border-radius: 12px; }
 
+
+  /* Reserva en oscuro (sector de fondo oscuro, DISENO.md 0.6) */
+  .reserva { background: var(--panel); color: var(--claro); border: 1px solid #2c3036; }
+  .res-intro { background: #17191c; padding: 36px 36px; }
+  .res-intro .cal { color: var(--naranja); }
+  .res-intro h2, .res-alt a { color: #fff; }
+  .res-intro h2 span, .firma { color: var(--naranja); }
+  .res-intro p, .res-alt { color: var(--gris); }
+  .res-caja { padding: 30px 36px 32px; }
+  .pasos { margin-bottom: 20px; }
+  .pasos li { color: #8d939b; }
+  .pasos li::before { background: var(--panel-2); border-color: #4a5058; color: #b4b9c0; }
+  .pasos li::after { background: #3b4047; }
+  .pasos li.activo { color: #fff; }
+  .rv-servs button { min-height: 52px; padding: 8px 14px; }
+  .rv-otro, .rv-ayuda { color: var(--gris); }
+  .rv-check { color: var(--gris); }
+  .rv-resumen { color: var(--tinta); }
+  .btn-atras { border-color: #4a5058; color: var(--claro); }
+  .rv-hecha p { color: var(--gris); }
+  .rv-estado.mal { color: #ff8a7a; }
+  .rv-dias button[aria-pressed="true"] { background: var(--naranja); border-color: var(--naranja); color: #17120a; }
+  .rv-dias button[aria-pressed="true"] small { color: #3a2a12; }
+  .rv-acciones .btn-pri { min-height: 54px; }
+  #rv-sig1::after, #rv-sig2::after { content: "→"; font-size: 1.15em; line-height: 1; }
+
   /* Opiniones + dónde estamos */
   .lugar { display: grid; grid-template-columns: 1.15fr 1px .8fr 1fr; gap: 34px; align-items: start; }
   .lugar .sep { background: var(--naranja); opacity: .6; align-self: stretch; }
@@ -256,7 +283,7 @@
   .datos .horas { color: var(--gris); font-size: .98rem; }
   .lugar .btn { border-radius: 12px; min-height: 48px; font-size: 1rem; }
   .mapa { border-radius: 14px; overflow: hidden; border: 1px solid #2c3036; background: #e9e6df; }
-  .mapa svg { display: block; width: 100%; height: auto; }
+  .mapa iframe { display: block; width: 100%; height: 280px; border: 0; }
   .mapa figcaption { background: var(--panel); color: #8d939b; font-size: .94rem; padding: 8px 12px; }
   @media (max-width: 1000px) {
     .lugar { grid-template-columns: 1fr 1fr; }
@@ -279,7 +306,7 @@
   /* Pie */
   footer { background: #0e0f11; border-top: 1px solid #23272c; padding: 38px 0 96px; }
   .pie { display: grid; grid-template-columns: auto 1fr auto; gap: 30px; align-items: center; }
-  .pie .logo svg { height: 50px; }
+  .pie .logo svg { height: 66px; }
   .legal { display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: center; }
   .legal a { color: #c9ccd1; text-decoration: none; font-size: .98rem; }
   .legal a:hover { color: var(--naranja); }
@@ -300,10 +327,11 @@
   <symbol id="i-pin" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></symbol>
   <symbol id="i-estrella" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9L12 2.8Z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.3-.9 2.1 0 .9.4 1.8 1 2.6 1.1 1.6 2.5 2.9 4.2 3.7.6.3 1.1.4 1.5.5.6.2 1.2.1 1.7 0 .5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></symbol>
-  <symbol id="logo" viewBox="0 0 230 56">
-    <g transform="translate(2 4)"><path d="M24 0 44.8 12v24L24 48 3.2 36V12Z" fill="#f39325"/><circle cx="24" cy="24" r="9.5" fill="#141619"/><circle cx="24" cy="24" r="4" fill="#f39325"/></g>
-    <text x="58" y="31" font-family="Saira, 'Arial Narrow', sans-serif" font-weight="800" font-size="29" fill="#ffffff" letter-spacing="-.4">Tu <tspan fill="#f39325">taller</tspan></text>
-    <text x="59" y="49" font-family="Barlow, system-ui, sans-serif" font-weight="500" font-size="12.6" fill="#c3c7cd">Mecánica general del automóvil</text>
+  <symbol id="logo" viewBox="0 0 250 78">
+    <path d="M14 32c10-2 20-4 30-10 9-6 20-12 38-12 20 0 32 6 44 13 9 0 22 1 30 4 6 2 9 5 9 8" fill="none" stroke="#f39325" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M60 22c6-6 14-8 22-8 12 0 20 3 28 9" fill="none" stroke="#f39325" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <text x="4" y="58" font-family="Saira, 'Arial Narrow', sans-serif" font-weight="800" font-style="italic" font-size="34" fill="#ffffff" letter-spacing="-.6">Tu<tspan fill="#f39325" dx="6">Taller</tspan></text>
+    <text x="5" y="75" font-family="Barlow, system-ui, sans-serif" font-weight="500" font-size="13.4" fill="#d4d7dc" letter-spacing=".2">Mecánica y servicio del automóvil</text>
   </symbol>
 </svg>
 
@@ -311,7 +339,7 @@
 
 <header>
   <div class="contenedor cab">
-    <a class="logo" href="#" aria-label="Tu taller · Mecánica general del automóvil"><svg viewBox="0 0 230 56" role="img" aria-hidden="true"><use href="#logo"/></svg></a>
+    <a class="logo" href="#" aria-label="Tu taller · Mecánica y servicio del automóvil"><svg viewBox="0 0 250 78" role="img" aria-hidden="true"><use href="#logo"/></svg></a>
     <nav aria-label="Menú">
       <ul>
         <li><a href="#servicios">Servicios</a></li>
@@ -327,7 +355,7 @@
 
 <main>
   <section class="inicio" aria-labelledby="titular">
-    <img src="img/inicio.jpg" width="1800" height="1000" alt="Interior del taller: un coche subido en el elevador y otro con el capó abierto" fetchpriority="high">
+    <img src="img/inicio.jpg" width="1800" height="1000" alt="Mecánico revisando el motor de un coche con el capó abierto en un taller luminoso" fetchpriority="high">
     <div class="contenedor">
       <div class="inicio-txt">
         <h1 id="titular">Tu coche a punto,<br> <span>sin esperar al teléfono</span></h1>
@@ -589,23 +617,15 @@
       <div id="donde">
         <h2>¿Dónde estamos?</h2>
         <ul class="datos">
-          <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span>Calle de ejemplo, 2</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span>Calle de ejemplo, 2<br><span class="horas">Oropesa (Toledo)</span></span></li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg><a href="tel:+34637847114">637 847 114</a></li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><span>Lunes a viernes<br><span class="horas">8:30 a 13:30 · 15:30 a 19:00<br>Sábado y domingo, cerrado</span></span></li>
         </ul>
-        <a class="btn btn-pri" href="https://wa.me/34637847114?text=Hola%2C%20%C2%BFme%20mand%C3%A1is%20la%20ubicaci%C3%B3n%20del%20taller%3F" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Pedir ubicación</a>
+        <a class="btn btn-pri" href="https://www.google.com/maps/search/?api=1&amp;query=Oropesa%2C%20Toledo" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Ver en Google Maps</a>
       </div>
       <figure class="mapa" style="margin:0">
-        <svg viewBox="0 0 400 300" role="img" aria-label="Mapa de ejemplo con la posición del taller">
-          <rect width="400" height="300" fill="#e9e6df"/>
-          <path d="M0 210 400 150" stroke="#f6d38f" stroke-width="16"/>
-          <g stroke="#fff" stroke-width="10" fill="none"><path d="M0 70h400M0 255h400M70 0v300M190 0v300M310 0v300M0 0l400 300"/></g>
-          <g stroke="#fff" stroke-width="5" fill="none" opacity=".9"><path d="M0 130h400M130 0v300M250 0v300M360 0v300"/></g>
-          <rect x="262" y="78" width="40" height="44" rx="3" fill="#cfe1bf"/><rect x="82" y="140" width="42" height="40" rx="3" fill="#cfe1bf"/>
-          <g transform="translate(222 92)"><path d="M0 0c-14 0-24 10-24 23 0 17 24 41 24 41s24-24 24-41C24 10 14 0 0 0Z" fill="#f39325" stroke="#9a4f00" stroke-width="2"/><circle cx="0" cy="23" r="8" fill="#fff"/></g>
-          <rect x="250" y="104" width="78" height="26" rx="6" fill="#141619"/><text x="289" y="122" text-anchor="middle" font-family="Barlow, sans-serif" font-weight="700" font-size="14" fill="#fff">Tu taller</text>
-        </svg>
-        <figcaption>Mapa de ejemplo: en la web real va el mapa de Google con la dirección del taller.</figcaption>
+        <iframe src="https://maps.google.com/maps?q=Plaza%20del%20Navarro%2C%20Oropesa%2C%20Toledo&amp;z=15&amp;output=embed" title="Mapa: centro de Oropesa (Toledo)" width="400" height="300" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <figcaption>Mapa de ejemplo centrado en Oropesa (Toledo): en la web real va la dirección del taller.</figcaption>
       </figure>
     </div>
   </section>
@@ -624,7 +644,7 @@
 
 <footer>
   <div class="contenedor pie">
-    <a class="logo" href="#" aria-label="Tu taller · Mecánica general del automóvil"><svg viewBox="0 0 230 56" role="img" aria-hidden="true"><use href="#logo"/></svg></a>
+    <a class="logo" href="#" aria-label="Tu taller · Mecánica y servicio del automóvil"><svg viewBox="0 0 250 78" role="img" aria-hidden="true"><use href="#logo"/></svg></a>
     <nav class="legal" aria-label="Legal">
       <a href="https://iando.xyz/aviso-legal.html" rel="noopener">Aviso legal</a>
       <a href="https://iando.xyz/politica-privacidad.html" rel="noopener">Privacidad</a>
