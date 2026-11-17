@@ -163,7 +163,7 @@ function construir(e,i){
   case "pasos": h = e.pasos.map((t,k)=>`<div class="card paso" data-k="${k}" style="top:${40+k*200}px"><div class="num">${k+1}</div>${esc(t)}</div>`).join(""); break;
   case "dibujo": h = `<div class="dib" style="position:absolute;left:-10px;right:-10px;top:0;transform-origin:50% 55%">${window.DIBUJOS[e.dibujo]||""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
-  case "foto": h = `<div class="dib card" style="position:absolute;left:40px;right:40px;top:0;height:920px;overflow:hidden;padding:0;transform-origin:50% 50%"><img src="${e.src}" style="width:100%;height:100%;object-fit:cover;display:block;object-position:${e.foco||"50% 50%"}"></div>`+
+  case "foto": h = `<div class="dib card" style="position:absolute;left:40px;right:40px;top:0;height:920px;overflow:hidden;padding:0;transform-origin:50% 50%"><img class="fondo" src="${e.src}" style="width:100%;height:100%;object-fit:cover;display:block;object-position:${e.foco||"50% 50%"};transform-origin:50% 50%">${e.figsrc?`<img class="fig" src="${e.figsrc}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${e.foco||"50% 50%"};transform-origin:50% 90%">`:""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
   case "captura": h = `<div class="movil card" style="top:0"><div class="pant" style="background:#fff"><img src="${e.src}" style="width:100%;display:block;position:absolute;top:0;left:0"></div></div>`; break;
   case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div><div class="marca">iando.xyz</div>`; break;
@@ -203,7 +203,13 @@ function animar(e,d,lt,dur){
   case "tarjetas": case "pasos": { const sel = e.tipo==="tarjetas"?".tarj":".paso", n = (e.items||e.pasos).length;
     Q(d,sel).forEach(c=>{ const k=+c.dataset.k, a=pop(lt,k*dur*0.75/n,.3); c.style.opacity=a; c.style.transform=`translateX(${(1-a)*120}px)`;
       if(e.tipo==="pasos"){ const on = lt >= k*dur*0.75/n; c.querySelector(".num").style.background = on?"var(--indigo)":"#efeffb"; c.querySelector(".num").style.color = on?"#fff":"var(--indigo)"; } }); break; }
-  case "foto":
+  case "foto": { // 2,5D: el fondo se acerca despacio y el personaje (recortado) un poco más y respira -> profundidad
+    const p=ease(Math.min(1,lt/Math.max(dur,0.1))), f=d.querySelector(".fondo"), fg=d.querySelector(".fig"), c=d.querySelector(".dib");
+    const dx=(e.paneo||0)*p; if(f) f.style.transform=`scale(${1.02+0.06*p}) translateX(${dx}%)`;
+    if(fg) fg.style.transform=`scale(${1.04+0.11*p}) translateX(${dx*1.6}%) translateY(${Math.sin(lt*2.4)*5}px) rotate(${Math.sin(lt*1.7)*0.6}deg)`;
+    const a0=pop(lt,0,.3); if(c){ c.style.opacity=a0; }
+    const g=d.querySelector(".globo"); if(g){ const a=pop(lt,0.3,.35); g.style.opacity=a; g.style.transform=`translateY(${(1-a)*30}px) scale(${0.9+0.1*a})`; }
+    break; }
   case "dibujo": { const tel=d.querySelector("#telefono"), on=d.querySelector("#ondas"), br=d.querySelector("#brazo");
     const dib=d.querySelector(".dib"); if(dib){ const z=1+0.05*ease(Math.min(1,lt/Math.max(dur,0.1))); dib.style.transform=`scale(${z})`; }
     d.querySelectorAll(".sudor").forEach((g,k)=>{ const c=((lt*1.3+k*0.4)%1); g.style.transform=`translateY(${c*40}px)`; g.style.opacity=1-c; });
@@ -251,6 +257,9 @@ def pagina(cfg, datos):
         if e.get("tipo") in ("captura", "foto"):
             src = e["imagen"]
             e["src"] = src if src.startswith("http") else f"file://{(base / src).resolve()}"
+            if e.get("figura"):
+                fg = e["figura"]
+                e["figsrc"] = fg if fg.startswith("http") else f"file://{(base / fg).resolve()}"
     for i, e in enumerate(cfg["escenas"]):
         if e.get("tipo") == "tarjetas":
             for k, t in enumerate(e["items"]):
