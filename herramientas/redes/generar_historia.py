@@ -179,7 +179,21 @@ function construir(e,i){
          `<circle class="brillo" cx="${tx}" cy="${ty}" r="60" fill="#9fd0ff" opacity="0" style="mix-blend-mode:screen"/>`+
          `<g class="ondas" fill="none" stroke="#25d366" stroke-width="5" stroke-linecap="round"><path d="M${tx-62} ${ty-30} q-18 30 0 60"/><path d="M${tx+62} ${ty-30} q18 30 0 60"/><path d="M${tx-84} ${ty-46} q-26 46 0 92"/><path d="M${tx+84} ${ty-46} q26 46 0 92"/></g>`+
          `<g class="reloj"><circle cx="${rx}" cy="${ry}" r="62" fill="#fff" stroke="#2b2a3f" stroke-width="9"/>${[0,1,2,3,4,5,6,7,8,9,10,11].map(k=>`<line x1="${rx}" y1="${ry-50}" x2="${rx}" y2="${ry-42}" stroke="#2b2a3f" stroke-width="4" transform="rotate(${k*30} ${rx} ${ry})"/>`).join("")}<line class="horas" x1="${rx}" y1="${ry}" x2="${rx}" y2="${ry-30}" stroke="#2b2a3f" stroke-width="8" stroke-linecap="round"/><line class="minutos" x1="${rx}" y1="${ry}" x2="${rx}" y2="${ry-46}" stroke="#e0413a" stroke-width="5" stroke-linecap="round"/><circle cx="${rx}" cy="${ry}" r="6" fill="#2b2a3f"/><rect x="${rx-58}" y="${ry+72}" width="116" height="40" rx="10" fill="#2b2a3f"/><text class="digital" x="${rx}" y="${ry+101}" text-anchor="middle" font-family="Arial" font-weight="700" font-size="26" fill="#fff">23:30</text></g>`;
-     } else if(P==="terraza"){ const [cx,cy]=q.cartel;
+     } else if(P==="huerto"){ // jardinera: siembra, brotes, riego, calendario, cosecha (q.tierra=[x0,x1,y])
+       const [x0,x1,yt]=q.tierra, M=q.modo, n=q.plantas||7, xs=[...Array(n)].map((_,k)=>x0+30+(x1-x0-60)*k/(n-1));
+       const roseta=(x,k,cls,esc)=>`<g class="${cls}" data-k="${k}" transform="translate(${x} ${yt})"><g class="r" style="transform:scale(${esc});transform-origin:0 0">${[0,1,2,3,4,5,6,7].map(j=>`<g transform="rotate(${j*45-180+ (j%2?12:-12)})"><ellipse cx="0" cy="-26" rx="11" ry="27" fill="${j%2?"#3f8f3a":"#4fa846"}" stroke="#24521f" stroke-width="3"/><line x1="0" y1="-6" x2="0" y2="-44" stroke="#a6d98c" stroke-width="2.5"/></g>`).join("")}</g></g>`;
+       if(M==="siembra"){ svg = `<g class="mano"><path d="M0 0 q40 -30 80 0 l10 40 q-50 30 -100 0z" fill="#f2c39b" stroke="#7a4a2a" stroke-width="5"/><path d="M10 34 q40 18 74 0" stroke="#7a4a2a" stroke-width="4" fill="none"/></g>`+
+           [...Array(18)].map((_,k)=>`<circle class="semilla" data-k="${k}" cx="0" cy="0" r="5" fill="#6b4a2b"/>`).join("")+
+           [...Array(26)].map((_,k)=>`<circle class="tierrita" data-k="${k}" cx="${x0+((k*97)%100)/100*(x1-x0)}" cy="${yt-4}" r="${3+k%3}" fill="#4a3020" opacity="0"/>`).join(""); }
+       else if(M==="brotes"){ svg = xs.map((x,k)=>roseta(x,k,"brote",0)).join("")+`<g class="dias"><rect x="${x0+40}" y="${yt-330}" width="230" height="90" rx="18" fill="#fff" stroke="#24521f" stroke-width="6"/><text class="ndia" x="${x0+155}" y="${yt-270}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="44" fill="#24521f">Día 1</text></g>`; }
+       else if(M==="riego"){ svg = xs.map((x,k)=>roseta(x,k,"planta",0.85)).join("")+`<ellipse class="charco" cx="${(x0+x1)/2}" cy="${yt+4}" rx="10" ry="6" fill="#6fb6e8" opacity="0"/>`+
+           `<g class="regadera"><path d="M0 0 h120 v90 q0 20 -20 20 h-80 q-20 0 -20 -20z" fill="#3aa0d8" stroke="#1d5f86" stroke-width="6"/><path d="M120 20 l90 -40 l10 16 l-90 46" fill="#3aa0d8" stroke="#1d5f86" stroke-width="6"/><path d="M0 20 q-50 10 -40 60" stroke="#1d5f86" stroke-width="10" fill="none"/></g>`+
+           [...Array(16)].map((_,k)=>`<ellipse class="gota" data-k="${k}" cx="0" cy="0" rx="5" ry="9" fill="#6fb6e8" opacity="0"/>`).join(""); }
+       else if(M==="calendario"){ svg = xs.map((x,k)=>roseta(x,k,"tanda",0)).join("")+`<g class="cal"><rect x="${x0+20}" y="${yt-380}" width="240" height="200" rx="16" fill="#fff" stroke="#2b2a3f" stroke-width="6"/><rect x="${x0+20}" y="${yt-380}" width="240" height="56" rx="16" fill="#e0413a"/><text x="${x0+140}" y="${yt-340}" text-anchor="middle" font-family="Arial" font-weight="900" font-size="28" fill="#fff">SIEMBRA</text><text class="semana" x="${x0+140}" y="${yt-230}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="42" fill="#2b2a3f">Semana 1</text></g>`; }
+       else if(M==="cosecha"){ svg = xs.map((x,k)=>roseta(x,k,"planta",1.25)).join("")+`<g class="bol"><path d="M${x1-30} ${yt-300} h200 q0 110 -100 110 q-100 0 -100 -110z" fill="#fff" stroke="#2b2a3f" stroke-width="6"/></g>`+
+           [...Array(5)].map((_,k)=>`<g class="hoja" data-k="${k}"><ellipse cx="0" cy="0" rx="13" ry="30" fill="#4fa846" stroke="#24521f" stroke-width="3"/></g>`).join("")+
+           `<g class="tijeras"><circle cx="-18" cy="40" r="16" fill="none" stroke="#e0413a" stroke-width="8"/><circle cx="18" cy="40" r="16" fill="none" stroke="#e0413a" stroke-width="8"/><g class="hojaA"><path d="M-6 26 L6 -60 L14 -58 L4 28z" fill="#c9ced6" stroke="#5b6270" stroke-width="3"/></g><g class="hojaB"><path d="M6 26 L-6 -60 L-14 -58 L-4 28z" fill="#c9ced6" stroke="#5b6270" stroke-width="3"/></g></g>`; }
+  } else if(P==="terraza"){ const [cx,cy]=q.cartel;
        svg = (q.vapor||[]).map(v=>[0,1,2].map(k=>`<circle class="vapor" data-k="${k}" cx="${v[0]}" cy="${v[1]}" r="12" fill="#fff" opacity="0"/>`).join("")).join("")+
          `<g class="neon"><rect x="${cx-120}" y="${cy-42}" width="240" height="84" rx="16" fill="#1b1530" stroke="#2bd46b" stroke-width="5"/><text x="${cx}" y="${cy+16}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="44" fill="#57ff95" style="filter:drop-shadow(0 0 8px #2bd46b)">ABIERTO</text></g>`;
      }
@@ -189,7 +203,7 @@ function construir(e,i){
   case "foto": h = `<div class="dib card" style="position:absolute;left:40px;right:40px;top:0;height:920px;overflow:hidden;padding:0;transform-origin:50% 50%"><img class="fondo" src="${e.src}" style="width:100%;height:100%;object-fit:cover;display:block;object-position:${e.foco||"50% 50%"};transform-origin:50% 50%">${e.figsrc?`<img class="fig" src="${e.figsrc}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${e.foco||"50% 50%"};transform-origin:50% 90%">`:""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
   case "captura": h = `<div class="movil card" style="top:0"><div class="pant" style="background:#fff"><img src="${e.src}" style="width:100%;display:block;position:absolute;top:0;left:0"></div></div>`; break;
-  case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div><div class="marca">iando.xyz</div>`; break;
+  case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div><div class="marca">${esc(window.MARCA||"iando.xyz")}</div>`; break;
   }
   if(e.sello) h += `<div class="sello ${e.tono==="verde"?"verde":""}">${esc(e.sello)}</div>`;
   d.innerHTML = h; raiz.appendChild(d); return d;
@@ -255,6 +269,27 @@ function animar(e,d,lt,dur){
       $1(".brillo").setAttribute("opacity", 0.25+0.35*Math.abs(Math.sin(lt*3)));
       const env=cl((lt-0.9)/0.3)*(1-cl((lt-2.2)/0.3)); $1(".ondas").style.opacity=env*(0.4+0.6*Math.abs(Math.sin(lt*7)));
       const gp=$1(".gpuntos"), gt=$1(".gtxt"); if(gp){ const esc_=lt<1.5; gp.style.display=esc_?"inline":"none"; gt.style.display=esc_?"none":"inline"; gp.style.opacity=0.5+0.5*Math.abs(Math.sin(lt*6)); }
+    } else if(P==="huerto"){ const [x0,x1,yt]=q.tierra, M=q.modo, n=q.plantas||7;
+      const roset=(cls,f)=>$$(cls).forEach(g=>{const k=+g.dataset.k; g.querySelector(".r").style.transform=`scale(${f(k)})`;});
+      if(M==="siembra"){ const mx=x0+(x1-x0)*cl(lt/(dur*0.75)); $1(".mano").setAttribute("transform",`translate(${mx-40} ${yt-260+Math.sin(lt*8)*6})`);
+        $$(".semilla").forEach(c=>{const k=+c.dataset.k, t0=k*(dur*0.7)/18, u=cl((lt-t0)/0.6); const sx=x0+(x1-x0)*cl(t0/(dur*0.75)); c.setAttribute("cx",sx+((k*37)%20-10)); c.setAttribute("cy",yt-215+(225)*u*u); c.setAttribute("opacity",lt<t0?0:1);});
+        $$(".tierrita").forEach(c=>{const k=+c.dataset.k; c.setAttribute("opacity",cl((lt-dur*0.6-k*0.02)/0.3));}); }
+      else if(M==="brotes"){ roset(".brote",k=>0.15+0.75*ease(cl((lt-0.3-k*0.12)/(dur*0.55)))); $1(".ndia").textContent="Día "+(1+Math.floor(9*cl(lt/(dur*0.8)))); }
+      else if(M==="riego"){ const rx=x1-170, ry=yt-330; $1(".regadera").setAttribute("transform",`translate(${rx} ${ry}) rotate(${-25*ease(cl(lt/0.6))} 110 60)`);
+        const bx=rx+215, by=ry-10;
+        $$(".gota").forEach(g=>{const k=+g.dataset.k, c=((lt*1.6+k/16)%1); g.setAttribute("cx",bx-c*60+((k*13)%30)); g.setAttribute("cy",by+c*(yt-by)); g.setAttribute("opacity",lt<0.5?0:0.9);});
+        const w=cl((lt-0.6)/(dur*0.7)); const ch=$1(".charco"); ch.setAttribute("rx",10+240*w); ch.setAttribute("ry",6+10*w); ch.setAttribute("opacity",0.85*cl(w*3));
+        roset(".planta",k=>0.85-0.25*w); $$(".planta .r").forEach(r=>r.style.filter=`saturate(${1-0.6*w}) brightness(${1-0.15*w})`); }
+      else if(M==="calendario"){ const sem=[1,3,5,7], st=Math.min(3,Math.floor(cl(lt/(dur*0.85))*4)); $1(".semana").textContent="Semana "+sem[st];
+        $1(".cal").style.transform=`rotate(${Math.sin(lt*3)*2}deg)`; $1(".cal").style.transformOrigin=`${x0+140}px ${yt-380}px`;
+        roset(".tanda",k=>{ const grupo=Math.floor(k*4/n), edad=st-grupo+cl((lt%(dur*0.85/4))/(dur*0.85/4)); return grupo>st?0:Math.min(1.1,0.25+0.28*edad); }); }
+      else if(M==="cosecha"){ const xs=[...Array(n)].map((_,k)=>x0+30+(x1-x0-60)*k/(n-1)); const per=dur*0.8/5;
+        const i0=Math.min(4,Math.floor(lt/per)), ph=(lt%per)/per, tx=xs[1+i0], tyy=yt-40;
+        $1(".tijeras").setAttribute("transform",`translate(${tx} ${tyy-80+20*Math.sin(ph*Math.PI)}) rotate(-20)`);
+        const ab=ph<0.5?Math.sin(ph*2*Math.PI)*18:0; $1(".hojaA").setAttribute("transform",`rotate(${ab} 0 26)`); $1(".hojaB").setAttribute("transform",`rotate(${-ab} 0 26)`);
+        $$(".planta").forEach(g=>{const k=+g.dataset.k; g.style.opacity=(k>=1&&k<=5&&k-1<i0)||(k-1===i0&&ph>0.55)?0:1;});
+        $$(".hoja").forEach(h=>{const k=+h.dataset.k; let u=k<i0?1:k===i0?cl((ph-0.55)/0.4):-1; if(u<0){h.style.opacity=0;return;} const sx=xs[1+k], ex=x1+70+(k%3-1)*30, ey=yt-215;
+          h.style.opacity=1; h.setAttribute("transform",`translate(${sx+(ex-sx)*u} ${yt-40+(ey-yt+40)*u-Math.sin(u*Math.PI)*120}) rotate(${u*200+k*20})`);}); }
     } else if(P==="terraza"){
       const n=$1(".neon"); n.style.opacity = lt<0.6 ? (Math.sin(lt*70)>0?1:0.15) : (0.85+0.15*Math.sin(lt*9));
       $$(".vapor").forEach(v=>{ const k=+v.dataset.k, c=((lt*0.7+k/3)%1); v.setAttribute("transform",`translate(${Math.sin(c*6+k)*8} ${-c*90})`); v.setAttribute("opacity",(1-c)*0.55); v.setAttribute("r",10+c*18); });
@@ -322,13 +357,16 @@ def pagina(cfg, datos):
         if e.get("tipo") == "tarjetas":
             for k, t in enumerate(e["items"]):
                 iconos[f"{i}-{k}"] = icono(t.get("icono", "sparkles"), 64, "#5b5bd6")
-    color = cfg.get("tema") == "color"
-    css = CSS.replace("url(F/", f"url(file://{AQUI / 'fuentes'}/") + (CSS_COLOR if color else "")
+    color = cfg.get("tema") in ("color", "verde")
+    extra = CSS_COLOR if color else ""
+    if cfg.get("tema") == "verde":   # MiHuertoUrbano: mismo estilo con verdes de huerto
+        extra = extra.replace("#2e2a8f 0%,#4f46e5 45%,#7c3aed 100%", "#14532d 0%,#1f7a3d 45%,#3f9b4a 100%").replace("background:#3f37c9", "background:#1f7a3d").replace("#22d3ee", "#a3e635").replace("#f472b6", "#fbbf24")
+    css = CSS.replace("url(F/", f"url(file://{AQUI / 'fuentes'}/") + extra
     fondo = "<div id='fondo'><i></i><i></i><i></i><b></b></div>" if color else ""
     return (f"<!doctype html><html lang='es'><head><meta charset='utf-8'><style>{css}</style></head><body>{fondo}"
             f"<div id='cap'></div><div id='escenas'></div><script>window.DATOS={json.dumps(datos, ensure_ascii=False)};"
             f"window.ESCENAS={json.dumps(cfg['escenas'], ensure_ascii=False)};window.PALABRA={json.dumps(cfg.get('palabra', ''))};"
-            f"window.ICONOS={json.dumps(iconos)};window.DIBUJOS={json.dumps(dibujos)};{JS}{JS_COLOR if color else ''}</script></body></html>")
+            f"window.MARCA={json.dumps(cfg.get('marca','iando.xyz'))};window.ICONOS={json.dumps(iconos)};window.DIBUJOS={json.dumps(dibujos)};{JS}{JS_COLOR if color else ''}</script></body></html>")
 
 
 # Voz: el cupo gratuito de Gemini es de pocos audios al día, así que se pide UN SOLO audio con el guion entero
@@ -416,7 +454,7 @@ def main():
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
         b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1080, "height": 1920})
-        pg.goto(f"file://{tmp / 'reel.html'}"); pg.wait_for_timeout(500)
+        pg.on("pageerror", lambda e: print("ERROR JS:", e, file=sys.stderr)); pg.goto(f"file://{tmp / 'reel.html'}"); pg.wait_for_timeout(500)
         n = int(total * FPS + 0.999)
         for k in range(n):
             pg.evaluate("t => window.render(t)", k / FPS)

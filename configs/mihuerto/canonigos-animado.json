@@ -1,0 +1,105 @@
+{
+ "slug": "canonigos-animado",
+ "palabra": "CANÓNIGOS",
+ "tema": "verde",
+ "musica": "animada",
+ "escenas": [
+  {
+   "voz": "Ensalada de canónigos todo el invierno, con una sola jardinera.",
+   "clave": "canónigos",
+   "tipo": "frase",
+   "texto": "Canónigos todo el invierno",
+   "sub": "con **una sola jardinera**"
+  },
+  {
+   "voz": "Siémbralos a voleo, con muy poca tierra encima.",
+   "clave": "voleo",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "huerto",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "siembra",
+    "plantas": 7
+   }
+  },
+  {
+   "voz": "En una o dos semanas asoman los primeros brotes.",
+   "clave": "brotes",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "huerto",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "brotes",
+    "plantas": 7
+   }
+  },
+  {
+   "voz": "Ojo: con frío, regar de más los pudre. Riega poco.",
+   "clave": "pudre",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "huerto",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "riego",
+    "plantas": 7
+   },
+   "sello": "DEMASIADA AGUA"
+  },
+  {
+   "voz": "El truco: siembra un puñado cada dos o tres semanas.",
+   "clave": "truco",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "huerto",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "calendario",
+    "plantas": 7
+   }
+  },
+  {
+   "voz": "Y en ocho a doce semanas, a cortar rosetas sin quedarte nunca sin ensalada.",
+   "clave": "rosetas",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "huerto",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "cosecha",
+    "plantas": 7
+   }
+  },
+  {
+   "voz": "Comenta CANÓNIGOS y te paso la guía completa.",
+   "clave": "CANÓNIGOS",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "CANÓNIGOS",
+   "abajo": "y te paso **la guía completa**"
+  }
+ ],
+ "marca": "mihuertourbano.xyz"
+}
