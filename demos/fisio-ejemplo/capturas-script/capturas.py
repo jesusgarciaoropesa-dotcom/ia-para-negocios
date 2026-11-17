@@ -8,15 +8,15 @@ REPO = Path(__file__).resolve().parents[3]
 DEMO = REPO / "demos/fisio-ejemplo/index.html"
 ADMIN = REPO / "taller/reservas/admin.html"
 OUT = REPO / "demos/fisio-ejemplo/capturas"
-FM = Path(os.environ.get("FONTS_DIR", "fonts/node_modules"))  # npm i @fontsource/young-serif @fontsource/hanken-grotesk
+FM = Path(os.environ.get("FONTS_DIR", "fonts/node_modules"))  # npm i @fontsource/plus-jakarta-sans @fontsource/manrope @fontsource/kalam
 MOCK = Path(__file__).with_name("mock-supabase.js")
 NEG = "beeb6aaf-606b-4217-bf45-388965f660ac"
 
+F = lambda fam, w: FM / f"@fontsource/{fam}/files/{fam}-latin-{w}-normal.woff2"
 FONTS = {
-    "Young Serif": [("ys4", FM / "@fontsource/young-serif/files/young-serif-latin-400-normal.woff2", "400", None)],
-    "Hanken Grotesk": [("hg4", FM / "@fontsource/hanken-grotesk/files/hanken-grotesk-latin-400-normal.woff2", "400", None),
-                       ("hg6", FM / "@fontsource/hanken-grotesk/files/hanken-grotesk-latin-600-normal.woff2", "600", None),
-                       ("hg7", FM / "@fontsource/hanken-grotesk/files/hanken-grotesk-latin-700-normal.woff2", "700", None)],
+    "Plus Jakarta Sans": [(f"pj{w}", F("plus-jakarta-sans", w), str(w), None) for w in (700, 800)],
+    "Manrope": [(f"mr{w}", F("manrope", w), str(w), None) for w in (400, 600, 700)],
+    "Kalam": [("ka700", F("kalam", 700), "700", None)],
 }
 ARCH = {k: p for fam in FONTS.values() for k, p, *_ in fam}
 CSS = ""
@@ -46,8 +46,8 @@ def rutas(ctx):
         else: body = []
         r.fulfill(status=200, content_type="application/json", body=json.dumps(body), headers={"access-control-allow-origin": "*"})
     ctx.route("https://gimoqpusrdltlkrwsykr.supabase.co/**", sb)
-    ctx.route("https://www.google.com/maps**", lambda r: r.fulfill(status=200, content_type="text/html",
-              body="<body style='margin:0;background:#fbeaf0;font:15px sans-serif;display:grid;place-items:center;height:100vh;color:#5a6070'>Mapa</body>"))
+    ctx.route(re.compile(r"https://(www|maps)\.google\.com/maps.*"), lambda r: r.fulfill(status=200, content_type="text/html",
+              body="<body style='margin:0;background:#dfe3e6;font:15px sans-serif;display:grid;place-items:center;height:100vh;color:#4d5866'>Mapa</body>"))
 
 
 with sync_playwright() as p:
@@ -63,23 +63,29 @@ with sync_playwright() as p:
         pg.screenshot(path=str(OUT / f"{nombre}-inicio.png"))
         pg.screenshot(path=str(OUT / f"{nombre}-completa.png"), full_page=True)
         if nombre == "movil":
-            pg.click("#rv-servs button >> nth=0")
-            pg.click("#rv-dias button >> nth=1")
+            pg.add_style_tag(content=".wa-flota{display:none!important} header{position:static!important}")
+            caja = lambda: pg.locator("#reservar .reserva")
+            def foto(arch):
+                bb = caja().bounding_box(); sy = pg.evaluate("scrollY")
+                pg.screenshot(path=str(OUT / arch), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 16, "width": 390, "height": bb["height"] + 32})
+            pg.select_option("#rv-serv", index=1)
+            pg.select_option("#rv-fecha", index=1)
+            foto("movil-servicio.png")
+            pg.click("#rv-sig1")
             pg.wait_for_selector("#rv-horas button")
             pg.click("#rv-horas button >> nth=2")
+            foto("movil-pedir-cita.png")
+            pg.click("#rv-sig2")
             pg.fill("#rv-nombre", "Marta")
             pg.fill("#rv-tel", "600 123 456")
             pg.fill("#rv-email", "marta@ejemplo.com")
             pg.fill("#rv-notas", "Molestia en el hombro derecho desde hace dos semanas")
             pg.check("#rv-ok")
-            pg.add_style_tag(content=".wa-flota{display:none!important}")
-            pg.locator("#reservar .hoja").scroll_into_view_if_needed()
-            bb = pg.locator(".hoja").bounding_box(); sy = pg.evaluate("scrollY")
-            pg.screenshot(path=str(OUT / "movil-pedir-cita.png"), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 40, "width": 390, "height": bb["height"] + 64})
+            foto("movil-datos.png")
             pg.click("#rv-enviar")
-            pg.wait_for_selector(".rv-estado.ok")
-            bb = pg.locator(".hoja").bounding_box(); sy = pg.evaluate("scrollY")
-            pg.screenshot(path=str(OUT / "movil-cita-hecha.png"), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 40, "width": 390, "height": bb["height"] + 64})
+            pg.wait_for_selector('.paso[data-paso="4"]:not([hidden])')
+            pg.wait_for_timeout(200)
+            foto("movil-cita-hecha.png")
         ctx.close()
     # Panel de citas
     for nombre, args in (("movil", p.devices["iPhone 13"]), ("ordenador", {"viewport": {"width": 1366, "height": 900}})):

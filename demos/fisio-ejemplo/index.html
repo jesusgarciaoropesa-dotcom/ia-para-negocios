@@ -9,10 +9,12 @@
 <meta property="og:title" content="Fisioterapia con cita online | Tu fisio">
 <meta property="og:description" content="Mira las horas libres de la clínica y pide tu cita de fisio desde el móvil en un minuto.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#c2255c">
+<meta property="og:image" content="img/inicio.jpg">
+<meta name="theme-color" content="#0d2b57">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Manrope:wght@400;600;700&family=Kalam:wght@700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/inicio.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -20,6 +22,7 @@
   "name": "Fisio de ejemplo",
   "description": "Clínica de fisioterapia con cita online: primera valoración, sesiones de fisioterapia, punción seca y masaje descontracturante.",
   "telephone": "+34637847114",
+  "image": "img/inicio.jpg",
   "address": { "@type": "PostalAddress", "streetAddress": "Calle de ejemplo, 3", "addressCountry": "ES" },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "14:00" },
@@ -38,317 +41,389 @@
 </script>
 <style>
   :root {
-    --c-primario: #c2255c;   /* rosa del vendaje neuromuscular: bloque de marca */
-    --c-rosa-osc: #a81d4f;
-    --c-rosa-vivo: #e8467f;
-    --c-oscuro: #1c2230;     /* tinta */
-    --c-fondo: #fbfaf8;
-    --c-suave: #fbeaf0;
-    --c-borde: #ecd3dc;
-    --c-texto: #1c2230;
-    --c-gris: #5a6070;
-    --c-wa: #1f8a4c;
-    --f-titulos: "Young Serif", Georgia, "Times New Roman", serif;
-    --f-texto: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --ancho: 1140px;
+    --blanco: #ffffff; --hielo: #eef4fb; --hielo-2: #e1ebf7; --linea: #d3deec;
+    --azul: #1552c0; --azul-hover: #0f44a3; --noche: #0d2b57; --tinta: #1b2533; --tinta-suave: #4a5668;
+    --wa: #25d366;
+    --f-tit: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --f-txt: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body { margin: 0; font-family: var(--f-texto); color: var(--c-texto); background: var(--c-fondo); line-height: 1.6; font-size: 17px; }
-  img, svg { max-width: 100%; display: block; }
-  a { color: var(--c-primario); }
-  h1, h2, h3 { font-family: var(--f-titulos); font-weight: 400; color: var(--c-oscuro); line-height: 1.1; margin: 0 0 .45em; letter-spacing: -.01em; }
-  h1 { font-size: clamp(2.2rem, 5.6vw, 3.6rem); }
-  h2 { font-size: clamp(1.7rem, 3.8vw, 2.45rem); }
-  h3 { font-size: 1.2rem; }
-  .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 20px; }
-  section { padding: 80px 0; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; min-height: 52px; padding: 0 26px; border-radius: 999px; font-weight: 700; font-size: 1.05rem; text-decoration: none; border: 2px solid transparent; cursor: pointer; font-family: inherit; }
-  .btn-res { background: var(--c-oscuro); color: #fff; }
-  .btn-res:hover { background: #2c3446; }
-  .btn-rosa { background: var(--c-primario); color: #fff; }
-  .btn-rosa:hover { background: var(--c-rosa-osc); }
-  .btn-2 { background: transparent; color: inherit; border-color: currentColor; }
-  :focus-visible { outline: 3px solid var(--c-oscuro); outline-offset: 3px; }
-  .hero :focus-visible, .cierre :focus-visible { outline-color: #fff; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body { margin: 0; background: var(--blanco); color: var(--tinta); font: 400 1.0625rem/1.55 var(--f-txt); -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--f-tit); font-weight: 800; line-height: 1.08; margin: 0; letter-spacing: -.015em; color: var(--noche); }
+  h2 { font-size: clamp(1.75rem, 3.4vw, 2.3rem); }
+  :focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 6px; }
+  .contenedor { width: min(1180px, 100% - 32px); margin-inline: auto; }
+  .ico { width: 22px; height: 22px; flex: none; }
 
-  /* Franja de demo */
-  .franja { background: var(--c-oscuro); color: #fff; font-size: .88rem; text-align: center; padding: 8px 16px; }
-  .franja a { color: #ffb3cc; font-weight: 700; }
+  .franja { background: var(--noche); color: #dbe5f3; font-size: .94rem; text-align: center; padding: 7px 16px; }
+  .franja a { color: #fff; font-weight: 700; }
+
+  /* Botones */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; font: 700 1.03rem var(--f-txt); text-decoration: none; cursor: pointer; border: 2px solid transparent; transition: background .15s, color .15s; }
+  .btn-pri { background: var(--azul); color: #fff; box-shadow: 0 6px 16px rgba(21,82,192,.25); }
+  .btn-pri:hover { background: var(--azul-hover); }
+  .btn-sec { border-color: var(--azul); color: var(--azul); background: rgba(255,255,255,.85); }
+  .btn-sec:hover { background: #fff; }
 
   /* Cabecera */
-  header { background: var(--c-fondo); border-bottom: 1px solid var(--c-borde); }
-  .barra { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 70px; }
-  .marca { display: flex; align-items: center; text-decoration: none; }
-  .marca svg { height: 40px; width: auto; }
-  nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
-  nav a { color: var(--c-oscuro); text-decoration: none; font-weight: 600; font-size: .98rem; }
-  nav a:hover { color: var(--c-primario); }
-  .barra .btn { min-height: 44px; padding: 0 20px; font-size: .98rem; }
-  @media (max-width: 860px) { nav { display: none; } }
+  header { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.97); border-bottom: 1px solid var(--linea); backdrop-filter: blur(6px); }
+  .cab { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 76px; }
+  .logo { display: block; text-decoration: none; }
+  .logo svg { height: 54px; width: auto; display: block; }
+  nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
+  nav a { text-decoration: none; font-weight: 600; font-size: .98rem; color: var(--tinta); padding: 8px 0; border-bottom: 2px solid transparent; }
+  nav a:hover { color: var(--azul); border-color: var(--azul); }
+  .cab .btn { min-height: 46px; padding: 0 20px; font-size: .98rem; box-shadow: none; }
+  @media (max-width: 960px) { nav { display: none; } }
+  @media (max-width: 420px) { .logo svg { height: 46px; } .cab .btn { padding: 0 14px; } .cab .btn .ico { display: none; } }
 
-  /* Inicio: la sala de la clínica */
-  .hero { background: var(--c-primario); color: #fff; padding: 46px 0 0; overflow: hidden; }
-  .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 32px; align-items: end; }
-  .hero h1 { color: #fff; }
-  .hero .texto { padding-bottom: 70px; }
-  .hero p.sub { font-size: 1.2rem; max-width: 33ch; color: #fff; margin: 0; }
-  .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .hero .btn-2 { color: #fff; }
-  .hero .datos { margin: 26px 0 0; font-size: 1rem; color: #ffe3ec; }
-  .hero .datos strong { color: #fff; }
-  .hero-ilus svg { width: 100%; height: auto; }
-  @media (max-width: 860px) {
-    .hero { padding-top: 28px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 16px; }
-    .hero .texto { padding-bottom: 0; }
-    .hero h1 { font-size: 2.1rem; }
-    .hero p.sub { font-size: 1.05rem; }
-    .acciones { margin-top: 20px; gap: 10px; }
-    .acciones .btn { padding: 0 18px; flex: 1 1 auto; }
-    .hero .datos { margin-top: 16px; font-size: .95rem; }
-    .hero-ilus { margin: 0 -20px; }
+  /* Inicio con foto a sangre */
+  .inicio { position: relative; min-height: clamp(520px, 70vh, 640px); display: flex; align-items: center; overflow: hidden; isolation: isolate; background: #e4e7ea; }
+  .inicio > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 4%; z-index: -2; filter: brightness(1.05) saturate(1.05); }
+  .inicio::before { content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(90deg, rgba(246,249,253,.97) 0%, rgba(246,249,253,.9) 32%, rgba(246,249,253,.35) 52%, rgba(246,249,253,0) 64%); }
+  .inicio-txt { max-width: 640px; padding: 40px 0 48px; }
+  .inicio h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+  .inicio h1 .l { white-space: nowrap; }
+  .inicio h1 .azul { color: var(--azul); }
+  .inicio p { font-size: clamp(1.08rem, 2vw, 1.22rem); color: var(--tinta-suave); margin: 18px 0 28px; max-width: 38ch; }
+  .botones { display: flex; flex-wrap: wrap; gap: 14px; }
+  .horario-mini { margin: 22px 0 0 !important; max-width: none !important; font-size: 1rem !important; display: flex; align-items: center; gap: 10px; color: var(--tinta) !important; font-weight: 600; }
+  .horario-mini .ico { color: var(--azul); width: 20px; height: 20px; }
+  @media (max-width: 720px) {
+    .inicio { align-items: flex-end; min-height: 0; background: #f6f9fd; }
+    .inicio > img { object-position: 78% 30%; height: 300px; bottom: auto; }
+    .inicio::before { background: linear-gradient(180deg, rgba(246,249,253,0) 0px, rgba(246,249,253,0) 220px, rgba(246,249,253,1) 300px, rgba(246,249,253,1) 100%); }
+    .inicio-txt { padding: 262px 0 30px; }
+    .inicio h1 { font-size: clamp(2.1rem, 9.6vw, 2.6rem); }
+    .inicio h1 .l { white-space: normal; }
+    .botones .btn { flex: 1 1 100%; }
   }
 
-  /* ¿Qué cita pido? */
-  .citas-cab { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 26px; }
-  .citas-cab p { margin: 0; max-width: 40ch; color: var(--c-gris); }
-  .citas { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--c-oscuro); }
-  .citas li { display: grid; grid-template-columns: 1fr 1.1fr auto; gap: 8px 30px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--c-borde); }
-  .citas .preg { font-family: var(--f-titulos); font-size: 1.36rem; line-height: 1.2; color: var(--c-oscuro); margin: 0; }
-  .citas .serv { margin: 0; }
-  .citas .serv strong { display: block; font-size: 1.08rem; color: var(--c-primario); }
-  .citas .serv span { color: var(--c-gris); font-size: .98rem; }
-  .citas .min { font-weight: 700; font-size: .95rem; background: var(--c-suave); color: var(--c-rosa-osc); padding: 6px 14px; border-radius: 999px; white-space: nowrap; }
-  @media (max-width: 760px) {
-    .citas-cab { grid-template-columns: 1fr; gap: 14px; }
-    .citas li { grid-template-columns: 1fr auto; padding: 20px 0; }
-    .citas .preg { grid-column: 1 / -1; font-size: 1.2rem; }
+  /* Garantías */
+  .garantias { background: var(--hielo); border-bottom: 1px solid var(--linea); }
+  .garantias ul { list-style: none; margin: 0 auto; padding: 18px 0; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .garantias li { display: flex; align-items: center; gap: 16px; padding: 6px 24px; }
+  .garantias li + li { border-left: 1px solid var(--linea); }
+  .garantias li:first-child { padding-left: 0; }
+  .garantias svg { width: 40px; height: 40px; color: var(--azul); flex: none; }
+  .garantias strong { display: block; font-size: 1.04rem; color: var(--noche); line-height: 1.25; }
+  .garantias span { color: var(--tinta-suave); font-size: .96rem; line-height: 1.35; display: block; }
+  @media (max-width: 820px) {
+    .garantias ul { grid-template-columns: 1fr; padding: 8px 0; }
+    .garantias li { padding: 12px 0; }
+    .garantias li + li { border-left: 0; border-top: 1px solid var(--linea); }
   }
 
-  /* Reservas: la hoja de cita sujeta con vendaje */
-  #reservar { background: var(--c-suave); }
-  .res-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 56px; align-items: start; }
-  .res-intro p { max-width: 34ch; }
-  .res-intro ol { padding-left: 1.2em; margin: 18px 0 0; }
-  .res-intro li { margin-bottom: 6px; }
-  .res-intro .alt { margin-top: 22px; font-size: .98rem; }
-  .res-grid > *, .rv > *, .rv > div { min-width: 0; }
-  @media (max-width: 860px) { .res-grid { grid-template-columns: 1fr; gap: 26px; } }
-  .hoja { position: relative; background: #fff; border-radius: 4px; box-shadow: 0 1px 0 var(--c-borde), 0 22px 46px rgba(168,29,79,.14); margin-top: 26px; }
-  .tira { position: absolute; z-index: 2; width: 132px; height: 34px; border-radius: 17px; pointer-events: none;
-          background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.10) 0 2px, transparent 2px 7px); }
-  .tira-1 { background-color: var(--c-rosa-vivo); top: -12px; left: -30px; transform: rotate(-38deg); }
-  .tira-2 { background-color: var(--c-oscuro); top: -6px; left: -18px; width: 96px; transform: rotate(32deg); opacity: .92; }
-  .tira-3 { background-color: var(--c-rosa-vivo); top: -14px; right: -26px; transform: rotate(36deg); }
-  .hoja-cab { padding: 26px 26px 18px 70px; border-bottom: 2px solid var(--c-oscuro); margin: 0 0 0; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .hoja-cab strong { font-family: var(--f-titulos); font-weight: 400; font-size: 1.55rem; line-height: 1.1; color: var(--c-oscuro); }
-  .hoja-cab span { font-size: .92rem; color: var(--c-gris); font-weight: 600; }
-  .hoja-cuerpo { padding: 24px 26px 28px; }
-  .rv { display: grid; gap: 22px; }
-  .rv-lab, .rv label { display: grid; gap: 8px; font-weight: 700; color: var(--c-oscuro); font-size: .98rem; }
-  .rv input, .rv textarea { font: inherit; font-weight: 400; padding: 12px 14px; border: 2px solid #dccbd2; border-radius: 10px; background: #fff; color: inherit; min-height: 50px; width: 100%; }
-  .rv input:focus, .rv textarea:focus { border-color: var(--c-primario); outline: none; box-shadow: 0 0 0 3px rgba(194,37,92,.18); }
-  .rv-servs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .rv-servs button { text-align: left; min-height: 62px; padding: 10px 14px; border: 2px solid #dccbd2; border-radius: 10px; background: #fff; font: inherit; cursor: pointer; color: var(--c-oscuro); line-height: 1.25; }
-  .rv-servs button b { display: block; font-size: 1rem; }
-  .rv-servs button small { color: var(--c-gris); font-size: .88rem; }
-  .rv-servs button[aria-checked="true"] { border-color: var(--c-primario); background: var(--c-primario); color: #fff; }
-  .rv-servs button[aria-checked="true"] small { color: #ffe3ec; }
-  .rv-dias, .rv-horas { display: flex; flex-wrap: wrap; gap: 8px; }
-  .rv-dias { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
-  .rv-dias button { flex: 0 0 auto; min-width: 62px; min-height: 68px; border-radius: 10px; border: 2px solid #dccbd2; background: #fff; font: inherit; cursor: pointer; line-height: 1.15; padding: 6px 8px; color: var(--c-oscuro); }
-  .rv-dias button b { display: block; font-family: var(--f-titulos); font-weight: 400; font-size: 1.35rem; }
-  .rv-dias button small { font-size: .8rem; text-transform: capitalize; }
-  .rv-dias button[aria-pressed="true"] { background: var(--c-primario); border-color: var(--c-primario); color: #fff; }
-  .rv-otro { font-weight: 400 !important; font-size: .92rem !important; color: var(--c-gris) !important; grid-template-columns: auto 1fr; align-items: center; margin-top: 4px; }
-  .rv-otro input { min-height: 44px; max-width: 200px; padding: 6px 10px; }
-  .rv-horas button { min-height: 46px; min-width: 76px; border-radius: 999px; border: 2px solid #dccbd2; background: #fff; font: inherit; font-weight: 700; cursor: pointer; color: var(--c-oscuro); }
-  .rv-horas button[aria-checked="true"] { background: var(--c-oscuro); color: #fff; border-color: var(--c-oscuro); }
-  .rv-ayuda { margin: 0; font-weight: 400; color: var(--c-gris); font-size: .96rem; }
-  .rv-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .rv-check { grid-template-columns: auto 1fr !important; align-items: start; font-weight: 400 !important; }
-  .rv-check input { min-height: 0; width: 22px; height: 22px; margin-top: 2px; accent-color: var(--c-primario); }
-  .rv .btn-rosa { width: 100%; font-size: 1.1rem; min-height: 56px; }
-  .rv-estado { margin: 0; font-weight: 700; }
-  .rv-estado.ok { color: #1a6b3d; } .rv-estado.mal { color: #b42318; }
-  .rv a.btn-2 { color: var(--c-oscuro); }
-  @media (max-width: 560px) {
-    .rv-dos { grid-template-columns: 1fr; }
-    .hoja-cab { padding: 24px 18px 16px 56px; }
-    .hoja-cuerpo { padding: 22px 16px 24px; }
-    .tira { width: 104px; height: 28px; }
-    .tira-2 { width: 76px; }
-    .tira-3 { right: -18px; }
+  /* Tratamientos con foto */
+  section { padding: 48px 0; }
+  .titulo-linea { display: flex; align-items: center; gap: 22px; margin-bottom: 24px; }
+  .titulo-linea::before, .titulo-linea::after { content: ""; flex: 1; height: 2px; background: var(--azul); opacity: .8; }
+  .titulo-linea h2 { text-align: center; }
+  .rejilla { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .tarjeta { position: relative; display: block; aspect-ratio: 3 / 3.4; border-radius: 14px; overflow: hidden; text-decoration: none; background: var(--hielo-2); }
+  .tarjeta img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.08) brightness(1.04); transition: transform .35s; }
+  .tarjeta:hover img { transform: scale(1.04); }
+  .tarjeta::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,30,62,.94) 0%, rgba(10,30,62,.62) 30%, rgba(10,30,62,0) 54%); }
+  .tarjeta-txt { position: absolute; left: 14px; right: 12px; bottom: 13px; z-index: 1; }
+  .tarjeta h3 { font-size: 1.16rem; color: #fff; line-height: 1.15; }
+  .tarjeta p { margin: 4px 0 0; font-size: .94rem; color: #dce6f4; line-height: 1.3; }
+  .tarjeta .min { display: inline-block; margin-top: 7px; background: #fff; color: var(--noche); font-weight: 700; font-size: .94rem; border-radius: 999px; padding: 1px 10px; }
+  .tarjeta-otra { background: var(--azul); color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 20px; }
+  .tarjeta-otra::after { display: none; }
+  .tarjeta-otra h3 { font-size: 1.35rem; color: #fff; }
+  .tarjeta-otra p { color: #fff; font-size: 1rem; margin-top: 8px; }
+  .tarjeta-otra b { margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 1rem; }
+  @media (max-width: 1000px) { .rejilla { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 640px) {
+    .rejilla { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .tarjeta { aspect-ratio: 3 / 3.7; }
+    .tarjeta::after { background: linear-gradient(0deg, rgba(10,30,62,.95) 0%, rgba(10,30,62,.7) 42%, rgba(10,30,62,0) 72%); }
+    .tarjeta-otra { grid-column: 1 / -1; aspect-ratio: auto; }
+    .tarjeta-txt { left: 11px; right: 9px; bottom: 11px; }
+    .tarjeta h3 { font-size: 1.06rem; }
+    .tarjeta-otra { padding: 14px; }
+    .tarjeta-otra h3 { font-size: 1.15rem; }
+    .tarjeta-otra p { font-size: .94rem; }
   }
-  @media (max-width: 380px) { .rv-servs { grid-template-columns: 1fr; } }
 
-  /* Tres frases */
-  .frases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-  .frases h3 { margin-bottom: .35em; }
-  .frases p { margin: 0; color: #3b4152; }
-  @media (max-width: 860px) { .frases { grid-template-columns: 1fr; gap: 24px; } }
+  /* Bloque de reserva (claro sobre blanco, con tiras de vendaje) */
+  #reservar { padding-top: 4px; }
+  .reserva { position: relative; background: var(--hielo); border: 1px solid var(--linea); border-radius: 20px; display: grid; grid-template-columns: 5fr 7fr; }
+  .reserva > * { min-width: 0; }
+  .reserva::before, .reserva::after { content: ""; position: absolute; width: 118px; height: 24px; border-radius: 12px 4px 4px 12px; background: #4f86e8; opacity: .82; top: 10px; right: -26px; transform: rotate(-38deg); box-shadow: 0 1px 3px rgba(13,43,87,.15); }
+  .reserva::after { background: #9cc2ff; opacity: .9; transform: rotate(38deg); top: 10px; right: -26px; width: 104px; }
+  .res-intro { position: relative; padding: 40px 38px 34px 44px; display: flex; flex-direction: column; border-right: 1px solid var(--linea); }
+  .res-intro .cal { width: 56px; height: 56px; color: var(--azul); margin-bottom: 14px; }
+  .res-intro h2 span { color: var(--azul); }
+  .res-intro > p { color: var(--tinta-suave); font-size: 1.08rem; margin: 14px 0 0; max-width: 32ch; }
+  .firma { font-family: "Kalam", "Segoe Script", cursive; font-weight: 700; font-size: 1.75rem; color: var(--azul); transform: rotate(-4deg); margin: 20px 0 0 6px; line-height: 1; }
+  .firma svg { display: block; width: 170px; height: 14px; margin-top: 2px; }
+  .res-alt { margin-top: auto; padding-top: 22px; font-size: 1rem; color: var(--tinta-suave); }
+  .res-alt a { color: var(--noche); font-weight: 700; }
+  .res-caja { padding: 32px 38px 34px; }
+  @media (max-width: 900px) {
+    .reserva { grid-template-columns: 1fr; border-radius: 18px; }
+    .res-intro { padding: 30px 20px 22px; border-right: 0; border-bottom: 1px solid var(--linea); }
+    .res-intro .cal { width: 46px; height: 46px; margin-bottom: 10px; }
+    .res-alt { padding-top: 14px; }
+    .res-caja { padding: 22px 18px 26px; }
+    .reserva::before, .reserva::after { width: 80px; height: 18px; right: -12px; top: 6px; }
+  }
 
-  /* Horario y mapa */
-  #horario { background: #fff; }
-  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
-  @media (max-width: 860px) { .dos { grid-template-columns: 1fr; } }
-  .horario { width: 100%; border-collapse: collapse; }
-  .horario td { padding: 10px 0; border-bottom: 1px solid #ece6e8; }
-  .horario td:last-child { text-align: right; font-weight: 700; }
-  .horario tr.cerrado td { color: var(--c-gris); font-weight: 400; }
-  .mapa { border: 0; width: 100%; height: 340px; border-radius: 12px; background: var(--c-suave); }
-  .mapa-ej { display: grid; place-items: center; text-align: center; padding: 20px; min-height: 260px; color: currentColor; opacity: .85; font-weight: 600; background-color: rgba(127,127,127,.08); background-image: linear-gradient(rgba(127,127,127,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(127,127,127,.14) 1px, transparent 1px); background-size: 28px 28px; }
+  /* Pasos */
+  .pasos { list-style: none; margin: 0 0 24px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .pasos li { position: relative; text-align: center; font-size: .94rem; font-weight: 600; color: #6b778a; padding-top: 40px; }
+  .pasos li::before { content: attr(data-n); position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 2px solid #b9c7da; color: #6b778a; font-weight: 700; z-index: 1; }
+  .pasos li::after { content: ""; position: absolute; top: 15px; left: -50%; width: 100%; height: 2px; background: #c7d3e3; }
+  .pasos li:first-child::after { display: none; }
+  .pasos li.hecho::before { content: "✓"; background: var(--azul); border-color: var(--azul); color: #fff; }
+  .pasos li.hecho::after, .pasos li.activo::after { background: var(--azul); }
+  .pasos li.activo { color: var(--noche); }
+  .pasos li.activo::before { background: var(--azul); border-color: var(--azul); color: #fff; box-shadow: 0 0 0 5px rgba(21,82,192,.18); }
+  @media (max-width: 420px) { .pasos li { line-height: 1.15; } }
+
+  .paso[hidden] { display: none; }
+  .rv-fila { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .rv-fila { grid-template-columns: 1fr; } }
+  .rv label, .rv-lab { display: grid; gap: 7px; font-weight: 600; font-size: .98rem; color: var(--noche); }
+  .rv-lab { display: block; margin: 0 0 10px; }
+  .rv select, .rv input, .rv textarea { font: inherit; font-weight: 400; padding: 11px 14px; border: 1.5px solid #c2cfe0; border-radius: 10px; background: #fff; color: var(--tinta); min-height: 50px; width: 100%; }
+  .rv select { appearance: none; padding-right: 40px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d2b57' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center / 20px; cursor: pointer; }
+  .rv select:focus, .rv input:focus, .rv textarea:focus { border-color: var(--azul); outline: none; box-shadow: 0 0 0 3px rgba(21,82,192,.25); }
+  .rv-dur { margin: 12px 0 0; color: var(--tinta-suave); font-size: .96rem; min-height: 1.5em; }
+  .rv-horas { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+  .rv-horas button { min-height: 48px; border-radius: 10px; border: 1.5px solid #c2cfe0; background: #fff; font: 700 1.05rem var(--f-txt); color: var(--noche); cursor: pointer; }
+  .rv-horas button:hover { border-color: var(--azul); }
+  .rv-horas button[aria-checked="true"] { background: var(--azul); border-color: var(--azul); color: #fff; }
+  .rv-ayuda { margin: 0; color: var(--tinta-suave); font-size: .98rem; grid-column: 1 / -1; }
+  .rv-campos { display: grid; gap: 14px; }
+  .rv-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .rv-dos { grid-template-columns: 1fr; } }
+  .rv .rv-check { grid-template-columns: auto 1fr; align-items: start; font-weight: 400; font-size: .94rem; color: var(--tinta-suave); }
+  .rv .rv-check input { min-height: 0; width: 20px; height: 20px; margin-top: 2px; accent-color: var(--azul); }
+  .rv-resumen { background: #fff; border: 1.5px dashed #9fb3cf; border-radius: 12px; padding: 12px 14px; font-size: .98rem; margin-bottom: 14px; color: var(--tinta); }
+  .rv-resumen b { color: var(--noche); }
+  .rv-acciones { display: flex; gap: 12px; margin-top: 20px; }
+  .rv-acciones .btn-pri { flex: 1; border-radius: 10px; }
+  .btn-atras { background: #fff; border-color: #b9c7da; color: var(--noche); padding: 0 18px; border-radius: 10px; }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; box-shadow: none; }
+  .rv-estado { margin: 12px 0 0; font-weight: 600; min-height: 1.4em; }
+  .rv-estado.mal { color: #b42318; }
+  .rv-hecha { text-align: center; padding: 6px 0 2px; }
+  .rv-hecha .ok { width: 64px; height: 64px; margin: 0 auto 12px; border-radius: 50%; background: #16804a; color: #fff; display: grid; place-items: center; }
+  .rv-hecha .ok svg { width: 34px; height: 34px; }
+  .rv-hecha h3 { font-size: 1.7rem; margin-bottom: 6px; }
+  .rv-hecha p { margin: 0 auto; max-width: 40ch; color: var(--tinta-suave); }
+  .rv-hecha .rv-resumen { text-align: left; margin: 18px auto 0; max-width: 420px; }
+  .rv-hecha .botones { justify-content: center; margin-top: 18px; }
+  .btn-wa { background: var(--wa); color: #0b2a17; border-radius: 10px; }
+
+  /* Opiniones + dónde estamos */
+  #opiniones { background: var(--hielo); border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); }
+  .lugar { display: grid; grid-template-columns: 1.15fr 1px .8fr 1fr; gap: 32px; align-items: start; }
+  .lugar .sep { background: var(--linea); align-self: stretch; }
+  .lugar h2 { font-size: clamp(1.5rem, 2.6vw, 1.8rem); margin-bottom: 14px; }
+  .nota { display: flex; align-items: center; gap: 12px; }
+  .estrellas { display: flex; gap: 3px; color: #f5a800; }
+  .estrellas svg { width: 24px; height: 24px; }
+  .nota strong { font: 800 2.1rem/1 var(--f-tit); color: var(--noche); }
+  .nota-sub { color: var(--tinta-suave); margin: 4px 0 16px; font-size: .98rem; }
+  .resenas { display: grid; gap: 12px; }
+  .resena { display: grid; grid-template-columns: 46px 1fr; gap: 14px; background: #fff; border: 1px solid var(--linea); border-radius: 12px; padding: 14px 16px; }
+  .inicial { width: 46px; height: 46px; border-radius: 50%; background: var(--hielo-2); color: var(--azul); display: grid; place-items: center; font: 800 1.05rem var(--f-tit); }
+  .resena p { margin: 0; color: var(--tinta); font-size: 1rem; line-height: 1.45; }
+  .resena small { color: var(--tinta-suave); font-size: .94rem; }
+  .pequeno { color: #5d697b; font-size: .94rem; margin-top: 10px; }
+  .datos { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 14px; }
+  .datos li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; color: var(--tinta); }
+  .datos .ico { color: var(--azul); width: 24px; height: 24px; margin-top: 1px; }
+  .datos a { font-weight: 700; text-decoration: none; font-size: 1.15rem; color: var(--noche); }
+  .datos .horas { color: var(--tinta-suave); font-size: .98rem; }
+  .lugar .btn { min-height: 48px; font-size: 1rem; }
+  .mapa { margin: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--linea); background: #dfe3e6; }
+  .mapa iframe { display: block; width: 100%; height: 280px; border: 0; }
+  .mapa figcaption { background: #fff; color: #5d697b; font-size: .94rem; padding: 8px 12px; }
+  @media (max-width: 1000px) {
+    .lugar { grid-template-columns: 1fr 1fr; }
+    .lugar .sep { display: none; }
+    .lugar .opiniones { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) { .lugar { grid-template-columns: 1fr; gap: 36px; } }
 
   /* Preguntas */
-  details { border-bottom: 1px solid var(--c-borde); padding: 16px 0; }
-  summary { cursor: pointer; font-weight: 700; font-size: 1.08rem; color: var(--c-oscuro); min-height: 32px; }
-  details p { margin: 10px 0 0; max-width: 65ch; }
+  .faq { max-width: 820px; }
+  .faq h2 { margin-bottom: 14px; }
+  details { border-bottom: 1px solid var(--linea); }
+  summary { cursor: pointer; list-style: none; padding: 16px 40px 16px 0; font-weight: 700; font-size: 1.06rem; position: relative; color: var(--noche); }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; position: absolute; right: 6px; top: 10px; font: 700 1.6rem var(--f-tit); color: var(--azul); }
+  details[open] summary::after { content: "–"; }
+  details p { margin: 0 0 16px; color: var(--tinta-suave); max-width: 65ch; }
 
-  /* Cierre y pie */
-  .cierre { background: var(--c-oscuro); color: #fff; }
-  .cierre h2 { color: #fff; }
-  .cierre p { color: #d9dce4; max-width: 44ch; }
-  .cierre .btn-2 { color: #fff; }
-  footer { background: #12161f; color: rgba(255,255,255,.85); padding: 36px 0 100px; font-size: .94rem; }
-  footer a { color: #fff; }
-
-  /* Botón flotante de WhatsApp */
-  .wa-flota { position: fixed; right: 16px; bottom: 16px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: var(--c-wa); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
-  .wa-flota svg { width: 30px; height: 30px; color: #fff; }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  /* Pie */
+  footer { background: var(--noche); color: #dbe5f3; padding: 34px 0 96px; }
+  .pie { display: grid; grid-template-columns: auto 1fr auto; gap: 30px; align-items: center; }
+  .pie .logo svg { height: 58px; }
+  .legal { display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: center; }
+  .legal a { color: #dbe5f3; text-decoration: none; font-size: .98rem; }
+  .legal a:hover { color: #fff; text-decoration: underline; }
+  .pie-wa { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 700; }
+  .pie-wa svg { width: 26px; height: 26px; color: var(--wa); }
+  .pie-nota { grid-column: 1 / -1; color: #b3c3da; font-size: .94rem; border-top: 1px solid rgba(255,255,255,.14); padding-top: 18px; margin: 0; }
+  .pie-nota a { color: #fff; }
+  @media (max-width: 820px) { .pie { grid-template-columns: 1fr; justify-items: start; } .legal { justify-content: flex-start; } }
+  .wa-flota { position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(13,43,87,.35); }
+  .wa-flota svg { width: 32px; height: 32px; color: #fff; }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M7.5 13h2M11 13h2M14.5 13h2M7.5 16.5h2M11 16.5h2"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></symbol>
+  <symbol id="i-estrella" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9L12 2.8Z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.3-.9 2.1 0 .9.4 1.8 1 2.6 1.1 1.6 2.5 2.9 4.2 3.7.6.3 1.1.4 1.5.5.6.2 1.2.1 1.7 0 .5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></symbol>
+  <!-- Logotipo: figura estirándose (en movimiento) sobre el nombre -->
+  <symbol id="logo" viewBox="0 0 250 64">
+    <g transform="translate(2 4)">
+      <circle cx="35" cy="8" r="6.5" fill="#1552c0"/>
+      <path d="M8 22c9 2 17 3 25 2 6-.8 11-3 17-7" fill="none" stroke="#1552c0" stroke-width="6" stroke-linecap="round"/>
+      <path d="M31 24c-1 8-3 14-9 20M31 24c4 6 9 9 16 11l-3 17" fill="none" stroke="#0d2b57" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="62" y="38" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="34" style="fill:var(--logo-txt, #0d2b57)" letter-spacing="-1">Tu<tspan fill="#1552c0">fisio</tspan></text>
+    <text x="63" y="56" font-family="Manrope, system-ui, sans-serif" font-weight="700" font-size="11.2" style="fill:var(--logo-sub, #4a5668)" letter-spacing="1.6">CLÍNICA DE FISIOTERAPIA</text>
+  </symbol>
+</svg>
+
 <div class="franja">Web de ejemplo hecha por iando · ¿Quieres la tuya? <a href="https://wa.me/34637847114?text=Hola%20Jes%C3%BAs%2C%20he%20visto%20la%20web%20de%20ejemplo%20de%20la%20cl%C3%ADnica%20de%20fisio%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></div>
 
 <header>
-  <div class="contenedor barra">
-    <a class="marca" href="#inicio" aria-label="Tu fisio, inicio">
-      <svg viewBox="0 0 150 44" role="img" aria-label="Tu fisio">
-        <rect x="4" y="16.5" width="34" height="11" rx="5.5" fill="#1c2230" transform="rotate(35 21 22)"/>
-        <rect x="4" y="16.5" width="34" height="11" rx="5.5" fill="#e8467f" transform="rotate(-35 21 22)"/>
-        <text x="48" y="30" fill="#1c2230" font-family="Young Serif, Georgia, serif" font-size="23">Tu fisio</text>
-      </svg>
-    </a>
-    <nav aria-label="Secciones"><ul><li><a href="#servicios">Tratamientos</a></li><li><a href="#reservar">Pedir cita</a></li><li><a href="#horario">Horario</a></li><li><a href="#preguntas">Preguntas</a></li></ul></nav>
-    <a class="btn btn-rosa" href="#reservar">Pedir cita</a>
+  <div class="contenedor cab">
+    <a class="logo" href="#" aria-label="Tu fisio · Clínica de fisioterapia"><svg viewBox="0 0 250 64" role="img" aria-hidden="true"><use href="#logo"/></svg></a>
+    <nav aria-label="Menú">
+      <ul>
+        <li><a href="#tratamientos">Tratamientos</a></li>
+        <li><a href="#reservar">Pedir cita</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#donde">Dónde estamos</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-pri" href="#reservar"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg>Pedir cita</a>
   </div>
 </header>
 
-<main id="inicio">
-  <section class="hero">
-    <div class="contenedor hero-grid">
-      <div class="texto">
-        <h1>Pide tu cita de fisio sin llamar</h1>
-        <p class="sub">Elige el tratamiento, el día y una hora libre. En un minuto y a cualquier hora, desde el móvil.</p>
-        <div class="acciones">
-          <a class="btn btn-res" href="#reservar">Pedir cita</a>
-          <a class="btn btn-2" href="tel:+34637847114">Llamar al 637 847 114</a>
+<main>
+  <section class="inicio" aria-labelledby="titular">
+    <img src="img/inicio.jpg" width="1800" height="1000" alt="Un fisioterapeuta trabaja la rodilla de un paciente tumbado en la camilla" fetchpriority="high">
+    <div class="contenedor">
+      <div class="inicio-txt">
+        <h1 id="titular"><span class="l">Pide tu cita de fisio</span><br> <span class="l azul">sin llamar</span></h1>
+        <p>Primera valoración, sesiones, punción seca y masaje. Elige el tratamiento, el día y una hora libre desde el móvil, a cualquier hora.</p>
+        <div class="botones">
+          <a class="btn btn-pri" href="#reservar"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg>Pedir cita</a>
+          <a class="btn btn-sec" href="tel:+34637847114"><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg>Llamar al 637 847 114</a>
         </div>
-        <p class="datos"><strong>Lunes a viernes</strong> · 9:00–14:00 y 16:00–20:30</p>
-      </div>
-      <div class="hero-ilus">
-        <svg viewBox="20 40 560 400" role="img" aria-label="Ilustración: sala de la clínica con la camilla preparada, una toalla doblada, un rodillo, un rollo de vendaje rosa y un cartel de la columna en la pared">
-          <!-- pared -->
-          <rect x="0" y="0" width="600" height="440" fill="#c2255c"/>
-          <rect x="0" y="56" width="600" height="314" fill="#b3205a"/>
-          <!-- ventana con persiana -->
-          <rect x="388" y="86" width="140" height="132" rx="4" fill="#fbeaf0"/>
-          <g stroke="#e9c3d1" stroke-width="5"><line x1="392" y1="104" x2="524" y2="104"/><line x1="392" y1="122" x2="524" y2="122"/><line x1="392" y1="140" x2="524" y2="140"/><line x1="392" y1="158" x2="524" y2="158"/></g>
-          <rect x="388" y="86" width="140" height="132" rx="4" fill="none" stroke="#fff" stroke-width="6"/>
-          <!-- cartel de la columna -->
-          <rect x="78" y="80" width="108" height="168" rx="3" fill="#fff"/>
-          <text x="132" y="102" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="11" fill="#1c2230">Tu fisio</text>
-          <g fill="#f6c9d8"><rect x="122" y="112" width="20" height="9" rx="4"/><rect x="121" y="124" width="22" height="9" rx="4"/><rect x="120" y="136" width="24" height="10" rx="4"/><rect x="119" y="149" width="26" height="10" rx="4"/><rect x="118" y="162" width="28" height="11" rx="4"/><rect x="118" y="176" width="28" height="11" rx="4"/><rect x="118" y="190" width="28" height="11" rx="4"/><rect x="119" y="204" width="26" height="11" rx="4"/></g>
-          <path d="M120 220c4 12 20 12 24 0" fill="#e8467f"/>
-          <g stroke="#1c2230" stroke-width="1.6" opacity=".35"><line x1="94" y1="132" x2="112" y2="132"/><line x1="94" y1="168" x2="112" y2="168"/><line x1="152" y1="150" x2="170" y2="150"/><line x1="152" y1="196" x2="170" y2="196"/></g>
-          <!-- reloj -->
-          <circle cx="268" cy="118" r="30" fill="#fff"/><circle cx="268" cy="118" r="30" fill="none" stroke="#1c2230" stroke-width="4"/>
-          <path d="M268 118V98M268 118l14 8" stroke="#1c2230" stroke-width="4" stroke-linecap="round"/>
-          <!-- suelo -->
-          <rect x="0" y="370" width="600" height="70" fill="#a81d4f"/>
-          <ellipse cx="300" cy="388" rx="210" ry="10" fill="#8f1843"/>
-          <!-- camilla: patas -->
-          <g fill="#d7d9df"><rect x="140" y="300" width="10" height="84" rx="3"/><rect x="452" y="300" width="10" height="84" rx="3"/><rect x="200" y="300" width="10" height="84" rx="3"/><rect x="392" y="300" width="10" height="84" rx="3"/></g>
-          <rect x="146" y="338" width="250" height="8" rx="3" fill="#bfc3cc"/>
-          <!-- camilla: tablero -->
-          <rect x="112" y="268" width="378" height="38" rx="12" fill="#1c2230"/>
-          <rect x="112" y="268" width="378" height="10" rx="5" fill="#323a4d"/>
-          <path d="M112 286h378" stroke="#2a3142" stroke-width="2"/>
-          <!-- agujero facial y cojín -->
-          <rect x="430" y="254" width="66" height="22" rx="11" fill="#fbeaf0"/>
-          <!-- papel de camilla -->
-          <rect x="150" y="262" width="270" height="10" rx="3" fill="#ffffff"/>
-          <!-- toalla doblada -->
-          <rect x="176" y="232" width="94" height="32" rx="6" fill="#ffffff"/>
-          <rect x="176" y="244" width="94" height="6" fill="#e8467f"/>
-          <rect x="176" y="232" width="94" height="8" rx="4" fill="#f4eef0"/>
-          <!-- rollo de vendaje sobre la camilla -->
-          <circle cx="330" cy="246" r="18" fill="#e8467f"/><circle cx="330" cy="246" r="7" fill="#fbeaf0"/>
-          <path d="M346 254c18 6 30 6 44 2" stroke="#e8467f" stroke-width="10" stroke-linecap="round" fill="none"/>
-          <!-- rodillo en el suelo -->
-          <rect x="430" y="352" width="104" height="28" rx="14" fill="#fbeaf0"/>
-          <ellipse cx="522" cy="366" rx="9" ry="14" fill="#e9c3d1"/>
-          <!-- mancuernas -->
-          <g fill="#1c2230"><rect x="62" y="364" width="12" height="18" rx="3"/><rect x="92" y="364" width="12" height="18" rx="3"/><rect x="72" y="370" width="22" height="6" rx="2"/></g>
-          <!-- planta -->
-          <rect x="70" y="316" width="36" height="40" rx="4" fill="#fbeaf0"/>
-          <g fill="#1c2230"><path d="M88 316c-20-10-24-30-14-40 6 14 14 22 14 40Z"/><path d="M88 316c18-12 22-32 10-42-4 16-12 24-10 42Z"/><path d="M88 316c0-18 2-36 0-50-6 14-4 32 0 50Z"/></g>
-        </svg>
+        <p class="horario-mini"><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg>Lunes a viernes · 9:00 a 14:00 y 16:00 a 20:30</p>
       </div>
     </div>
   </section>
 
-  <section id="servicios">
+  <div class="garantias">
+    <ul class="contenedor">
+      <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 14v10l6 4"/></svg><div><strong>Cita online a cualquier hora</strong><span>Aunque estemos en plena sesión</span></div></li>
+      <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="9" width="34" height="31" rx="4"/><path d="M7 18h34M16 5v8M32 5v8M16 28l5 5 10-10"/></svg><div><strong>Ves las horas libres de verdad</strong><span>Según lo que dura cada tratamiento</span></div></li>
+      <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 40l2.6-7.8A16 16 0 1 1 16 37.6Z"/><path d="M18 19c0 6 5 11 11 11l2.5-2.8-4-2-1.8 1.6c-2-.8-3.6-2.4-4.4-4.4l1.6-1.8-2-4Z"/></svg><div><strong>Si prefieres, por WhatsApp</strong><span>O llámanos al 637 847 114</span></div></li>
+    </ul>
+  </div>
+
+  <section id="tratamientos" aria-labelledby="t-tratamientos">
     <div class="contenedor">
-      <div class="citas-cab">
-        <h2>¿Qué cita pido?</h2>
-        <p>Busca tu caso y pide hora para ese tratamiento. Al lado, lo que dura la cita.</p>
+      <div class="titulo-linea"><h2 id="t-tratamientos">Nuestros tratamientos</h2></div>
+      <div class="rejilla">
+        <a class="tarjeta" href="#reservar" data-serv="Primera valoración">
+          <img src="img/valoracion.jpg" width="640" height="480" alt="Un fisioterapeuta explora el hombro de una paciente tumbada de lado en la camilla" loading="lazy">
+          <div class="tarjeta-txt"><h3>Primera valoración</h3><p>Si es la primera vez que vienes</p><span class="min">45 min</span></div>
+        </a>
+        <a class="tarjeta" href="#reservar" data-serv="Sesión de fisioterapia">
+          <img src="img/sesion.jpg" width="640" height="480" alt="Manos de un fisioterapeuta movilizando el hombro de un paciente" loading="lazy">
+          <div class="tarjeta-txt"><h3>Sesión de fisioterapia</h3><p>Terapia manual y ejercicios</p><span class="min">50 min</span></div>
+        </a>
+        <a class="tarjeta" href="#reservar" data-serv="Punción seca">
+          <img src="img/puncion.jpg" width="640" height="480" alt="Agujas finas de punción seca en la espalda de un paciente" loading="lazy">
+          <div class="tarjeta-txt"><h3>Punción seca</h3><p>Si tu fisio la ve indicada</p><span class="min">30 min</span></div>
+        </a>
+        <a class="tarjeta" href="#reservar" data-serv="Masaje descontracturante">
+          <img src="img/masaje.jpg" width="640" height="480" alt="Manos dando un masaje en la espalda" loading="lazy">
+          <div class="tarjeta-txt"><h3>Masaje descontracturante</h3><p>Espalda, cuello o piernas cargadas</p><span class="min">45 min</span></div>
+        </a>
+        <a class="tarjeta tarjeta-otra" href="https://wa.me/34637847114?text=Hola%2C%20no%20s%C3%A9%20qu%C3%A9%20cita%20de%20fisio%20pedir" target="_blank" rel="noopener">
+          <h3>¿No sabes qué cita pedir?</h3>
+          <p>Cuéntanos qué te pasa y te decimos cuál te conviene.</p>
+          <b><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Escribir por WhatsApp</b>
+        </a>
       </div>
-      <ul class="citas">
-        <li><p class="preg">¿Es la primera vez que vienes?</p><p class="serv"><strong>Primera valoración</strong><span>Nos cuentas qué te pasa, te exploramos y te explicamos cómo lo vamos a trabajar.</span></p><span class="min">45 min</span></li>
-        <li><p class="preg">¿Ya has venido antes?</p><p class="serv"><strong>Sesión de fisioterapia</strong><span>Terapia manual y ejercicios, siguiendo lo que vimos en la valoración.</span></p><span class="min">50 min</span></li>
-        <li><p class="preg">¿Te la ha propuesto tu fisio?</p><p class="serv"><strong>Punción seca</strong><span>Técnica con una aguja muy fina en puntos de tensión del músculo. Se hace solo si tu fisio lo ve indicado.</span></p><span class="min">30 min</span></li>
-        <li><p class="preg">¿Llevas la espalda cargada?</p><p class="serv"><strong>Masaje descontracturante</strong><span>Masaje para la espalda, el cuello o las piernas cargadas.</span></p><span class="min">45 min</span></li>
-      </ul>
     </div>
   </section>
 
   <!-- ============ RESERVAS (taller de iando) ============ -->
-  <section id="reservar">
-    <div class="contenedor res-grid">
-      <div class="res-intro">
-        <h2>Pide tu cita</h2>
-        <p>Las horas que ves son las que quedan libres de verdad en la agenda de la clínica.</p>
-        <ol>
-          <li>Elige el tratamiento.</li>
-          <li>Toca el día y una hora libre.</li>
-          <li>Deja tu nombre, teléfono y correo.</li>
-        </ol>
-        <p class="alt">¿Prefieres hablar? <a href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20de%20fisio" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> o llama al <a href="tel:+34637847114">637 847 114</a>.</p>
-      </div>
-      <div class="hoja">
-        <span class="tira tira-1" aria-hidden="true"></span><span class="tira tira-2" aria-hidden="true"></span><span class="tira tira-3" aria-hidden="true"></span>
-        <div class="hoja-cab"><strong>Hoja de cita</strong><span>Tu fisio</span></div>
-        <div class="hoja-cuerpo">
+  <section id="reservar" aria-labelledby="t-reservar">
+    <div class="contenedor">
+      <div class="reserva">
+        <div class="res-intro">
+          <svg class="cal" aria-hidden="true"><use href="#i-cal"/></svg>
+          <h2 id="t-reservar">Pide tu cita<br><span>en un minuto</span></h2>
+          <p>Elige el tratamiento, el día y la hora libre que mejor te venga.</p>
+          <div class="firma">¡Te esperamos en la camilla!<svg viewBox="0 0 170 14" aria-hidden="true"><path d="M3 10c34-6 80-9 164-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div>
+          <p class="res-alt">¿Prefieres hablar? <a href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20de%20fisio" target="_blank" rel="noopener">WhatsApp</a> o <a href="tel:+34637847114" style="white-space:nowrap">637 847 114</a>.</p>
+        </div>
+        <div class="res-caja">
+          <ol class="pasos" id="rv-pasos">
+            <li data-n="1" class="activo">Tratamiento</li>
+            <li data-n="2">Fecha y hora</li>
+            <li data-n="3">Tus datos</li>
+            <li data-n="4">Confirmación</li>
+          </ol>
           <form id="rv-form" class="rv" novalidate>
-            <div><span class="rv-lab" id="rv-serv-lab">Tratamiento</span>
-              <div id="rv-servs" class="rv-servs" role="radiogroup" aria-labelledby="rv-serv-lab"><p class="rv-ayuda">Cargando tratamientos…</p></div>
+            <div class="paso" data-paso="1">
+              <div class="rv-fila">
+                <label>¿Qué tratamiento necesitas?<select id="rv-serv"><option value="">Cargando…</option></select></label>
+                <label>¿Qué día prefieres?<select id="rv-fecha"></select></label>
+              </div>
+              <p class="rv-dur" id="rv-dur">Si es tu primera vez, elige la primera valoración.</p>
+              <div class="rv-acciones"><button type="button" class="btn btn-pri" id="rv-sig1" disabled>Continuar →</button></div>
             </div>
-            <div><span class="rv-lab" id="rv-dias-lab">Día</span>
-              <div id="rv-dias" class="rv-dias" role="group" aria-labelledby="rv-dias-lab"></div>
-              <label class="rv-otro">¿Otro día?<input type="date" id="rv-fecha" required></label>
+            <div class="paso" data-paso="2" hidden>
+              <span class="rv-lab" id="rv-horas-lab">Horas libres</span>
+              <div id="rv-horas" class="rv-horas" role="radiogroup" aria-labelledby="rv-horas-lab"><p class="rv-ayuda">Buscando horas libres…</p></div>
+              <div class="rv-acciones"><button type="button" class="btn btn-atras" data-ir="1">Atrás</button><button type="button" class="btn btn-pri" id="rv-sig2" disabled>Continuar →</button></div>
             </div>
-            <div><span class="rv-lab">Hora</span><div id="rv-horas" class="rv-horas" role="radiogroup" aria-label="Horas libres"><p class="rv-ayuda">Elige primero el tratamiento y el día.</p></div></div>
-            <div class="rv-dos">
-              <label>Nombre<input id="rv-nombre" autocomplete="name" maxlength="120" required></label>
-              <label>Teléfono<input id="rv-tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="600 000 000" required></label>
+            <div class="paso" data-paso="3" hidden>
+              <div class="rv-resumen" id="rv-resumen"></div>
+              <div class="rv-campos">
+                <div class="rv-dos">
+                  <label>Nombre<input id="rv-nombre" autocomplete="name" maxlength="120" required></label>
+                  <label>Teléfono<input id="rv-tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="600 000 000" required></label>
+                </div>
+                <label>Correo electrónico<input id="rv-email" type="email" inputmode="email" autocomplete="email" maxlength="160" placeholder="tu@correo.com" required></label>
+                <label>¿Qué te pasa? (opcional)<textarea id="rv-notas" rows="2" maxlength="500" placeholder="Molestia en el hombro, dolor de espalda…"></textarea></label>
+                <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos para gestionar esta cita y que me envíen por correo la confirmación, un recordatorio y, después, un enlace para dejar mi opinión.</label>
+              </div>
+              <div class="rv-acciones"><button type="button" class="btn btn-atras" data-ir="2">Atrás</button><button class="btn btn-pri" type="submit" id="rv-enviar">Pedir mi cita</button></div>
             </div>
-            <label>Correo electrónico<input id="rv-email" type="email" inputmode="email" autocomplete="email" maxlength="160" placeholder="tu@correo.com" required></label>
-            <label>¿Algo que debamos saber? (opcional)<textarea id="rv-notas" rows="2" maxlength="500" placeholder="Qué te molesta o desde cuándo"></textarea></label>
-            <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos para gestionar esta cita y que me envíen por correo la confirmación, un recordatorio y, después, un enlace para dejar mi opinión.</label>
-            <button class="btn btn-rosa" type="submit" id="rv-enviar">Pedir mi cita</button>
+            <div class="paso rv-hecha" data-paso="4" hidden>
+              <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+              <h3>¡Cita pedida!</h3>
+              <p>Te esperamos en la clínica. Si necesitas cambiarla, escríbenos.</p>
+              <div class="rv-resumen" id="rv-resumen-fin"></div>
+              <div class="botones" id="rv-fin-botones"><button type="button" class="btn btn-atras" id="rv-otra">Pedir otra cita</button></div>
+            </div>
             <p id="rv-estado" class="rv-estado" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -365,83 +440,110 @@
     var ORDEN = ["Primera valoración", "Sesión de fisioterapia", "Punción seca", "Masaje descontracturante"];
     var H = { apikey: KEY, Authorization: "Bearer " + KEY, "Content-Type": "application/json" };
     var $ = function (id) { return document.getElementById(id); };
-    var hora = null, serv = "", servicios = [];
-    var estado = function (t, cls) { var e = $("rv-estado"); e.textContent = t; e.className = "rv-estado " + (cls || ""); };
+    var hora = null, servicios = [], pendiente = "";
+    var esc = function (t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
+    var estado = function (t, cls) { var e = $("rv-estado"); e.textContent = t || ""; e.className = "rv-estado " + (cls || ""); };
     var hoy = new Date(); var iso = function (d) { return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
-    $("rv-fecha").min = iso(hoy); $("rv-fecha").max = iso(new Date(hoy.getTime() + 60 * 864e5));
+    var serv = function () { return $("rv-serv").value; };
 
-    /* Botones de día: los próximos 10 días abiertos */
-    var dias = $("rv-dias"), html = "", n = 0;
-    for (var i = 0; n < 10 && i < 30; i++) {
+    /* Días: los próximos 14 días abiertos */
+    var ops = "", n = 0;
+    for (var i = 0; n < 14 && i < 40; i++) {
       var d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + i);
       if (ABIERTO.indexOf(d.getDay()) < 0) continue;
-      var et = i === 0 ? "hoy" : i === 1 ? "mañana" : d.toLocaleDateString("es-ES", { weekday: "short" }).replace(".", "");
-      html += '<button type="button" aria-pressed="false" data-f="' + iso(d) + '"><small>' + et + "</small><b>" + d.getDate() + "</b><small>" + d.toLocaleDateString("es-ES", { month: "short" }).replace(".", "") + "</small></button>";
+      var et = d.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
+      if (i === 0) et = "Hoy, " + et; else if (i === 1) et = "Mañana, " + et;
+      ops += '<option value="' + iso(d) + '">' + et.charAt(0).toUpperCase() + et.slice(1) + "</option>";
       n++;
     }
-    dias.innerHTML = html;
-    function marcarDia(f) { dias.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.f === f ? "true" : "false"); }); }
-    dias.querySelectorAll("button").forEach(function (b) { b.onclick = function () { $("rv-fecha").value = b.dataset.f; marcarDia(b.dataset.f); cargarHoras(); }; });
+    $("rv-fecha").innerHTML = ops;
 
-    function marcarServ(id) { serv = id; $("rv-servs").querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-checked", b.dataset.id === id ? "true" : "false"); }); }
+    function ir(n) {
+      document.querySelectorAll("#rv-form .paso").forEach(function (p) { p.hidden = p.dataset.paso !== String(n); });
+      document.querySelectorAll("#rv-pasos li").forEach(function (li, i) { li.className = i + 1 < n ? "hecho" : i + 1 === n ? "activo" : ""; });
+      estado("");
+      if (n === 2) cargarHoras();
+      if (n === 3) $("rv-resumen").innerHTML = resumen();
+    }
+    function fechaLarga() { return new Date($("rv-fecha").value + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }); }
+    function servActual() { var id = serv(); return servicios.find(function (x) { return x.id === id; }) || {}; }
+    function resumen() { var s = servActual(); return "<b>" + esc(s.nombre || "") + "</b> (" + (s.duracion_minutos || "") + " min)<br>" + fechaLarga() + " a las <b>" + hora + "</b>"; }
+    document.querySelectorAll("[data-ir]").forEach(function (b) { b.onclick = function () { ir(+b.dataset.ir); }; });
+    $("rv-sig1").onclick = function () { ir(2); };
+    $("rv-sig2").onclick = function () { ir(3); };
+
+    function cambioServ() {
+      var s = servActual(); $("rv-sig1").disabled = !s.id; hora = null;
+      $("rv-dur").textContent = s.id ? "Dura " + s.duracion_minutos + " minutos." : "Si es tu primera vez, elige la primera valoración.";
+    }
+    $("rv-serv").onchange = cambioServ;
+    $("rv-fecha").onchange = function () { hora = null; };
+    function elegirPorNombre(nombre) {
+      var s = servicios.find(function (x) { return x.nombre === nombre; });
+      if (s) { $("rv-serv").value = s.id; cambioServ(); ir(1); } else { pendiente = nombre; }
+    }
+    document.querySelectorAll("[data-serv]").forEach(function (a) { a.addEventListener("click", function () { elegirPorNombre(a.dataset.serv); }); });
+
     fetch(SB + "/rest/v1/servicios?select=id,nombre,precio_desde,duracion_minutos&order=nombre&negocio_id=eq." + NEGOCIO, { headers: H })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (s) {
         servicios = s.slice().sort(function (a, b) { var x = ORDEN.indexOf(a.nombre), y = ORDEN.indexOf(b.nombre); return (x < 0 ? 99 : x) - (y < 0 ? 99 : y); });
-        var esc = function (t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
-        $("rv-servs").innerHTML = servicios.map(function (x) {
-          return '<button type="button" role="radio" aria-checked="false" data-id="' + x.id + '"><b>' + esc(x.nombre) + "</b><small>" + x.duracion_minutos + " min" + (x.precio_desde ? " · desde " + x.precio_desde + " €" : "") + "</small></button>";
+        $("rv-serv").innerHTML = '<option value="">Elige tratamiento</option>' + servicios.map(function (x) {
+          return '<option value="' + x.id + '">' + esc(x.nombre) + " · " + x.duracion_minutos + " min" + (x.precio_desde ? " · desde " + x.precio_desde + " €" : "") + "</option>";
         }).join("");
-        $("rv-servs").querySelectorAll("button").forEach(function (b) { b.onclick = function () { marcarServ(b.dataset.id); cargarHoras(); }; });
+        if (pendiente) { elegirPorNombre(pendiente); pendiente = ""; }
       })
-      .catch(function () { $("rv-servs").innerHTML = '<p class="rv-ayuda">No se pudieron cargar los tratamientos.</p>'; estado("La cita online no está disponible ahora. Escríbenos por WhatsApp.", "mal"); });
+      .catch(function () { $("rv-serv").innerHTML = '<option value="">No disponible</option>'; estado("La cita online no está disponible ahora. Escríbenos por WhatsApp.", "mal"); });
 
     function cargarHoras() {
-      hora = null;
+      hora = null; $("rv-sig2").disabled = true;
       var f = $("rv-fecha").value, box = $("rv-horas");
-      if (!serv || !f) { box.innerHTML = '<p class="rv-ayuda">' + (!serv ? "Elige primero el tratamiento." : "Toca un día.") + "</p>"; return; }
+      $("rv-horas-lab").textContent = "Horas libres · " + fechaLarga();
+      if (!serv() || !f) { ir(1); return; }
       box.innerHTML = '<p class="rv-ayuda">Buscando horas libres…</p>';
-      fetch(SB + "/rest/v1/rpc/huecos_libres", { method: "POST", headers: H, body: JSON.stringify({ p_negocio_id: NEGOCIO, p_servicio_id: serv, p_fecha: f }) })
+      fetch(SB + "/rest/v1/rpc/huecos_libres", { method: "POST", headers: H, body: JSON.stringify({ p_negocio_id: NEGOCIO, p_servicio_id: serv(), p_fecha: f }) })
         .then(function (r) { return r.json(); })
         .then(function (horas) {
-          if (!Array.isArray(horas) || !horas.length) { box.innerHTML = '<p class="rv-ayuda">No quedan horas libres ese día. Prueba con otro.</p>'; return; }
+          if (!Array.isArray(horas) || !horas.length) { box.innerHTML = '<p class="rv-ayuda">No quedan horas libres ese día. Vuelve atrás y prueba con otro.</p>'; return; }
           box.innerHTML = horas.map(function (h) { var v = String(h).slice(0, 5); return '<button type="button" role="radio" aria-checked="false" data-h="' + v + '">' + v + "</button>"; }).join("");
           box.querySelectorAll("button").forEach(function (b) {
-            b.onclick = function () { box.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-checked", "false"); }); b.setAttribute("aria-checked", "true"); hora = b.dataset.h; };
+            b.onclick = function () { box.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-checked", "false"); }); b.setAttribute("aria-checked", "true"); hora = b.dataset.h; $("rv-sig2").disabled = false; };
           });
         })
         .catch(function () { box.innerHTML = '<p class="rv-ayuda">No se pudieron cargar las horas. Inténtalo de nuevo.</p>'; });
     }
-    $("rv-fecha").onchange = function () { marcarDia($("rv-fecha").value); cargarHoras(); };
+
+    $("rv-otra").onclick = function () {
+      var f = $("rv-fecha").value; $("rv-form").reset(); $("rv-fecha").value = f; cambioServ();
+      var wa = $("rv-fin-botones").querySelector(".btn-wa"); if (wa) wa.remove();
+      ir(1);
+    };
 
     $("rv-form").onsubmit = function (e) {
       e.preventDefault();
       var nombre = $("rv-nombre").value.trim(), tel = $("rv-tel").value.replace(/\D/g, "");
-      if (!serv || !$("rv-fecha").value) return estado("Elige el tratamiento y el día.", "mal");
-      if (!hora) return estado("Elige una hora.", "mal");
+      if (!serv() || !$("rv-fecha").value || !hora) { ir(!serv() ? 1 : 2); return estado("Elige el tratamiento, el día y la hora.", "mal"); }
       if (!nombre) return estado("Escribe tu nombre.", "mal");
       if (!/^(34)?[6-9]\d{8}$/.test(tel)) return estado("Revisa el teléfono (9 cifras).", "mal");
       var email = $("rv-email").value.trim();
       if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(email)) return estado("Revisa el correo electrónico.", "mal");
       if (!$("rv-ok").checked) return estado("Marca la casilla de privacidad.", "mal");
-      $("rv-enviar").disabled = true; estado("Pidiendo la cita…");
+      $("rv-enviar").disabled = true; estado("Pidiendo tu cita…");
       fetch(SB + "/rest/v1/rpc/reservar_hueco", { method: "POST", headers: H, body: JSON.stringify({
         p_negocio_id: NEGOCIO, p_nombre: nombre, p_telefono: tel.slice(-9), p_email: email,
-        p_servicio_id: serv, p_fecha: $("rv-fecha").value, p_hora: hora, p_notas: $("rv-notas").value.trim() || null }) })
+        p_servicio_id: serv(), p_fecha: $("rv-fecha").value, p_hora: hora, p_notas: $("rv-notas").value.trim() || null }) })
         .then(function (r) { return r.json(); })
         .then(function (res) {
           if (res && res.ok) {
-            var s = servicios.find(function (x) { return x.id === serv; }) || {};
-            var f = new Date($("rv-fecha").value + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
-            var hh = hora;
-            estado("¡Cita apuntada! " + (s.nombre || "") + " el " + f + " a las " + hh + ". Te confirmaremos en breve.", "ok");
-            $("rv-form").reset(); marcarDia(""); marcarServ(""); $("rv-horas").innerHTML = ""; hora = null;
+            var s = servActual(), f = fechaLarga(), hh = hora;
+            $("rv-resumen-fin").innerHTML = resumen() + "<br>A nombre de <b>" + esc(nombre) + "</b>";
+            ir(4);
             if (WHATSAPP && /^\d+$/.test(WHATSAPP)) {
-              var a = document.createElement("a"); a.className = "btn btn-2"; a.target = "_blank"; a.rel = "noopener";
-              a.href = "https:" + "//wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hola, acabo de pedir cita para " + (s.nombre || "") + " el " + f + " a las " + hh + " a nombre de " + nombre + ".");
-              a.textContent = "Avisar por WhatsApp (opcional)"; $("rv-estado").after(a);
+              var a = document.createElement("a"); a.className = "btn btn-wa"; a.target = "_blank"; a.rel = "noopener";
+              a.href = "https:" + "//wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hola, acabo de pedir cita de " + (s.nombre || "") + " el " + f + " a las " + hh + " a nombre de " + nombre + ".");
+              a.textContent = "Avisar por WhatsApp (opcional)"; $("rv-fin-botones").prepend(a);
             }
-          } else { estado((res && res.error) || "No se pudo pedir la cita. Inténtalo de nuevo.", "mal"); cargarHoras(); }
+          } else { estado((res && res.error) || "No se pudo pedir la cita. Inténtalo de nuevo.", "mal"); if (res && /hora/i.test(res.error || "")) { var m = res.error; ir(2); estado(m, "mal"); } }
         })
         .catch(function () { estado("No se pudo pedir la cita. Escríbenos por WhatsApp.", "mal"); })
         .finally(function () { $("rv-enviar").disabled = false; });
@@ -450,36 +552,41 @@
   </script>
   <!-- ============ /RESERVAS ============ -->
 
-  <section>
-    <div class="contenedor frases">
-      <div><h3>Ves las horas libres de verdad</h3><p>Solo salen los huecos que quedan, según lo que dura cada tratamiento.</p></div>
-      <div><h3>Pides cita a cualquier hora</h3><p>Aunque estemos en plena sesión o la clínica esté cerrada.</p></div>
-      <div><h3>Si prefieres, por WhatsApp</h3><p>Escríbenos o llámanos al <a href="tel:+34637847114">637 847 114</a>.</p></div>
-    </div>
-  </section>
-
-  <section id="horario">
-    <div class="contenedor dos">
-      <div>
-        <h2>Cuándo y dónde</h2>
-        <table class="horario"><tbody>
-          <tr><td>Lunes</td><td>9:00–14:00 · 16:00–20:30</td></tr>
-          <tr><td>Martes</td><td>9:00–14:00 · 16:00–20:30</td></tr>
-          <tr><td>Miércoles</td><td>9:00–14:00 · 16:00–20:30</td></tr>
-          <tr><td>Jueves</td><td>9:00–14:00 · 16:00–20:30</td></tr>
-          <tr><td>Viernes</td><td>9:00–14:00 · 16:00–20:30</td></tr>
-          <tr class="cerrado"><td>Sábado</td><td>Cerrado</td></tr>
-          <tr class="cerrado"><td>Domingo</td><td>Cerrado</td></tr>
-        </tbody></table>
-        <p style="margin-top:16px">Calle de ejemplo, 3</p>
+  <section id="opiniones" aria-label="Opiniones y dónde estamos">
+    <div class="contenedor lugar">
+      <div class="opiniones">
+        <h2>Opiniones de nuestros pacientes</h2>
+        <div class="nota">
+          <div class="estrellas" aria-hidden="true"><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg></div>
+          <strong>4,9</strong>
+        </div>
+        <p class="nota-sub">Nota media de ejemplo en Google</p>
+        <div class="resenas">
+          <div class="resena"><span class="inicial" aria-hidden="true">CR</span><div><p>«Pedí la primera valoración desde el móvil a las once de la noche. Muy fácil.»</p><small>Carmen R.</small></div></div>
+          <div class="resena"><span class="inicial" aria-hidden="true">AL</span><div><p>«Me explicaron con calma qué tenía y cómo lo íbamos a trabajar.»</p><small>Antonio L.</small></div></div>
+        </div>
+        <p class="pequeno">Reseñas de ejemplo: es un negocio ficticio para enseñar cómo queda la web.</p>
       </div>
-      <div class="mapa mapa-ej" role="img" aria-label="Aquí irá el mapa de Google con la dirección del negocio"><span>Aquí irá el mapa de Google<br>con la dirección de tu negocio</span></div>
+      <div class="sep" aria-hidden="true"></div>
+      <div id="donde">
+        <h2>¿Dónde estamos?</h2>
+        <ul class="datos">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span>Calle de ejemplo, 3</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg><a href="tel:+34637847114">637 847 114</a></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><span>Lunes a viernes<br><span class="horas">9:00 a 14:00 y 16:00 a 20:30<br>Sábado y domingo, cerrado</span></span></li>
+        </ul>
+        <a class="btn btn-sec" href="https://www.google.com/maps/search/?api=1&amp;query=Oropesa%2C%20Toledo" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Ver en Google Maps</a>
+      </div>
+      <figure class="mapa">
+        <iframe src="https://maps.google.com/maps?q=Oropesa%2C%20Toledo&amp;z=15&amp;output=embed" loading="lazy" title="Mapa de ejemplo: centro de Oropesa" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <figcaption>Mapa de ejemplo (centro de Oropesa): en la web real va la dirección de la clínica.</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section id="preguntas">
-    <div class="contenedor" style="max-width:820px">
-      <h2>Lo que más nos preguntan</h2>
+  <section id="preguntas" aria-labelledby="t-preguntas">
+    <div class="contenedor faq">
+      <h2 id="t-preguntas">Lo que más nos preguntan</h2>
       <details><summary>Es mi primera vez, ¿qué cita pido?</summary><p>La primera valoración. Así vemos qué te pasa y te decimos qué sesiones te convienen.</p></details>
       <details><summary>¿Qué traigo a la cita?</summary><p>Ropa cómoda y, si los tienes, informes o pruebas relacionados con lo que te pasa.</p></details>
       <details><summary>¿Necesito volante del médico?</summary><p>No para pedir cita con nosotros. Si tienes un informe, tráelo y lo tenemos en cuenta.</p></details>
@@ -487,29 +594,21 @@
       <details><summary>¿Qué horario tenéis?</summary><p>De lunes a viernes, de 9:00 a 14:00 y de 16:00 a 20:30. Sábado y domingo, cerrado.</p></details>
     </div>
   </section>
-
-  <section id="contacto" class="cierre">
-    <div class="contenedor">
-      <h2>¿Te buscamos hueco esta semana?</h2>
-      <p>Coge hora en un minuto o escríbenos si no sabes qué cita pedir.</p>
-      <div class="acciones">
-        <a class="btn btn-rosa" href="#reservar">Pedir cita</a>
-        <a class="btn btn-2" href="https://wa.me/34637847114?text=Hola%2C%20no%20s%C3%A9%20qu%C3%A9%20cita%20pedir" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer>
-  <div class="contenedor">
-    <p><strong>Fisio de ejemplo</strong> · Calle de ejemplo, 3 · <a href="tel:+34637847114">637 847 114</a></p>
-    <p>Negocio ficticio: esta es una web de ejemplo para enseñar cómo funciona la cita online. Los datos que envíes solo se usan para gestionar la cita.</p>
-    <p style="opacity:.75">Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
+  <div class="contenedor pie" style="--logo-txt:#ffffff; --logo-sub:#b3c3da">
+    <a class="logo" href="#" aria-label="Tu fisio · Clínica de fisioterapia"><svg viewBox="0 0 250 64" role="img" aria-hidden="true"><use href="#logo"/></svg></a>
+    <nav class="legal" aria-label="Legal">
+      <a href="https://iando.xyz/aviso-legal.html" rel="noopener">Aviso legal</a>
+      <a href="https://iando.xyz/politica-privacidad.html" rel="noopener">Privacidad</a>
+      <a href="https://iando.xyz/cookies.html" rel="noopener">Cookies</a>
+    </nav>
+    <a class="pie-wa" href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20de%20fisio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>637 847 114</a>
+    <p class="pie-nota">Fisio de ejemplo · negocio ficticio: es una web de muestra para enseñar cómo funciona la cita online. Los datos que envíes solo se usan para gestionar la cita. Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
   </div>
 </footer>
 
-<a class="wa-flota" href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20de%20fisio" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.3-.9 2.1 0 .9.4 1.8 1 2.6 1.1 1.6 2.5 2.9 4.2 3.7.6.3 1.1.4 1.5.5.6.2 1.2.1 1.7 0 .5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></svg>
-</a>
+<a class="wa-flota" href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20de%20fisio" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
 </body>
 </html>
