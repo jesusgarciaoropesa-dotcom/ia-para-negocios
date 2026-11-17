@@ -185,6 +185,32 @@ class Registro:
         return {k: " ".join(v) for k, v in self.frases.items()}
 
 
+RITMO = {"tempo": 1.0, "pausas": 1.0, "recortar": False}   # --ritmo rapido: voz algo más rápida, sin silencios largos
+
+
+def recortar_silencio(pcm, sr, margen=0.05, umbral=500):
+    """Quita el silencio del principio y del final de un trozo de voz (Gemini deja casi 1 s entre frases)."""
+    import numpy as np
+    a = np.frombuffer(pcm, dtype=np.int16)
+    if not len(a):
+        return pcm
+    v = np.flatnonzero(np.abs(a.astype(np.int32)) > umbral)
+    if not len(v):
+        return pcm
+    m = int(margen * sr)
+    return a[max(0, v[0] - m): min(len(a), v[-1] + m)].tobytes()
+
+
+def acelerar(pcm, sr, factor):
+    """Acelera la voz sin cambiar el tono (atempo de ffmpeg)."""
+    if abs(factor - 1) < 0.01 or not pcm:
+        return pcm
+    r = subprocess.run(["ffmpeg", "-v", "error", "-f", "s16le", "-ar", str(sr), "-ac", "1", "-i", "pipe:0",
+                        "-filter:a", f"atempo={factor}", "-f", "s16le", "-ar", str(sr), "-ac", "1", "pipe:1"],
+                       input=pcm, capture_output=True, check=True)
+    return r.stdout
+
+
 class VozGemini:
     """Segunda pasada: reparte el audio de Gemini entre las frases. `trozos` = {lámina: [pcm por frase]}."""
     def __init__(self, trozos, sr):
@@ -198,6 +224,9 @@ class VozGemini:
         if not trozos:
             return b"", 0.6
         pcm = trozos.pop(0)
+        if RITMO["recortar"]:
+            pcm = recortar_silencio(pcm, self.sr)
+        pcm = acelerar(pcm, self.sr, RITMO["tempo"])
         return pcm, len(pcm) / 2 / self.sr
 
 
@@ -211,7 +240,7 @@ class Linea:
         ini = self.t
         if dur:
             self.trozos.append((ini, audio, texto))
-            self.t += dur + pausa
+            self.t += dur + pausa * RITMO["pausas"]
         return ini, dur
 
 
@@ -511,6 +540,8 @@ def main():
     ap.add_argument("--salida", default="reels")
     ap.add_argument("--fps", type=int, default=30)
     ap.add_argument("--sin-voz", action="store_true")
+    ap.add_argument("--ritmo", choices=["normal", "rapido"], default="normal",
+                    help="rapido = voz un 10 %% más rápida, sin silencios largos y pausas más cortas (pedido por Jesús el 17-11-2026)")
     ap.add_argument("--voz", choices=["gemini", "kokoro", "ninguna"], default="gemini",
                     help="gemini = voz natural Achird (por defecto); kokoro = la de antes")
     ap.add_argument("--pedido-voz", action="store_true",
@@ -519,6 +550,8 @@ def main():
     a = ap.parse_args()
     global MODO_VOZ
     MODO_VOZ = "ninguna" if a.sin_voz else a.voz
+    if a.ritmo == "rapido" or cfg_ritmo(a.config) == "rapido":
+        RITMO.update(tempo=1.1, pausas=0.6, recortar=True)
     cfg = json.loads(Path(a.config).read_text(encoding="utf-8"))
     voz_usada = MODO_VOZ
     if MODO_VOZ == "gemini":
@@ -595,6 +628,13 @@ def main():
                     "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", str(mp4)], check=True)
     shutil.rmtree(tmp, ignore_errors=True)
     print(json.dumps({"reel": str(mp4), "portada": str(out / f"{cfg['slug']}-portada.jpg"), "segundos": round(total, 1), "voz": voz_usada if trozos else "ninguna"}, ensure_ascii=False))
+
+
+def cfg_ritmo(ruta):
+    try:
+        return json.loads(Path(ruta).read_text(encoding="utf-8")).get("ritmo")
+    except Exception:
+        return None
 
 
 if __name__ == "__main__":
