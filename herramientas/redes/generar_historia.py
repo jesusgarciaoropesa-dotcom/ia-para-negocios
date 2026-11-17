@@ -29,6 +29,7 @@ Tipos de escena (todas llevan "voz" = la frase que se lee y, opcional, "clave" =
   pasos     {"pasos": ["...", "..."]}                          pasos numerados que se encienden en orden
   dibujo    {"dibujo": "peluqueria", "vibrar": true, "reserva": false, "globo": {"titulo": "WhatsApp", "texto": "...", "color": "#25d366"}}
             ilustración de dibujos/<nombre>.svg (propias) con móvil que vibra, reserva confirmada y bocadillo
+  foto      {"imagen": "img/escena.jpg", "foco": "50% 30%", "globo": {...}}  foto o imagen generada (Cloudflare) en grande, con zoom lento y bocadillo
   captura   {"imagen": "capturas/reserva-movil.png", "desplazar": true}  captura real (ruta relativa a la config)
             dentro de un móvil; con desplazar, baja poco a poco como si se hiciera scroll
   cierre    {}  «Comenta PALABRA y te paso la guía». Opcional: "arriba", "palabra", "abajo" para otro cierre
@@ -162,6 +163,8 @@ function construir(e,i){
   case "pasos": h = e.pasos.map((t,k)=>`<div class="card paso" data-k="${k}" style="top:${40+k*200}px"><div class="num">${k+1}</div>${esc(t)}</div>`).join(""); break;
   case "dibujo": h = `<div class="dib" style="position:absolute;left:-10px;right:-10px;top:0;transform-origin:50% 55%">${window.DIBUJOS[e.dibujo]||""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
+  case "foto": h = `<div class="dib card" style="position:absolute;left:40px;right:40px;top:0;height:920px;overflow:hidden;padding:0;transform-origin:50% 50%"><img src="${e.src}" style="width:100%;height:100%;object-fit:cover;display:block;object-position:${e.foco||"50% 50%"}"></div>`+
+     (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
   case "captura": h = `<div class="movil card" style="top:0"><div class="pant" style="background:#fff"><img src="${e.src}" style="width:100%;display:block;position:absolute;top:0;left:0"></div></div>`; break;
   case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div><div class="marca">iando.xyz</div>`; break;
   }
@@ -200,6 +203,7 @@ function animar(e,d,lt,dur){
   case "tarjetas": case "pasos": { const sel = e.tipo==="tarjetas"?".tarj":".paso", n = (e.items||e.pasos).length;
     Q(d,sel).forEach(c=>{ const k=+c.dataset.k, a=pop(lt,k*dur*0.75/n,.3); c.style.opacity=a; c.style.transform=`translateX(${(1-a)*120}px)`;
       if(e.tipo==="pasos"){ const on = lt >= k*dur*0.75/n; c.querySelector(".num").style.background = on?"var(--indigo)":"#efeffb"; c.querySelector(".num").style.color = on?"#fff":"var(--indigo)"; } }); break; }
+  case "foto":
   case "dibujo": { const tel=d.querySelector("#telefono"), on=d.querySelector("#ondas"), br=d.querySelector("#brazo");
     const dib=d.querySelector(".dib"); if(dib){ const z=1+0.05*ease(Math.min(1,lt/Math.max(dur,0.1))); dib.style.transform=`scale(${z})`; }
     d.querySelectorAll(".sudor").forEach((g,k)=>{ const c=((lt*1.3+k*0.4)%1); g.style.transform=`translateY(${c*40}px)`; g.style.opacity=1-c; });
@@ -244,7 +248,7 @@ def pagina(cfg, datos):
             dibujos[e["dibujo"]] = (AQUI / "dibujos" / f"{e['dibujo']}.svg").read_text()
     base = pathlib.Path(cfg.get("_ruta", ".")).parent
     for e in cfg["escenas"]:
-        if e.get("tipo") == "captura":
+        if e.get("tipo") in ("captura", "foto"):
             src = e["imagen"]
             e["src"] = src if src.startswith("http") else f"file://{(base / src).resolve()}"
     for i, e in enumerate(cfg["escenas"]):
