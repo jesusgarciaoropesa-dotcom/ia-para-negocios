@@ -1,0 +1,46 @@
+[
+ {
+  "nombre": "inicio",
+  "url": "https://images.unsplash.com/photo-1630406144797-821be1f35d75?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/inicio.jpg",
+  "tamano": [
+   1800,
+   1000
+  ],
+  "kb": 203
+ },
+ {
+  "nombre": "coche",
+  "url": "https://images.unsplash.com/photo-1516862523118-a3724eb136d7?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/coche.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 24
+ },
+ {
+  "nombre": "moto",
+  "url": "https://images.unsplash.com/photo-1764605514633-eb9a675ffbb8?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/moto.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 66
+ },
+ {
+  "nombre": "matricula",
+  "url": "https://images.unsplash.com/photo-1562564055-71e051d33c19?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/matricula.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 39
+ }
+]
