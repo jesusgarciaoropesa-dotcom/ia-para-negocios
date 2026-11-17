@@ -1,9 +1,9 @@
 [
  {
-  "nombre": "inicio-a",
+  "nombre": "inicio",
   "url": "https://images.unsplash.com/photo-1656423521731-9665583f100c?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/inicio-a.jpg",
+  "archivo": "img/inicio.jpg",
   "tamano": [
    1800,
    1000
@@ -11,43 +11,10 @@
   "kb": 305
  },
  {
-  "nombre": "inicio-b",
-  "url": "https://images.unsplash.com/photo-1767096088529-1ba1ecc457ee?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/inicio-b.jpg",
-  "tamano": [
-   1800,
-   1000
-  ],
-  "kb": 225
- },
- {
-  "nombre": "inicio-c",
-  "url": "https://images.unsplash.com/photo-1718912334263-1518476fe9b1?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/inicio-c.jpg",
-  "tamano": [
-   1800,
-   1000
-  ],
-  "kb": 378
- },
- {
-  "nombre": "croquetas-a",
-  "url": "https://images.unsplash.com/photo-1767974963436-2208b3553561?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/croquetas-a.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 39
- },
- {
-  "nombre": "croquetas-b",
+  "nombre": "croquetas",
   "url": "https://images.unsplash.com/photo-1674480367370-4e4bd64eb3c5?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/croquetas-b.jpg",
+  "archivo": "img/croquetas.jpg",
   "tamano": [
    640,
    480
@@ -55,21 +22,10 @@
   "kb": 54
  },
  {
-  "nombre": "tortilla-a",
-  "url": "https://images.unsplash.com/photo-1568571780923-d8190281562e?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/tortilla-a.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 51
- },
- {
-  "nombre": "tortilla-b",
+  "nombre": "tortilla",
   "url": "https://images.unsplash.com/photo-1639669794539-952631b44515?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/tortilla-b.jpg",
+  "archivo": "img/tortilla.jpg",
   "tamano": [
    640,
    480
@@ -77,21 +33,10 @@
   "kb": 37
  },
  {
-  "nombre": "tortilla-c",
-  "url": "https://images.unsplash.com/photo-1707725844164-d22be51adbc1?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/tortilla-c.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 26
- },
- {
-  "nombre": "bravas-a",
+  "nombre": "bravas",
   "url": "https://images.unsplash.com/photo-1565599837634-134bc3aadce8?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/bravas-a.jpg",
+  "archivo": "img/bravas.jpg",
   "tamano": [
    640,
    480
@@ -99,10 +44,10 @@
   "kb": 42
  },
  {
-  "nombre": "padron-a",
+  "nombre": "padron",
   "url": "https://images.unsplash.com/photo-1780823223692-b21c51644ab0?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/padron-a.jpg",
+  "archivo": "img/padron.jpg",
   "tamano": [
    640,
    480
@@ -110,10 +55,10 @@
   "kb": 50
  },
  {
-  "nombre": "huevos-a",
+  "nombre": "huevos",
   "url": "https://images.unsplash.com/photo-1783685736962-336abefabfae?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/huevos-a.jpg",
+  "archivo": "img/huevos.jpg",
   "tamano": [
    640,
    480
@@ -121,21 +66,10 @@
   "kb": 39
  },
  {
-  "nombre": "jamon-a",
-  "url": "https://images.unsplash.com/photo-1732565432358-a8c95bc24ea3?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/jamon-a.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 82
- },
- {
-  "nombre": "jamon-b",
+  "nombre": "jamon",
   "url": "https://images.unsplash.com/photo-1709790028365-d49ae1e20f53?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/jamon-b.jpg",
+  "archivo": "img/jamon.jpg",
   "tamano": [
    640,
    480
@@ -143,36 +77,14 @@
   "kb": 44
  },
  {
-  "nombre": "local-a",
-  "url": "https://images.unsplash.com/photo-1780639026821-f680fae0d99d?w=2000&q=80&fm=jpg&fit=max",
+  "nombre": "local",
+  "url": "https://images.unsplash.com/photo-1718912334263-1518476fe9b1?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/local-a.jpg",
+  "archivo": "img/local.jpg",
   "tamano": [
-   1100,
-   750
+   1800,
+   1000
   ],
   "kb": 118
- },
- {
-  "nombre": "tapas-a",
-  "url": "https://images.unsplash.com/photo-1781115650881-bc5d55bd31d2?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/tapas-a.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 42
- },
- {
-  "nombre": "mercado-a",
-  "url": "https://images.unsplash.com/photo-1786355153942-0279dbe16754?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/mercado-a.jpg",
-  "tamano": [
-   1100,
-   750
-  ],
-  "kb": 137
  }
 ]
