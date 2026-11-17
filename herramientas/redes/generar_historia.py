@@ -98,6 +98,36 @@ body{width:1080px;height:1920px;overflow:hidden;font-family:I,sans-serif;color:v
 .marca{position:absolute;bottom:120px;width:100%;text-align:center;font-weight:800;font-size:40px;color:#6b6d80}
 """
 
+# Tema «color» (17-11-2026, Jesús: «muy apagado con el fondo blanco»): fondo de marca en degradado violeta con
+# luces que se mueven, subtítulos en blanco con la palabra clave en amarillo, escenas más grandes y tarjetas que resaltan.
+CSS_COLOR = """
+body{color:#fff;background:#3f37c9}
+#fondo{position:absolute;inset:0;overflow:hidden;background:linear-gradient(160deg,#2e2a8f 0%,#4f46e5 45%,#7c3aed 100%)}
+#fondo i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55}
+#fondo i:nth-child(1){width:620px;height:620px;background:#22d3ee;left:-200px;top:180px}
+#fondo i:nth-child(2){width:560px;height:560px;background:#f472b6;right:-180px;top:900px}
+#fondo i:nth-child(3){width:480px;height:480px;background:#ffd43b;left:300px;top:1500px;opacity:.35}
+#fondo b{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.16) 2px,transparent 2px);background-size:54px 54px}
+#cap{top:250px;font-size:92px}
+#cap .w{color:rgba(255,255,255,.38)}
+#cap .w.on{color:#fff;text-shadow:0 6px 30px rgba(20,10,80,.35)}
+#cap .w.key.on{color:var(--tinta)}
+#cap .w.key.on:after{bottom:-4px;top:4px;height:auto;left:-14px;right:-14px;border-radius:14px}
+.esc{transform:scale(1.15);top:580px}
+.card{color:var(--tinta);box-shadow:0 40px 90px -20px rgba(10,5,60,.55)}
+.gigante{color:#fff;text-shadow:0 10px 40px rgba(20,10,80,.35)}
+.gigante.cnum,.gigante.vf{color:var(--amarillo)!important}
+.esc > div[style*="#4a4c60"]{color:rgba(255,255,255,.9)!important}
+.badge{background:var(--amarillo);color:var(--tinta)}
+.marca{color:rgba(255,255,255,.8)}
+.tarj .ic,.num{background:#efeffb}
+"""
+JS_COLOR = r"""
+(function(){ const f=document.getElementById("fondo"); if(!f) return; const L=[...f.querySelectorAll("i")];
+  const mover=window.__moverFondo=(t)=>{ L.forEach((x,k)=>{ const a=t/1000*(0.35+0.12*k)+k*2; x.style.transform=`translate(${Math.sin(a)*120}px,${Math.cos(a*0.8)*90}px)`; }); };
+  mover(0); const r0=window.render; window.render=function(t){ r0(t); mover(t*1000); }; })();
+"""
+
 JS = r"""
 const D = window.DATOS, ESC = window.ESCENAS, PALABRA = window.PALABRA;
 const ease = x => x<0?0:x>1?1:1-Math.pow(1-x,3);
@@ -221,11 +251,13 @@ def pagina(cfg, datos):
         if e.get("tipo") == "tarjetas":
             for k, t in enumerate(e["items"]):
                 iconos[f"{i}-{k}"] = icono(t.get("icono", "sparkles"), 64, "#5b5bd6")
-    css = CSS.replace("url(F/", f"url(file://{AQUI / 'fuentes'}/")
-    return (f"<!doctype html><html lang='es'><head><meta charset='utf-8'><style>{css}</style></head><body>"
+    color = cfg.get("tema") == "color"
+    css = CSS.replace("url(F/", f"url(file://{AQUI / 'fuentes'}/") + (CSS_COLOR if color else "")
+    fondo = "<div id='fondo'><i></i><i></i><i></i><b></b></div>" if color else ""
+    return (f"<!doctype html><html lang='es'><head><meta charset='utf-8'><style>{css}</style></head><body>{fondo}"
             f"<div id='cap'></div><div id='escenas'></div><script>window.DATOS={json.dumps(datos, ensure_ascii=False)};"
             f"window.ESCENAS={json.dumps(cfg['escenas'], ensure_ascii=False)};window.PALABRA={json.dumps(cfg.get('palabra', ''))};"
-            f"window.ICONOS={json.dumps(iconos)};window.DIBUJOS={json.dumps(dibujos)};{JS}</script></body></html>")
+            f"window.ICONOS={json.dumps(iconos)};window.DIBUJOS={json.dumps(dibujos)};{JS}{JS_COLOR if color else ''}</script></body></html>")
 
 
 # Voz: el cupo gratuito de Gemini es de pocos audios al día, así que se pide UN SOLO audio con el guion entero
