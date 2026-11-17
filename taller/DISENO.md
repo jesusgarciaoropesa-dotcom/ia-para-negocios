@@ -81,6 +81,27 @@ Getty, ni Shutterstock, ni fotos sacadas de webs de otros negocios.
   «Reseñas de ejemplo» en letra pequeña bajo el bloque.
 - Sin fotos de caras en las reseñas: círculo con las iniciales.
 
+### 0.6 Lo que aprendimos con la demo piloto del taller (17-11-2026)
+Jesús: «no es del todo el estilo que te he pasado, pero como idea está bien». Las diferencias con
+las referencias, que hay que corregir en todas:
+- **Foto de inicio con protagonista, luminosa y nítida**: en las referencias se ve a una persona
+  trabajando (mecánico sobre el motor, fisio con el paciente, clienta con el pelo recién hecho, mesa
+  con platos) ocupando la mitad derecha, bien iluminada. En el piloto la foto era oscura, sin nadie
+  y apenas se distinguía: el degradado solo oscurece el lado del texto (izquierda), nunca la foto
+  entera. Elige fotos con una persona o un producto claro en primer plano.
+- **Compacto, no aireado**: en las referencias inicio + garantías + servicios + reserva caben casi
+  en dos pantallas de ordenador. Secciones con poco margen (40-56 px), títulos de sección con
+  línea a cada lado, sin huecos grandes entre bloques.
+- **Logotipo con presencia**: un rótulo grande y con forma del sector (silueta de coche sobre el
+  nombre en el taller, tijeras en la peluquería, ramita en el bar, figura en movimiento en el
+  fisio) y la línea de qué es debajo. No un icono pequeño con el nombre al lado.
+- **Fotos de servicios vivas**: saturadas y claras, cada una con el objeto del servicio en grande;
+  el degradado solo en la parte de abajo para el nombre.
+- **Mapa que parezca un mapa**: un iframe de Google Maps de verdad (en demos ficticias, el centro
+  del pueblo de la demo), no un dibujo de calles.
+- **El bloque de reserva** con el formulario compacto como en las referencias (desplegables en una
+  fila y el botón «Continuar» ancho), y en los sectores de fondo oscuro el bloque también oscuro.
+
 ### 0.5 Qué cambia del resto de la guía
 - La ficha de estilo (parte 1) se sigue haciendo, pero su `estructura` es la de 0.1 y su
   `inicio` es siempre la foto grande; las webs de referencia sirven para colores, letra y fotos.
