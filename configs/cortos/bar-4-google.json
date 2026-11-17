@@ -1,0 +1,59 @@
+{
+ "slug": "bar-4-google",
+ "palabra": "MESA",
+ "musica": "animada",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "Alguien busca «bar cerca de mí»… y tu bar no sale.",
+   "clave": "sale",
+   "tipo": "frase",
+   "texto": "Te buscan en Google",
+   "sub": "y **no sales**"
+  },
+  {
+   "voz": "Y los que salen tienen un botón para reservar al momento.",
+   "clave": "reservar",
+   "tipo": "dibujo",
+   "dibujo": "movil-busca-bar"
+  },
+  {
+   "voz": "Truco gratis, en cinco minutos.",
+   "clave": "Truco",
+   "tipo": "frase",
+   "texto": "Truco gratis",
+   "sub": "en **cinco minutos**"
+  },
+  {
+   "voz": "Entra en tu perfil de empresa de Google, añade tu enlace de reservas y ponlo también en la biografía de Instagram.",
+   "clave": "enlace",
+   "tipo": "lista",
+   "marcar": true,
+   "items": [
+    "Perfil de empresa de Google",
+    "Añade tu enlace de reservas",
+    "Ponlo en tu Instagram"
+   ]
+  },
+  {
+   "voz": "Así, quien te busca reserva en dos toques.",
+   "clave": "toques",
+   "tipo": "dibujo",
+   "dibujo": "movil-google-bar"
+  },
+  {
+   "voz": "¿Aún no tienes enlace de reservas? Te lo monto.",
+   "clave": "monto",
+   "tipo": "captura",
+   "imagen": "cap-bar/movil-inicio.png"
+  },
+  {
+   "voz": "Comenta MESA y te enseño la tuya, con tu nombre.",
+   "clave": "MESA",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "MESA",
+   "abajo": "y te enseño **la tuya con tu nombre**"
+  }
+ ]
+}

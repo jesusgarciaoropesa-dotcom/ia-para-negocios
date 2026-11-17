@@ -1,0 +1,73 @@
+{
+ "slug": "taller-2-cerrado",
+ "palabra": "TALLER",
+ "musica": "animada",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "Tu taller cierra a las ocho. Tus clientes, no.",
+   "clave": "clientes",
+   "tipo": "frase",
+   "texto": "Tu taller cierra",
+   "sub": "tus clientes, **no**"
+  },
+  {
+   "voz": "Persiana bajada y a casa.",
+   "clave": "Persiana",
+   "tipo": "dibujo",
+   "dibujo": "taller-cerrado"
+  },
+  {
+   "voz": "A las diez de la noche alguien busca taller para mañana.",
+   "clave": "mañana",
+   "tipo": "dibujo",
+   "dibujo": "taller-cliente",
+   "globo": {
+    "titulo": "WhatsApp · 22:15",
+    "texto": "¿Mañana me podéis mirar un ruido en la rueda?",
+    "color": "#1f9d55",
+    "x": 440,
+    "y": 40
+   }
+  },
+  {
+   "voz": "Y el primero que le da hora se lo lleva.",
+   "clave": "primero",
+   "tipo": "dibujo",
+   "dibujo": "taller-otro",
+   "sello": "CITA PERDIDA"
+  },
+  {
+   "voz": "Con citas online pide hora a cualquier hora, aunque esté cerrado.",
+   "clave": "cualquier",
+   "tipo": "captura",
+   "imagen": "cap-taller/movil-pedir-cita.png"
+  },
+  {
+   "voz": "Y al abrir, ya tienes las citas del día.",
+   "clave": "día",
+   "tipo": "dibujo",
+   "dibujo": "taller",
+   "reserva": true,
+   "globo": {
+    "titulo": "Mientras estaba cerrado",
+    "texto": "Citas nuevas para hoy",
+    "color": "#1f9d55"
+   }
+  },
+  {
+   "voz": "Todo ordenado en tu panel.",
+   "clave": "panel",
+   "tipo": "captura",
+   "imagen": "cap-taller/panel-movil.png"
+  },
+  {
+   "voz": "Comenta TALLER y te enseño la tuya, con tu nombre.",
+   "clave": "TALLER",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "TALLER",
+   "abajo": "y te enseño **la tuya con tu nombre**"
+  }
+ ]
+}

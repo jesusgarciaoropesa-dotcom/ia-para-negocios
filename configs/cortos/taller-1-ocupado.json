@@ -1,0 +1,82 @@
+{
+ "slug": "taller-1-ocupado",
+ "palabra": "TALLER",
+ "musica": "animada",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "¿Cuántas citas pierdes con las manos en el motor?",
+   "clave": "citas",
+   "tipo": "frase",
+   "texto": "¿Cuántas citas pierdes?",
+   "sub": "con las manos **en el motor**"
+  },
+  {
+   "voz": "Debajo de un coche… y suena el teléfono.",
+   "clave": "teléfono",
+   "tipo": "dibujo",
+   "dibujo": "taller-bajo-coche",
+   "vibrar": true,
+   "globo": {
+    "titulo": "Teléfono",
+    "texto": "Llamada entrante…",
+    "color": "#e0413a"
+   }
+  },
+  {
+   "voz": "Un cliente quiere que le mires los frenos.",
+   "clave": "frenos",
+   "tipo": "dibujo",
+   "dibujo": "taller-cliente",
+   "vibrar": true,
+   "globo": {
+    "titulo": "WhatsApp · a Tu taller",
+    "texto": "¿Me miráis los frenos esta semana?",
+    "color": "#1f9d55",
+    "x": 440,
+    "y": 40
+   }
+  },
+  {
+   "voz": "Pero no puedes soltar la llave…",
+   "clave": "llave",
+   "tipo": "dibujo",
+   "dibujo": "taller-agobio",
+   "vibrar": true,
+   "globo": {
+    "titulo": "3 llamadas perdidas",
+    "texto": "Luego llamo…",
+    "color": "#6b6d80"
+   }
+  },
+  {
+   "voz": "Y se va a otro taller.",
+   "clave": "otro",
+   "tipo": "dibujo",
+   "dibujo": "taller-otro",
+   "sello": "CITA PERDIDA"
+  },
+  {
+   "voz": "Con tu web de citas elige qué le pasa al coche, el día y la hora. Solo.",
+   "clave": "Solo",
+   "tipo": "captura",
+   "imagen": "cap-taller/movil-servicio.png"
+  },
+  {
+   "voz": "Cita reservada, sin limpiarte las manos.",
+   "clave": "reservada",
+   "tipo": "captura",
+   "imagen": "cap-taller/movil-cita-hecha.png",
+   "sello": "RESERVADA",
+   "tono": "verde"
+  },
+  {
+   "voz": "Comenta TALLER y te enseño la tuya, con tu nombre.",
+   "clave": "TALLER",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "TALLER",
+   "abajo": "y te enseño **la tuya con tu nombre**"
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="Elevador vacío a la hora de la cita y el mecánico esperando">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#e9ecf2"/>
+<rect x="0" y="610" width="900" height="150" rx="20" fill="#8e98a5"/><path d="M60 680 h80 M220 680 h80 M380 680 h80" stroke="#ffd43b" stroke-width="10"/>
+<rect x="60" y="70" width="280" height="190" rx="14" fill="#fff" stroke="#17162b" stroke-width="6"/>
+<text x="80" y="112" font-family="Arial" font-weight="900" font-size="26" fill="#17162b">CITAS DE HOY</text>
+<text x="80" y="160" font-family="Arial" font-weight="700" font-size="24" fill="#6b6d80">09:00 Aceite ✓</text>
+<text x="80" y="200" font-family="Arial" font-weight="900" font-size="24" fill="#e0413a">10:00 Frenos ?</text>
+<text x="80" y="240" font-family="Arial" font-weight="700" font-size="24" fill="#6b6d80">11:30 ITV</text>
+<circle cx="470" cy="150" r="70" fill="#fff" stroke="#17162b" stroke-width="10"/><path d="M470 150 V100 M470 150 L470 150 L505 175" stroke="#17162b" stroke-width="10" stroke-linecap="round"/>
+<text x="470" y="262" text-anchor="middle" font-family="Arial" font-weight="700" font-size="32" fill="#e0413a">10:35</text>
+<rect x="120" y="520" width="420" height="22" rx="8" fill="#5b5bd6"/><rect x="120" y="542" width="420" height="16" fill="#3f3fae"/>
+<rect x="150" y="300" width="26" height="320" fill="#5b5bd6"/><rect x="484" y="300" width="26" height="320" fill="#5b5bd6"/>
+<rect x="250" y="440" width="170" height="60" rx="10" fill="none" stroke="#9aa3b2" stroke-width="6" stroke-dasharray="14 12"/>
+<text x="335" y="478" text-anchor="middle" font-family="Arial" font-weight="700" font-size="22" fill="#9aa3b2">vacío</text>
+<g transform="translate(700 250)">
+<rect x="-50" y="90" width="110" height="240" rx="30" fill="#2f4b7c"/><rect x="-30" y="140" width="70" height="60" rx="10" fill="#22385e"/>
+<rect x="-34" y="320" width="34" height="80" rx="10" fill="#17162b"/><rect x="10" y="320" width="34" height="80" rx="10" fill="#17162b"/>
+<path d="M-50 150 q55 50 110 0" stroke="#2f4b7c" stroke-width="34" fill="none" stroke-linecap="round"/>
+<circle cx="5" cy="40" r="50" fill="#e0a77a"/><path d="M-50 20 q55 -60 110 0 v10 h-110z" fill="#c43b2e"/><rect x="-55" y="22" width="120" height="14" rx="7" fill="#a32e23"/>
+<circle cx="-12" cy="48" r="5" fill="#17162b"/><circle cx="22" cy="48" r="5" fill="#17162b"/><path d="M-8 76 h28" stroke="#17162b" stroke-width="5" stroke-linecap="round"/>
+</g>
+</svg>

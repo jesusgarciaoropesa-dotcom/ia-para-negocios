@@ -1,0 +1,49 @@
+{
+ "slug": "taller-3-no-vienen",
+ "palabra": "TALLER",
+ "musica": "animada",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "Hay un hueco que te cuesta dinero: la cita que no aparece.",
+   "clave": "aparece",
+   "tipo": "frase",
+   "texto": "El hueco vacío",
+   "sub": "que **te cuesta dinero**"
+  },
+  {
+   "voz": "Frenos a las diez. Son las diez y media… y el elevador sigue vacío.",
+   "clave": "vacío",
+   "tipo": "dibujo",
+   "dibujo": "taller-hueco"
+  },
+  {
+   "voz": "Se le olvidó. Y esa hora ya no la recuperas.",
+   "clave": "olvidó",
+   "tipo": "frase",
+   "texto": "Se le olvidó",
+   "sub": "y esa hora **ya no la recuperas**"
+  },
+  {
+   "voz": "Con las citas online, el cliente recibe la confirmación y un recordatorio el mismo día.",
+   "clave": "recordatorio",
+   "tipo": "aviso",
+   "app": "Correo",
+   "texto": "Recordatorio: hoy a las 10:00, revisión de frenos en Tu taller"
+  },
+  {
+   "voz": "Y tú ves en tu panel las citas del día, con el teléfono de cada cliente.",
+   "clave": "panel",
+   "tipo": "captura",
+   "imagen": "cap-taller/panel-movil.png"
+  },
+  {
+   "voz": "Comenta TALLER y te enseño la tuya, con tu nombre.",
+   "clave": "TALLER",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "TALLER",
+   "abajo": "y te enseño **la tuya con tu nombre**"
+  }
+ ]
+}

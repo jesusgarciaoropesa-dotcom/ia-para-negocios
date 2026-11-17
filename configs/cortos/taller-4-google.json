@@ -1,0 +1,59 @@
+{
+ "slug": "taller-4-google",
+ "palabra": "TALLER",
+ "musica": "animada",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "Alguien busca «taller cerca de mí»… y tu taller no sale.",
+   "clave": "sale",
+   "tipo": "frase",
+   "texto": "Te buscan en Google",
+   "sub": "y **no sales**"
+  },
+  {
+   "voz": "Y los que salen tienen un botón para pedir cita al momento.",
+   "clave": "cita",
+   "tipo": "dibujo",
+   "dibujo": "movil-busca-taller"
+  },
+  {
+   "voz": "Truco gratis, en cinco minutos.",
+   "clave": "Truco",
+   "tipo": "frase",
+   "texto": "Truco gratis",
+   "sub": "en **cinco minutos**"
+  },
+  {
+   "voz": "Entra en tu perfil de empresa de Google, añade tu enlace de citas y ponlo también en la biografía de Instagram.",
+   "clave": "enlace",
+   "tipo": "lista",
+   "marcar": true,
+   "items": [
+    "Perfil de empresa de Google",
+    "Añade tu enlace de citas",
+    "Ponlo en tu Instagram"
+   ]
+  },
+  {
+   "voz": "Así, quien te busca pide cita en dos toques.",
+   "clave": "toques",
+   "tipo": "dibujo",
+   "dibujo": "movil-google-taller"
+  },
+  {
+   "voz": "¿Aún no tienes enlace de citas? Te lo monto.",
+   "clave": "monto",
+   "tipo": "captura",
+   "imagen": "cap-taller/movil-inicio.png"
+  },
+  {
+   "voz": "Comenta TALLER y te enseño la tuya, con tu nombre.",
+   "clave": "TALLER",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "TALLER",
+   "abajo": "y te enseño **la tuya con tu nombre**"
+  }
+ ]
+}
