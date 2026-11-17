@@ -8,14 +8,17 @@ REPO = Path(__file__).resolve().parents[3]
 DEMO = REPO / "demos/autoescuela-ejemplo/index.html"
 ADMIN = REPO / "taller/reservas/admin.html"
 OUT = REPO / "demos/autoescuela-ejemplo/capturas"
-FM = Path(os.environ.get("FONTS_DIR", "fonts/node_modules"))  # npm i @fontsource/big-shoulders-display @fontsource/public-sans
+FM = Path(os.environ.get("FONTS_DIR", "fonts/node_modules"))  # npm i @fontsource/nunito @fontsource/nunito-sans @fontsource/caveat-brush
 MOCK = Path(__file__).with_name("mock-supabase.js")
 NEG = "e1f167c8-96ad-480f-b1fa-ac4f4ce43c58"
 
 FONTS = {
-    "Big Shoulders Display": [("bs8", FM / "@fontsource/big-shoulders-display/files/big-shoulders-display-latin-800-normal.woff2", "800", None)],
-    "Public Sans": [("ps4", FM / "@fontsource/public-sans/files/public-sans-latin-400-normal.woff2", "400", None),
-                    ("ps7", FM / "@fontsource/public-sans/files/public-sans-latin-700-normal.woff2", "700", None)],
+    "Nunito": [("nu8", FM / "@fontsource/nunito/files/nunito-latin-800-normal.woff2", "800", None),
+               ("nu9", FM / "@fontsource/nunito/files/nunito-latin-900-normal.woff2", "900", None)],
+    "Nunito Sans": [("ns4", FM / "@fontsource/nunito-sans/files/nunito-sans-latin-400-normal.woff2", "400", None),
+                    ("ns6", FM / "@fontsource/nunito-sans/files/nunito-sans-latin-600-normal.woff2", "600", None),
+                    ("ns7", FM / "@fontsource/nunito-sans/files/nunito-sans-latin-700-normal.woff2", "700", None)],
+    "Caveat Brush": [("cb4", FM / "@fontsource/caveat-brush/files/caveat-brush-latin-400-normal.woff2", "400", None)],
 }
 ARCH = {k: p for fam in FONTS.values() for k, p, *_ in fam}
 CSS = ""
@@ -61,23 +64,26 @@ with sync_playwright() as p:
         pg.screenshot(path=str(OUT / f"{nombre}-inicio.png"))
         pg.screenshot(path=str(OUT / f"{nombre}-completa.png"), full_page=True)
         if nombre == "movil":
-            pg.click("#rv-servs button >> nth=0")
-            pg.click("#rv-dias button >> nth=1")
+            pg.select_option("#rv-serv", index=1)
+            pg.select_option("#rv-fecha", index=1)
+            pg.click("#rv-sig1")
             pg.wait_for_selector("#rv-horas button")
             pg.click("#rv-horas button >> nth=2")
+            pg.click("#rv-sig2")
             pg.fill("#rv-nombre", "Lucía")
             pg.fill("#rv-tel", "600 123 456")
             pg.fill("#rv-email", "lucia@ejemplo.com")
             pg.fill("#rv-notas", "Es mi primera clase")
             pg.check("#rv-ok")
-            pg.add_style_tag(content=".wa-flota{display:none!important}")
-            pg.locator("#reservar .carril").scroll_into_view_if_needed()
-            bb = pg.locator(".carril").bounding_box(); sy = pg.evaluate("scrollY")
-            pg.screenshot(path=str(OUT / "movil-reservar.png"), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 40, "width": 390, "height": bb["height"] + 64})
+            pg.add_style_tag(content=".wa-flota{display:none!important} header{position:static!important}")
+            pg.locator("#reservar .reserva").scroll_into_view_if_needed()
+            bb = pg.locator(".reserva").bounding_box(); sy = pg.evaluate("scrollY")
+            pg.screenshot(path=str(OUT / "movil-reservar.png"), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 16, "width": 390, "height": bb["height"] + 32})
             pg.click("#rv-enviar")
-            pg.wait_for_selector(".rv-estado.ok")
-            bb = pg.locator(".carril").bounding_box(); sy = pg.evaluate("scrollY")
-            pg.screenshot(path=str(OUT / "movil-reserva-hecha.png"), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 40, "width": 390, "height": bb["height"] + 64})
+            pg.wait_for_selector(".rv-hecha:not([hidden])")
+            pg.wait_for_timeout(300)
+            bb = pg.locator(".reserva").bounding_box(); sy = pg.evaluate("scrollY")
+            pg.screenshot(path=str(OUT / "movil-reserva-hecha.png"), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 16, "width": 390, "height": bb["height"] + 32})
         ctx.close()
     # Panel de citas
     for nombre, args in (("movil", p.devices["iPhone 13"]), ("ordenador", {"viewport": {"width": 1366, "height": 900}})):
