@@ -8,7 +8,7 @@ window.__DEMO_MANANA = F1;
 const S = { fr: { nombre: "Revisión de frenos" }, ac: { nombre: "Cambio de aceite y filtros" }, itv: { nombre: "Pre-ITV" }, dg: { nombre: "Diagnosis de avería" } };
 const now = new Date().toISOString();
 const DATA = {
-  negocios: [{ nombre: "Taller de ejemplo", config: { horario: { "1": [["08:30","13:30"],["15:30","19:00"]], "2": [["08:30","13:30"],["15:30","19:00"]], "3": [["08:30","13:30"],["15:30","19:00"]], "4": [["08:30","13:30"],["15:30","19:00"]], "5": [["08:30","13:30"],["15:30","19:00"]], "6": [], "7": [] }, intervalo_min: 30, tema: {"nombre": "Tu taller", "colores": {"fondo": "#f1f3f2", "tarjeta": "#ffffff", "borde": "#d5dceb", "primario": "#1d3b84", "oscuro": "#151a22"}, "fuentes": {"titulos": "Archivo:wght@700;800", "texto": "Atkinson Hyperlegible:wght@400;700"}, "logo_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 168 44\" role=\"img\" aria-label=\"Tu taller\"> <path d=\"M6 9h22l10 10v16a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V12a3 3 0 0 1 3-3Z\" fill=\"#f2c230\"/> <circle cx=\"29\" cy=\"19\" r=\"3.6\" fill=\"#1d3b84\"/> <path d=\"M29 15.4C31 9 26 3 20 4\" fill=\"none\" stroke=\"#dfe6f5\" stroke-width=\"2.2\" stroke-linecap=\"round\"/> <path d=\"M9 24h14M9 30h10\" stroke=\"#151a22\" stroke-width=\"2.4\" stroke-linecap=\"round\"/> <text x=\"48\" y=\"30\" fill=\"#fff\" font-family=\"Archivo, Arial Black, sans-serif\" font-weight=\"800\" font-size=\"21\" style=\"font-stretch:125%\">Tu taller</text> </svg>"} } }],
+  negocios: [{ nombre: "Taller de ejemplo", config: { horario: { "1": [["08:30","13:30"],["15:30","19:00"]], "2": [["08:30","13:30"],["15:30","19:00"]], "3": [["08:30","13:30"],["15:30","19:00"]], "4": [["08:30","13:30"],["15:30","19:00"]], "5": [["08:30","13:30"],["15:30","19:00"]], "6": [], "7": [] }, intervalo_min: 30, tema: {"nombre": "Tu taller", "colores": {"fondo": "#f4f2ee", "tarjeta": "#ffffff", "borde": "#e0dcd4", "primario": "#b25a00", "oscuro": "#141619"}, "fuentes": {"titulos": "Saira:wght@700;800", "texto": "Barlow:wght@400;500;600;700"}, "logo_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 56\" role=\"img\" aria-label=\"Tu taller\"><g transform=\"translate(2 4)\"><path d=\"M24 0 44.8 12v24L24 48 3.2 36V12Z\" fill=\"#f39325\"/><circle cx=\"24\" cy=\"24\" r=\"9.5\" fill=\"#141619\"/><circle cx=\"24\" cy=\"24\" r=\"4\" fill=\"#f39325\"/></g><text x=\"58\" y=\"31\" font-family=\"Saira, Arial Narrow, sans-serif\" font-weight=\"800\" font-size=\"29\" fill=\"#ffffff\">Tu <tspan fill=\"#f39325\">taller</tspan></text><text x=\"59\" y=\"49\" font-family=\"Barlow, system-ui, sans-serif\" font-weight=\"500\" font-size=\"12.6\" fill=\"#c3c7cd\">Mecánica general del automóvil</text></svg>"} } }],
   reservas: [
     { id: "r1", created_at: now, fecha: F1, hora: "08:30:00", estado: "confirmada", notas: "Seat León, chirría la rueda delantera", clientes: { nombre: "Antonio R.", telefono: "600111222" }, servicios: S.fr },
     { id: "r2", created_at: now, fecha: F1, hora: "09:30:00", estado: "pendiente", notas: "Le toca la ITV a final de mes", clientes: { nombre: "Marta G.", telefono: "600123456" }, servicios: S.itv },
@@ -21,6 +21,9 @@ const DATA = {
     { id: "b", nombre: "Diagnosis de avería", precio_desde: 0, duracion_minutos: 60 },
     { id: "c", nombre: "Pre-ITV", precio_desde: 0, duracion_minutos: 45 },
     { id: "d", nombre: "Revisión de frenos", precio_desde: 0, duracion_minutos: 60 },
+    { id: "e", nombre: "Cambio de neumáticos", precio_desde: 0, duracion_minutos: 45 },
+    { id: "f", nombre: "Batería", precio_desde: 0, duracion_minutos: 30 },
+    { id: "g", nombre: "Aire acondicionado", precio_desde: 0, duracion_minutos: 60 },
   ],
   dias_bloqueados: [], clientes: [],
 };

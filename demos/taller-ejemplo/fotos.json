@@ -1,104 +1,50 @@
 {
  "fotos": [
   {
-   "nombre": "inicio-a",
-   "url": "https://images.unsplash.com/photo-1792792729268-259f15df376d?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 1800,
-   "alto": 1000
-  },
-  {
-   "nombre": "inicio-b",
+   "nombre": "inicio",
    "url": "https://images.unsplash.com/photo-1792326103553-4e4e8964279e?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 1800,
    "alto": 1000
   },
   {
-   "nombre": "inicio-c",
-   "url": "https://images.unsplash.com/photo-1792793176006-a7b35e29c7e1?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 1800,
-   "alto": 1000
-  },
-  {
-   "nombre": "frenos-a",
+   "nombre": "frenos",
    "url": "https://images.unsplash.com/photo-1760317890314-e964ffd7e6a6?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 640,
    "alto": 480
   },
   {
-   "nombre": "frenos-b",
-   "url": "https://images.unsplash.com/photo-1696494561430-de087dd0bd69?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 640,
-   "alto": 480
-  },
-  {
-   "nombre": "aceite-a",
+   "nombre": "aceite",
    "url": "https://images.unsplash.com/photo-1771340742493-52fbd5476ccb?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 640,
    "alto": 480
   },
   {
-   "nombre": "aceite-b",
-   "url": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 640,
-   "alto": 480
-  },
-  {
-   "nombre": "diagnosis-a",
+   "nombre": "diagnosis",
    "url": "https://images.unsplash.com/photo-1658351354155-e854d19233e0?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 640,
    "alto": 480
   },
   {
-   "nombre": "diagnosis-b",
-   "url": "https://images.unsplash.com/photo-1683481047923-9d44746980a9?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 640,
-   "alto": 480
-  },
-  {
-   "nombre": "preitv-a",
+   "nombre": "preitv",
    "url": "https://images.unsplash.com/photo-1616761879141-f485e5fed5df?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 640,
    "alto": 480
   },
   {
-   "nombre": "preitv-b",
-   "url": "https://images.unsplash.com/photo-1551150441-649e0b074fe4?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 640,
-   "alto": 480
-  },
-  {
-   "nombre": "neumaticos-a",
+   "nombre": "neumaticos",
    "url": "https://images.unsplash.com/photo-1792793182756-de1abcba6d70?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 640,
    "alto": 480
   },
   {
-   "nombre": "neumaticos-b",
-   "url": "https://images.unsplash.com/photo-1764015805414-df7de89d405b?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 640,
-   "alto": 480
-  },
-  {
-   "nombre": "bateria-a",
+   "nombre": "bateria",
    "url": "https://images.unsplash.com/photo-1765211003026-f7666ea3a948?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 640,
    "alto": 480
   },
   {
-   "nombre": "bateria-b",
-   "url": "https://images.unsplash.com/photo-1764122623556-90a7d480df53?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 640,
-   "alto": 480
-  },
-  {
-   "nombre": "aire-a",
+   "nombre": "aire",
    "url": "https://images.unsplash.com/photo-1623592395693-48c0ac5c5068?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 640,
-   "alto": 480
-  },
-  {
-   "nombre": "aire-b",
-   "url": "https://images.unsplash.com/photo-1555991826-42dedb0be763?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 640,
    "alto": 480
   }
