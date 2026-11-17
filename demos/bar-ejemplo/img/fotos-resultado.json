@@ -1,0 +1,90 @@
+[
+ {
+  "nombre": "inicio",
+  "url": "https://images.unsplash.com/photo-1656423521731-9665583f100c?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/inicio.jpg",
+  "tamano": [
+   1800,
+   1000
+  ],
+  "kb": 305
+ },
+ {
+  "nombre": "croquetas",
+  "url": "https://images.unsplash.com/photo-1674480367370-4e4bd64eb3c5?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/croquetas.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 54
+ },
+ {
+  "nombre": "tortilla",
+  "url": "https://images.unsplash.com/photo-1639669794539-952631b44515?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/tortilla.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 37
+ },
+ {
+  "nombre": "bravas",
+  "url": "https://images.unsplash.com/photo-1565599837634-134bc3aadce8?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/bravas.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 42
+ },
+ {
+  "nombre": "padron",
+  "url": "https://images.unsplash.com/photo-1780823223692-b21c51644ab0?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/padron.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 50
+ },
+ {
+  "nombre": "huevos",
+  "url": "https://images.unsplash.com/photo-1783685736962-336abefabfae?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/huevos.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 39
+ },
+ {
+  "nombre": "jamon",
+  "url": "https://images.unsplash.com/photo-1709790028365-d49ae1e20f53?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/jamon.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 44
+ },
+ {
+  "nombre": "local",
+  "url": "https://images.unsplash.com/photo-1718912334263-1518476fe9b1?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/local.jpg",
+  "tamano": [
+   1800,
+   1000
+  ],
+  "kb": 378
+ }
+]
