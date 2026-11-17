@@ -1,0 +1,70 @@
+{
+ "fotos": [
+  {
+   "nombre": "inicio",
+   "url": "https://images.unsplash.com/photo-1630406144797-821be1f35d75?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 1800,
+   "alto": 1000
+  },
+  {
+   "nombre": "inicio2",
+   "url": "https://images.unsplash.com/photo-1527593167147-e9c94a5883e6?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 1800,
+   "alto": 1000
+  },
+  {
+   "nombre": "inicio3",
+   "url": "https://images.unsplash.com/photo-1524645343120-a4ae9f7d4343?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 1800,
+   "alto": 1000
+  },
+  {
+   "nombre": "coche",
+   "url": "https://images.unsplash.com/photo-1515019512855-1464f21e9eb8?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "coche2",
+   "url": "https://images.unsplash.com/photo-1516862523118-a3724eb136d7?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "moto",
+   "url": "https://images.unsplash.com/photo-1506424482693-1f123321fa53?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "moto2",
+   "url": "https://images.unsplash.com/photo-1764605514633-eb9a675ffbb8?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "moto3",
+   "url": "https://images.unsplash.com/photo-1618001814671-5ccfc2697e33?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "matricula",
+   "url": "https://images.unsplash.com/photo-1564846824194-346b7871b855?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "matricula2",
+   "url": "https://images.unsplash.com/photo-1562564055-71e051d33c19?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "senal",
+   "url": "https://images.unsplash.com/photo-1790887672084-4cec5fa22bae?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  }
+ ]
+}
