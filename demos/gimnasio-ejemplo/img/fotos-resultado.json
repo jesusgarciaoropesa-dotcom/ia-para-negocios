@@ -11,32 +11,10 @@
   "kb": 144
  },
  {
-  "nombre": "inicio-b",
-  "url": "https://images.unsplash.com/photo-1758875570600-8daf8d2f05f3?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/inicio-b.jpg",
-  "tamano": [
-   1800,
-   1000
-  ],
-  "kb": 145
- },
- {
   "nombre": "personal",
-  "url": "https://images.unsplash.com/photo-1758875569334-27579a49ed0b?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/personal.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 37
- },
- {
-  "nombre": "personal-b",
   "url": "https://images.unsplash.com/photo-1648542036561-e1d66a5ae2b1?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/personal-b.jpg",
+  "archivo": "img/personal.jpg",
   "tamano": [
    640,
    480
@@ -45,20 +23,9 @@
  },
  {
   "nombre": "funcional",
-  "url": "https://images.unsplash.com/photo-1758875570600-8daf8d2f05f3?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/funcional.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 38
- },
- {
-  "nombre": "funcional-b",
   "url": "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=2000&q=80&fm=jpg&fit=max",
   "ok": true,
-  "archivo": "img/funcional-b.jpg",
+  "archivo": "img/funcional.jpg",
   "tamano": [
    640,
    480
@@ -75,38 +42,5 @@
    480
   ],
   "kb": 41
- },
- {
-  "nombre": "valoracion-b",
-  "url": "https://images.unsplash.com/photo-1758875569414-120ebc62ada3?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/valoracion-b.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 40
- },
- {
-  "nombre": "sala",
-  "url": "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/sala.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 36
- },
- {
-  "nombre": "pesas",
-  "url": "https://images.unsplash.com/photo-1632077804406-188472f1a810?w=2000&q=80&fm=jpg&fit=max",
-  "ok": true,
-  "archivo": "img/pesas.jpg",
-  "tamano": [
-   640,
-   480
-  ],
-  "kb": 45
  }
 ]

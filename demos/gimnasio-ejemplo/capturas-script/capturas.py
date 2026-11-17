@@ -8,14 +8,15 @@ REPO = Path(__file__).resolve().parents[3]
 DEMO = REPO / "demos/gimnasio-ejemplo/index.html"
 ADMIN = REPO / "taller/reservas/admin.html"
 OUT = REPO / "demos/gimnasio-ejemplo/capturas"
-FM = Path(os.environ.get("FONTS_DIR", "fonts/node_modules"))  # npm i @fontsource/teko @fontsource/libre-franklin
+FM = Path(os.environ.get("FONTS_DIR", "fonts/node_modules"))  # npm i @fontsource/teko @fontsource/libre-franklin @fontsource/caveat
 MOCK = Path(__file__).with_name("mock-supabase.js")
 NEG = "aeedc47b-13f6-43b6-8883-61281aa68453"
 
+F = lambda fam, w: FM / f"@fontsource/{fam}/files/{fam}-latin-{w}-normal.woff2"
 FONTS = {
-    "Teko": [("tk6", FM / "@fontsource/teko/files/teko-latin-600-normal.woff2", "600", None)],
-    "Libre Franklin": [("lf4", FM / "@fontsource/libre-franklin/files/libre-franklin-latin-400-normal.woff2", "400", None),
-                       ("lf7", FM / "@fontsource/libre-franklin/files/libre-franklin-latin-700-normal.woff2", "700", None)],
+    "Teko": [(f"tk{w}", F("teko", w), str(w), None) for w in (500, 600)],
+    "Libre Franklin": [(f"lf{w}", F("libre-franklin", w), str(w), None) for w in (400, 600, 700)],
+    "Caveat": [("ca600", F("caveat", 600), "600", None)],
 }
 ARCH = {k: p for fam in FONTS.values() for k, p, *_ in fam}
 CSS = ""
@@ -24,9 +25,9 @@ for fam, items in FONTS.items():
         CSS += f"@font-face{{font-family:'{fam}';src:url(https://fonts.gstatic.com/local/{k}.woff2) format('woff2');font-weight:{w};{'font-stretch:'+st+';' if st else ''}font-display:block}}\n"
 
 SERVS = [
-    {"id": "s1", "nombre": "Primera visita y valoración", "precio_desde": 0, "duracion_minutos": 30},
-    {"id": "s2", "nombre": "Entrenamiento personal", "precio_desde": 0, "duracion_minutos": 60},
-    {"id": "s3", "nombre": "Clase de funcional", "precio_desde": 0, "duracion_minutos": 45},
+    {"id": "f2b80a68-0f6c-4e77-94a5-af5ecf3efbee", "nombre": "Primera visita y valoración", "precio_desde": 0, "duracion_minutos": 30},
+    {"id": "047d3b5a-5301-4df4-aa07-c0c9b58bec71", "nombre": "Entrenamiento personal", "precio_desde": 0, "duracion_minutos": 60},
+    {"id": "f43169b6-0cc1-49e6-859e-f207f9345667", "nombre": "Clase de funcional", "precio_desde": 0, "duracion_minutos": 45},
 ]
 HORAS = ["07:00:00", "07:30:00", "09:00:00", "10:30:00", "12:00:00", "17:00:00", "18:00:00", "19:30:00", "20:30:00"]
 
@@ -44,8 +45,8 @@ def rutas(ctx):
         else: body = []
         r.fulfill(status=200, content_type="application/json", body=json.dumps(body), headers={"access-control-allow-origin": "*"})
     ctx.route("https://gimoqpusrdltlkrwsykr.supabase.co/**", sb)
-    ctx.route("https://www.google.com/maps**", lambda r: r.fulfill(status=200, content_type="text/html",
-              body="<body style='margin:0;background:#dfe3e6;font:15px sans-serif;display:grid;place-items:center;height:100vh;color:#555c66'>Mapa</body>"))
+    ctx.route(re.compile(r"https://(www|maps)\.google\.com/maps.*"), lambda r: r.fulfill(status=200, content_type="text/html",
+              body="<body style='margin:0;background:#dfe3e6;font:15px sans-serif;display:grid;place-items:center;height:100vh;color:#4d5866'>Mapa</body>"))
 
 
 with sync_playwright() as p:
@@ -61,23 +62,29 @@ with sync_playwright() as p:
         pg.screenshot(path=str(OUT / f"{nombre}-inicio.png"))
         pg.screenshot(path=str(OUT / f"{nombre}-completa.png"), full_page=True)
         if nombre == "movil":
-            pg.click("#rv-servs button >> nth=0")
-            pg.click("#rv-dias button >> nth=1")
+            pg.add_style_tag(content=".wa-flota{display:none!important} header{position:static!important}")
+            caja = lambda: pg.locator("#reservar .reserva")
+            def foto(arch):
+                bb = caja().bounding_box(); sy = pg.evaluate("scrollY")
+                pg.screenshot(path=str(OUT / arch), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 16, "width": 390, "height": bb["height"] + 32})
+            pg.select_option("#rv-serv", index=1)
+            pg.select_option("#rv-fecha", index=1)
+            foto("movil-servicio.png")
+            pg.click("#rv-sig1")
             pg.wait_for_selector("#rv-horas button")
-            pg.click("#rv-horas button >> nth=5")
+            pg.click("#rv-horas button >> nth=0")
+            foto("movil-pedir-cita.png")
+            pg.click("#rv-sig2")
             pg.fill("#rv-nombre", "Pablo")
             pg.fill("#rv-tel", "600 123 456")
             pg.fill("#rv-email", "pablo@ejemplo.com")
             pg.fill("#rv-notas", "Es mi primera vez en un gimnasio")
             pg.check("#rv-ok")
-            pg.add_style_tag(content=".wa-flota{display:none!important}")
-            pg.locator("#reservar .ficha-res").scroll_into_view_if_needed()
-            bb = pg.locator(".ficha-res").bounding_box(); sy = pg.evaluate("scrollY")
-            pg.screenshot(path=str(OUT / "movil-reservar.png"), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 40, "width": 390, "height": bb["height"] + 64})
+            foto("movil-datos.png")
             pg.click("#rv-enviar")
-            pg.wait_for_selector(".rv-estado.ok")
-            bb = pg.locator(".ficha-res").bounding_box(); sy = pg.evaluate("scrollY")
-            pg.screenshot(path=str(OUT / "movil-reserva-hecha.png"), full_page=True, clip={"x": 0, "y": bb["y"] + sy - 40, "width": 390, "height": bb["height"] + 64})
+            pg.wait_for_selector('.paso[data-paso="4"]:not([hidden])')
+            pg.wait_for_timeout(200)
+            foto("movil-cita-hecha.png")
         ctx.close()
     # Panel de citas
     for nombre, args in (("movil", p.devices["iPhone 13"]), ("ordenador", {"viewport": {"width": 1366, "height": 900}})):

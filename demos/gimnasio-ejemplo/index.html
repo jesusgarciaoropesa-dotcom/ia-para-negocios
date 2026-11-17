@@ -7,23 +7,26 @@
 <meta name="description" content="Entrenamiento personal, clases de funcional y primera visita con valoración. Mira las horas libres y reserva tu hora desde el móvil.">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="Gimnasio con entrenador y clases | Reserva online">
-<meta property="og:description" content="Mira las horas libres del gimnasio y reserva tu entrenamiento o tu clase desde el móvil.">
+<meta property="og:description" content="Mira las horas libres del gimnasio y reserva tu entrenamiento desde el móvil en un minuto.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#c81e1e">
+<meta property="og:image" content="img/inicio.jpg">
+<meta name="theme-color" content="#0f1011">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Teko:wght@600&family=Libre+Franklin:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600&family=Libre+Franklin:wght@400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/inicio.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ExerciseGym",
   "name": "Gimnasio de ejemplo",
-  "description": "Gimnasio con entrenamiento personal, clases de funcional y primera visita con valoración, con reserva online.",
+  "description": "Gimnasio con entrenamiento personal, clases de funcional y primera visita con valoración. Reserva online.",
   "telephone": "+34637847114",
+  "image": "img/inicio.jpg",
   "address": { "@type": "PostalAddress", "streetAddress": "Calle de ejemplo, 3", "addressCountry": "ES" },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "22:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "09:00", "closes": "14:00" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
   ]
 }
 </script>
@@ -38,294 +41,393 @@
 </script>
 <style>
   :root {
-    --c-primario: #c81e1e;   /* rojo de disco de goma: bloque de marca y botones */
-    --c-rojo-osc: #a11717;
-    --c-led: #ff3b30;        /* dígitos del reloj, solo sobre carbón */
-    --c-carbon: #1d2125;
-    --c-texto: #16181b;
-    --c-fondo: #eceeef;
-    --c-suave: #dfe3e6;
-    --c-borde: #c8ced3;
-    --c-gris: #50575e;
-    --c-wa: #1f8a4c;
-    --f-titulos: "Teko", "Arial Narrow", Impact, sans-serif;
-    --f-texto: "Libre Franklin", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --ancho: 1160px;
+    --negro: #0f1011; --panel: #18191b; --panel-2: #222326; --linea: #303236;
+    --claro: #f3f3f1; --gris: #b3b6bb; --rojo: #e3262d; --rojo-hover: #f23a40; --rojo-txt: #ff5a54; --led: #ff3b30;
+    --tinta: #16181b; --tinta-suave: #50565e; --borde: #d6d8db;
+    --wa: #25d366;
+    --f-tit: "Teko", "Arial Narrow", system-ui, sans-serif;
+    --f-txt: "Libre Franklin", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body { margin: 0; font-family: var(--f-texto); color: var(--c-texto); background: var(--c-fondo); line-height: 1.6; font-size: 17px; }
-  img, svg { max-width: 100%; display: block; }
-  a { color: var(--c-rojo-osc); }
-  h1, h2, h3 { font-family: var(--f-titulos); font-weight: 600; color: var(--c-texto); line-height: .95; margin: 0 0 .35em; }
-  h1 { font-size: clamp(3.2rem, 7vw, 5.8rem); }
-  h2 { font-size: clamp(2.5rem, 5vw, 3.6rem); }
-  h3 { font-size: 1.9rem; }
-  .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 20px; }
-  section { padding: 84px 0; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; border-radius: 4px; font-weight: 700; font-size: 1.05rem; text-decoration: none; border: 2px solid transparent; cursor: pointer; font-family: inherit; }
-  .btn-carbon { background: var(--c-carbon); color: #fff; }
-  .btn-carbon:hover { background: #000; }
-  .btn-rojo { background: var(--c-primario); color: #fff; }
-  .btn-rojo:hover { background: var(--c-rojo-osc); }
-  .btn-2 { background: transparent; color: inherit; border-color: currentColor; }
-  :focus-visible { outline: 3px solid var(--c-carbon); outline-offset: 3px; }
-  .hero :focus-visible, header :focus-visible, footer :focus-visible, .franja :focus-visible, .cierre :focus-visible { outline-color: #fff; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body { margin: 0; background: var(--negro); color: var(--claro); font: 400 1.0625rem/1.55 var(--f-txt); -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--f-tit); font-weight: 600; line-height: .95; margin: 0; letter-spacing: .005em; }
+  h2 { font-size: clamp(2.3rem, 4.6vw, 3.1rem); }
+  :focus-visible { outline: 3px solid var(--rojo-txt); outline-offset: 3px; border-radius: 6px; }
+  .contenedor { width: min(1180px, 100% - 32px); margin-inline: auto; }
+  .ico { width: 22px; height: 22px; flex: none; }
 
-  .franja { background: #000; color: #fff; font-size: .88rem; text-align: center; padding: 8px 16px; }
-  .franja a { color: #ff9a92; font-weight: 700; }
+  .franja { background: #000; color: #d8dade; font-size: .94rem; text-align: center; padding: 7px 16px; }
+  .franja a { color: var(--rojo-txt); font-weight: 700; }
 
-  header { background: var(--c-carbon); }
-  .barra { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 72px; }
-  .marca { display: flex; align-items: center; text-decoration: none; }
-  .marca svg { height: 42px; width: auto; }
-  nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
-  nav a { color: #fff; text-decoration: none; font-weight: 700; font-size: .98rem; }
-  nav a:hover { color: #ff9a92; }
-  .barra .btn { min-height: 44px; padding: 0 18px; font-size: .98rem; white-space: nowrap; }
-  @media (max-width: 880px) { nav { display: none; } }
+  /* Botones */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 10px; font: 700 1.03rem var(--f-txt); text-decoration: none; cursor: pointer; border: 2px solid transparent; transition: background .15s, color .15s; }
+  .btn-pri { background: var(--rojo); color: #fff; }
+  .btn-pri:hover { background: var(--rojo-hover); }
+  .btn-sec { border-color: #fff; color: #fff; background: rgba(15,16,17,.35); }
+  .btn-sec:hover { background: rgba(255,255,255,.12); }
 
-  /* Inicio rojo con la sala */
-  .hero { background: var(--c-primario); color: #fff; padding: 48px 0 0; overflow: hidden; }
-  .hero-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 28px; align-items: end; }
-  .hero h1 { color: #fff; margin: 0; }
-  .hero .texto { padding-bottom: 64px; }
-  .hero p.sub { font-size: 1.18rem; max-width: 34ch; margin: 18px 0 0; }
-  .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-  .hero .btn-2 { color: #fff; }
-  .hero .datos { margin: 20px 0 0; font-size: 1rem; color: #ffdcd8; }
-  .hero .datos strong { color: #fff; }
-  .hero-ilus svg { width: 100%; height: auto; }
-  .suelo { height: 34px; background: #2a2f34; border-top: 4px solid #1d2125; background-image: repeating-linear-gradient(90deg, transparent 0 158px, #1d2125 158px 161px); }
-  @media (max-width: 860px) {
-    .hero { padding-top: 28px; }
-    .hero-grid { display: flex; flex-direction: column; gap: 0; align-items: stretch; }
-    .hero .texto { display: contents; }
-    .hero h1 { font-size: 2.8rem; order: 1; }
-    .hero p.sub, .hero .acciones, .hero .datos { order: 3; }
-    .hero .datos { padding-bottom: 28px; }
-    .hero-ilus { order: 2; margin: 12px -20px 0 !important; }
-    .hero-ilus svg { height: 190px; }
-    .hero-ilus { border-bottom: 22px solid #2a2f34; margin-bottom: 22px !important; }
-    .suelo { display: none; }
-    .hero p.sub { font-size: 1.05rem; margin-top: 12px; }
-    .acciones { margin-top: 18px; gap: 10px; }
-    .acciones .btn { padding: 0 18px; flex: 1 1 auto; }
-    .hero .datos { margin-top: 14px; font-size: .95rem; }
-    .hero-ilus { margin: 0 -20px; }
+  /* Cabecera */
+  header { position: sticky; top: 0; z-index: 20; background: rgba(15,16,17,.96); border-bottom: 1px solid #222428; backdrop-filter: blur(6px); }
+  .cab { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 76px; }
+  .logo { display: block; text-decoration: none; }
+  .logo svg { height: 54px; width: auto; display: block; }
+  nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
+  nav a { text-decoration: none; font-weight: 600; font-size: .98rem; color: #e4e5e8; padding: 8px 0; border-bottom: 2px solid transparent; }
+  nav a:hover { color: #fff; border-color: var(--rojo); }
+  .cab .btn { min-height: 46px; padding: 0 18px; font-size: .98rem; }
+  @media (max-width: 960px) { nav { display: none; } }
+  @media (max-width: 420px) { .logo svg { height: 46px; } .cab .btn { padding: 0 14px; } .cab .btn .ico { display: none; } }
+
+  /* Inicio con foto a sangre */
+  .inicio { padding: 0; position: relative; min-height: clamp(520px, 66vh, 640px); display: flex; align-items: center; overflow: hidden; isolation: isolate; }
+  .inicio > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; transform: scaleX(-1); z-index: -2; filter: brightness(1.04) saturate(1.08); }
+  .inicio::before { content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(90deg, rgba(12,12,13,.93) 0%, rgba(12,12,13,.78) 30%, rgba(12,12,13,.2) 54%, rgba(12,12,13,0) 70%), linear-gradient(0deg, rgba(12,12,13,.55) 0%, rgba(12,12,13,0) 20%); }
+  .inicio-txt { max-width: 720px; padding: 44px 0 52px; }
+  .inicio h1 { font-size: clamp(2.7rem, 5.4vw, 4.4rem); color: #fff; }
+  .inicio h1 .l { white-space: nowrap; }
+  .inicio h1 .rojo { color: var(--rojo-txt); }
+  .inicio p { font-size: clamp(1.08rem, 2.1vw, 1.25rem); color: #e6e7ea; margin: 18px 0 28px; max-width: 40ch; }
+  .botones { display: flex; flex-wrap: wrap; gap: 14px; }
+  .horario-mini { margin: 22px 0 0 !important; max-width: none !important; font-size: 1rem !important; display: flex; align-items: center; gap: 10px; color: #c9ccd0 !important; }
+  .horario-mini .ico { color: var(--rojo-txt); width: 20px; height: 20px; }
+  @media (max-width: 720px) {
+    .inicio { align-items: flex-end; min-height: 0; }
+    .inicio > img { object-position: 24% 62%; height: 330px; bottom: auto; }
+    .inicio::before { background: linear-gradient(180deg, rgba(12,12,13,0) 0px, rgba(12,12,13,0) 200px, rgba(12,12,13,1) 330px, rgba(12,12,13,1) 100%); }
+    .inicio-txt { padding: 270px 0 30px; }
+    .inicio h1 { font-size: clamp(2.3rem, 10.4vw, 2.9rem); }
+    .inicio h1 .l { white-space: normal; }
+    .botones .btn { flex: 1 1 100%; }
   }
 
-  /* Cómo empezar */
-  .empezar-cab { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 22px; }
-  .empezar-cab p { margin: 0; max-width: 40ch; color: var(--c-gris); }
-  .filas { list-style: none; margin: 0; padding: 0; border-top: 4px solid var(--c-carbon); }
-  .filas li { display: grid; grid-template-columns: 130px 1fr 1.4fr; gap: 6px 30px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--c-borde); }
-  .digitos { font-family: var(--f-titulos); font-size: 2.1rem; line-height: 1; color: var(--c-led); background: var(--c-carbon); padding: 10px 14px 4px; border-radius: 4px; text-align: center; letter-spacing: .04em; }
-  .filas h3 { margin: 0; }
-  .filas p { margin: 0; color: #3a4047; }
-  @media (max-width: 760px) {
-    .empezar-cab { grid-template-columns: 1fr; gap: 10px; }
-    .filas li { grid-template-columns: 96px 1fr; padding: 18px 0; gap: 10px 16px; }
-    .digitos { font-size: 1.7rem; padding: 8px 8px 2px; }
-    .filas p { grid-column: 1 / -1; }
+  /* Garantías */
+  .garantias { background: var(--panel); border-top: 3px solid var(--rojo); border-bottom: 1px solid #26282b; }
+  .garantias ul { list-style: none; margin: 0 auto; padding: 20px 0; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .garantias li { display: flex; align-items: center; gap: 16px; padding: 6px 24px; }
+  .garantias li + li { border-left: 1px solid var(--linea); }
+  .garantias li:first-child { padding-left: 0; }
+  .garantias svg { width: 42px; height: 42px; color: var(--rojo-txt); flex: none; }
+  .garantias strong { display: block; font-size: 1.04rem; color: #fff; line-height: 1.25; }
+  .garantias span { color: var(--gris); font-size: .96rem; line-height: 1.35; display: block; }
+  @media (max-width: 820px) {
+    .garantias ul { grid-template-columns: 1fr; padding: 8px 0; }
+    .garantias li { padding: 12px 0; }
+    .garantias li + li { border-left: 0; border-top: 1px solid var(--linea); }
   }
 
-  /* Reservas con el reloj de intervalos */
-  #reservar { background: var(--c-suave); }
-  .res-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 56px; align-items: start; }
-  .res-grid > *, .rv > *, .rv > div { min-width: 0; }
-  .res-intro p { max-width: 34ch; }
-  .res-intro .alt { margin-top: 22px; font-size: .98rem; }
-  @media (max-width: 860px) { .res-grid { grid-template-columns: 1fr; gap: 22px; } }
-  .ficha-res { background: #fff; border-radius: 6px; box-shadow: 0 18px 40px rgba(29,33,37,.16); overflow: hidden; }
-  .reloj { background: var(--c-carbon); color: #fff; padding: 18px 24px 14px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 6px solid #2c3238; }
-  .reloj-pant { font-family: var(--f-titulos); font-size: clamp(3.4rem, 9vw, 4.6rem); line-height: .9; color: #6e2621; letter-spacing: .06em; padding-top: 6px; }
-  .reloj-pant.on { color: var(--c-led); text-shadow: 0 0 18px rgba(255,59,48,.45); }
-  .reloj-info { text-align: right; font-size: .92rem; color: #b9c0c7; line-height: 1.35; }
-  .reloj-info strong { display: block; color: #fff; font-size: 1rem; }
-  .ficha-cuerpo { padding: 24px 24px 28px; }
-  .rv { display: grid; gap: 24px; }
-  .rv-lab, .rv label { display: grid; gap: 8px; font-weight: 700; color: var(--c-texto); font-size: 1rem; }
-  .rv input, .rv textarea { font: inherit; font-weight: 400; padding: 12px 14px; border: 2px solid var(--c-borde); border-radius: 4px; background: #fff; color: inherit; min-height: 50px; width: 100%; }
-  .rv input:focus, .rv textarea:focus { border-color: var(--c-primario); outline: none; box-shadow: 0 0 0 3px rgba(200,30,30,.18); }
-  .rv-servs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .rv-servs button { text-align: left; min-height: 66px; padding: 10px 14px; border: 2px solid var(--c-borde); border-radius: 4px; background: #fff; font: inherit; cursor: pointer; color: var(--c-texto); line-height: 1.25; }
-  .rv-servs button b { display: block; font-size: 1rem; }
-  .rv-servs button small { color: var(--c-gris); font-size: .9rem; }
-  .rv-servs button[aria-checked="true"] { border-color: var(--c-primario); background: var(--c-primario); color: #fff; }
-  .rv-servs button[aria-checked="true"] small { color: #ffdcd8; }
-  .rv-dias, .rv-horas { display: flex; flex-wrap: wrap; gap: 8px; }
-  .rv-dias { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
-  .rv-dias button { flex: 0 0 auto; min-width: 62px; min-height: 70px; border-radius: 4px; border: 2px solid var(--c-borde); background: #fff; font: inherit; cursor: pointer; line-height: 1.05; padding: 6px 8px; color: var(--c-texto); }
-  .rv-dias button b { display: block; font-family: var(--f-titulos); font-weight: 600; font-size: 1.8rem; line-height: .9; padding-top: 3px; }
-  .rv-dias button small { font-size: .8rem; text-transform: capitalize; }
-  .rv-dias button[aria-pressed="true"] { background: var(--c-carbon); border-color: var(--c-carbon); color: #fff; }
-  .rv-otro { font-weight: 400 !important; font-size: .92rem !important; color: var(--c-gris) !important; grid-template-columns: auto 1fr; align-items: center; margin-top: 6px; }
-  .rv-otro input { min-height: 44px; max-width: 200px; padding: 6px 10px; }
-  .rv-horas button { min-height: 46px; min-width: 76px; border-radius: 4px; border: 2px solid var(--c-borde); background: #fff; font: inherit; font-weight: 700; cursor: pointer; color: var(--c-texto); }
-  .rv-horas button[aria-checked="true"] { background: var(--c-carbon); color: #fff; border-color: var(--c-carbon); }
-  .rv-ayuda { margin: 0; font-weight: 400; color: var(--c-gris); font-size: .96rem; }
-  .rv-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .rv-check { grid-template-columns: auto 1fr !important; align-items: start; font-weight: 400 !important; font-size: .95rem !important; }
-  .rv-check input { min-height: 0; width: 22px; height: 22px; margin-top: 2px; accent-color: var(--c-primario); }
-  .rv .btn-rojo { width: 100%; font-size: 1.12rem; min-height: 58px; }
-  .rv-estado { margin: 0; font-weight: 700; }
-  .rv-estado.ok { color: #1a6b3d; } .rv-estado.mal { color: #b42318; }
-  .rv a.btn-2 { color: var(--c-texto); margin-top: -10px; }
-  @media (max-width: 640px) {
-    .reloj { padding: 14px 16px 10px; }
-    .ficha-cuerpo { padding: 20px 16px 24px; }
-    .rv-servs { grid-template-columns: 1fr; }
-    .rv-servs button { min-height: 56px; }
-    .rv-dos { grid-template-columns: 1fr; }
+  /* Servicios con foto */
+  section { padding: 52px 0; }
+  .titulo-linea { display: flex; align-items: center; gap: 22px; margin-bottom: 26px; }
+  .titulo-linea::before, .titulo-linea::after { content: ""; flex: 1; height: 2px; background: var(--rojo); }
+  .titulo-linea h2 { text-align: center; padding-top: .12em; }
+  .rejilla { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tarjeta { position: relative; display: block; aspect-ratio: 4 / 3.6; border-radius: 12px; overflow: hidden; text-decoration: none; background: var(--panel-2); border: 1px solid #2a2c30; }
+  .tarjeta img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.1) brightness(1.05); transition: transform .35s; }
+  .tarjeta:hover img { transform: scale(1.04); }
+  .tarjeta::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,10,11,.94) 0%, rgba(10,10,11,.6) 30%, rgba(10,10,11,0) 52%); }
+  .tarjeta-txt { position: absolute; left: 16px; right: 14px; bottom: 14px; z-index: 1; display: flex; gap: 12px; align-items: flex-end; }
+  .tarjeta-txt svg { width: 34px; height: 34px; color: var(--rojo-txt); flex: none; }
+  .tarjeta h3 { font-size: 1.85rem; color: #fff; padding-top: .1em; }
+  .tarjeta p { margin: 2px 0 0; font-size: .95rem; color: #d6d8db; line-height: 1.3; }
+  .tarjeta .min { color: #fff; font-weight: 700; white-space: nowrap; }
+  .tarjeta .min::before { content: " · "; color: #d6d8db; font-weight: 400; }
+  .tarjeta-otra { background: var(--rojo); color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 24px; border: 0; }
+  .tarjeta-otra::after { display: none; }
+  .tarjeta-otra h3 { font-size: 2.1rem; }
+  .tarjeta-otra p { color: #fff; font-size: 1rem; margin-top: 8px; }
+  .tarjeta-otra b { margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 1.02rem; }
+  @media (max-width: 960px) { .rejilla { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) {
+    .rejilla { gap: 12px; }
+    .tarjeta { aspect-ratio: 3 / 3.6; }
+    .tarjeta-txt { left: 12px; right: 10px; bottom: 12px; flex-direction: column; align-items: flex-start; gap: 6px; }
+    .tarjeta-txt svg { width: 28px; height: 28px; }
+    .tarjeta h3 { font-size: 1.55rem; }
+    .tarjeta p { font-size: .94rem; }
+    .tarjeta .min { display: block; }
+    .tarjeta .min::before { content: none; }
+    .tarjeta-otra { padding: 16px; }
+    .tarjeta-otra h3 { font-size: 1.7rem; }
   }
 
-  /* Tres frases */
-  .frases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-  .frases h3 { margin-bottom: .25em; }
-  .frases p { margin: 0; color: #3a4047; }
-  @media (max-width: 860px) { .frases { grid-template-columns: 1fr; gap: 22px; } }
+  /* Bloque de reserva (oscuro, como el resto) */
+  #reservar { padding-top: 4px; }
+  .reserva { background: var(--panel); border: 1px solid #2a2c30; border-radius: 18px; display: grid; grid-template-columns: 5fr 7fr; overflow: hidden; }
+  .reserva > * { min-width: 0; }
+  .res-intro { position: relative; padding: 38px 38px 34px; display: flex; flex-direction: column; background: linear-gradient(160deg, #202125 0%, #17181a 100%); border-right: 1px solid #2a2c30; }
+  .res-intro h2 { color: #fff; }
+  .res-intro h2 span { color: var(--rojo-txt); }
+  .res-intro > p { color: #d3d5d9; font-size: 1.08rem; margin: 14px 0 0; max-width: 32ch; }
+  .firma { font-family: "Caveat", "Segoe Script", cursive; font-weight: 600; font-size: 1.95rem; color: var(--rojo-txt); transform: rotate(-4deg); margin: 20px 0 0 6px; line-height: 1; }
+  .firma svg { display: block; width: 150px; height: 14px; margin-top: 2px; }
+  .reloj { margin-top: 18px; width: fit-content; background: #0b0b0c; border: 2px solid #2d2f33; border-radius: 10px; padding: 10px 16px 6px; display: flex; align-items: baseline; gap: 14px; box-shadow: inset 0 0 18px rgba(0,0,0,.8); }
+  .reloj b { font: 600 3rem/1 var(--f-tit); letter-spacing: .06em; color: #5a201d; text-shadow: none; transition: color .2s; }
+  .reloj.on b { color: var(--led); text-shadow: 0 0 12px rgba(255,59,48,.55); }
+  .reloj small { color: #9a9ea5; font-size: .94rem; max-width: 24ch; line-height: 1.2; }
+  .res-alt { margin-top: auto; padding-top: 22px; font-size: 1rem; color: #c3c6cb; }
+  .res-alt a { color: #fff; font-weight: 700; }
+  .res-caja { padding: 32px 38px 34px; }
+  @media (max-width: 900px) {
+    .reserva { grid-template-columns: 1fr; border-radius: 16px; }
+    .res-intro { padding: 26px 20px 22px; border-right: 0; border-bottom: 1px solid #2a2c30; }
+    .res-alt { padding-top: 14px; }
+    .res-caja { padding: 22px 18px 26px; }
+    .reloj b { font-size: 2.5rem; }
+  }
 
-  #horario { background: #fff; }
-  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
-  @media (max-width: 860px) { .dos { grid-template-columns: 1fr; } }
-  .horario { width: 100%; border-collapse: collapse; }
-  .horario td { padding: 10px 0; border-bottom: 1px solid #dde1e4; }
-  .horario td:last-child { text-align: right; font-weight: 700; }
-  .horario tr.cerrado td { color: var(--c-gris); font-weight: 400; }
-  .mapa-ej { display: grid; place-items: center; text-align: center; padding: 20px; min-height: 280px; border-radius: 6px; color: var(--c-gris); font-weight: 700; background-color: var(--c-suave); background-image: linear-gradient(rgba(29,33,37,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(29,33,37,.08) 1px, transparent 1px); background-size: 28px 28px; }
+  /* Pasos */
+  .pasos { list-style: none; margin: 0 0 24px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .pasos li { position: relative; text-align: center; font-size: .94rem; font-weight: 600; color: #8f949b; padding-top: 40px; }
+  .pasos li::before { content: attr(data-n); position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--panel); border: 2px solid #464950; color: #a5a9b0; font-weight: 700; z-index: 1; }
+  .pasos li::after { content: ""; position: absolute; top: 15px; left: -50%; width: 100%; height: 2px; background: #3a3c41; }
+  .pasos li:first-child::after { display: none; }
+  .pasos li.hecho::before { content: "✓"; background: var(--rojo); border-color: var(--rojo); color: #fff; }
+  .pasos li.hecho::after, .pasos li.activo::after { background: var(--rojo); }
+  .pasos li.activo { color: #fff; }
+  .pasos li.activo::before { background: var(--rojo); border-color: var(--rojo); color: #fff; box-shadow: 0 0 0 5px rgba(227,38,45,.25); }
+  @media (max-width: 420px) { .pasos li { line-height: 1.15; } }
 
-  details { border-bottom: 1px solid var(--c-borde); padding: 16px 0; }
-  summary { cursor: pointer; font-weight: 700; font-size: 1.08rem; color: var(--c-texto); min-height: 32px; }
-  details p { margin: 10px 0 0; max-width: 65ch; }
+  .paso[hidden] { display: none; }
+  .rv-fila { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .rv-fila { grid-template-columns: 1fr; } }
+  .rv label, .rv-lab { display: grid; gap: 7px; font-weight: 600; font-size: .98rem; color: #e8e9eb; }
+  .rv-lab { display: block; margin: 0 0 10px; }
+  .rv select, .rv input, .rv textarea { font: inherit; font-weight: 400; padding: 11px 14px; border: 1.5px solid var(--borde); border-radius: 10px; background: #fff; color: var(--tinta); min-height: 50px; width: 100%; }
+  .rv select { appearance: none; padding-right: 40px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316181b' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center / 20px; cursor: pointer; }
+  .rv select:focus, .rv input:focus, .rv textarea:focus { border-color: var(--rojo); outline: none; box-shadow: 0 0 0 3px rgba(255,90,84,.4); }
+  .rv-dur { margin: 12px 0 0; color: var(--gris); font-size: .96rem; min-height: 1.5em; }
+  .rv-horas { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+  .rv-horas button { min-height: 48px; border-radius: 10px; border: 1.5px solid #3c3f44; background: var(--panel-2); font: 600 1.35rem var(--f-tit); padding-top: 4px; letter-spacing: .04em; color: #fff; cursor: pointer; }
+  .rv-horas button:hover { border-color: #6a6e75; }
+  .rv-horas button[aria-checked="true"] { background: var(--rojo); border-color: var(--rojo); }
+  .rv-ayuda { margin: 0; color: var(--gris); font-size: .98rem; grid-column: 1 / -1; }
+  .rv-campos { display: grid; gap: 14px; }
+  .rv-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .rv-dos { grid-template-columns: 1fr; } }
+  .rv .rv-check { grid-template-columns: auto 1fr; align-items: start; font-weight: 400; font-size: .94rem; color: #c9ccd0; }
+  .rv .rv-check input { min-height: 0; width: 20px; height: 20px; margin-top: 2px; accent-color: var(--rojo); }
+  .rv-resumen { background: var(--panel-2); border: 1.5px dashed #484b51; border-radius: 12px; padding: 12px 14px; font-size: .98rem; margin-bottom: 14px; color: #e6e7ea; }
+  .rv-resumen b { color: #fff; }
+  .rv-acciones { display: flex; gap: 12px; margin-top: 20px; }
+  .rv-acciones .btn-pri { flex: 1; }
+  .btn-atras { background: transparent; border-color: #4a4d53; color: #fff; padding: 0 18px; }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; }
+  .rv-estado { margin: 12px 0 0; font-weight: 600; min-height: 1.4em; }
+  .rv-estado.mal { color: #ff8a80; }
+  .rv-hecha { text-align: center; padding: 6px 0 2px; }
+  .rv-hecha .ok { width: 64px; height: 64px; margin: 0 auto 12px; border-radius: 50%; background: #1f9a50; color: #fff; display: grid; place-items: center; }
+  .rv-hecha .ok svg { width: 34px; height: 34px; }
+  .rv-hecha h3 { font-size: 2.3rem; margin-bottom: 6px; }
+  .rv-hecha p { margin: 0 auto; max-width: 40ch; color: #d3d5d9; }
+  .rv-hecha .rv-resumen { text-align: left; margin: 18px auto 0; max-width: 420px; }
+  .rv-hecha .botones { justify-content: center; margin-top: 18px; }
+  .btn-wa { background: var(--wa); color: #0b2a17; }
 
-  .cierre { background: var(--c-carbon); color: #fff; }
-  .cierre h2 { color: #fff; }
-  .cierre p { color: #d3d8dc; max-width: 44ch; margin: 0; }
-  .cierre .btn-2 { color: #fff; }
-  footer { background: #000; color: rgba(255,255,255,.86); padding: 36px 0 100px; font-size: .94rem; }
-  footer a { color: #fff; }
+  /* Opiniones + dónde estamos */
+  .lugar { display: grid; grid-template-columns: 1.15fr 1px .8fr 1fr; gap: 32px; align-items: start; }
+  .lugar .sep { background: var(--rojo); opacity: .7; align-self: stretch; }
+  .lugar h2 { font-size: clamp(2rem, 3.4vw, 2.4rem); margin-bottom: 14px; padding-top: .1em; }
+  .nota { display: flex; align-items: center; gap: 12px; }
+  .estrellas { display: flex; gap: 3px; color: #ffb400; }
+  .estrellas svg { width: 24px; height: 24px; }
+  .nota strong { font: 600 2.5rem/1 var(--f-tit); padding-top: .12em; }
+  .nota-sub { color: var(--gris); margin: 2px 0 16px; font-size: .98rem; }
+  .resenas { display: grid; gap: 12px; }
+  .resena { display: grid; grid-template-columns: 46px 1fr; gap: 14px; background: var(--panel); border: 1px solid #2a2c30; border-radius: 12px; padding: 14px 16px; }
+  .inicial { width: 46px; height: 46px; border-radius: 50%; background: var(--panel-2); border: 2px solid var(--rojo); display: grid; place-items: center; font: 600 1.3rem var(--f-tit); padding-top: 3px; color: #fff; }
+  .resena p { margin: 0; color: #e6e7ea; font-size: 1rem; line-height: 1.45; }
+  .resena small { color: var(--gris); font-size: .94rem; }
+  .pequeno { color: #8d939b; font-size: .94rem; margin-top: 10px; }
+  .datos { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 14px; }
+  .datos li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; color: #e6e7ea; }
+  .datos .ico { color: var(--rojo-txt); width: 24px; height: 24px; margin-top: 1px; }
+  .datos a { font-weight: 700; text-decoration: none; font-size: 1.15rem; }
+  .datos .horas { color: var(--gris); font-size: .98rem; }
+  .lugar .btn { min-height: 48px; font-size: 1rem; }
+  .mapa { margin: 0; border-radius: 12px; overflow: hidden; border: 1px solid #2a2c30; background: #dfe3e6; }
+  .mapa iframe { display: block; width: 100%; height: 280px; border: 0; }
+  .mapa figcaption { background: var(--panel); color: #8d939b; font-size: .94rem; padding: 8px 12px; }
+  @media (max-width: 1000px) {
+    .lugar { grid-template-columns: 1fr 1fr; }
+    .lugar .sep { display: none; }
+    .lugar .opiniones { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) { .lugar { grid-template-columns: 1fr; gap: 36px; } }
 
-  .wa-flota { position: fixed; right: 16px; bottom: 16px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: var(--c-wa); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
-  .wa-flota svg { width: 30px; height: 30px; color: #fff; }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  /* Preguntas */
+  #preguntas { background: var(--panel); border-top: 1px solid #26282b; }
+  .faq { max-width: 820px; }
+  .faq h2 { margin-bottom: 14px; padding-top: .1em; }
+  details { border-bottom: 1px solid var(--linea); }
+  summary { cursor: pointer; list-style: none; padding: 16px 40px 16px 0; font-weight: 600; font-size: 1.06rem; position: relative; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; position: absolute; right: 6px; top: 8px; font: 600 2rem var(--f-tit); color: var(--rojo-txt); }
+  details[open] summary::after { content: "–"; }
+  details p { margin: 0 0 16px; color: #cfd2d6; max-width: 65ch; }
+
+  /* Pie */
+  footer { background: #0a0a0b; border-top: 1px solid #222428; padding: 34px 0 96px; }
+  .pie { display: grid; grid-template-columns: auto 1fr auto; gap: 30px; align-items: center; }
+  .pie .logo svg { height: 58px; }
+  .legal { display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: center; }
+  .legal a { color: #c9ccd1; text-decoration: none; font-size: .98rem; }
+  .legal a:hover { color: #fff; text-decoration: underline; }
+  .pie-wa { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 600; }
+  .pie-wa svg { width: 26px; height: 26px; color: var(--wa); }
+  .pie-nota { grid-column: 1 / -1; color: #80868e; font-size: .94rem; border-top: 1px solid #222428; padding-top: 18px; margin: 0; }
+  .pie-nota a { color: #b9bdc4; }
+  @media (max-width: 820px) { .pie { grid-template-columns: 1fr; justify-items: start; } .legal { justify-content: flex-start; } }
+  .wa-flota { position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+  .wa-flota svg { width: 32px; height: 32px; color: #fff; }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M7.5 13h2M11 13h2M14.5 13h2M7.5 16.5h2M11 16.5h2"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></symbol>
+  <symbol id="i-estrella" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9L12 2.8Z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.3-.9 2.1 0 .9.4 1.8 1 2.6 1.1 1.6 2.5 2.9 4.2 3.7.6.3 1.1.4 1.5.5.6.2 1.2.1 1.7 0 .5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></symbol>
+  <symbol id="logo" viewBox="0 0 270 64">
+    <g transform="translate(2 3)">
+      <path d="M15 20c0-9 5-16 14-16s14 7 14 16" fill="none" stroke="#e3262d" stroke-width="7" stroke-linecap="round"/>
+      <path d="M8 34c0-8.5 9-14 21-14s21 5.5 21 14c0 9-4 16-9 20H17c-5-4-9-11-9-20Z" fill="#e3262d"/>
+      <rect x="20" y="31" width="18" height="9" rx="2" fill="#0f1011"/>
+      <text x="29" y="39.2" text-anchor="middle" font-family="Teko, 'Arial Narrow', sans-serif" font-weight="600" font-size="10.5" fill="#ffffff">12 KG</text>
+    </g>
+    <text x="62" y="40" font-family="Teko, 'Arial Narrow', sans-serif" font-weight="600" font-size="44" fill="#ffffff" letter-spacing=".5">TU <tspan fill="#ff5a54">GIMNASIO</tspan></text>
+    <text x="63" y="58" font-family="'Libre Franklin', system-ui, sans-serif" font-weight="600" font-size="11.4" fill="#c3c7cd" letter-spacing=".2">Entrenamiento personal y clases</text>
+  </symbol>
+</svg>
+
 <div class="franja">Web de ejemplo hecha por iando · ¿Quieres la tuya? <a href="https://wa.me/34637847114?text=Hola%20Jes%C3%BAs%2C%20he%20visto%20la%20web%20de%20ejemplo%20del%20gimnasio%20y%20quiero%20una%20para%20mi%20negocio" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></div>
 
 <header>
-  <div class="contenedor barra">
-    <a class="marca" href="#inicio" aria-label="Tu gimnasio, inicio">
-      <svg viewBox="0 0 196 44" role="img" aria-label="Tu gimnasio"><path d="M13 15a9 9 0 0 1 18 0" fill="none" stroke="#ff4d42" stroke-width="4.5"/><path d="M10.5 17h23a11 11 0 0 1 3 7.6 12 12 0 0 1-4.6 9.4H12.1a12 12 0 0 1-4.6-9.4 11 11 0 0 1 3-7.6Z" fill="#ff4d42"/><rect x="15" y="23" width="14" height="6" rx="1" fill="#1d2125"/><text x="46" y="33" fill="#ffffff" font-family="Teko, Impact, sans-serif" font-weight="600" font-size="32" letter-spacing=".5">Tu gimnasio</text></svg>
-    </a>
-    <nav aria-label="Secciones"><ul><li><a href="#empezar">Cómo empezar</a></li><li><a href="#reservar">Reservar hora</a></li><li><a href="#horario">Horario</a></li><li><a href="#preguntas">Preguntas</a></li></ul></nav>
-    <a class="btn btn-rojo" href="#reservar">Reservar hora</a>
+  <div class="contenedor cab">
+    <a class="logo" href="#" aria-label="Tu gimnasio · Entrenamiento personal y clases"><svg viewBox="0 0 270 64" role="img" aria-hidden="true"><use href="#logo"/></svg></a>
+    <nav aria-label="Menú">
+      <ul>
+        <li><a href="#servicios">Entrenamientos</a></li>
+        <li><a href="#reservar">Reservar</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#donde">Dónde estamos</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-pri" href="#reservar"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg>Reservar hora</a>
   </div>
 </header>
 
-<main id="inicio">
-  <section class="hero">
-    <div class="contenedor hero-grid">
-      <div class="texto">
-        <h1>Tu hora en el gimnasio, reservada desde el móvil</h1>
-        <p class="sub">Elige entrenamiento, día y hora libre. Sin pasar por recepción y sin esperar a que te contesten.</p>
-        <div class="acciones">
-          <a class="btn btn-carbon" href="#reservar">Reservar hora</a>
-          <a class="btn btn-2" href="tel:+34637847114">Llamar al 637 847 114</a>
+<main>
+  <section class="inicio" aria-labelledby="titular">
+    <img src="img/inicio.jpg" width="1800" height="1000" alt="Una chica levanta una barra con discos en la sala mientras su entrenador la observa" fetchpriority="high">
+    <div class="contenedor">
+      <div class="inicio-txt">
+        <h1 id="titular"><span class="l">Tu hora en el gimnasio,</span><br> <span class="l rojo">reservada desde el móvil</span></h1>
+        <p>Entrenamiento personal, clases de funcional y primera visita con valoración. Elige día y hora libre, sin pasar por recepción.</p>
+        <div class="botones">
+          <a class="btn btn-pri" href="#reservar"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg>Reservar hora</a>
+          <a class="btn btn-sec" href="tel:+34637847114"><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg>Llamar al 637 847 114</a>
         </div>
-        <p class="datos"><strong>Lunes a viernes</strong> 7:00–22:00 · <strong>Sábados</strong> 9:00–14:00</p>
-      </div>
-      <div class="hero-ilus">
-        <svg viewBox="0 20 600 330" role="img" aria-label="Ilustración: la sala del gimnasio con el reloj de intervalos en la pared marcando las 07:00, un rack con barra y discos, kettlebells y un cajón de salto">
-          <!-- reloj de intervalos -->
-          <rect x="300" y="62" width="250" height="92" rx="6" fill="#1d2125"/>
-          <rect x="312" y="74" width="226" height="68" rx="3" fill="#121518"/>
-          <text x="425" y="133" text-anchor="middle" font-family="Teko, Impact, sans-serif" font-weight="600" font-size="72" fill="#ff3b30" letter-spacing="4">07:00</text>
-          <circle cx="322" cy="84" r="3" fill="#ff3b30"/>
-          <!-- rack -->
-          <g fill="#1d2125">
-            <rect x="70" y="92" width="14" height="250"/><rect x="196" y="92" width="14" height="250"/>
-            <rect x="64" y="86" width="152" height="12"/>
-            <rect x="84" y="196" width="18" height="8"/><rect x="178" y="196" width="18" height="8"/>
-          </g>
-          <!-- barra con discos -->
-          <rect x="30" y="186" width="220" height="7" rx="3" fill="#c8ced3"/>
-          <rect x="34" y="160" width="16" height="60" rx="3" fill="#16181b"/><rect x="52" y="168" width="10" height="44" rx="2" fill="#2f6fd6"/>
-          <rect x="230" y="160" width="16" height="60" rx="3" fill="#16181b"/><rect x="218" y="168" width="10" height="44" rx="2" fill="#2f6fd6"/>
-          <!-- suelo de caucho -->
-          <!-- cajón de salto -->
-          <rect x="300" y="236" width="150" height="110" rx="4" fill="#d9b382"/>
-          <rect x="300" y="236" width="150" height="12" rx="4" fill="#c49c6a"/>
-          <text x="375" y="302" text-anchor="middle" font-family="Teko, Impact, sans-serif" font-weight="600" font-size="30" fill="#1d2125">Tu gimnasio</text>
-          <!-- kettlebells -->
-          <g>
-            <path d="M478 298a14 14 0 0 1 28 0" fill="none" stroke="#16181b" stroke-width="7"/>
-            <circle cx="492" cy="320" r="24" fill="#16181b"/><rect x="482" y="314" width="20" height="9" rx="2" fill="#f2c230"/>
-          </g>
-          <g>
-            <path d="M532 290a17 17 0 0 1 34 0" fill="none" stroke="#16181b" stroke-width="8"/>
-            <circle cx="549" cy="316" r="29" fill="#16181b"/><rect x="537" y="309" width="24" height="10" rx="2" fill="#ff4d42"/>
-          </g>
-          <!-- discos apoyados -->
-          <circle cx="250" cy="312" r="34" fill="#16181b"/><circle cx="250" cy="312" r="8" fill="#c8ced3"/>
-          <circle cx="226" cy="320" r="26" fill="#2f6fd6"/><circle cx="226" cy="320" r="6" fill="#c8ced3"/>
-          <!-- comba -->
-          <path d="M60 344c20-30 70-30 90 0" fill="none" stroke="#f2c230" stroke-width="4"/>
-        </svg>
+        <p class="horario-mini"><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg>Lunes a viernes 7:00 a 22:00 · Sábados 9:00 a 14:00</p>
       </div>
     </div>
-    <div class="suelo" aria-hidden="true"></div>
   </section>
 
-  <section id="empezar">
+  <div class="garantias">
+    <ul class="contenedor">
+      <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 14v10l6 4"/><path d="M38 6l4 4M10 6 6 10"/></svg><div><strong>Reservas a cualquier hora</strong><span>Aunque estemos en mitad de una clase</span></div></li>
+      <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="9" width="34" height="31" rx="4"/><path d="M7 18h34M16 5v8M32 5v8M16 28l5 5 10-10"/></svg><div><strong>Ves las horas libres de verdad</strong><span>Según lo que dura cada entrenamiento</span></div></li>
+      <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 40l2.6-7.8A16 16 0 1 1 16 37.6Z"/><path d="M18 19c0 6 5 11 11 11l2.5-2.8-4-2-1.8 1.6c-2-.8-3.6-2.4-4.4-4.4l1.6-1.8-2-4Z"/></svg><div><strong>Si prefieres, por WhatsApp</strong><span>O llámanos al 637 847 114</span></div></li>
+    </ul>
+  </div>
+
+  <section id="servicios" aria-labelledby="t-servicios">
     <div class="contenedor">
-      <div class="empezar-cab">
-        <h2>Cómo empezar</h2>
-        <p>Tres formas de entrar. A la izquierda, lo que dura cada una.</p>
+      <div class="titulo-linea"><h2 id="t-servicios">Cómo entrenar con nosotros</h2></div>
+      <div class="rejilla">
+        <a class="tarjeta" href="#reservar" data-serv="Primera visita y valoración">
+          <img src="img/valoracion.jpg" width="640" height="480" alt="Un entrenador apunta en su carpeta lo que le cuenta una chica sentada a su lado en la sala" loading="lazy">
+          <div class="tarjeta-txt"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="5" width="18" height="24" rx="2"/><path d="M12 3h8v4h-8zM11 14h10M11 19h10M11 24h6"/></svg><div><h3>Primera visita</h3><p>Valoración y te enseñamos la sala<span class="min">30 min</span></p></div></div>
+        </a>
+        <a class="tarjeta" href="#reservar" data-serv="Entrenamiento personal">
+          <img src="img/personal.jpg" width="640" height="480" alt="Un entrenador corrige a una chica que hace remo con mancuerna" loading="lazy">
+          <div class="tarjeta-txt"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8M8 9v14M24 9v14M28 12v8M8 16h16"/></svg><div><h3>Entrenamiento personal</h3><p>Tú y tu entrenador, con tu plan<span class="min">60 min</span></p></div></div>
+        </a>
+        <a class="tarjeta" href="#reservar" data-serv="Clase de funcional">
+          <img src="img/funcional.jpg" width="640" height="480" alt="Grupo de chicas haciendo press con mancuernas en una clase" loading="lazy">
+          <div class="tarjeta-txt"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 9c0-3 2-5 5-5s5 2 5 5"/><path d="M7 17c0-5 4-8 9-8s9 3 9 8-3 9-5 11h-8c-2-2-5-6-5-11Z"/></svg><div><h3>Clase de funcional</h3><p>En grupo, a tu ritmo<span class="min">45 min</span></p></div></div>
+        </a>
+        <a class="tarjeta tarjeta-otra" href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20preguntar%20por%20los%20entrenamientos%20del%20gimnasio" target="_blank" rel="noopener">
+          <h3>¿No sabes cuál elegir?</h3>
+          <p>Cuéntanos qué quieres conseguir y te decimos por dónde empezar.</p>
+          <b><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Escribir por WhatsApp</b>
+        </a>
       </div>
-      <ul class="filas">
-        <li><span class="digitos">30:00</span><h3>Primera visita y valoración</h3><p>Si nunca has entrenado o vuelves después de mucho tiempo. Hablamos de lo que quieres conseguir, de tu experiencia y de si tienes alguna lesión, y te enseñamos la sala.</p></li>
-        <li><span class="digitos">60:00</span><h3>Entrenamiento personal</h3><p>Una hora tú y tu entrenador, con el plan pensado para ti.</p></li>
-        <li><span class="digitos">45:00</span><h3>Clase de funcional</h3><p>En grupo: calentamiento, técnica y circuito. El peso y el ritmo se adaptan a cada uno.</p></li>
-      </ul>
     </div>
   </section>
 
   <!-- ============ RESERVAS (taller de iando) ============ -->
-  <section id="reservar">
-    <div class="contenedor res-grid">
-      <div class="res-intro">
-        <h2>Reserva tu hora</h2>
-        <p>Las horas que ves son las que quedan libres de verdad en la agenda del gimnasio.</p>
-        <p>¿Es tu primera vez? Empieza por la <strong>primera visita y valoración</strong>.</p>
-        <p class="alt">¿Prefieres hablar? <a href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20reservar%20una%20hora%20en%20el%20gimnasio" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> o llama al <a href="tel:+34637847114">637 847 114</a>.</p>
-      </div>
-      <div class="ficha-res">
-        <div class="reloj" aria-live="polite">
-          <span class="reloj-pant" id="rv-reloj">--:--</span>
-          <span class="reloj-info"><strong id="rv-reloj-serv">Tu hora</strong><span id="rv-reloj-dia">Elige entrenamiento, día y hora</span></span>
+  <section id="reservar" aria-labelledby="t-reservar">
+    <div class="contenedor">
+      <div class="reserva">
+        <div class="res-intro">
+          <h2 id="t-reservar">Reserva tu hora<br><span>sin pasar por recepción</span></h2>
+          <p>Elige entrenamiento, día y hora libre. En un minuto la tienes.</p>
+          <div class="firma">¡Así de fácil!<svg viewBox="0 0 150 14" aria-hidden="true"><path d="M3 10c30-6 70-9 144-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div>
+          <p class="res-alt">¿Prefieres hablar? <a href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20reservar%20hora%20en%20el%20gimnasio" target="_blank" rel="noopener">WhatsApp</a> o <a href="tel:+34637847114" style="white-space:nowrap">637 847 114</a>.</p>
         </div>
-        <div class="ficha-cuerpo">
+        <div class="res-caja">
+          <ol class="pasos" id="rv-pasos">
+            <li data-n="1" class="activo">Servicio</li>
+            <li data-n="2">Fecha y hora</li>
+            <li data-n="3">Tus datos</li>
+            <li data-n="4">Confirmación</li>
+          </ol>
           <form id="rv-form" class="rv" novalidate>
-            <div><span class="rv-lab" id="rv-serv-lab">Entrenamiento</span>
-              <div id="rv-servs" class="rv-servs" role="radiogroup" aria-labelledby="rv-serv-lab"><p class="rv-ayuda">Cargando…</p></div>
+            <div class="paso" data-paso="1">
+              <div class="rv-fila">
+                <label>¿Qué quieres reservar?<select id="rv-serv"><option value="">Cargando…</option></select></label>
+                <label>Día<select id="rv-fecha"></select></label>
+              </div>
+              <p class="rv-dur" id="rv-dur">Si empiezas de cero, elige la primera visita.</p>
+              <div class="rv-acciones"><button type="button" class="btn btn-pri" id="rv-sig1" disabled>Ver horas libres</button></div>
             </div>
-            <div><span class="rv-lab" id="rv-dias-lab">Día</span>
-              <div id="rv-dias" class="rv-dias" role="group" aria-labelledby="rv-dias-lab"></div>
-              <label class="rv-otro">¿Otro día?<input type="date" id="rv-fecha" required></label>
+            <div class="paso" data-paso="2" hidden>
+              <span class="rv-lab" id="rv-horas-lab">Horas libres</span>
+              <div id="rv-horas" class="rv-horas" role="radiogroup" aria-labelledby="rv-horas-lab"><p class="rv-ayuda">Buscando horas libres…</p></div>
+              <div class="rv-acciones"><button type="button" class="btn btn-atras" data-ir="1">Atrás</button><button type="button" class="btn btn-pri" id="rv-sig2" disabled>Continuar</button></div>
             </div>
-            <div><span class="rv-lab">Hora</span><div id="rv-horas" class="rv-horas" role="radiogroup" aria-label="Horas libres"><p class="rv-ayuda">Elige primero el entrenamiento y el día.</p></div></div>
-            <div class="rv-dos">
-              <label>Nombre<input id="rv-nombre" autocomplete="name" maxlength="120" required></label>
-              <label>Teléfono<input id="rv-tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="600 000 000" required></label>
+            <div class="paso" data-paso="3" hidden>
+              <div class="rv-resumen" id="rv-resumen"></div>
+              <div class="rv-campos">
+                <div class="rv-dos">
+                  <label>Nombre<input id="rv-nombre" autocomplete="name" maxlength="120" required></label>
+                  <label>Teléfono<input id="rv-tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="600 000 000" required></label>
+                </div>
+                <label>Correo electrónico<input id="rv-email" type="email" inputmode="email" autocomplete="email" maxlength="160" placeholder="tu@correo.com" required></label>
+                <label>¿Algo que debamos saber? (opcional)<textarea id="rv-notas" rows="2" maxlength="500" placeholder="Si es tu primera vez, alguna lesión…"></textarea></label>
+                <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos para gestionar esta reserva y que me envíen por correo la confirmación, un recordatorio y, después, un enlace para dejar mi opinión.</label>
+              </div>
+              <div class="rv-acciones"><button type="button" class="btn btn-atras" data-ir="2">Atrás</button><button class="btn btn-pri" type="submit" id="rv-enviar">Reservar mi hora</button></div>
             </div>
-            <label>Correo electrónico<input id="rv-email" type="email" inputmode="email" autocomplete="email" maxlength="160" placeholder="tu@correo.com" required></label>
-            <label>¿Algo que debamos saber? (opcional)<textarea id="rv-notas" rows="2" maxlength="500" placeholder="Por ejemplo: es mi primera vez o tengo una lesión"></textarea></label>
-            <label class="rv-check"><input type="checkbox" id="rv-ok" required> Acepto que usen mis datos para gestionar esta reserva y que me envíen por correo la confirmación, un recordatorio y, después, un enlace para dejar mi opinión.</label>
-            <button class="btn btn-rojo" type="submit" id="rv-enviar">Reservar mi hora</button>
+            <div class="paso rv-hecha" data-paso="4" hidden>
+              <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+              <h3>¡Hora reservada!</h3>
+              <p>Te esperamos en la sala. Si necesitas cambiarla, escríbenos.</p>
+              <div class="rv-resumen" id="rv-resumen-fin"></div>
+              <div class="botones" id="rv-fin-botones"><button type="button" class="btn btn-atras" id="rv-otra">Reservar otra hora</button></div>
+            </div>
             <p id="rv-estado" class="rv-estado" role="status" aria-live="polite"></p>
           </form>
+          <div class="reloj" id="rv-reloj" aria-hidden="true"><b id="rv-reloj-h">--:--</b><small id="rv-reloj-t">Elige tu hora y se enciende</small></div>
+
         </div>
       </div>
     </div>
@@ -340,67 +442,90 @@
     var ORDEN = ["Primera visita y valoración", "Entrenamiento personal", "Clase de funcional"];
     var H = { apikey: KEY, Authorization: "Bearer " + KEY, "Content-Type": "application/json" };
     var $ = function (id) { return document.getElementById(id); };
-    var hora = null, serv = "", servicios = [];
-    /* Reloj de intervalos: se enciende con la hora elegida */
-    function reloj() {
-      var p = $("rv-reloj"), sv = servicios.find(function (x) { return x.id === serv; }), f = $("rv-fecha").value;
-      p.textContent = hora || "--:--"; p.className = "reloj-pant" + (hora ? " on" : "");
-      $("rv-reloj-serv").textContent = sv ? sv.nombre : "Tu hora";
-      $("rv-reloj-dia").textContent = f ? new Date(f + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }) + (sv ? " · " + sv.duracion_minutos + " min" : "") : "Elige entrenamiento, día y hora";
-    }
-    var estado = function (t, cls) { var e = $("rv-estado"); e.textContent = t; e.className = "rv-estado " + (cls || ""); };
+    var hora = null, servicios = [], pendiente = "";
+    var esc = function (t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
+    var estado = function (t, cls) { var e = $("rv-estado"); e.textContent = t || ""; e.className = "rv-estado " + (cls || ""); };
     var hoy = new Date(); var iso = function (d) { return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
-    $("rv-fecha").min = iso(hoy); $("rv-fecha").max = iso(new Date(hoy.getTime() + 60 * 864e5));
+    var serv = function () { return $("rv-serv").value; };
 
-    /* Botones de día: los próximos 10 días abiertos */
-    var dias = $("rv-dias"), html = "", n = 0;
-    for (var i = 0; n < 10 && i < 30; i++) {
+    /* Días: los próximos 14 días abiertos */
+    var ops = "", n = 0;
+    for (var i = 0; n < 14 && i < 40; i++) {
       var d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + i);
       if (ABIERTO.indexOf(d.getDay()) < 0) continue;
-      var et = i === 0 ? "hoy" : i === 1 ? "mañana" : d.toLocaleDateString("es-ES", { weekday: "short" }).replace(".", "");
-      html += '<button type="button" aria-pressed="false" data-f="' + iso(d) + '"><small>' + et + "</small><b>" + d.getDate() + "</b><small>" + d.toLocaleDateString("es-ES", { month: "short" }).replace(".", "") + "</small></button>";
+      var et = d.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
+      if (i === 0) et = "Hoy, " + et; else if (i === 1) et = "Mañana, " + et;
+      ops += '<option value="' + iso(d) + '">' + et.charAt(0).toUpperCase() + et.slice(1) + "</option>";
       n++;
     }
-    dias.innerHTML = html;
-    function marcarDia(f) { dias.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.f === f ? "true" : "false"); }); }
-    dias.querySelectorAll("button").forEach(function (b) { b.onclick = function () { $("rv-fecha").value = b.dataset.f; marcarDia(b.dataset.f); cargarHoras(); }; });
+    $("rv-fecha").innerHTML = ops;
 
-    function marcarServ(id) { serv = id; $("rv-servs").querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-checked", b.dataset.id === id ? "true" : "false"); }); }
+    function reloj(h, t) { $("rv-reloj-h").textContent = h || "--:--"; $("rv-reloj-t").textContent = t || "Elige tu hora y se enciende"; $("rv-reloj").classList.toggle("on", !!h); }
+    function ir(n) {
+      document.querySelectorAll("#rv-form .paso").forEach(function (p) { p.hidden = p.dataset.paso !== String(n); });
+      document.querySelectorAll("#rv-pasos li").forEach(function (li, i) { li.className = i + 1 < n ? "hecho" : i + 1 === n ? "activo" : ""; });
+      estado("");
+      if (n === 2) cargarHoras();
+      if (n === 3) $("rv-resumen").innerHTML = resumen();
+    }
+    function fechaLarga() { return new Date($("rv-fecha").value + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }); }
+    function servActual() { var id = serv(); return servicios.find(function (x) { return x.id === id; }) || {}; }
+    function resumen() { var s = servActual(); return "<b>" + esc(s.nombre || "") + "</b> (" + (s.duracion_minutos || "") + " min)<br>" + fechaLarga() + " a las <b>" + hora + "</b>"; }
+    document.querySelectorAll("[data-ir]").forEach(function (b) { b.onclick = function () { ir(+b.dataset.ir); }; });
+    $("rv-sig1").onclick = function () { ir(2); };
+    $("rv-sig2").onclick = function () { ir(3); };
+
+    function cambioServ() {
+      var s = servActual(); $("rv-sig1").disabled = !s.id; hora = null; reloj();
+      $("rv-dur").textContent = s.id ? "Dura " + s.duracion_minutos + " minutos." : "Si empiezas de cero, elige la primera visita.";
+    }
+    $("rv-serv").onchange = cambioServ;
+    $("rv-fecha").onchange = function () { hora = null; reloj(); };
+    function elegirPorNombre(nombre) {
+      var s = servicios.find(function (x) { return x.nombre === nombre; });
+      if (s) { $("rv-serv").value = s.id; cambioServ(); ir(1); } else { pendiente = nombre; }
+    }
+    document.querySelectorAll("[data-serv]").forEach(function (a) { a.addEventListener("click", function () { elegirPorNombre(a.dataset.serv); }); });
+
     fetch(SB + "/rest/v1/servicios?select=id,nombre,precio_desde,duracion_minutos&order=nombre&negocio_id=eq." + NEGOCIO, { headers: H })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (s) {
         servicios = s.slice().sort(function (a, b) { var x = ORDEN.indexOf(a.nombre), y = ORDEN.indexOf(b.nombre); return (x < 0 ? 99 : x) - (y < 0 ? 99 : y); });
-        var esc = function (t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
-        $("rv-servs").innerHTML = servicios.map(function (x) {
-          return '<button type="button" role="radio" aria-checked="false" data-id="' + x.id + '"><b>' + esc(x.nombre) + "</b><small>" + x.duracion_minutos + " min" + (x.precio_desde ? " · desde " + x.precio_desde + " €" : "") + "</small></button>";
+        $("rv-serv").innerHTML = '<option value="">Elige entrenamiento</option>' + servicios.map(function (x) {
+          return '<option value="' + x.id + '">' + esc(x.nombre) + " · " + x.duracion_minutos + " min" + (x.precio_desde ? " · desde " + x.precio_desde + " €" : "") + "</option>";
         }).join("");
-        $("rv-servs").querySelectorAll("button").forEach(function (b) { b.onclick = function () { marcarServ(b.dataset.id); cargarHoras(); }; });
+        if (pendiente) { elegirPorNombre(pendiente); pendiente = ""; }
       })
-      .catch(function () { $("rv-servs").innerHTML = '<p class="rv-ayuda">No se pudieron cargar los entrenamientos.</p>'; estado("La reserva online no está disponible ahora. Escríbenos por WhatsApp.", "mal"); });
+      .catch(function () { $("rv-serv").innerHTML = '<option value="">No disponible</option>'; estado("La reserva online no está disponible ahora. Escríbenos por WhatsApp.", "mal"); });
 
     function cargarHoras() {
-      hora = null; reloj();
+      hora = null; reloj(); $("rv-sig2").disabled = true;
       var f = $("rv-fecha").value, box = $("rv-horas");
-      if (!serv || !f) { box.innerHTML = '<p class="rv-ayuda">' + (!serv ? "Elige primero el entrenamiento." : "Toca un día.") + "</p>"; return; }
+      $("rv-horas-lab").textContent = "Horas libres · " + fechaLarga();
+      if (!serv() || !f) { ir(1); return; }
       box.innerHTML = '<p class="rv-ayuda">Buscando horas libres…</p>';
-      fetch(SB + "/rest/v1/rpc/huecos_libres", { method: "POST", headers: H, body: JSON.stringify({ p_negocio_id: NEGOCIO, p_servicio_id: serv, p_fecha: f }) })
+      fetch(SB + "/rest/v1/rpc/huecos_libres", { method: "POST", headers: H, body: JSON.stringify({ p_negocio_id: NEGOCIO, p_servicio_id: serv(), p_fecha: f }) })
         .then(function (r) { return r.json(); })
         .then(function (horas) {
-          if (!Array.isArray(horas) || !horas.length) { box.innerHTML = '<p class="rv-ayuda">No quedan horas libres ese día. Prueba con otro.</p>'; return; }
+          if (!Array.isArray(horas) || !horas.length) { box.innerHTML = '<p class="rv-ayuda">No quedan horas libres ese día. Vuelve atrás y prueba con otro.</p>'; return; }
           box.innerHTML = horas.map(function (h) { var v = String(h).slice(0, 5); return '<button type="button" role="radio" aria-checked="false" data-h="' + v + '">' + v + "</button>"; }).join("");
           box.querySelectorAll("button").forEach(function (b) {
-            b.onclick = function () { box.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-checked", "false"); }); b.setAttribute("aria-checked", "true"); hora = b.dataset.h; reloj(); };
+            b.onclick = function () { box.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-checked", "false"); }); b.setAttribute("aria-checked", "true"); hora = b.dataset.h; $("rv-sig2").disabled = false; reloj(hora, fechaLarga()); };
           });
         })
         .catch(function () { box.innerHTML = '<p class="rv-ayuda">No se pudieron cargar las horas. Inténtalo de nuevo.</p>'; });
     }
-    $("rv-fecha").onchange = function () { marcarDia($("rv-fecha").value); cargarHoras(); };
+
+    $("rv-otra").onclick = function () {
+      var f = $("rv-fecha").value; $("rv-form").reset(); $("rv-fecha").value = f; cambioServ();
+      var wa = $("rv-fin-botones").querySelector(".btn-wa"); if (wa) wa.remove();
+      ir(1);
+    };
 
     $("rv-form").onsubmit = function (e) {
       e.preventDefault();
       var nombre = $("rv-nombre").value.trim(), tel = $("rv-tel").value.replace(/\D/g, "");
-      if (!serv || !$("rv-fecha").value) return estado("Elige el entrenamiento y el día.", "mal");
-      if (!hora) return estado("Elige una hora.", "mal");
+      if (!serv() || !$("rv-fecha").value || !hora) { ir(!serv() ? 1 : 2); return estado("Elige el entrenamiento, el día y la hora.", "mal"); }
       if (!nombre) return estado("Escribe tu nombre.", "mal");
       if (!/^(34)?[6-9]\d{8}$/.test(tel)) return estado("Revisa el teléfono (9 cifras).", "mal");
       var email = $("rv-email").value.trim();
@@ -409,21 +534,19 @@
       $("rv-enviar").disabled = true; estado("Reservando tu hora…");
       fetch(SB + "/rest/v1/rpc/reservar_hueco", { method: "POST", headers: H, body: JSON.stringify({
         p_negocio_id: NEGOCIO, p_nombre: nombre, p_telefono: tel.slice(-9), p_email: email,
-        p_servicio_id: serv, p_fecha: $("rv-fecha").value, p_hora: hora, p_notas: $("rv-notas").value.trim() || null }) })
+        p_servicio_id: serv(), p_fecha: $("rv-fecha").value, p_hora: hora, p_notas: $("rv-notas").value.trim() || null }) })
         .then(function (r) { return r.json(); })
         .then(function (res) {
           if (res && res.ok) {
-            var s = servicios.find(function (x) { return x.id === serv; }) || {};
-            var f = new Date($("rv-fecha").value + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
-            var hh = hora;
-            estado("¡Hora reservada! " + (s.nombre || "") + " el " + f + " a las " + hh + ". Te confirmaremos en breve.", "ok");
-            $("rv-form").reset(); marcarDia(""); marcarServ(""); $("rv-horas").innerHTML = ""; hora = null; $("rv-reloj").textContent = hh; $("rv-reloj").className = "reloj-pant on";
+            var s = servActual(), f = fechaLarga(), hh = hora;
+            $("rv-resumen-fin").innerHTML = resumen() + "<br>A nombre de <b>" + esc(nombre) + "</b>";
+            ir(4); reloj(hh, "Reservada: " + f);
             if (WHATSAPP && /^\d+$/.test(WHATSAPP)) {
-              var a = document.createElement("a"); a.className = "btn btn-2"; a.target = "_blank"; a.rel = "noopener";
+              var a = document.createElement("a"); a.className = "btn btn-wa"; a.target = "_blank"; a.rel = "noopener";
               a.href = "https:" + "//wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hola, acabo de reservar " + (s.nombre || "") + " el " + f + " a las " + hh + " a nombre de " + nombre + ".");
-              a.textContent = "Avisar por WhatsApp (opcional)"; $("rv-estado").after(a);
+              a.textContent = "Avisar por WhatsApp (opcional)"; $("rv-fin-botones").prepend(a);
             }
-          } else { estado((res && res.error) || "No se pudo reservar. Inténtalo de nuevo.", "mal"); cargarHoras(); }
+          } else { estado((res && res.error) || "No se pudo reservar. Inténtalo de nuevo.", "mal"); if (res && /hora/i.test(res.error || "")) { var m = res.error; ir(2); estado(m, "mal"); } }
         })
         .catch(function () { estado("No se pudo reservar. Escríbenos por WhatsApp.", "mal"); })
         .finally(function () { $("rv-enviar").disabled = false; });
@@ -432,36 +555,41 @@
   </script>
   <!-- ============ /RESERVAS ============ -->
 
-  <section>
-    <div class="contenedor frases">
-      <div><h3>Ves las horas libres de verdad</h3><p>Solo salen los huecos que quedan, según lo que dura cada entrenamiento.</p></div>
-      <div><h3>Reservas a cualquier hora</h3><p>Aunque sea de noche o estemos en mitad de una clase.</p></div>
-      <div><h3>Si prefieres, por WhatsApp</h3><p>Escríbenos o llámanos al <a href="tel:+34637847114">637 847 114</a>.</p></div>
-    </div>
-  </section>
-
-  <section id="horario">
-    <div class="contenedor dos">
-      <div>
-        <h2>Horario y dónde estamos</h2>
-        <table class="horario"><tbody>
-          <tr><td>Lunes</td><td>7:00–22:00</td></tr>
-          <tr><td>Martes</td><td>7:00–22:00</td></tr>
-          <tr><td>Miércoles</td><td>7:00–22:00</td></tr>
-          <tr><td>Jueves</td><td>7:00–22:00</td></tr>
-          <tr><td>Viernes</td><td>7:00–22:00</td></tr>
-          <tr><td>Sábado</td><td>9:00–14:00</td></tr>
-          <tr class="cerrado"><td>Domingo</td><td>Cerrado</td></tr>
-        </tbody></table>
-        <p style="margin-top:16px">Calle de ejemplo, 3</p>
+  <section id="opiniones" aria-label="Opiniones y dónde estamos">
+    <div class="contenedor lugar">
+      <div class="opiniones">
+        <h2>Lo que dicen en la sala</h2>
+        <div class="nota">
+          <div class="estrellas" aria-hidden="true"><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg></div>
+          <strong>4,9</strong>
+        </div>
+        <p class="nota-sub">Nota media de ejemplo en Google</p>
+        <div class="resenas">
+          <div class="resena"><span class="inicial" aria-hidden="true">LP</span><div><p>«No había pisado un gimnasio nunca. En la primera visita me explicaron todo sin agobiarme.»</p><small>Lucía P.</small></div></div>
+          <div class="resena"><span class="inicial" aria-hidden="true">JM</span><div><p>«Cojo la clase de las 7 desde el móvil la noche antes y listo.»</p><small>Javier M.</small></div></div>
+        </div>
+        <p class="pequeno">Reseñas de ejemplo: es un negocio ficticio para enseñar cómo queda la web.</p>
       </div>
-      <div class="mapa-ej" role="img" aria-label="Aquí irá el mapa de Google con la dirección del negocio"><span>Aquí irá el mapa de Google<br>con la dirección de tu gimnasio</span></div>
+      <div class="sep" aria-hidden="true"></div>
+      <div id="donde">
+        <h2>¿Dónde estamos?</h2>
+        <ul class="datos">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span>Calle de ejemplo, 3</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg><a href="tel:+34637847114">637 847 114</a></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><span>Lunes a viernes, 7:00 a 22:00<br><span class="horas">Sábados, 9:00 a 14:00<br>Domingo, cerrado</span></span></li>
+        </ul>
+        <a class="btn btn-pri" href="https://www.google.com/maps/search/?api=1&amp;query=Oropesa%2C%20Toledo" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Ver en Google Maps</a>
+      </div>
+      <figure class="mapa">
+        <iframe src="https://maps.google.com/maps?q=Oropesa%2C%20Toledo&amp;z=15&amp;output=embed" loading="lazy" title="Mapa de ejemplo: centro de Oropesa" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <figcaption>Mapa de ejemplo (centro de Oropesa): en la web real va la dirección del gimnasio.</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section id="preguntas">
-    <div class="contenedor" style="max-width:820px">
-      <h2>Lo que más nos preguntan</h2>
+  <section id="preguntas" aria-labelledby="t-preguntas">
+    <div class="contenedor faq">
+      <h2 id="t-preguntas">Lo que más nos preguntan</h2>
       <details><summary>¿Tengo que estar en forma para empezar?</summary><p>No. En las clases el peso, las repeticiones y el ritmo se adaptan a cada persona. Si empiezas de cero, reserva primero la visita de valoración.</p></details>
       <details><summary>¿Qué tengo que traer?</summary><p>Ropa cómoda, zapatillas y agua.</p></details>
       <details><summary>Tengo una lesión, ¿puedo entrenar?</summary><p>Cuéntanoslo en la valoración o antes de la clase para adaptar los ejercicios. Si tienes dudas, consulta antes con tu médico.</p></details>
@@ -469,29 +597,21 @@
       <details><summary>¿Qué horario tenéis?</summary><p>De lunes a viernes, de 7:00 a 22:00. Sábados, de 9:00 a 14:00. Domingo, cerrado.</p></details>
     </div>
   </section>
-
-  <section id="contacto" class="cierre">
-    <div class="contenedor">
-      <h2>¿Empiezas esta semana?</h2>
-      <p>Reserva tu primera hora en un minuto o escríbenos si tienes cualquier duda.</p>
-      <div class="acciones">
-        <a class="btn btn-rojo" href="#reservar">Reservar hora</a>
-        <a class="btn btn-2" href="https://wa.me/34637847114?text=Hola%2C%20tengo%20una%20duda%20sobre%20el%20gimnasio" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer>
-  <div class="contenedor">
-    <p><strong>Gimnasio de ejemplo</strong> · Calle de ejemplo, 3 · <a href="tel:+34637847114">637 847 114</a></p>
-    <p>Negocio ficticio: esta es una web de ejemplo para enseñar cómo funciona la reserva online. Los datos que envíes solo se usan para gestionar la reserva.</p>
-    <p style="opacity:.8">Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
+  <div class="contenedor pie">
+    <a class="logo" href="#" aria-label="Tu gimnasio · Entrenamiento personal y clases"><svg viewBox="0 0 270 64" role="img" aria-hidden="true"><use href="#logo"/></svg></a>
+    <nav class="legal" aria-label="Legal">
+      <a href="https://iando.xyz/aviso-legal.html" rel="noopener">Aviso legal</a>
+      <a href="https://iando.xyz/politica-privacidad.html" rel="noopener">Privacidad</a>
+      <a href="https://iando.xyz/cookies.html" rel="noopener">Cookies</a>
+    </nav>
+    <a class="pie-wa" href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20reservar%20hora%20en%20el%20gimnasio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>637 847 114</a>
+    <p class="pie-nota">Gimnasio de ejemplo · negocio ficticio: es una web de muestra para enseñar cómo funciona la reserva online. Los datos que envíes solo se usan para gestionar la reserva. Web hecha por <a href="https://iando.xyz/servicios.html" rel="noopener">iando.xyz</a></p>
   </div>
 </footer>
 
-<a class="wa-flota" href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20reservar%20una%20hora%20en%20el%20gimnasio" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-1-1.1-1.3-1.7-.1-.2 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.3-.9 2.1 0 .9.4 1.8 1 2.6 1.1 1.6 2.5 2.9 4.2 3.7.6.3 1.1.4 1.5.5.6.2 1.2.1 1.7 0 .5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></svg>
-</a>
+<a class="wa-flota" href="https://wa.me/34637847114?text=Hola%2C%20quer%C3%ADa%20reservar%20hora%20en%20el%20gimnasio" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
 </body>
 </html>
