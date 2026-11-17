@@ -1,0 +1,88 @@
+{
+ "fotos": [
+  {
+   "nombre": "inicio-a",
+   "url": "https://www.pexels.com/photo/20860607/",
+   "ancho": 1800,
+   "alto": 1000
+  },
+  {
+   "nombre": "inicio-b",
+   "url": "https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 1800,
+   "alto": 1000
+  },
+  {
+   "nombre": "inicio-c",
+   "url": "https://images.unsplash.com/photo-1768507423533-b87b62769758?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 1800,
+   "alto": 1000
+  },
+  {
+   "nombre": "valoracion-a",
+   "url": "https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "valoracion-b",
+   "url": "https://images.unsplash.com/photo-1758691463000-08b98131daf3?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "valoracion-c",
+   "url": "https://images.unsplash.com/photo-1772122028843-9139d23af4fb?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "sesion-a",
+   "url": "https://images.unsplash.com/photo-1768507423533-b87b62769758?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "sesion-b",
+   "url": "https://images.unsplash.com/photo-1645005512968-0c1fe99f0093?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "puncion-a",
+   "url": "https://images.unsplash.com/photo-1598555763574-dca77e10427e?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "puncion-b",
+   "url": "https://www.pexels.com/photo/5473184/",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "masaje-a",
+   "url": "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "masaje-b",
+   "url": "https://images.unsplash.com/photo-1706353399656-210cca727a33?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "masaje-c",
+   "url": "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  },
+  {
+   "nombre": "masaje-d",
+   "url": "https://images.unsplash.com/photo-1540205895360-4ad4cffb3aa8?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480
+  }
+ ]
+}
