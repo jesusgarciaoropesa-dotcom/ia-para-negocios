@@ -1,6 +1,6 @@
 {
  "slug": "black-friday-clientes-comparan-con-ia",
- "_nota": "Reel «historia» (18-11-2026). Datos del artículo black-friday-clientes-comparan-con-ia (YouGov, Ley 7/1996, Ministerio de Consumo).",
+ "_nota": "Reel «historia» (18-11-2026). Datos del artículo black-friday-clientes-comparan-con-ia (YouGov, Ley 7/1996, Ministerio de Consumo). Retocado el 18-11-2026 (Jesús: «me falta interacción en pantalla, dibujos o personajes»): 6 escenas pasan a dibujos propios con personajes (compradora, robot de la IA, cliente, tiendas, dueño de tienda). Misma voz.",
  "palabra": "OFERTA",
  "musica": "suave",
  "tema": "color",
@@ -8,9 +8,16 @@
   {
    "voz": "Este Black Friday, más de la mitad de los compradores piensa usar la IA.",
    "clave": "mitad",
-   "tipo": "frase",
-   "texto": "55 %",
-   "sub": "de compradores prevé usar IA (YouGov)"
+   "tipo": "dibujo",
+   "dibujo": "bf-compradora",
+   "vibrar": true,
+   "globo": {
+    "titulo": "YouGov · Black Friday 2026",
+    "texto": "El 55 % de los compradores prevé usar IA",
+    "color": "#5b5bd6",
+    "x": 540,
+    "y": 30
+   }
   },
   {
    "voz": "Hace solo un año eran un treinta y tres por ciento.",
@@ -23,14 +30,15 @@
   {
    "voz": "¿Para qué? Para encontrar el mejor precio.",
    "clave": "precio",
-   "tipo": "chat",
-   "nombre": "Chat de IA",
-   "mensajes": [
-    {
-     "de": "yo",
-     "texto": "¿Dónde está más barato este producto?"
-    }
-   ]
+   "tipo": "dibujo",
+   "dibujo": "bf-robot-precios",
+   "globo": {
+    "titulo": "Tú, a la IA",
+    "texto": "¿Dónde está más barato este producto?",
+    "color": "#5b5bd6",
+    "x": 330,
+    "y": 20
+   }
   },
   {
    "voz": "Y para saber si el descuento es de verdad.",
@@ -52,14 +60,8 @@
   {
    "voz": "La IA no mira tu banner. Lee datos.",
    "clave": "datos",
-   "tipo": "ventanas",
-   "etiqueta": "IA comparando",
-   "titulos": [
-    "Tu web",
-    "Tus fichas",
-    "Catálogo de Google",
-    "Otras tiendas"
-   ]
+   "tipo": "dibujo",
+   "dibujo": "bf-escaparate"
   },
   {
    "voz": "Precio solo en una imagen, precios que no coinciden, stock sin actualizar.",
@@ -75,10 +77,15 @@
   {
    "voz": "Y con el precio tachado, no hay truco que valga.",
    "clave": "tachado",
-   "tipo": "frase",
-   "texto": "-40 %",
-   "sub": "¿real o **inflado**?",
-   "tono": "rojo"
+   "tipo": "dibujo",
+   "dibujo": "bf-etiqueta",
+   "globo": {
+    "titulo": "Precio tachado",
+    "texto": "¿Real o inflado?",
+    "color": "#e0413a",
+    "x": 520,
+    "y": 10
+   }
   },
   {
    "voz": "La ley dice: el más bajo de los últimos treinta días.",
@@ -91,20 +98,22 @@
   {
    "voz": "En una revisión europea, una de cada tres tiendas lo hacía mal.",
    "clave": "tres",
-   "tipo": "frase",
-   "texto": "1 de cada 3",
-   "sub": "tiendas online mostraba mal los descuentos"
+   "tipo": "dibujo",
+   "dibujo": "bf-tres-tiendas",
+   "globo": {
+    "titulo": "Revisión europea · 314 tiendas",
+    "texto": "1 de cada 3 mostraba mal los descuentos",
+    "color": "#e0413a",
+    "x": 305,
+    "y": 650
+   }
   },
   {
    "voz": "Antes del veintisiete, revisa tus fichas.",
    "clave": "fichas",
-   "tipo": "pasos",
-   "pasos": [
-    "Precio en texto",
-    "Envío visible",
-    "Stock al día",
-    "Reseñas reales"
-   ]
+   "tipo": "dibujo",
+   "dibujo": "bf-tendero",
+   "reserva": true
   },
   {
    "voz": "Un menos diez real compite mejor que un menos cincuenta dudoso.",

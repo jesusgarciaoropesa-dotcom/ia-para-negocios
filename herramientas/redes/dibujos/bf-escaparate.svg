@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="La IA ignora el cartel de oferta y lee los datos de la ficha de producto">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#eef0fb"/>
+<g transform="translate(450 400) scale(0.84) translate(-450 -400)">
+<rect x="0" y="650" width="900" height="110" rx="20" fill="#d6d8e4"/>
+<!-- escaparate con banner -->
+<rect x="50" y="70" width="400" height="560" rx="18" fill="#f6f6fa" stroke="#17162b" stroke-width="8"/>
+<path d="M40 70 h420 l-20 70 h-380z" fill="#e0413a" stroke="#17162b" stroke-width="8"/>
+<path d="M100 70 l-12 70 M180 70 l-6 70 M260 70 v70 M340 70 l6 70 M420 70 l12 70" stroke="#fff" stroke-width="10" opacity=".7"/>
+<g opacity=".45"><rect x="90" y="190" width="320" height="230" rx="18" fill="#17162b"/>
+<text x="250" y="270" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="40" fill="#ffd43b">BLACK FRIDAY</text>
+<text x="250" y="370" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="92" fill="#fff">-50%</text></g>
+<g transform="translate(250 305)"><circle r="120" fill="none" stroke="#e0413a" stroke-width="16"/><path d="M-85 -85 L85 85" stroke="#e0413a" stroke-width="16"/></g>
+<rect x="90" y="450" width="140" height="150" rx="12" fill="#c3c5d0"/><rect x="260" y="450" width="150" height="150" rx="12" fill="#c3c5d0"/>
+<!-- ficha de datos -->
+<g transform="translate(500 90)"><rect width="330" height="300" rx="22" fill="#fff" stroke="#17162b" stroke-width="7"/>
+<text x="26" y="52" font-family="Arial Black,Arial" font-weight="900" font-size="28" fill="#17162b">Ficha de producto</text>
+<g font-family="Arial" font-weight="700" font-size="26" fill="#17162b">
+<text x="26" y="112">Precio</text><rect x="150" y="92" width="150" height="24" rx="12" fill="#5b5bd6"/>
+<text x="26" y="170">Envío</text><rect x="150" y="150" width="120" height="24" rx="12" fill="#8f8ff0"/>
+<text x="26" y="228">Stock</text><rect x="150" y="208" width="135" height="24" rx="12" fill="#1f9d55"/>
+<text x="26" y="282">Reseñas</text><rect x="150" y="262" width="100" height="24" rx="12" fill="#ffd43b"/></g></g>
+<!-- robot leyendo -->
+<g transform="translate(-70 0)">
+<rect x="730" y="400" width="14" height="36" fill="#17162b"/><circle cx="737" cy="394" r="13" fill="#ffd43b" stroke="#17162b" stroke-width="5"/>
+<rect x="665" y="434" width="145" height="110" rx="32" fill="#fff" stroke="#17162b" stroke-width="8"/>
+<rect x="684" y="456" width="107" height="58" rx="20" fill="#17162b"/>
+<circle cx="716" cy="480" r="10" fill="#5ee0ff"/><circle cx="760" cy="480" r="10" fill="#5ee0ff"/>
+<rect x="680" y="552" width="115" height="100" rx="26" fill="#5b5bd6" stroke="#17162b" stroke-width="8"/>
+<text x="737" y="618" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="40" fill="#fff">IA</text></g>
+<path d="M690 470 L620 395" stroke="#5ee0ff" stroke-width="6" stroke-dasharray="10 10"/><path d="M690 470 L760 395" stroke="#5ee0ff" stroke-width="6" stroke-dasharray="10 10"/>
+<g class="sudor"><text x="560" y="430" font-family="Arial Black,Arial" font-weight="900" font-size="34" fill="#5b5bd6">01</text></g>
+<g class="sudor"><text x="790" y="440" font-family="Arial Black,Arial" font-weight="900" font-size="34" fill="#1f9d55">10</text></g>
+</g>
+</svg>

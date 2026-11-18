@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="Tres tiendas online revisadas: una de cada tres muestra mal el descuento">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#eef0fb"/>
+<g transform="translate(450 400) scale(0.84) translate(-450 -400)">
+<rect x="0" y="640" width="900" height="120" rx="20" fill="#d6d8e4"/>
+<g id="t1" transform="translate(50 230)"><rect width="240" height="410" rx="16" fill="#fff" stroke="#17162b" stroke-width="7"/><path d="M-10 0 h260 l-14 70 h-232z" fill="#5b5bd6" stroke="#17162b" stroke-width="7"/><rect x="30" y="110" width="180" height="120" rx="12" fill="#cfe2f7"/><text x="120" y="190" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="52" fill="#17162b">%</text><rect x="80" y="280" width="80" height="130" rx="8" fill="#c3c5d0"/></g>
+<g id="t2" transform="translate(330 230)"><rect width="240" height="410" rx="16" fill="#fff" stroke="#17162b" stroke-width="7"/><path d="M-10 0 h260 l-14 70 h-232z" fill="#e0413a" stroke="#17162b" stroke-width="7"/><rect x="30" y="110" width="180" height="120" rx="12" fill="#fde2e1"/><text x="120" y="190" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="52" fill="#e0413a">%</text><rect x="80" y="280" width="80" height="130" rx="8" fill="#c3c5d0"/></g>
+<g id="t3" transform="translate(610 230)"><rect width="240" height="410" rx="16" fill="#fff" stroke="#17162b" stroke-width="7"/><path d="M-10 0 h260 l-14 70 h-232z" fill="#1f9d55" stroke="#17162b" stroke-width="7"/><rect x="30" y="110" width="180" height="120" rx="12" fill="#d9f2e3"/><text x="120" y="190" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="52" fill="#17162b">%</text><rect x="80" y="280" width="80" height="130" rx="8" fill="#c3c5d0"/></g>
+<g transform="translate(170 170)"><circle r="46" fill="#1f9d55"/><path d="M-20 0 l14 14 l26 -30" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g transform="translate(730 170)"><circle r="46" fill="#1f9d55"/><path d="M-20 0 l14 14 l26 -30" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g transform="translate(450 170)"><circle r="52" fill="#e0413a"/><path d="M-20 -20 l40 40 M20 -20 l-40 40" stroke="#fff" stroke-width="13" stroke-linecap="round"/></g>
+<g class="sudor"><text x="430" y="95" font-family="Arial Black,Arial" font-weight="900" font-size="60" fill="#e0413a">!</text></g>
+</g>
+</svg>
