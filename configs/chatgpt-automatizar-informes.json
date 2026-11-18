@@ -1,0 +1,179 @@
+{
+ "slug": "chatgpt-automatizar-informes",
+ "palabra": "INFORME",
+ "historia": {
+  "texto": "Informes con ChatGPT",
+  "pregunta": "¿Cuánto tardas en hacer un informe?",
+  "opciones": [
+   "Menos de 1 h",
+   "Una tarde",
+   "Un día"
+  ]
+ },
+ "historia_reel": {
+  "texto": "Informes con ChatGPT",
+  "pregunta": "¿Revisas los números que te da la IA?",
+  "opciones": [
+   "Siempre",
+   "A veces"
+  ]
+ },
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "ChatGPT para informes",
+   "titulo": "Pegas los datos del mes y te devuelve el informe redactado",
+   "destacado": "el informe redactado",
+   "subtitulo": "Ventas, marketing o finanzas.",
+   "chat": {
+    "app": "asistente",
+    "nombre": "ChatGPT",
+    "mensajes": [
+     {
+      "de": "yo",
+      "texto": "Crea el informe de ventas del mes con estos datos (te pego la tabla). Resumen de 5 líneas y recomendaciones.",
+      "hora": "09:05"
+     },
+     {
+      "de": "ia",
+      "texto": "1) Resumen ejecutivo  2) Resultados por área  3) Productos destacados  4) Tendencias  5) Recomendaciones",
+      "hora": "09:05"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "cifra",
+   "titulo": "De una tarde a media hora",
+   "destacado": "media hora",
+   "cifra": "20-30",
+   "unidad": "min",
+   "texto": "de redacción y análisis con ChatGPT, según la estimación de la guía.",
+   "compara": {
+    "antes": "De 2 a 8 horas por informe a mano",
+    "despues": "20-30 minutos de redacción y análisis",
+    "antes_titulo": "A mano",
+    "despues_titulo": "Con ChatGPT"
+   }
+  },
+  {
+   "tipo": "versus",
+   "titulo": "Tú pones los datos. Él, el informe.",
+   "destacado": "el informe.",
+   "izquierda": {
+    "titulo": "Tú",
+    "etiqueta": "Sigue siendo tuyo",
+    "items": [
+     "Sacar los datos de tus sistemas",
+     "Comprobar los números"
+    ]
+   },
+   "derecha": {
+    "titulo": "ChatGPT",
+    "etiqueta": "Lo redacta él",
+    "items": [
+     "Resumen ejecutivo",
+     "Análisis de variaciones",
+     "Recomendaciones"
+    ]
+   },
+   "conclusion": "No recopila los datos: los convierte en informe."
+  },
+  {
+   "tipo": "prompt",
+   "titulo": "El prompt del informe de ventas",
+   "destacado": "informe de ventas",
+   "app": "ChatGPT",
+   "prompt": "Crea el informe de ventas de [mes] con estos datos: [tabla con ventas y comparativa con el mes anterior]. Formato: 1) Resumen ejecutivo (5 líneas), 2) Resultados por área, 3) Productos destacados, 4) Tendencias, 5) Recomendaciones.",
+   "consejo": "Pídele que compare con **el mes anterior** y con el mismo mes del año pasado."
+  },
+  {
+   "tipo": "tabla",
+   "titulo": "Qué informes puedes automatizar",
+   "destacado": "automatizar",
+   "archivo": "informes.xlsx",
+   "columnas": [
+    "Informe",
+    "Frecuencia",
+    "Ahorro estimado"
+   ],
+   "filas": [
+    [
+     "Ventas",
+     "Mensual",
+     {
+      "t": "2-3 h/mes",
+      "bien": true
+     }
+    ],
+    [
+     "Marketing",
+     "Semanal o mensual",
+     {
+      "t": "1-2 h/semana",
+      "bien": true
+     }
+    ],
+    [
+     "Financiero",
+     "Mensual o trimestral",
+     {
+      "t": "3-4 h/mes",
+      "bien": true
+     }
+    ],
+    [
+     "Equipo / RRHH",
+     "Mensual",
+     {
+      "t": "1-2 h/mes",
+      "bien": true
+     }
+    ]
+   ],
+   "globo": "Estimaciones de la guía: **depende de tu negocio**."
+  },
+  {
+   "tipo": "tarjetas",
+   "titulo": "El resumen para dirección, con semáforo",
+   "destacado": "semáforo",
+   "texto": "Le pasas ingresos, gastos y caja; te devuelve esto:",
+   "tarjetas": [
+    {
+     "icono": "check",
+     "titulo": "Semáforo por área",
+     "texto": "Verde, amarillo o rojo en cada área clave."
+    },
+    {
+     "icono": "thumbs-up",
+     "titulo": "3 buenas noticias",
+     "texto": "Lo que va bien este mes."
+    },
+    {
+     "icono": "triangle-alert",
+     "titulo": "3 áreas de atención",
+     "texto": "Lo que hay que vigilar."
+    },
+    {
+     "icono": "target",
+     "titulo": "2 decisiones urgentes",
+     "texto": "Las que piden acción ya."
+    }
+   ]
+  },
+  {
+   "tipo": "punto",
+   "icono": "calculator",
+   "titulo": "Revisa siempre los números",
+   "destacado": "los números",
+   "texto": "ChatGPT puede fallar en porcentajes y variaciones. Los datos son tu responsabilidad; la narrativa, de la IA."
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "¿Qué informe te come más horas?",
+   "destacado": "más horas",
+   "texto": "Todos los prompts, listos para copiar, en iando.xyz.",
+   "palabra": "INFORME"
+  }
+ ]
+}

@@ -1,0 +1,155 @@
+{
+ "slug": "ia-peluquerias-estetica",
+ "palabra": "CITA",
+ "historia": {
+  "texto": "IA para tu peluquería",
+  "pregunta": "¿Cómo te piden cita tus clientes?",
+  "opciones": [
+   "WhatsApp",
+   "Teléfono",
+   "Web"
+  ]
+ },
+ "historia_reel": {
+  "texto": "IA para tu peluquería",
+  "pregunta": "¿Se te escapan citas sin aviso?",
+  "opciones": [
+   "A menudo",
+   "Pocas veces"
+  ]
+ },
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "IA para peluquerías",
+   "titulo": "Te escriben «quiero cita mañana por la tarde» y se apunta sola",
+   "destacado": "se apunta sola",
+   "subtitulo": "Y tú, a lo tuyo.",
+   "chat": {
+    "app": "whatsapp",
+    "nombre": "Tu peluquería",
+    "mensajes": [
+     {
+      "de": "yo",
+      "texto": "Hola, quiero cita para mañana por la tarde",
+      "hora": "16:40"
+     },
+     {
+      "de": "ia",
+      "texto": "¡Hola! ¿Corte o coloración? Así te propongo los huecos libres para ese servicio.",
+      "hora": "16:40"
+     },
+     {
+      "de": "yo",
+      "texto": "Corte",
+      "hora": "16:41"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "pasos",
+   "titulo": "Qué hace el asistente de WhatsApp",
+   "destacado": "WhatsApp",
+   "pasos": [
+    {
+     "titulo": "Mira tu agenda real",
+     "texto": "La disponibilidad del salón en ese momento."
+    },
+    {
+     "titulo": "Propone huecos según el servicio",
+     "texto": "No es lo mismo un corte que una coloración."
+    },
+    {
+     "titulo": "Confirma y la apunta",
+     "texto": "Directamente en la agenda del negocio."
+    },
+    {
+     "titulo": "Responde lo de siempre",
+     "texto": "Precios, horarios, si hay aparcamiento."
+    }
+   ]
+  },
+  {
+   "tipo": "versus",
+   "titulo": "El recordatorio que sí funciona",
+   "destacado": "sí funciona",
+   "izquierda": {
+    "titulo": "Solo informa",
+    "etiqueta": "Se puede ignorar",
+    "mensajes": [
+     {
+      "de": "ia",
+      "texto": "Te recordamos tu cita de mañana."
+     }
+    ]
+   },
+   "derecha": {
+    "titulo": "Pide una acción",
+    "etiqueta": "Reduce más las ausencias",
+    "mensajes": [
+     {
+      "de": "ia",
+      "texto": "Tienes cita mañana. Responde SÍ para confirmar."
+     },
+     {
+      "de": "yo",
+      "texto": "SÍ"
+     }
+    ]
+   },
+   "conclusion": "Pide confirmación explícita, no solo avises."
+  },
+  {
+   "tipo": "cifra",
+   "titulo": "Un hueco vacío es dinero perdido",
+   "destacado": "dinero perdido",
+   "cifra": "24-48",
+   "unidad": "h",
+   "texto": "antes de la cita: recordatorio por WhatsApp o SMS que pide confirmación.",
+   "compara": {
+    "antes": "Ausencia sin aviso y hueco vacío",
+    "despues": "Si no confirma, el hueco pasa a la lista de espera",
+    "antes_titulo": "Sin confirmación",
+    "despues_titulo": "Pidiendo un SÍ"
+   }
+  },
+  {
+   "tipo": "tarjetas",
+   "titulo": "Que vuelvan sin depender de tu memoria",
+   "destacado": "vuelvan",
+   "texto": "La IA mira qué pide cada cliente y cada cuánto viene.",
+   "tarjetas": [
+    {
+     "icono": "calendar",
+     "titulo": "Le toca volver",
+     "texto": "Le escribe cuando llega su visita habitual."
+    },
+    {
+     "icono": "sparkles",
+     "titulo": "Algo que no ha probado",
+     "texto": "Promociones según su historial."
+    },
+    {
+     "icono": "repeat",
+     "titulo": "Siempre, no a ratos",
+     "texto": "No depende de que alguien se acuerde."
+    }
+   ]
+  },
+  {
+   "tipo": "punto",
+   "icono": "camera",
+   "titulo": "En Instagram, tus fotos mandan",
+   "destacado": "tus fotos",
+   "texto": "La IA te ayuda con el calendario y los textos. Las fotos reales de tus trabajos, siempre lo principal."
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "Primero la agenda, luego las redes",
+   "destacado": "la agenda",
+   "texto": "Por dónde empezar y qué herramientas hay, en iando.xyz.",
+   "palabra": "CITA"
+  }
+ ]
+}

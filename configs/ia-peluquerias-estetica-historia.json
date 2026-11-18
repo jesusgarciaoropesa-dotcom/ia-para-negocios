@@ -1,0 +1,22 @@
+{
+ "slug": "ia-peluquerias-estetica",
+ "_nota": "Reel «historia» (18-11-2026). Todo sale del artículo ia-peluquerias-estetica (sin herramientas ni precios).",
+ "palabra": "CITA",
+ "musica": "suave",
+ "tema": "color",
+ "escenas": [
+  {"voz": "Estás con un cliente en el sillón y te suena el móvil.", "clave": "móvil", "tipo": "dibujo", "dibujo": "peluqueria", "vibrar": true, "globo": {"titulo": "WhatsApp", "texto": "Quiero cita para mañana por la tarde", "color": "#25d366"}},
+  {"voz": "Cada minuto al teléfono es un minuto sin tu cliente.", "clave": "minuto", "tipo": "versus", "a": "el teléfono", "b": "tu cliente"},
+  {"voz": "Un asistente de IA contesta el WhatsApp por ti.", "clave": "WhatsApp", "tipo": "chat", "nombre": "Tu peluquería", "color": "#25d366", "mensajes": [{"de": "yo", "texto": "Quiero cita para mañana por la tarde"}]},
+  {"voz": "Mira tu agenda y propone huecos según el servicio.", "clave": "huecos", "tipo": "chat", "nombre": "Tu peluquería", "color": "#25d366", "desde": 1, "mensajes": [{"de": "yo", "texto": "Quiero cita para mañana por la tarde"}, {"de": "ia", "texto": "¿Corte o coloración? Te propongo los huecos libres para ese servicio."}]},
+  {"voz": "Confirma la cita y la apunta en tu agenda.", "clave": "confirma", "tipo": "dibujo", "dibujo": "peluqueria", "reserva": true},
+  {"voz": "Pero el gran coste oculto son las ausencias sin aviso.", "clave": "ausencias", "tipo": "frase", "texto": "Hueco vacío", "sub": "una cita que no viene **ni avisa**", "tono": "rojo"},
+  {"voz": "Un recordatorio que solo informa se puede ignorar.", "clave": "ignorar", "tipo": "chat", "nombre": "Tu peluquería", "color": "#25d366", "mensajes": [{"de": "ia", "texto": "Te recordamos tu cita de mañana."}], "sello": "SE IGNORA"},
+  {"voz": "Uno que pide responder SÍ reduce mucho más las ausencias.", "clave": "SÍ", "tipo": "chat", "nombre": "Tu peluquería", "color": "#25d366", "mensajes": [{"de": "ia", "texto": "Tienes cita mañana. Responde SÍ para confirmar."}, {"de": "yo", "texto": "SÍ"}], "sello": "CONFIRMADA", "tono": "verde"},
+  {"voz": "Se envía entre veinticuatro y cuarenta y ocho horas antes.", "clave": "horas", "tipo": "cifra", "valor": "48", "unidad": "horas antes", "texto": "o 24 h, por **WhatsApp o SMS**"},
+  {"voz": "Y si no confirma, el hueco pasa a la lista de espera.", "clave": "espera", "tipo": "lista", "marcar": true, "items": ["No confirma", "Se libera el hueco", "Se ofrece a la lista de espera"]},
+  {"voz": "Después, escribe a cada cliente cuando le toca volver.", "clave": "volver", "tipo": "tarjetas", "items": [{"icono": "calendar", "titulo": "Le toca volver"}, {"icono": "sparkles", "titulo": "Algo que no ha probado"}]},
+  {"voz": "La IA lleva la agenda. El oficio sigue siendo tuyo.", "clave": "tuyo", "tipo": "frase", "texto": "Tu oficio", "sub": "La IA lleva **la agenda**", "sello": "ES TUYO", "tono": "verde"},
+  {"voz": "Comenta CITA y te paso la guía.", "clave": "CITA", "tipo": "cierre"}
+ ]
+}

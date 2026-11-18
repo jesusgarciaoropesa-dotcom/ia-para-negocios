@@ -1,0 +1,122 @@
+{
+ "slug": "black-friday-clientes-comparan-con-ia",
+ "_nota": "Reel «historia» (18-11-2026). Datos del artículo black-friday-clientes-comparan-con-ia (YouGov, Ley 7/1996, Ministerio de Consumo).",
+ "palabra": "OFERTA",
+ "musica": "suave",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "Este Black Friday, más de la mitad de los compradores piensa usar la IA.",
+   "clave": "mitad",
+   "tipo": "frase",
+   "texto": "55 %",
+   "sub": "de compradores prevé usar IA (YouGov)"
+  },
+  {
+   "voz": "Hace solo un año eran un treinta y tres por ciento.",
+   "clave": "año",
+   "tipo": "cifra",
+   "valor": "33",
+   "unidad": "%",
+   "texto": "hace **un año**"
+  },
+  {
+   "voz": "¿Para qué? Para encontrar el mejor precio.",
+   "clave": "precio",
+   "tipo": "chat",
+   "nombre": "Chat de IA",
+   "mensajes": [
+    {
+     "de": "yo",
+     "texto": "¿Dónde está más barato este producto?"
+    }
+   ]
+  },
+  {
+   "voz": "Y para saber si el descuento es de verdad.",
+   "clave": "verdad",
+   "tipo": "chat",
+   "nombre": "Chat de IA",
+   "desde": 1,
+   "mensajes": [
+    {
+     "de": "yo",
+     "texto": "¿Dónde está más barato este producto?"
+    },
+    {
+     "de": "yo",
+     "texto": "¿Y el descuento de esta tienda es real?"
+    }
+   ]
+  },
+  {
+   "voz": "La IA no mira tu banner. Lee datos.",
+   "clave": "datos",
+   "tipo": "ventanas",
+   "etiqueta": "IA comparando",
+   "titulos": [
+    "Tu web",
+    "Tus fichas",
+    "Catálogo de Google",
+    "Otras tiendas"
+   ]
+  },
+  {
+   "voz": "Precio solo en una imagen, precios que no coinciden, stock sin actualizar.",
+   "clave": "coinciden",
+   "tipo": "lista",
+   "items": [
+    "Precio solo en una imagen",
+    "Web, catálogo y carrito no coinciden",
+    "«Stock limitado» pero agotado"
+   ],
+   "sello": "TE PUEDE DESCARTAR"
+  },
+  {
+   "voz": "Y con el precio tachado, no hay truco que valga.",
+   "clave": "tachado",
+   "tipo": "frase",
+   "texto": "-40 %",
+   "sub": "¿real o **inflado**?",
+   "tono": "rojo"
+  },
+  {
+   "voz": "La ley dice: el más bajo de los últimos treinta días.",
+   "clave": "treinta",
+   "tipo": "cifra",
+   "valor": "30",
+   "unidad": "días",
+   "texto": "precio anterior = **el más bajo**"
+  },
+  {
+   "voz": "En una revisión europea, una de cada tres tiendas lo hacía mal.",
+   "clave": "tres",
+   "tipo": "frase",
+   "texto": "1 de cada 3",
+   "sub": "tiendas online mostraba mal los descuentos"
+  },
+  {
+   "voz": "Antes del veintisiete, revisa tus fichas.",
+   "clave": "fichas",
+   "tipo": "pasos",
+   "pasos": [
+    "Precio en texto",
+    "Envío visible",
+    "Stock al día",
+    "Reseñas reales"
+   ]
+  },
+  {
+   "voz": "Un menos diez real compite mejor que un menos cincuenta dudoso.",
+   "clave": "real",
+   "tipo": "versus",
+   "a": "dudoso",
+   "b": "real"
+  },
+  {
+   "voz": "Comenta OFERTA y te paso la guía.",
+   "clave": "OFERTA",
+   "tipo": "cierre"
+  }
+ ]
+}

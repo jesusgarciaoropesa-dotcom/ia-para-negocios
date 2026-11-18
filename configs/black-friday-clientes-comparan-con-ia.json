@@ -1,0 +1,177 @@
+{
+ "slug": "black-friday-clientes-comparan-con-ia",
+ "palabra": "OFERTA",
+ "historia": {
+  "texto": "Black Friday con IA",
+  "pregunta": "¿Haces ofertas este Black Friday?",
+  "opciones": [
+   "Sí",
+   "No"
+  ]
+ },
+ "historia_reel": {
+  "texto": "Black Friday con IA",
+  "pregunta": "¿Has preguntado a una IA por un precio?",
+  "opciones": [
+   "Sí",
+   "Todavía no"
+  ]
+ },
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "Black Friday 2026",
+   "titulo": "Tu cliente le pregunta a la IA si tu descuento es real",
+   "destacado": "si tu descuento es real",
+   "subtitulo": "Qué revisar en tu tienda antes del 27.",
+   "chat": {
+    "app": "asistente",
+    "nombre": "Chat de IA",
+    "mensajes": [
+     {
+      "de": "yo",
+      "texto": "¿Dónde está más barato este producto?",
+      "hora": "21:14"
+     },
+     {
+      "de": "yo",
+      "texto": "¿Y el descuento de esta tienda es real?",
+      "hora": "21:14"
+     },
+     {
+      "de": "ia",
+      "texto": "Miro las tiendas y comparo precio, disponibilidad y envío.",
+      "hora": "21:15"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "cifra",
+   "titulo": "Ya no compara solo en Google",
+   "destacado": "solo en Google",
+   "cifra": "55",
+   "unidad": "%",
+   "texto": "de compradores prevé usar IA en Black Friday y Cyber Monday (YouGov, 2026).",
+   "compara": {
+    "antes_titulo": "Hace un año",
+    "antes": "33 % de los compradores",
+    "despues_titulo": "Este año",
+    "despues": "55 % de los compradores"
+   }
+  },
+  {
+   "tipo": "tabla",
+   "titulo": "La IA no mira tu banner: lee datos",
+   "destacado": "lee datos",
+   "archivo": "tu-tienda.csv",
+   "columnas": [
+    "Si en tu tienda…",
+    "La IA…"
+   ],
+   "filas": [
+    [
+     "El precio solo está en una imagen",
+     {
+      "t": "Puede no verlo",
+      "mal": true
+     }
+    ],
+    [
+     "Web, catálogo y carrito no coinciden",
+     {
+      "t": "Muestra el equivocado o te descarta",
+      "mal": true
+     }
+    ],
+    [
+     "Pone «stock limitado» y está agotado",
+     {
+      "t": "Pierdes la recomendación",
+      "mal": true
+     }
+    ]
+   ],
+   "globo": "Lee tu web, tus fichas y tu **catálogo de Google**."
+  },
+  {
+   "tipo": "versus",
+   "titulo": "El precio tachado no admite trucos",
+   "destacado": "no admite trucos",
+   "izquierda": {
+    "titulo": "No vale",
+    "etiqueta": "Descuento inflado",
+    "items": [
+     "Subir el precio a principios de noviembre",
+     "Tachar ese precio subido",
+     "Anunciar un «-40 %» que no es"
+    ]
+   },
+   "derecha": {
+    "titulo": "Lo que pide la ley",
+    "etiqueta": "Art. 20, Ley 7/1996",
+    "items": [
+     "Precio anterior junto al rebajado",
+     "El más bajo de los últimos 30 días",
+     "Guarda tus precios de octubre y noviembre"
+    ]
+   },
+   "conclusion": "En una revisión europea, 1 de cada 3 tiendas mostraba mal los descuentos."
+  },
+  {
+   "tipo": "tarjetas",
+   "titulo": "Revisa esto antes del 27",
+   "destacado": "antes del 27",
+   "texto": "Lo que la IA y tu cliente comparan primero.",
+   "tarjetas": [
+    {
+     "icono": "tag",
+     "titulo": "Precio en texto",
+     "texto": "El banner acompaña al precio, no lo sustituye."
+    },
+    {
+     "icono": "truck",
+     "titulo": "Envío y plazos",
+     "texto": "Visibles antes del carrito, sin sorpresas."
+    },
+    {
+     "icono": "package",
+     "titulo": "Stock al día",
+     "texto": "Si se agota, márcalo en la web y en el catálogo."
+    },
+    {
+     "icono": "star",
+     "titulo": "Reseñas reales",
+     "texto": "Visibles en cada ficha de producto."
+    }
+   ]
+  },
+  {
+   "tipo": "pasos",
+   "titulo": "Tu catálogo de Google, en 3 pasos",
+   "destacado": "catálogo de Google",
+   "texto": "Si subes tus productos a Merchant Center:",
+   "pasos": [
+    {
+     "titulo": "El mismo precio en todas partes",
+     "texto": "Catálogo, ficha y pago."
+    },
+    {
+     "titulo": "Usa sale_price además de price",
+     "texto": "Y que coincida con tu web."
+    },
+    {
+     "titulo": "Ponle fechas a la oferta",
+     "texto": "Con sale_price_effective_date."
+    }
+   ]
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "Un -10 % real compite mejor que un -50 % dudoso",
+   "destacado": "-10 % real",
+   "texto": "La checklist completa para tu tienda, en iando.xyz.",
+   "palabra": "OFERTA"
+  }
+ ]
+}

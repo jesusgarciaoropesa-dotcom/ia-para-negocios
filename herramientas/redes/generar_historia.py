@@ -102,7 +102,7 @@ body{width:1080px;height:1920px;overflow:hidden;font-family:I,sans-serif;color:v
 # Tema «color» (17-11-2026, Jesús: «muy apagado con el fondo blanco»): fondo de marca en degradado violeta con
 # luces que se mueven, subtítulos en blanco con la palabra clave en amarillo, escenas más grandes y tarjetas que resaltan.
 CSS_COLOR = """
-body{color:#fff;background:#3f37c9}
+body{color:#fff;background:#3f37c9;--vaon:#fff;--vaoff:rgba(255,255,255,.38);--vbon:var(--amarillo)}
 #fondo{position:absolute;inset:0;overflow:hidden;background:linear-gradient(160deg,#2e2a8f 0%,#4f46e5 45%,#7c3aed 100%)}
 #fondo i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55}
 #fondo i:nth-child(1){width:620px;height:620px;background:#22d3ee;left:-200px;top:180px}
@@ -232,8 +232,8 @@ function animar(e,d,lt,dur){
   case "cifra": { const v=parseFloat(String(e.valor).replace(/\./g,"").replace(",",".")), a=ease(lt/(dur*0.6));
     const txt = isNaN(v) ? e.valor : (a>=1? e.valor : Math.round(v*a).toLocaleString("es-ES")); d.querySelector(".cnum").textContent=txt; break; }
   case "aviso": d.querySelector(".noti").style.top = (-260 + pop(lt,0.3,.45)*390)+"px"; break;
-  case "versus": { const a=pop(lt,dur*0.5,.3); d.querySelector(".va").style.color = a>.5?"var(--gris)":"var(--tinta)";
-    d.querySelector(".vb").style.color = a>.5?"var(--indigo)":"var(--gris)"; d.querySelector(".vb").style.transform=`scale(${1+0.12*a})`; d.querySelector(".vf").style.opacity=a; break; }
+  case "versus": { const a=pop(lt,dur*0.5,.3); d.querySelector(".va").style.color = a>.5?"var(--vaoff,var(--gris))":"var(--vaon,var(--tinta))";
+    d.querySelector(".vb").style.color = a>.5?"var(--vbon,var(--indigo))":"var(--gris)"; d.querySelector(".vb").style.transform=`scale(${1+0.12*a})`; d.querySelector(".vf").style.opacity=a; break; }
   case "prompt": { const t=e.texto, n=Math.round(t.length*Math.min(1,lt/(dur*0.85))); let s=t.slice(0,n);
     const abiertos=(s.match(/\[/g)||[]).length-(s.match(/\]/g)||[]).length; if(abiertos>0) s+="]";
     d.querySelector(".ptxt").innerHTML = huecos(s)+(n<t.length?"▍":""); break; }
