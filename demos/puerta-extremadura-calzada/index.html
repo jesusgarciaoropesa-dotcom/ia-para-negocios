@@ -80,7 +80,7 @@
   .cinta .contenedor { display: flex; gap: 0 18px; padding-top: 4px; padding-bottom: 4px; justify-content: center; align-items: center; min-height: 36px; flex-wrap: wrap; }
   .cinta b { color: var(--c-ocre); }
 
-  header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--c-fondo) 94%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,.07); }
+  header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--c-fondo) 74%, transparent);  border-bottom: 1px solid rgba(0,0,0,.62); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); box-shadow: 0 8px 24px -18px rgba(0,0,0,.45); }
   .barra { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; }
   .marca { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--c-oscuro); }
   .marca svg { width: 44px; height: 44px; flex: none; }
@@ -154,6 +154,29 @@
   .wa-flota { position: fixed; right: 16px; bottom: 16px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: var(--c-wa); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
   .wa-flota svg { width: 30px; height: 30px; color: #fff; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  /* ===== acabado (skills emil-design-eng + apple-design) · no tocar colores aquí ===== */
+  :root { --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); }
+  h1, h2, h3 { letter-spacing: -.02em; }
+  h1 { line-height: 1.02; letter-spacing: -.03em; }
+  .btn { transition: transform 160ms var(--ease-out), background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease; }
+  .btn:active { transform: scale(0.97); }
+  .btn-pri { box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 6px 16px -8px rgba(0,0,0,.45); }
+  .tarjeta { transition: transform 160ms var(--ease-out); box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 16px 32px -18px rgba(0,0,0,.5); }
+  .tarjeta:active { transform: scale(0.98); }
+  .tarjeta img { transition: transform 300ms var(--ease-out); }
+  @media (hover: none), (pointer: coarse) { .tarjeta:hover img { transform: none; } }
+  .reserva { box-shadow: 0 30px 60px -30px rgba(0,0,0,.5); }
+  .rv-servs button, .rv-dias button, .rv-horas button, .pasos-reserva button { transition: transform 140ms var(--ease-out), background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, color 150ms ease; }
+  .rv-servs button:active, .rv-dias button:active, .rv-horas button:active { transform: scale(0.97); }
+  .pasos li::before { transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms var(--ease-out); }
+  .pasos li::after { transition: background-color 250ms ease; }
+  .paso:not([hidden]) { animation: paso-entra 220ms var(--ease-out); }
+  @keyframes paso-entra { from { opacity: 0; transform: translateY(8px); } }
+  nav a { transition: color 150ms ease, border-color 150ms ease; }
+  input, textarea, select { transition: border-color 150ms ease, box-shadow 150ms ease; }
+  @media (prefers-reduced-motion: reduce) { .paso:not([hidden]) { animation: none; } .btn:active, .tarjeta:active, .rv-servs button:active, .rv-dias button:active, .rv-horas button:active { transform: none; } }
+  @media (prefers-reduced-transparency: reduce) { header { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; } }
+  /* ===== fin acabado ===== */
 </style>
 </head>
 <body>
