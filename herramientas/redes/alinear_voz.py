@@ -82,6 +82,6 @@ def alinear(pcm, sr, frases):
     trozos = [G.recortar(g[lim[i]:lim[i + 1]].astype("<i2").tobytes(), sr) for i in range(len(frases))]
     for f, p in zip(frases, trozos):
         seg = len(p) / 2 / sr
-        if seg < 0.4 or not (6 <= len(f) / seg <= 26):
+        if seg < 0.3 or not (6 <= len(f) / seg <= 26):   # 0.3: palabras sueltas cortas («Perro.»)
             return None
     return trozos

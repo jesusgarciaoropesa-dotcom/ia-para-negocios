@@ -1,5 +1,7 @@
 {
  "slug": "ia-restaurantes-hosteleria",
+ "ritmo": "rapido",
+ "musica": "suave",
  "palabra": "RESTAURANTE",
  "historia": {
   "texto": "IA para tu restaurante",
@@ -27,7 +29,10 @@
    "subtitulo": "Cópialos y úsalos esta semana.",
    "icono": "utensils",
    "reel": {
-    "subtitulo": ""
+    "subtitulo": "",
+    "voz": {
+     "titulo": "Cuatro prompts para tu restaurante: reseñas, carta, escandallo y reservas"
+    }
    }
   },
   {
@@ -50,7 +55,13 @@
      }
     ]
    },
-   "globo": "**Ejemplo ilustrativo.** Léela antes de publicarla."
+   "globo": "**Ejemplo ilustrativo.** Léela antes de publicarla.",
+   "reel": {
+    "narra": [
+     "Le pegas la reseña y le pides máximo ochenta palabras.",
+     "Y te la devuelve escrita."
+    ]
+   }
   },
   {
    "tipo": "tarjetas",
@@ -80,7 +91,28 @@
     }
    ],
    "reel": {
-    "texto": "Te dice qué subir, mover o quitar."
+    "texto": "Le das platos, precio y coste, y te dice qué subir, mover o quitar.",
+    "tarjetas": [
+     {
+      "icono": "star",
+      "titulo": "Estrella"
+     },
+     {
+      "icono": "trending-up",
+      "titulo": "Caballo de batalla"
+     },
+     {
+      "icono": "circle-help",
+      "titulo": "Puzzle"
+     },
+     {
+      "icono": "trending-down",
+      "titulo": "Perro"
+     }
+    ],
+    "voz": {
+     "titulo": "La IA clasifica tu carta en cuatro tipos"
+    }
    }
   },
   {
@@ -92,7 +124,13 @@
    "consejo": "Pídele siempre el precio **con y sin IVA**: en hostelería es del 10 %.",
    "voz": {
     "titulo": "El escandallo, sin calculadora",
-    "texto": "Le das la receta y los precios, y te calcula el coste por ración y el precio de venta."
+    "consejo": "Pídele siempre el precio con y sin IVA: en hostelería es del diez por ciento."
+   },
+   "reel": {
+    "narra": [
+     "Le das la receta y los precios.",
+     "Y te calcula el coste por ración y el precio de venta."
+    ]
    }
   },
   {
@@ -119,7 +157,25 @@
     }
    ],
    "reel": {
-    "texto": ""
+    "texto": "",
+    "pasos": [
+     {
+      "titulo": "Horarios, dirección y precio medio"
+     },
+     {
+      "titulo": "Opciones para celíacos y veganos"
+     },
+     {
+      "titulo": "Tus 10 preguntas más frecuentes",
+      "voz": "Tus diez preguntas más frecuentes"
+     },
+     {
+      "titulo": "Tono cálido y hospitalario"
+     }
+    ],
+    "voz": {
+     "titulo": "Tu chatbot de reservas, en cuatro pasos"
+    }
    }
   },
   {
@@ -137,7 +193,10 @@
    "titulo": "¿Qué te quita más tiempo en tu local?",
    "destacado": "tu local",
    "texto": "Todos los prompts, listos para copiar, en iando.xyz.",
-   "palabra": "RESTAURANTE"
+   "palabra": "RESTAURANTE",
+   "reel": {
+    "texto": ""
+   }
   }
  ]
 }

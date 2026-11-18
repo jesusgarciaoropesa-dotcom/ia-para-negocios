@@ -112,7 +112,7 @@
     "globo": "Lista oficial de Meta. No bloquees el de las vistas previas."
    },
    "reel": {
-    "globo": "Lista oficial de Meta. **No bloquees** el de las vistas previas.",
+    "globo": "Lista oficial de Meta. Sin él, tus enlaces salen **sin foto ni título**.",
     "columnas": [
      "Rastreador",
      "Uso",
@@ -140,6 +140,14 @@
        "mal": true
       }
      ]
+    ],
+    "voz": {
+     "titulo": "Los rastreadores de Meta"
+    },
+    "narra": [
+     "El de la IA: ese sí puedes bloquearlo.",
+     "El de anuncios, solo si no anuncias.",
+     "Y el de los enlaces, nunca."
     ]
    }
   },
@@ -151,7 +159,10 @@
    "texto": "Así le pides a Meta que su rastreador de IA no lea tu web. El cambio tarda hasta 24 horas.",
    "dato": "User-agent: meta-externalagent\nDisallow: /",
    "reel": {
-    "texto": "Así le pides a Meta que su rastreador de IA no lea tu web."
+    "texto": "Así le pides a Meta que su rastreador de IA no lea tu web.",
+    "voz": {
+     "dato": "Pega estas dos líneas. El cambio tarda hasta veinticuatro horas."
+    }
    }
   },
   {
@@ -178,6 +189,22 @@
    ],
    "voz": {
     "titulo": "Qué hacer ahora"
+   },
+   "reel": {
+    "pasos": [
+     {
+      "titulo": "No te asustes"
+     },
+     {
+      "titulo": "Revisa tu robots.txt"
+     },
+     {
+      "titulo": "Mira qué web tienes enlazada"
+     },
+     {
+      "titulo": "Si vuelven los términos, léelos"
+     }
+    ]
    }
   },
   {
@@ -185,7 +212,10 @@
    "titulo": "¿Sabes qué dice tu robots.txt?",
    "destacado": "robots.txt",
    "texto": "La guía completa, con fuentes, en iando.xyz.",
-   "palabra": "ROBOTS"
+   "palabra": "ROBOTS",
+   "reel": {
+    "texto": ""
+   }
   }
  ]
 }

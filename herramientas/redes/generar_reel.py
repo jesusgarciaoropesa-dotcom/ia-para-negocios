@@ -15,7 +15,8 @@ Opcional en cada lámina: "reel" = {"titulo"?, "texto"?, "dato"?...} versión m�
 vídeo (se ve y se lee en lugar de la del carrusel); "reel": {"omitir": true} la quita del vídeo.
 Los tipos visuales (chat, tabla, tarjetas, pasos, prompt, cifra, versus con mensajes/pasos) se animan:
 los mensajes del chat entran uno a uno, las filas de la tabla, las tarjetas y los pasos al leerse. Solo en el reel: lámina "media" {kicker?, titulo, archivo (imagen o GIF), pie?, pausa?}
-para enseñar un ejemplo real (el GIF se anima en bucle al ritmo del vídeo). "voz" = texto que se lee en lugar del de pantalla (si la pronunciación
+para enseñar un ejemplo real (el GIF se anima en bucle al ritmo del vídeo). "narra" (en chat, tabla o prompt) = frases que lee la voz mientras aparece lo visual (cada mensaje o fila sale al empezar
+su frase), para que no haya silencios. "voz" = texto que se lee en lugar del de pantalla (si la pronunciación
 de algo sale rara, escríbelo como se dice). Para comprobar lo que se va a leer: --guion.
 """
 import argparse, json, shutil, subprocess, sys, tempfile
@@ -350,12 +351,33 @@ def cabeza_clara(s, L, ini):
     return h
 
 
-def chat_animado(c, L, paso=1.0):
-    """Los mensajes del chat aparecen uno a uno (sin voz) desde el instante actual."""
+def narrar(s, L):
+    """Lee las frases de "narra" (si las hay) y devuelve el instante en que empieza cada una."""
+    out = []
+    for f in s.get("narra") or []:
+        a, _ = L.di(f, PAUSA["item"])
+        out.append(a)
+    return out
+
+
+def chat_animado(c, L, paso=1.0, narra=None):
+    """Los mensajes del chat aparecen uno a uno desde el instante actual; con "narra", cada mensaje
+    aparece cuando empieza su frase (la voz cuenta lo que se ve)."""
     t0 = L.t
+    paso *= RITMO["pausas"] if RITMO["recortar"] else 1
     n = len(c.get("mensajes") or []) + (1 if c.get("botones") else 0)
-    tiempos = [t0 + k * paso for k in range(n)]
-    L.t = t0 + n * paso + 0.4
+    if narra:
+        tiempos = []
+        for k in range(n):
+            if k < len(narra):
+                a, _ = L.di(narra[k], PAUSA["item"])
+                tiempos.append(a)
+            else:
+                tiempos.append(L.t); L.t += paso
+        L.t += 0.2
+    else:
+        tiempos = [t0 + k * paso for k in range(n)]
+        L.t = t0 + n * paso + 0.4
     return lambda k: entra(tiempos[k]) if k < len(tiempos) else ""
 
 
@@ -364,7 +386,7 @@ def escena_visual(s, L, ini):
     t = s.get("tipo")
     if t == "chat":
         h = cabeza_clara(s, L, ini)
-        ap = chat_animado(s["chat"], L)
+        ap = chat_animado(s["chat"], L, narra=s.get("narra"))
         h += f'<div style="display:flex;justify-content:center">{C.movil(s["chat"], ap)}</div>'
         if s.get("globo"):
             a, _ = L.di(s["globo"], PAUSA["."], voz_de(s, "globo"))
@@ -373,13 +395,16 @@ def escena_visual(s, L, ini):
         h = cabeza_clara(s, L, ini)
         t0 = L.t
         n = len(s.get("filas", [])[:6])
-        pf = 0.55 * ESPERA
-        h += f'<div {entra(t0 - 0.2)}>{C.tabla(s, lambda k: entra(t0 + 0.2 + k * pf, "aparece"))}</div>'
-        L.t = t0 + 0.3 + n * pf
+        fila = 0.55 * ESPERA
+        ts = narrar(s, L)
+        ts += [(ts[-1] + 0.4 if ts else t0 + 0.2) + k * fila for k in range(n - len(ts))]
+        h += f'<div {entra(t0 - 0.2)}>{C.tabla(s, lambda k: entra(ts[k] if k < len(ts) else t0, "aparece"))}</div>'
+        if not s.get("narra"):
+            L.t = t0 + 0.3 + n * fila
         if s.get("globo"):
             a, _ = L.di(s["globo"], PAUSA["."], voz_de(s, "globo"))
             h += C.globo(s["globo"], entra(a - 0.1))
-        else:
+        elif not s.get("narra"):
             L.t += 1.0
     elif t == "tarjetas":
         h = cabeza_clara(s, L, ini)
@@ -388,7 +413,7 @@ def escena_visual(s, L, ini):
             a, _ = L.di(tj.get("titulo", ""), PAUSA["item"], (tj.get("voz") or None))
             tiempos.append(a)
         h += C.tarjetas(s.get("tarjetas"), lambda k: entra(tiempos[k] - 0.15))
-        L.t += 0.6
+        L.t += 0.2 if RITMO["recortar"] else 0.6
     elif t == "pasos":
         h = cabeza_clara(s, L, ini)
         tiempos = []
@@ -401,14 +426,17 @@ def escena_visual(s, L, ini):
     elif t == "prompt":
         h = cabeza_clara(s, L, ini)
         h += C.caja_prompt(s, entra(L.t - 0.2))
-        L.t += min(4.0, 1.2 + len(str(s.get("prompt", ""))) / 40)   # tiempo para leerlo en pantalla
+        if s.get("narra"):
+            narrar(s, L)      # la voz cuenta qué hace el prompt mientras se ve
+        else:
+            L.t += min(4.0, 1.2 + len(str(s.get("prompt", ""))) / 40)   # tiempo para leerlo en pantalla
         if s.get("consejo"):
             a, _ = L.di(s["consejo"], PAUSA["."], voz_de(s, "consejo"))
             h += C.globo(s["consejo"], entra(a - 0.1), lila=True, ic="wand-sparkles")
     elif t == "cifra":
         h = cabeza_clara(s, L, ini)
         h += C.cifra(s, entra(L.t - 0.1, "pop"))
-        L.t += 0.5
+        L.t += 0.2 if RITMO["recortar"] else 0.5
         if s.get("texto"):
             h += f'<p class="sub2">{parrafo(L, s["texto"], voz_de(s, "texto"))}</p>'
         c = s.get("compara")
@@ -577,11 +605,10 @@ def main():
                     help="imprime las sentencias SQL para pedir a Supabase los audios de Gemini que faltan")
     ap.add_argument("--guion", action="store_true", help="solo muestra lo que se lee y cuándo")
     a = ap.parse_args()
-    global MODO_VOZ
+    global MODO_VOZ, COLA, ENTRADA, ESPERA
     MODO_VOZ = "ninguna" if a.sin_voz else a.voz
     if a.ritmo == "rapido" or cfg_ritmo(a.config) == "rapido":
         RITMO.update(tempo=1.1, pausas=0.6, recortar=True, hueco=0.22)
-        global ENTRADA, COLA, ESPERA
         ENTRADA, COLA, ESPERA = 0.20, 0.15, 0.45
     cfg = json.loads(Path(a.config).read_text(encoding="utf-8"))
     voz_usada = MODO_VOZ
@@ -591,7 +618,7 @@ def main():
         montar(cfg, reg)
         textos = reg.textos()
         # 1º: un solo audio para todo el guion (gasta 1 del cupo diario). 2º, si no se trocea bien: uno por lámina.
-        trozos, sr_ent = G.repartir_entero(reg.frases)
+        trozos, sr_ent = repartir(G, reg.frases) if RITMO["recortar"] else G.repartir_entero(reg.frases)
         entero_existe = sr_ent is not None
         audios = {}
         if not trozos:   # audios por lámina ya hechos (de antes o como respaldo)
@@ -677,6 +704,34 @@ def main():
                     "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", str(mp4)], check=True)
     shutil.rmtree(tmp, ignore_errors=True)
     print(json.dumps({"reel": str(mp4), "portada": str(out / f"{cfg['slug']}-portada.jpg"), "segundos": round(total, 1), "voz": voz_usada if trozos else "ninguna"}, ensure_ascii=False))
+
+
+def repartir(G, frases_por_lamina):
+    """Trocea el audio entero frase a frase con alineado forzado (alinear_voz: DTW contra Kokoro) para que cada
+    texto salga en pantalla cuando se dice; si no cuadra, por silencios (partir_alineado) y, al final, el reparto
+    antiguo. Devuelve ({lámina: [pcm]}, sr) o (None, sr|None)."""
+    r = G.descargar(G.guion_entero(frases_por_lamina))
+    if not r:
+        return None, None
+    pcm, sr = r
+    todas = [f for k in sorted(frases_por_lamina) for f in frases_por_lamina[k]]
+    trozos = None
+    try:
+        import alinear_voz
+        trozos = alinear_voz.alinear(pcm, sr, todas)
+    except Exception as ex:   # noqa: BLE001
+        print(f"AVISO: alineado forzado no disponible ({ex})", file=sys.stderr)
+    if not trozos:
+        print("AVISO: el alineado forzado no cuadra; pruebo por silencios", file=sys.stderr)
+        trozos = G.partir_alineado(pcm, sr, todas) or G.partir_validado(pcm, sr, todas)
+    if not trozos:
+        return None, sr
+    out, i = {}, 0
+    for k in sorted(frases_por_lamina):
+        n = len(frases_por_lamina[k])
+        out[k] = trozos[i:i + n]
+        i += n
+    return out, sr
 
 
 def cfg_ritmo(ruta):
