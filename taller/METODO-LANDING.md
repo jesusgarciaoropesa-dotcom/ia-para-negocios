@@ -108,6 +108,15 @@ secciones, quitar las etiquetas `.eyebrow`, tarjetas…) para que no tenga aspec
   La cabecera fija va como cristal: fondo del color de la web al 62-74 % de opacidad con
   `backdrop-filter: blur(20px) saturate(180%)`. Nunca `transition: all`, nunca animar desde
   `scale(0)`, animaciones de interfaz por debajo de 300 ms y respetando `prefers-reduced-motion`.
+- **Portada con fuerza (Impeccable `bolder`, obligatorio):** el titular de la portada grande
+  (hasta unos 6rem en ordenador, 2,4-3,4rem en móvil, `line-height` 0,9-0,95, letras algo juntas) y,
+  si la web tiene letra a mano (la de la «firma»), la segunda línea del titular en esa letra, en el
+  color de acento, algo girada y con su subrayado dibujado (el mismo SVG de la firma). Sin colores ni
+  fuentes nuevas: se refuerza lo que la marca ya tiene. Comprueba que ninguna palabra se corta en móvil.
+- **Detalles de Impeccable `polish`:** `text-wrap: balance` en títulos y `pretty` en párrafos;
+  `::selection`, `caret-color` y `accent-color` con los colores de la web; cifras de horas con
+  `tabular-nums`. Nada de etiquetas encima de los títulos (`.eyebrow`), números de sección decorativos
+  (01, 02…), franjas de color a un lado de tarjetas (`border-left` gordo) ni fondo crema/beige por defecto.
 - **Un solo archivo HTML** autocontenido (CSS y JS dentro). Fuentes de Google Fonts
   como mucho 2 familias. Sin librerías externas pesadas.
 - Paleta y tipografías de la ficha de estilo en las variables `--c-*` y `--f-*` (nunca
@@ -134,6 +143,18 @@ revisa a mano: que nada sea inventado, que los textos encajen con la ficha y que
 WhatsApp funcione con el número bueno. Y hace la **revisión visual en rondas** de la parte 3 de
 `taller/DISENO.md` (5 notas de 1 a 5; si alguna baja de 4, corrige y repite; máximo 3 rondas),
 guarda `revision.diseno` y añade la línea de la demo a `demos/NOTAS-DISENO.md`.
+**Detector de Impeccable (obligatorio, gratis):**
+
+```bash
+[ -d /tmp/impeccable ] || git clone -q --depth 1 https://github.com/pbakaus/impeccable /tmp/impeccable
+/tmp/impeccable/.claude/skills/impeccable/scripts/impeccable telemetry off
+/tmp/impeccable/.claude/skills/impeccable/scripts/impeccable detect --no-advisory demos/<slug>/index.html
+```
+
+Corrige todo lo que marque (contraste, fondo crema, etiquetas, franjas, textos pequeños…) y repite
+hasta que no quede nada. Excepción: los avisos `cramped-padding` de secciones a todo el ancho suelen
+ser falsos (el contenedor ya deja 16 px); compruébalo en la captura y, si es así, se dejan. Guarda el
+resultado en `revision.detector`. Si el detector no se puede descargar, dilo en la revisión y sigue.
 Errores pequeños se arreglan directamente; si hay algo grave, vuelve a la etapa que toque.
 
 ### 6. Entrega

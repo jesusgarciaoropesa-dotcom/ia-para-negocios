@@ -112,11 +112,11 @@
   .tarjeta { position: relative; background: #fff; border-radius: var(--radio); padding: 24px 22px 22px; border-left: 5px solid var(--c-primario); box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 10px 26px rgba(0,0,0,.05); }
   .tarjeta .ico { width: 42px; height: 42px; color: var(--c-oscuro); margin-bottom: 12px; }
   .tarjeta p { margin: 0; }
-  .tarjeta .num { position: absolute; top: 14px; right: 16px; font-family: var(--f-titulos); font-style: italic; font-weight: 800; font-size: 1.6rem; color: #e4e2dd; }
+  .tarjeta .num { position: absolute; top: 14px; right: 16px; font-family: var(--f-titulos); font-style: italic; font-weight: 800; font-size: 1.6rem; color: #e4e2dd; display: none; }
 
   /* Por qué */
   .puntos { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 30px; }
-  .punto { background: var(--c-oscuro-2); border-radius: var(--radio); padding: 26px 22px; border-top: 4px solid var(--c-primario); }
+  .punto { background: var(--c-oscuro-2); border-radius: var(--radio); padding: 26px 22px; }
   .punto svg { width: 40px; height: 40px; margin-bottom: 12px; color: var(--c-primario-2); }
   .punto p { margin: 0; }
 
@@ -153,7 +153,7 @@
   .marcas .cabecera-sec { margin-bottom: 22px; }
   .lista-marcas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
   .lista-marcas li { position: relative; display: flex; align-items: center; justify-content: center; min-height: 64px; padding: 10px 14px; background: #fff; border: 1px solid #dcd9d2; border-radius: var(--radio); font-family: var(--f-titulos); font-weight: 700; font-style: italic; font-size: 1.3rem; text-transform: uppercase; letter-spacing: .04em; color: var(--c-oscuro); overflow: hidden; }
-  .lista-marcas li::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, var(--c-primario), var(--c-primario-2)); }
+  .lista-marcas li::before { display: none; content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, var(--c-primario), var(--c-primario-2)); }
   .lista-marcas li.mas { background: var(--c-oscuro); color: #fff; border-color: var(--c-oscuro); font-size: 1.05rem; grid-column: span 2; }
   footer { background: var(--c-oscuro); color: rgba(255,255,255,.8); padding: 40px 0 100px; font-size: .92rem; }
   footer a { color: #fff; }
@@ -186,6 +186,28 @@
   @media (prefers-reduced-motion: reduce) { .paso:not([hidden]) { animation: none; } .btn:active, .tarjeta:active, .rv-servs button:active, .rv-dias button:active, .rv-horas button:active { transform: none; } }
   @media (prefers-reduced-transparency: reduce) { header { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; } }
   /* ===== fin acabado ===== */
+
+  /* ===== impeccable · polish ===== */
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  a { text-underline-offset: .18em; }
+  .eyebrow { display: none; }   /* sin etiquetas encima de los títulos: el título habla solo */
+  :root { --c-wa: #177a42; }
+
+  :root { --c-primario: #c42a18; }
+  ::selection { background: var(--c-primario); color: #fff; }
+  .hero h1 em, .cta-final h2 em { color: var(--c-primario-2); }
+  .tarjeta { border-left: 1px solid #dcd9d2; }
+  .punto { border-top: 0; box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
+  details { border-left: 0; border: 1px solid #dcd9d2; }
+  .lista-marcas li::before { display: none; }
+  .horario tr.cerrado td:last-child { color: #686d74; }
+  .cta-final { background: linear-gradient(115deg, #b3200f 0%, #9c1b0c 100%); }
+  /* ===== impeccable · bolder (solo la portada) ===== */
+  .hero { padding: 88px 0 104px; }
+  .hero h1 { font-size: clamp(3.4rem, 9vw, 7rem); line-height: .9; letter-spacing: -.01em; }
+  @media (max-width: 860px) { .hero h1 { font-size: clamp(2.2rem, 9.6vw, 3.4rem); } .hero { padding: 40px 0 64px; } }
+  /* ===== fin impeccable ===== */
 </style>
 </head>
 <body>
@@ -228,7 +250,7 @@
   <section class="hero">
     <div class="contenedor hero-grid">
       <div>
-        <span class="eyebrow">Taller de motos en Oropesa (Toledo)</span>
+        
         <h1>Taller de motos y <em>ciclomotores</em> en Oropesa</h1>
         <p class="sub">Mantenimiento, reparación, neumáticos, frenos, electricidad y recambios para tu moto o ciclomotor, en la Calle Campana de Oropesa. Escríbenos y te decimos cuándo traerla.</p>
         <div class="acciones">
@@ -289,19 +311,19 @@
   <section id="servicios" class="alterna">
     <div class="contenedor">
       <div class="cabecera-sec">
-        <div><span class="eyebrow">Servicios</span><h2>Todo lo que tu moto necesita, en un solo taller</h2></div>
+        <div><h2>Todo lo que tu moto necesita, en un solo taller</h2></div>
         <p>Motos y ciclomotores: del mantenimiento de siempre a la avería que no sabes de dónde viene.</p>
       </div>
       <div class="rejilla">
-        <article class="tarjeta"><span class="num">01</span><svg class="ico" aria-hidden="true"><use href="#i-llave"/></svg><h3>Mantenimiento y revisiones</h3><p>Revisiones periódicas para que tu moto o ciclomotor siga funcionando como el primer día.</p></article>
-        <article class="tarjeta"><span class="num">02</span><svg class="ico" aria-hidden="true"><use href="#i-aceite"/></svg><h3>Cambio de aceite y filtros</h3><p>Cambio de aceite y filtros cuando toca, para cuidar el motor.</p></article>
-        <article class="tarjeta"><span class="num">03</span><svg class="ico" aria-hidden="true"><use href="#i-rueda"/></svg><h3>Neumáticos</h3><p>Cambio y montaje de neumáticos para moto y ciclomotor.</p></article>
-        <article class="tarjeta"><span class="num">04</span><svg class="ico" aria-hidden="true"><use href="#i-freno"/></svg><h3>Frenos</h3><p>Revisión y reparación de frenos: pastillas, discos y lo que haga falta para frenar seguro.</p></article>
-        <article class="tarjeta"><span class="num">05</span><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><h3>Preparación para la ITV</h3><p>Repasamos tu moto antes de que pases la ITV para que vayas tranquilo.</p></article>
-        <article class="tarjeta"><span class="num">06</span><svg class="ico" aria-hidden="true"><use href="#i-rayo"/></svg><h3>Electricidad</h3><p>Diagnóstico y reparación de averías eléctricas: luces, arranque, batería y cableado.</p></article>
-        <article class="tarjeta"><span class="num">07</span><svg class="ico" aria-hidden="true"><use href="#i-bandera"/></svg><h3>Preparación racing</h3><p>Preparación y mejoras para sacarle más partido a tu moto.</p></article>
-        <article class="tarjeta"><span class="num">08</span><svg class="ico" aria-hidden="true"><use href="#i-caja"/></svg><h3>Venta de recambios</h3><p>Recambios para motos y ciclomotores en el propio taller.</p></article>
-        <article class="tarjeta"><span class="num">09</span><svg class="ico" aria-hidden="true"><use href="#i-moto"/></svg><h3>Reparación general</h3><p>Reparación de motocicletas y ciclomotores. Cuéntanos qué le pasa a la tuya.</p></article>
+        <article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-llave"/></svg><h3>Mantenimiento y revisiones</h3><p>Revisiones periódicas para que tu moto o ciclomotor siga funcionando como el primer día.</p></article>
+        <article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-aceite"/></svg><h3>Cambio de aceite y filtros</h3><p>Cambio de aceite y filtros cuando toca, para cuidar el motor.</p></article>
+        <article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-rueda"/></svg><h3>Neumáticos</h3><p>Cambio y montaje de neumáticos para moto y ciclomotor.</p></article>
+        <article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-freno"/></svg><h3>Frenos</h3><p>Revisión y reparación de frenos: pastillas, discos y lo que haga falta para frenar seguro.</p></article>
+        <article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><h3>Preparación para la ITV</h3><p>Repasamos tu moto antes de que pases la ITV para que vayas tranquilo.</p></article>
+        <article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-rayo"/></svg><h3>Electricidad</h3><p>Diagnóstico y reparación de averías eléctricas: luces, arranque, batería y cableado.</p></article>
+        <article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-bandera"/></svg><h3>Preparación racing</h3><p>Preparación y mejoras para sacarle más partido a tu moto.</p></article>
+        <article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-caja"/></svg><h3>Venta de recambios</h3><p>Recambios para motos y ciclomotores en el propio taller.</p></article>
+        <article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-moto"/></svg><h3>Reparación general</h3><p>Reparación de motocicletas y ciclomotores. Cuéntanos qué le pasa a la tuya.</p></article>
       </div>
     </div>
   </section>
@@ -309,7 +331,7 @@
   <section id="marcas" class="marcas">
     <div class="contenedor">
       <div class="cabecera-sec">
-        <div><span class="eyebrow">Marcas</span><h2>Trabajamos con todas las marcas</h2></div>
+        <div><h2>Trabajamos con todas las marcas</h2></div>
         <p>Da igual la marca de tu moto o ciclomotor: la traes y la atendemos. Estas son algunas de las más habituales.</p>
       </div>
       <ul class="lista-marcas" aria-label="Algunas de las marcas con las que trabajamos"><li>Honda</li><li>Yamaha</li><li>Kawasaki</li><li>Suzuki</li><li>BMW</li><li>KTM</li><li>Ducati</li><li>Triumph</li><li>Aprilia</li><li>Piaggio</li><li>Vespa</li><li>Kymco</li><li>SYM</li><li>Peugeot</li><li class="mas">Y cualquier otra marca</li></ul>
@@ -318,7 +340,7 @@
 
   <section class="oscura">
     <div class="contenedor">
-      <span class="eyebrow">Por qué elegirnos</span>
+      
       <h2>Por qué traer tu moto a Mk Racing</h2>
       <div class="puntos">
         <div class="punto"><svg aria-hidden="true"><use href="#i-moto"/></svg><h3>Solo motos y ciclomotores</h3><p>Es un taller dedicado a las dos ruedas: es lo que hacemos todos los días.</p></div>
@@ -332,7 +354,7 @@
   <section id="sobre">
     <div class="contenedor dos">
       <div>
-        <span class="eyebrow">El taller</span>
+        
         <h2>Un taller de motos en Oropesa</h2>
         <p>Taller Mk Racing es un taller mecánico dedicado a la reparación de motocicletas y ciclomotores en Oropesa (Toledo). Hacemos desde el mantenimiento de siempre —aceite, filtros, frenos y neumáticos— hasta averías eléctricas, puesta a punto para la ITV y preparación racing.</p>
         <p>Si tienes una duda con tu moto, escríbenos y lo vemos.</p>
@@ -386,7 +408,7 @@
   <section id="horario" class="alterna">
     <div class="contenedor dos">
       <div>
-        <span class="eyebrow">Horario</span><h2>Cuándo y dónde</h2>
+        <h2>Cuándo y dónde</h2>
         <table class="horario"><tbody>
           <tr><td>Lunes</td><td>9:00–14:00 · 16:00–19:00</td></tr>
           <tr><td>Martes</td><td>9:00–14:00 · 16:00–19:00</td></tr>
@@ -403,7 +425,7 @@
 
   <section>
     <div class="contenedor" style="max-width:840px">
-      <span class="eyebrow">Preguntas frecuentes</span><h2>Lo que más nos preguntan</h2>
+      <h2>Lo que más nos preguntan</h2>
       <details><summary>¿Arregláis también ciclomotores y scooters?</summary><p>Sí. El taller se dedica a la reparación de motocicletas y ciclomotores.</p></details>
       <details><summary>¿Cómo pido cita?</summary><p>Lo más rápido es escribirnos por WhatsApp al 637 84 71 14 contándonos qué moto tienes y qué le pasa. También puedes llamarnos en horario de taller.</p></details>
       <details><summary>¿Qué horario tenéis?</summary><p>De lunes a viernes, de 9:00 a 14:00 y de 16:00 a 19:00. Sábados y domingos cerrado.</p></details>

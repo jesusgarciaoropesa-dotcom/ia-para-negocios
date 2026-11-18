@@ -191,6 +191,24 @@
   @media (prefers-reduced-motion: reduce) { .paso:not([hidden]) { animation: none; } .btn:active, .tarjeta:active, .rv-servs button:active, .rv-dias button:active, .rv-horas button:active { transform: none; } }
   @media (prefers-reduced-transparency: reduce) { header { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; } }
   /* ===== fin acabado ===== */
+
+  /* ===== impeccable · polish ===== */
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  a { text-underline-offset: .18em; }
+  .eyebrow { display: none; }   /* sin etiquetas encima de los títulos: el título habla solo */
+  :root { --c-wa: #177a42; }
+
+  :root { --c-primario: #7a5a2f; --c-fondo: #f6f4f1; }
+  ::selection { background: var(--c-dorado); color: var(--c-oscuro); }
+  .horario tr.cerrado td:last-child { color: #6b5f53; }
+  .marca small { font-size: .72rem; }
+  /* ===== impeccable · bolder (solo la portada) ===== */
+  .hero { padding: 88px 0 108px; }
+  .hero h1 { font-size: clamp(3.2rem, 7.6vw, 6.2rem); line-height: .95; }
+  .hero h1 em { display: block; }
+  @media (max-width: 860px) { .hero h1 { font-size: clamp(2.8rem, 12vw, 3.6rem); } .hero { padding-top: 40px; } }
+  /* ===== fin impeccable ===== */
 </style>
 </head>
 <body>
@@ -214,7 +232,7 @@
   <section class="hero">
     <div class="contenedor hero-grid">
       <div>
-        <span class="eyebrow">Clínica estética en Valmojado</span>
+        
         <h1>Tratamientos faciales y corporales <em>en Valmojado</em></h1>
         <p class="sub">Cuidamos tu piel con tratamientos personalizados, en la Calle Real. Precios claros y cita fácil por WhatsApp.</p>
         <div class="acciones">
@@ -255,7 +273,7 @@
   <section id="tratamientos" class="alterna">
     <div class="contenedor">
       <div class="cabecera-sec">
-        <div><span class="eyebrow">Tratamientos</span><h2>Tratamientos y <em>precios</em></h2></div>
+        <div><h2>Tratamientos y <em>precios</em></h2></div>
         <p>Tratamientos faciales y corporales personalizados. Si no sabes cuál elegir, pregúntanos y te orientamos.</p>
       </div>
 
@@ -283,7 +301,7 @@
 
   <section>
     <div class="contenedor">
-      <span class="eyebrow">Por qué Bella Piel</span>
+      
       <h2>Cuidarte, <em>sin complicaciones</em></h2>
       <div class="puntos">
         <div class="punto">
@@ -309,7 +327,7 @@
   <section id="sobre" class="alterna">
     <div class="contenedor dos">
       <div>
-        <span class="eyebrow">Quiénes somos</span>
+        
         <h2>Un espacio para cuidarte <em>en Valmojado</em></h2>
         <p>En Clínica Estética Bella Piel ofrecemos tratamientos faciales y corporales personalizados en la Calle Real, 18, de Valmojado.</p>
         <p>Queremos que te sientas a gusto, resolver tus dudas y que salgas sintiéndote bien con tu piel.</p>
@@ -352,7 +370,7 @@
   <section id="horario">
     <div class="contenedor dos">
       <div>
-        <span class="eyebrow">Horario</span><h2>Cuándo y <em>dónde</em></h2>
+        <h2>Cuándo y <em>dónde</em></h2>
         <table class="horario"><tbody>
           <tr><td>Lunes a viernes</td><td>10:00–14:00 · 16:00–20:00</td></tr>
           <tr><td>Sábados</td><td>10:00–14:00</td></tr>
@@ -367,7 +385,7 @@
 
   <section id="preguntas" class="alterna">
     <div class="contenedor" style="max-width:820px">
-      <span class="eyebrow">Preguntas frecuentes</span><h2>Lo que más <em>nos preguntan</em></h2>
+      <h2>Lo que más <em>nos preguntan</em></h2>
       <details><summary>¿Cómo pido cita?</summary><p>Escríbenos por WhatsApp o llámanos al <a href="tel:+34637817114">637 81 71 14</a>. Es el mismo número para las dos cosas.</p></details>
       <details><summary>¿Qué horario tenéis?</summary><p>De lunes a viernes de 10:00 a 14:00 y de 16:00 a 20:00. Sábados de 10:00 a 14:00. Domingos cerrado.</p></details>
       <details><summary>¿Dónde estáis?</summary><p>En la Calle Real, 18, 45940 Valmojado (Toledo).</p></details>
