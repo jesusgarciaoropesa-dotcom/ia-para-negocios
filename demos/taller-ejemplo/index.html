@@ -340,6 +340,27 @@
   @media (prefers-reduced-motion: reduce) { .paso:not([hidden]) { animation: none; } .btn:active, .tarjeta:active, .rv-servs button:active, .rv-dias button:active, .rv-horas button:active { transform: none; } }
   @media (prefers-reduced-transparency: reduce) { header { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; } }
   /* ===== fin acabado ===== */
+
+  /* ===== impeccable · polish ===== */
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  ::selection { background: var(--naranja); color: #17120a; }
+  input, select, textarea { caret-color: var(--naranja-osc); accent-color: var(--naranja-osc); }
+  .rv-horas, .rv-dias, .pasos li::before, .horario-mini { font-variant-numeric: tabular-nums; }
+  a { text-underline-offset: .18em; }
+  html { scrollbar-color: var(--linea) var(--grafito); }
+  /* ===== impeccable · bolder (solo la portada): el titular en la cursiva del logo, la segunda línea a mano como «¡Así de fácil!» ===== */
+  .inicio { min-height: clamp(580px, 86vh, 820px); align-items: flex-end; }
+  .inicio-txt { max-width: 860px; padding: 64px 0 72px; }
+  .inicio h1 { font-size: clamp(3.2rem, 8vw, 6rem); font-style: italic; line-height: .92; letter-spacing: -.03em; text-transform: none; }
+  .inicio h1 .mano { display: inline-block; font-family: "Caveat", "Segoe Script", cursive; font-style: normal; font-weight: 600; font-size: .8em; letter-spacing: 0; line-height: 1.05; transform: rotate(-3deg); transform-origin: left center; margin: .14em 0 0 .04em; }
+  .inicio h1 .mano svg { display: block; width: 92%; height: .16em; margin-top: -.02em; }
+  @media (max-width: 720px) {
+    .inicio { align-items: flex-start; min-height: 0; }
+    .inicio-txt { padding: 262px 0 34px; }
+    .inicio h1 { font-size: clamp(2.6rem, 12.5vw, 3.4rem); }
+  }
+  /* ===== fin impeccable ===== */
 </style>
 </head>
 <body>
@@ -381,7 +402,7 @@
     <img src="img/inicio.jpg" width="1800" height="1000" alt="Mecánico revisando el motor de un coche con el capó abierto en un taller luminoso" fetchpriority="high">
     <div class="contenedor">
       <div class="inicio-txt">
-        <h1 id="titular">Tu coche a punto,<br> <span>sin esperar al teléfono</span></h1>
+        <h1 id="titular">Tu coche a punto,<br> <span class="mano">sin esperar al teléfono<svg viewBox="0 0 150 14" aria-hidden="true" preserveAspectRatio="none"><path d="M3 10c30-6 70-9 144-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></h1>
         <p>Frenos, aceite, pre-ITV, diagnosis y neumáticos. Mira las horas libres y reserva tu cita online en un minuto.</p>
         <div class="botones">
           <a class="btn btn-pri" href="#reservar"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg>Reservar cita online</a>

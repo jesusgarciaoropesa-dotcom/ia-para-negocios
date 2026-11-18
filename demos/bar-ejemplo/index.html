@@ -42,7 +42,7 @@
 </script>
 <style>
   :root {
-    --crema: #faf5ec; --crema-2: #f2e9da; --papel: #fffdf8; --linea: #e3d6c1;
+    --crema: #f2f4ee; --crema-2: #e9ecdf; --papel: #fcfcf9; --linea: #dcdccf;
     --teja: #b4502a; --teja-hover: #9a4322; --oliva: #2f3a22; --oliva-2: #3d4a2c; --hoja: #6b7b3a;
     --tinta: #2b1d14; --tinta-suave: #5e4e40;
     --wa: #25d366;
@@ -156,7 +156,7 @@
 
   /* Pasos */
   .pasos { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
-  .pasos li { position: relative; text-align: center; font-size: .94rem; font-weight: 600; color: #8a7a68; padding-top: 40px; }
+  .pasos li { position: relative; text-align: center; font-size: .94rem; font-weight: 600; color: var(--tinta-suave); padding-top: 40px; }
   .pasos li::before { content: attr(data-n); position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--papel); border: 2px solid #cdbca3; color: #8a7a68; font-weight: 700; z-index: 1; }
   .pasos li::after { content: ""; position: absolute; top: 15px; left: -50%; width: 100%; height: 2px; background: #ddd0bb; }
   .pasos li:first-child::after { display: none; }
@@ -243,7 +243,7 @@
   .lugar .btn { min-height: 48px; font-size: 1rem; }
   .mapa { margin: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--linea); background: #e6e1d6; }
   .mapa iframe { display: block; width: 100%; height: 280px; border: 0; }
-  .mapa figcaption { background: var(--papel); color: #6e5e50; font-size: .94rem; padding: 8px 12px; }
+  .mapa figcaption { background: var(--papel); color: var(--tinta-suave); font-size: .94rem; padding: 8px 12px; }
   @media (max-width: 1000px) { .lugar { grid-template-columns: 1fr 1fr; } .lugar .sep { display: none; } .lugar .opiniones { grid-column: 1 / -1; } }
   @media (max-width: 640px) { .lugar { grid-template-columns: 1fr; gap: 36px; } }
 
@@ -299,6 +299,34 @@
   @media (prefers-reduced-motion: reduce) { .paso:not([hidden]) { animation: none; } .btn:active, .tarjeta:active, .rv-servs button:active, .rv-dias button:active, .rv-horas button:active { transform: none; } }
   @media (prefers-reduced-transparency: reduce) { header { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; } }
   /* ===== fin acabado ===== */
+
+  /* ===== impeccable · critique + polish ===== */
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  section p, .res-intro p { max-width: 65ch; }
+  ::selection { background: var(--teja); color: #fff; }
+  input, select, textarea { caret-color: var(--teja); accent-color: var(--teja); }
+  time, .horario, .rv-horas, .pasos li::before { font-variant-numeric: tabular-nums; }
+  a { text-underline-offset: .18em; text-decoration-thickness: 1px; }
+  .plato figcaption { text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+  .plato { background: var(--oliva); }
+  html { scrollbar-color: var(--hoja) var(--crema); }
+  /* ===== fin impeccable ===== */
+
+  /* ===== impeccable · bolder (solo la portada) ===== */
+  .inicio { min-height: clamp(560px, 86vh, 820px); align-items: flex-end; }
+  .inicio::before { background: linear-gradient(90deg, rgba(30,18,10,.88) 0%, rgba(30,18,10,.66) 50%, rgba(30,18,10,0) 80%), linear-gradient(0deg, rgba(30,18,10,.7) 0%, rgba(30,18,10,0) 45%); }
+  .inicio-txt { max-width: 780px; padding: 64px 0 72px; }
+  .inicio h1 { font-size: clamp(3.2rem, 8.4vw, 6rem); line-height: .94; letter-spacing: -.035em; }
+  .inicio h1 .mano { display: inline-block; position: relative; font-family: "Caveat", "Segoe Script", cursive; font-weight: 600; font-size: .78em; letter-spacing: 0; line-height: 1.05; transform: rotate(-3deg); transform-origin: left center; margin: .12em 0 0 .05em; }
+  .inicio h1 .mano svg { display: block; width: 92%; height: .16em; margin-top: -.02em; }
+  .inicio p { margin: 26px 0 32px; }
+  @media (max-width: 700px) {
+    .inicio-txt { padding: 262px 0 34px; }
+    .inicio h1 { font-size: clamp(2.6rem, 12.5vw, 3.4rem); }
+    .inicio::before { background: linear-gradient(180deg, rgba(30,18,10,0) 0px, rgba(30,18,10,0) 200px, rgba(30,18,10,1) 300px, rgba(30,18,10,1) 100%); }
+  }
+  /* ===== fin bolder ===== */
 </style>
 </head>
 <body>
@@ -343,7 +371,7 @@
     <img src="img/inicio.jpg" width="1800" height="1000" alt="Mesa del bar llena de tapas: paella, jamón y queso, croquetas, aceitunas y brochetas" fetchpriority="high">
     <div class="contenedor">
       <div class="inicio-txt">
-        <h1 id="titular"><span class="l">Tu mesa en Oropesa,</span><br> <span class="l dorado">reservada desde el móvil</span></h1>
+        <h1 id="titular"><span class="l">Tu mesa en Oropesa,</span><br> <span class="l dorado mano">reservada desde el móvil<svg viewBox="0 0 150 14" aria-hidden="true" preserveAspectRatio="none"><path d="M3 10c30-6 70-9 144-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></h1>
         <p>Elige comida o cena, cuántos sois y la hora. Sin llamar y sin esperar a que haya un hueco en la barra para cogerte el teléfono.</p>
         <div class="botones">
           <a class="btn btn-pri" href="#reservar"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg>Reservar mesa</a>
