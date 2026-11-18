@@ -106,6 +106,7 @@ VELOCIDAD = 1.10    # >1 = más rápido (voz Kokoro "em_alex")
 PAUSA = {"titulo": 0.50, ".": 0.38, "?": 0.40, "!": 0.38, ":": 0.30, ";": 0.30, ",": 0.18, "item": 0.32, "": 0.26}
 LEER_DATOS = False  # el recuadro "dato" se ve pero no se lee (en una lámina: "voz": {"dato": "..."} para leerlo)
 CPS_SIN_VOZ = 14    # caracteres por segundo cuando se genera sin voz
+ESPERA = 1.0        # factor de los tiempos sin voz (tabla que se rellena, recuadro "dato"); --ritmo rapido lo baja
 
 # Cómo se dice lo que se escribe de otra forma (añade aquí lo que la voz lea raro)
 DICCIONARIO = [
@@ -185,7 +186,32 @@ class Registro:
         return {k: " ".join(v) for k, v in self.frases.items()}
 
 
-RITMO = {"tempo": 1.0, "pausas": 1.0, "recortar": False}   # --ritmo rapido: voz algo más rápida, sin silencios largos
+RITMO = {"tempo": 1.0, "pausas": 1.0, "recortar": False, "hueco": None}   # --ritmo rapido: voz algo más rápida, sin silencios largos
+
+
+def comprimir_silencios(pcm, sr, maximo=0.22, umbral=400):
+    """Acorta los silencios DENTRO de una frase (Gemini a veces deja más de 1 s a mitad de frase) a `maximo` s.
+    Añadido el 18-11-2026 porque Jesús notó silencios en el reel."""
+    import numpy as np
+    a = np.frombuffer(pcm, dtype=np.int16)
+    if not len(a):
+        return pcm
+    hop = int(0.01 * sr)
+    e = np.array([np.sqrt(np.mean(a[i:i + hop].astype(np.float32) ** 2)) for i in range(0, len(a) - hop + 1, hop)])
+    callado = e < umbral
+    keep, i, n, lim = [], 0, len(callado), int(maximo / 0.01)
+    while i < n:
+        j = i
+        while j < n and callado[j] == callado[i]:
+            j += 1
+        if callado[i] and (j - i) > lim:
+            mitad = lim // 2
+            keep.append(a[i * hop:(i + mitad) * hop]); keep.append(a[(j - (lim - mitad)) * hop:j * hop])
+        else:
+            keep.append(a[i * hop:j * hop])
+        i = j
+    keep.append(a[n * hop:])
+    return np.concatenate(keep).tobytes()
 
 
 def recortar_silencio(pcm, sr, margen=0.05, umbral=500):
@@ -226,6 +252,8 @@ class VozGemini:
         pcm = trozos.pop(0)
         if RITMO["recortar"]:
             pcm = recortar_silencio(pcm, self.sr)
+        if RITMO["hueco"]:
+            pcm = comprimir_silencios(pcm, self.sr, RITMO["hueco"])
         pcm = acelerar(pcm, self.sr, RITMO["tempo"])
         return pcm, len(pcm) / 2 / self.sr
 
@@ -345,8 +373,9 @@ def escena_visual(s, L, ini):
         h = cabeza_clara(s, L, ini)
         t0 = L.t
         n = len(s.get("filas", [])[:6])
-        h += f'<div {entra(t0 - 0.2)}>{C.tabla(s, lambda k: entra(t0 + 0.3 + k * 0.55, "aparece"))}</div>'
-        L.t = t0 + 0.6 + n * 0.55
+        pf = 0.55 * ESPERA
+        h += f'<div {entra(t0 - 0.2)}>{C.tabla(s, lambda k: entra(t0 + 0.2 + k * pf, "aparece"))}</div>'
+        L.t = t0 + 0.3 + n * pf
         if s.get("globo"):
             a, _ = L.di(s["globo"], PAUSA["."], voz_de(s, "globo"))
             h += C.globo(s["globo"], entra(a - 0.1))
@@ -368,7 +397,7 @@ def escena_visual(s, L, ini):
             a, _ = L.di(p.get("titulo", ""), PAUSA["item"], p.get("voz"))
             tiempos.append(a)
         h += C.pasos(s.get("pasos"), lambda k: entra(tiempos[k] - 0.15))
-        L.t += 0.6
+        L.t += 0.6 * ESPERA
     elif t == "prompt":
         h = cabeza_clara(s, L, ini)
         h += C.caja_prompt(s, entra(L.t - 0.2))
@@ -478,7 +507,7 @@ def escena(s, L, ini):
                 dentro += f'<div class="dato ap" {d(fr0)}>{parrafo(L, s["dato"], voz_de(s, "dato"))}</div>'
             else:
                 dentro += f'<div class="dato ap" {d(fr0 - 0.1)}>{s_dato(s["dato"])}</div>'
-                L.t += min(2.4, 0.9 + len(s["dato"]) / 45)
+                L.t += max(1.6, min(2.4, 0.9 + len(s["dato"]) / 45) * ESPERA)   # el recuadro se tiene que poder leer
     elif t == "lista":
         a, dur = L.di(s["titulo"], PAUSA["titulo"], voz_de(s, "titulo"))
         its = ""
@@ -511,7 +540,7 @@ def montar(cfg, voz):
         html = escena(s, L, t)
         fin_voz = L.t
         extra = 1.0 if s.get("tipo") == "cierre" else 0
-        dur = max(2.6, fin_voz - t + COLA + extra)
+        dur = max(2.2, fin_voz - t + COLA + extra)
         if k == 0:
             portada_t = min(dur - SAL - 0.1, fin_voz - t)
         ultima = k == len(slides) - 1
@@ -551,7 +580,9 @@ def main():
     global MODO_VOZ
     MODO_VOZ = "ninguna" if a.sin_voz else a.voz
     if a.ritmo == "rapido" or cfg_ritmo(a.config) == "rapido":
-        RITMO.update(tempo=1.1, pausas=0.6, recortar=True)
+        RITMO.update(tempo=1.1, pausas=0.6, recortar=True, hueco=0.22)
+        global ENTRADA, COLA, ESPERA
+        ENTRADA, COLA, ESPERA = 0.20, 0.15, 0.45
     cfg = json.loads(Path(a.config).read_text(encoding="utf-8"))
     voz_usada = MODO_VOZ
     if MODO_VOZ == "gemini":
@@ -580,7 +611,14 @@ def main():
             por_lamina = {}
             for k, frs in reg.frases.items():
                 pcm, sr = audios[k]
-                por_lamina[k] = G.partir(pcm, sr, [len(f) for f in frs])
+                trozos_k = None
+                if len(frs) > 1:   # alineado forzado (como en generar_historia): cada frase con SU voz
+                    try:
+                        import alinear_voz
+                        trozos_k = alinear_voz.alinear(pcm, sr, frs)
+                    except Exception as ex:
+                        print(f"AVISO: alineado de la lámina {k} falló ({ex}); troceo por silencios.", file=sys.stderr)
+                por_lamina[k] = trozos_k or G.partir(pcm, sr, [len(f) for f in frs])
             voz = VozGemini(por_lamina, sr)
         else:
             faltan = sum(1 for v in audios.values() if not v)
@@ -619,6 +657,17 @@ def main():
         escribir_audio(trozos, total, voz.sr, tmp / "voz.wav")
         audio = ["-i", str(tmp / "voz.wav")]
         filtro = ["-af", "loudnorm=I=-16:TP=-1.5,apad", "-ar", "44100"]
+        if cfg.get("musica"):   # "musica": "suave" | "animada" (musica.py, propia): muy baja y se aparta cuando habla la voz
+            aqui = Path(__file__).resolve().parent
+            pista = aqui / "musica" / f"{cfg['musica']}.wav"
+            if not pista.exists():
+                subprocess.run([sys.executable, str(aqui / "musica.py")], check=True)
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(tmp / "voz.wav"), "-stream_loop", "-1", "-i", str(pista), "-filter_complex",
+                            f"[0:a]aresample=44100,loudnorm=I=-16:TP=-1.5,asplit=2[v][sc];[1:a]volume=0.22,atrim=0:{total:.2f},afade=t=in:d=0.6,afade=t=out:st={max(0, total - 1.2):.2f}:d=1.2[m];"
+                            "[m][sc]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=400[md];[v][md]amix=inputs=2:duration=first:normalize=0[out]",
+                            "-map", "[out]", "-ac", "1", "-ar", "44100", str(tmp / "mezcla.wav")], check=True)
+            audio = ["-i", str(tmp / "mezcla.wav")]
+            filtro = ["-af", "apad"]
     else:
         audio = ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
         filtro = []
