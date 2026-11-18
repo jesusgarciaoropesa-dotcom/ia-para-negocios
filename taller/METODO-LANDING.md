@@ -102,6 +102,12 @@ como base técnica (contacto, datos estructurados, accesibilidad), pero el dise�
 ficha de estilo: cambia lo que haga falta (estructura del inicio, orden y forma de las
 secciones, quitar las etiquetas `.eyebrow`, tarjetas…) para que no tenga aspecto de plantilla:
 
+- **Acabado obligatorio (skills emil-design-eng + apple-design):** pega al final del `<style>`,
+  sin cambiarlo, el bloque de `taller/estilos/acabado.css` (respuesta al pulsar, curvas propias,
+  entrada suave de pasos, hover solo con ratón, tipografía ajustada por tamaño, sombras en capas).
+  La cabecera fija va como cristal: fondo del color de la web al 62-74 % de opacidad con
+  `backdrop-filter: blur(20px) saturate(180%)`. Nunca `transition: all`, nunca animar desde
+  `scale(0)`, animaciones de interfaz por debajo de 300 ms y respetando `prefers-reduced-motion`.
 - **Un solo archivo HTML** autocontenido (CSS y JS dentro). Fuentes de Google Fonts
   como mucho 2 familias. Sin librerías externas pesadas.
 - Paleta y tipografías de la ficha de estilo en las variables `--c-*` y `--f-*` (nunca
