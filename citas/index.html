@@ -178,6 +178,28 @@
   .e-cancelada{background:rgba(154,59,59,.12);color:var(--bad)}
   .e-completada{background:rgba(122,92,74,.15);color:var(--earth)}
 
+  /* Clientes */
+  .cl-item{display:flex;align-items:center;gap:12px;width:100%;background:var(--white-warm);border:1px solid var(--rose);border-radius:14px;padding:10px 14px;margin-bottom:6px;text-align:left;font-weight:400}
+  .cl-item .av{width:42px;height:42px;font-size:1rem}
+  .cl-item .q{flex:1;min-width:0;line-height:1.3}
+  .cl-item .q b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cl-item .q span{font-size:.8rem;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cl-item .prox{font-size:.68rem;font-weight:700;color:var(--ok);background:rgba(95,122,58,.12);padding:3px 8px;border-radius:100px;flex:none;text-align:center;line-height:1.2}
+  .cl-cuenta{font-size:.78rem;color:var(--muted);font-weight:700;margin:2px 2px 8px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+  .stats div{background:var(--cream);border-radius:14px;padding:10px 8px;text-align:center}
+  .stats b{display:block;font-size:1.15rem;line-height:1.2}
+  .stats span{font-size:.72rem;color:var(--muted);font-weight:700}
+  .h-tit{font-size:.8rem;font-weight:700;color:var(--muted);margin:16px 2px 6px}
+  .hist{border:1px solid var(--rose);border-radius:16px;overflow:hidden}
+  .hist button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 14px;border-bottom:1px solid var(--rose);border-radius:0;text-align:left;font-weight:400;font-size:.9rem}
+  .hist button:last-child{border:0}
+  .hist .t{min-width:78px;font-weight:700;font-size:.82rem;font-variant-numeric:tabular-nums}
+  .hist .q{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  textarea{width:100%;padding:11px 13px;border:1.5px solid var(--rose);border-radius:12px;font-family:inherit;font-size:.95rem;background:var(--cream);color:var(--earth-dark);resize:vertical;min-height:70px}
+  textarea:focus{outline:none;border-color:var(--earth);background:#fff}
+  .h-sec2{display:flex;gap:8px;margin-top:8px}
+  .h-sec2 button{flex:1;background:var(--rose);color:var(--earth-dark);padding:11px 0;font-size:.88rem;border-radius:12px}
   /* Ajustes */
   .ajs h2{font-size:1.15rem;margin:18px 2px 10px}
   .ajs h2:first-child{margin-top:4px}
@@ -279,12 +301,21 @@
 
   <!-- SEMANA -->
   <section id="v-semana" class="vista hide">
-    <div class="seg-mod" role="tablist"><button data-modo="semana" class="on" role="tab">Semana</button><button data-modo="mes" role="tab">Mes</button></div>
+    <div class="seg-mod" role="tablist"><button data-modo="semana" class="on" role="tab">Semana</button><button data-modo="mes" role="tab">Mes</button><button data-modo="lista" role="tab">Lista</button></div>
     <div id="calSemana">
     <div class="nav-sem"><button id="wPrev" aria-label="Semana anterior">‹</button><span id="wRango"></span><button id="wNext" aria-label="Semana siguiente">›</button></div>
     <div class="ley"><span><i style="background:var(--earth)"></i>Confirmadas</span><span><i style="background:#e3c58a"></i>Por confirmar</span><span><i style="background:color-mix(in srgb,var(--rose) 55%,#fff)"></i>Libre</span></div>
     <div id="wDias"><div class="empty">Cargando…</div></div>
     <div id="wHuecos"></div>
+    </div>
+    <div id="calLista" class="hide">
+      <div class="filters" id="filtros">
+        <button class="chip active" data-f="proximas">Próximas</button>
+        <button class="chip" data-f="pendiente">Por confirmar</button>
+        <button class="chip" data-f="confirmada">Confirmadas</button>
+        <button class="chip" data-f="todas">Todas</button>
+      </div>
+      <div id="listaReservas"><div class="empty">Cargando…</div></div>
     </div>
     <div id="calMes" class="hide">
       <div class="nav-sem"><button id="mPrev" aria-label="Mes anterior">‹</button><span id="mTit"></span><button id="mNext" aria-label="Mes siguiente">›</button></div>
@@ -320,15 +351,15 @@
     </div>
   </section>
 
-  <!-- RESERVAS -->
-  <section id="v-reservas" class="vista hide">
-    <div class="filters" id="filtros">
-      <button class="chip active" data-f="proximas">Próximas</button>
-      <button class="chip" data-f="pendiente">Por confirmar</button>
-      <button class="chip" data-f="confirmada">Confirmadas</button>
-      <button class="chip" data-f="todas">Todas</button>
+  <!-- CLIENTES -->
+  <section id="v-clientes" class="vista hide">
+    <input id="cBuscar" type="search" placeholder="Buscar por nombre o teléfono" autocomplete="off" style="margin:4px 0 10px">
+    <div class="filters" id="cOrden">
+      <button class="chip active" data-o="recientes">Recientes</button>
+      <button class="chip" data-o="az">A–Z</button>
+      <button class="chip" data-o="visitas">Más visitas</button>
     </div>
-    <div id="listaReservas"><div class="empty">Cargando…</div></div>
+    <div id="listaClientes"><div class="empty">Cargando…</div></div>
   </section>
 
   <!-- AJUSTES -->
@@ -371,7 +402,7 @@
     <button data-v="hoy" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Hoy</button>
     <button data-v="semana"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Calendario</button>
     <button data-v="nueva" class="fab" aria-label="Nueva cita"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-    <button data-v="reservas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg>Reservas</button>
+    <button data-v="clientes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="4"/><path d="M2 21c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 15.8c1.8.8 3 2.6 3.5 5.2"/></svg>Clientes</button>
     <button data-v="ajustes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.6 2 3.4 2.4-1c.6.5 1.3.9 2 1.2L10 21h4l.5-2.6c.7-.3 1.4-.7 2-1.2l2.4 1 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z"/></svg>Ajustes</button>
   </div>
 </nav>
@@ -592,18 +623,18 @@ async function checkNuevas() {
 
 // ===== Navegación (barra de abajo) =====
 let vistaActual = "hoy";
-const TITULOS = { hoy: "Hoy", semana: "Calendario", nueva: "Nueva cita", reservas: "Reservas", ajustes: "Ajustes" };
+const TITULOS = { hoy: "Hoy", semana: "Calendario", nueva: "Nueva cita", clientes: "Clientes", ajustes: "Ajustes" };
 function irA(v) {
   vistaActual = v;
-  ["hoy", "semana", "nueva", "reservas", "ajustes"].forEach(x => $("v-" + x).classList.toggle("hide", x !== v));
+  ["hoy", "semana", "nueva", "clientes", "ajustes"].forEach(x => $("v-" + x).classList.toggle("hide", x !== v));
   document.querySelectorAll("#navBar button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
   $("vistaTit").textContent = TITULOS[v];
   $("btnIrHoy").classList.add("hide");
   window.scrollTo(0, 0);
   if (v === "hoy") cargarDia();
-  if (v === "semana") { if (!semanaRef) semanaRef = diaSel; if (modoCal === "mes") cargarMes(); else cargarSemana(); }
+  if (v === "semana") { if (!semanaRef) semanaRef = diaSel; ponerModoCal(modoCal); }
   if (v === "nueva") prepararNuevaCita();
-  if (v === "reservas") cargarReservas();
+  if (v === "clientes") cargarClientes();
   if (v === "ajustes") { cargarServiciosAdmin(); cargarBloqueados(); }
 }
 document.querySelectorAll("#navBar button").forEach(b => b.addEventListener("click", () => irA(b.dataset.v)));
@@ -783,7 +814,7 @@ $("v-hoy").addEventListener("click", async (e) => {
   const si = e.target.closest("[data-si]"), no = e.target.closest("[data-no]");
   if (si) { cambiarEstado(si.dataset.si, "confirmada", si); return; }
   if (no) { const fila = no.closest(".pc"); const nom = fila ? fila.querySelector(".q").firstChild.textContent : "esta clienta"; if (confirm("¿Cancelar la cita de " + nom.trim() + "?")) cambiarEstado(no.dataset.no, "cancelada", no); return; }
-  if (e.target.closest("[data-ver-pend]")) { irA("reservas"); document.querySelector('#filtros .chip[data-f="pendiente"]').click(); return; }
+  if (e.target.closest("[data-ver-pend]")) { modoCal = "lista"; filtroActual = "pendiente"; document.querySelectorAll("#filtros .chip").forEach(x => x.classList.toggle("active", x.dataset.f === "pendiente")); irA("semana"); return; }
   const ab = e.target.closest("[data-abrir]"); if (ab) { abrirHoja(ab.dataset.abrir); return; }
   const nl = e.target.closest("[data-nueva-libre]"); if (nl) irANueva(nl.dataset.nuevaLibre, nl.dataset.hora || "");
 });
@@ -829,7 +860,7 @@ async function cargarSemana() {
   if (libresSem >= 30 && huecosSemana.length) {
     const masVacio = dias.map((d, i) => ({ i, f: iso(d), l: huecosSemana.filter(h => h.f === iso(d)).reduce((s, h) => s + h.y - h.x, 0) })).sort((p, q) => q.l - p.l)[0];
     $("wHuecos").innerHTML = `<div class="hue"><h3>Te quedan ${durTxt(libresSem)} libres ${esEsta ? "esta semana" : "esa semana"}</h3>
-      <p>${masVacio && masVacio.l >= 120 ? "El " + ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"][masVacio.i] + " es el día con más sitio. " : ""}Puedes ofrecer estos huecos a tus clientas habituales.</p>
+      <p>${masVacio && masVacio.l >= 120 ? "El " + ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"][masVacio.i] + " es el día con más sitio. " : ""}Puedes ofrecer estos huecos a tus clientes habituales.</p>
       <button id="verHuecos">Ver huecos libres</button><div class="huecos hide" id="listaHuecos">${huecosSemana.slice(0, 12).map(h => `<button data-nueva-libre="${h.f}" data-hora="${horaEnHueco(h.f, h.x)}"><span><b>${DIAS_SEM[h.i].charAt(0) + DIAS_SEM[h.i].slice(1).toLowerCase()} ${Number(h.f.slice(8))}</b> · ${aHora(h.x)} – ${aHora(h.y)}</span><span>${durTxt(h.y - h.x)} ＋</span></button>`).join("")}</div></div>`;
   }
 }
@@ -841,7 +872,11 @@ function ponerModoCal(m) {
   document.querySelectorAll(".seg-mod button").forEach(b => b.classList.toggle("on", b.dataset.modo === m));
   $("calSemana").classList.toggle("hide", m !== "semana");
   $("calMes").classList.toggle("hide", m !== "mes");
-  if (m === "mes") { if (!mesRef) mesRef = (semanaRef || diaSel).slice(0, 7) + "-01"; cargarMes(); } else cargarSemana();
+  $("calLista").classList.toggle("hide", m !== "lista");
+  $("btnIrHoy").classList.add("hide");
+  if (m === "mes") { if (!mesRef) mesRef = (semanaRef || diaSel).slice(0, 7) + "-01"; cargarMes(); }
+  else if (m === "lista") { $("vistaTit").textContent = "Reservas"; cargarReservas(); }
+  else cargarSemana();
 }
 document.querySelectorAll(".seg-mod button").forEach(b => b.addEventListener("click", () => ponerModoCal(b.dataset.modo)));
 function moverMes(n) { const d = new Date(mesRef + "T00:00:00"); d.setMonth(d.getMonth() + n, 1); mesRef = iso(d); cargarMes(); }
@@ -873,6 +908,7 @@ async function cargarMes() {
 }
 
 $("v-semana").addEventListener("click", (e) => {
+  if (e.target.closest("#listaReservas")) return;
   if (e.target.closest("#verHuecos")) { $("listaHuecos").classList.toggle("hide"); return; }
   const nl = e.target.closest("[data-nueva-libre]"); if (nl) { irANueva(nl.dataset.nuevaLibre, nl.dataset.hora); return; }
   const d = e.target.closest("[data-dia]"); if (d) { diaSel = d.dataset.dia; irA("hoy"); }
@@ -914,9 +950,97 @@ function fmtFecha(f) {
 function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 $("listaReservas").addEventListener("click", (e) => { const ab = e.target.closest("[data-abrir]"); if (ab) abrirHoja(ab.dataset.abrir); });
 
+// ===== CLIENTES =====
+let CLIENTES = [], ordenCli = "recientes";
+const iniciales = (n) => (String(n || "?").trim().split(/\s+/).map(p => p.charAt(0)).slice(0, 2).join("") || "?").toUpperCase();
+const fCorta = (f) => new Date(f + "T00:00:00").toLocaleDateString("es-ES", { day: "numeric", month: "short", year: f.slice(0, 4) !== hoyLocal().slice(0, 4) ? "2-digit" : undefined }).replace(".", "");
+const telWa = (t) => { t = String(t || "").replace(/[^\d+]/g, ""); return t ? "https://wa.me/" + (t.startsWith("+") ? t.slice(1) : (t.length === 9 ? "34" + t : t)) : ""; };
+async function cargarClientes() {
+  const cont = $("listaClientes");
+  if (!CLIENTES.length) cont.innerHTML = '<div class="empty">Cargando…</div>';
+  await asegurarServicios();
+  const [rc, rr] = await Promise.all([
+    sb.from("clientes").select("id,nombre,telefono,email,notas,created_at").eq("negocio_id", NEGOCIO_ID).limit(2000),
+    sb.from("reservas").select("id,cliente_id,fecha,hora,estado,servicio_id").eq("negocio_id", NEGOCIO_ID).order("fecha", { ascending: false }).limit(5000)
+  ]);
+  if (rc.error) { cont.innerHTML = '<div class="empty">Error al cargar: ' + esc(rc.error.message) + '</div>'; return; }
+  const hoy = hoyLocal(), porCli = {};
+  (rr.data || []).forEach(r => { (porCli[r.cliente_id] = porCli[r.cliente_id] || []).push(r); });
+  CLIENTES = (rc.data || []).map(c => {
+    const rs = porCli[c.id] || [];
+    const hechas = rs.filter(r => (r.estado === "completada" || r.estado === "confirmada") && r.fecha < hoy);
+    const prox = rs.filter(r => r.fecha >= hoy && r.estado !== "cancelada" && r.estado !== "completada").sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora))[0];
+    const gasto = hechas.reduce((s, r) => { const sv = SERVICIOS_ADMIN.find(x => x.id === r.servicio_id); return s + (sv ? Number(sv.precio_desde) || 0 : 0); }, 0);
+    const cuenta = {}; hechas.forEach(r => { cuenta[r.servicio_id] = (cuenta[r.servicio_id] || 0) + 1; });
+    const fav = Object.entries(cuenta).sort((a, b) => b[1] - a[1])[0];
+    const anul = rs.filter(r => r.estado === "cancelada").length;
+    return { ...c, rs, visitas: hechas.length, ultima: hechas[0] ? hechas[0].fecha : null, prox, gasto, fav: fav ? nombreServ(fav[0]) : "", anul };
+  });
+  pintarClientes();
+}
+function pintarClientes() {
+  const q = ($("cBuscar").value || "").trim().toLowerCase(), qd = q.replace(/\D/g, "");
+  let l = CLIENTES.filter(c => !q || (c.nombre || "").toLowerCase().includes(q) || (qd && String(c.telefono || "").replace(/\D/g, "").includes(qd)));
+  if (ordenCli === "az") l.sort((a, b) => (a.nombre || "").localeCompare(b.nombre || "", "es"));
+  else if (ordenCli === "visitas") l.sort((a, b) => b.visitas - a.visitas);
+  else l.sort((a, b) => ((b.prox ? "9" + b.prox.fecha : "") || (b.ultima || b.created_at || "")).localeCompare((a.prox ? "9" + a.prox.fecha : "") || (a.ultima || a.created_at || "")));
+  const cont = $("listaClientes");
+  if (!CLIENTES.length) { cont.innerHTML = '<div class="empty">Aún no tienes clientes. Se guardan solas cuando alguien reserva o creas una cita.</div>'; return; }
+  if (!l.length) { cont.innerHTML = '<div class="empty">Nadie coincide con «' + esc(q) + '».</div>'; return; }
+  cont.innerHTML = `<div class="cl-cuenta">${l.length} ${l.length === 1 ? "cliente" : "clientes"}</div>` + l.map(c => {
+    const linea = [c.telefono, c.visitas ? c.visitas + (c.visitas === 1 ? " visita" : " visitas") + (c.ultima ? " · última " + fCorta(c.ultima) : "") : "Sin visitas aún"].filter(Boolean).join(" · ");
+    const prox = c.prox ? `<span class="prox">Próxima<br>${new Date(c.prox.fecha + "T00:00:00").toLocaleDateString("es-ES", { weekday: "short", day: "numeric" })}</span>` : "";
+    return `<button class="cl-item" data-cli="${c.id}"><span class="av">${esc(iniciales(c.nombre))}</span><span class="q"><b>${esc(c.nombre || "Sin nombre")}</b><span>${esc(linea)}</span></span>${prox}</button>`;
+  }).join("");
+}
+$("cBuscar").addEventListener("input", pintarClientes);
+document.querySelectorAll("#cOrden .chip").forEach(c => c.addEventListener("click", () => {
+  document.querySelectorAll("#cOrden .chip").forEach(x => x.classList.remove("active")); c.classList.add("active"); ordenCli = c.dataset.o; pintarClientes();
+}));
+$("listaClientes").addEventListener("click", (e) => { const b = e.target.closest("[data-cli]"); if (b) abrirCliente(b.dataset.cli); });
+
+let cliAbierto = null;
+function abrirCliente(id) {
+  const c = CLIENTES.find(x => x.id === id); if (!c) return;
+  cliAbierto = c.id; hojaId = null;
+  const wa = telWa(c.telefono), hoy = hoyLocal();
+  const hist = c.rs.slice().sort((a, b) => (b.fecha + b.hora).localeCompare(a.fecha + a.hora)).slice(0, 12);
+  $("hojaCont").innerHTML = `<div class="h-cli"><div class="av">${esc(iniciales(c.nombre))}</div><div style="min-width:0"><h2>${esc(c.nombre || "Sin nombre")}</h2><small>Cliente desde ${c.created_at ? new Date(c.created_at).toLocaleDateString("es-ES", { month: "long", year: "numeric" }) : "—"}${c.anul ? " · " + c.anul + (c.anul === 1 ? " cita anulada" : " citas anuladas") : ""}</small></div></div>
+    <div class="stats"><div><b>${c.visitas}</b><span>visitas</span></div><div><b>${c.gasto ? c.gasto + " €" : "—"}</b><span>gastado aprox.</span></div><div><b>${c.ultima ? fCorta(c.ultima) : "—"}</b><span>última vez</span></div></div>
+    <div class="h-dat"><div><span>Teléfono</span><b>${esc(c.telefono || "—")}</b></div>${c.email ? `<div><span>Correo</span><b>${esc(c.email)}</b></div>` : ""}${c.fav ? `<div><span>Lo que más pide</span><b>${esc(c.fav)}</b></div>` : ""}${c.prox ? `<div><span>Próxima cita</span><b>${fCorta(c.prox.fecha)} · ${(c.prox.hora || "").slice(0, 5)}</b></div>` : ""}</div>
+    ${wa ? `<div class="h-cto"><a class="wa" href="${wa}" target="_blank" rel="noopener">WhatsApp</a><a href="tel:${esc(String(c.telefono).replace(/[^\d+]/g, ""))}">Llamar</a></div>` : ""}
+    <button class="h-big done" data-c="nueva">Nueva cita para ${esc((c.nombre || "este cliente").split(" ")[0])}</button>
+    <div class="h-tit">Notas (solo las ves tú)</div>
+    <textarea id="cNotas" placeholder="Alergias, gustos, cómo le gusta el corte…">${esc(c.notas || "")}</textarea>
+    <div class="h-sec2"><button data-c="notas">Guardar notas</button><button data-c="editar">Editar datos</button></div>
+    <div id="cEditar" class="hide"><label>Nombre</label><input id="cNom" value="${esc(c.nombre || "")}"><label>Teléfono</label><input id="cTel" type="tel" value="${esc(c.telefono || "")}"><label>Correo</label><input id="cMail" type="email" value="${esc(c.email || "")}"><button class="btn" data-c="guardar" style="margin-top:12px">Guardar datos</button></div>
+    <div class="msg" id="cMsg"></div>
+    ${hist.length ? `<div class="h-tit">Historial</div><div class="hist">${hist.map(r => `<button data-abrir-cita="${r.id}"><span class="t">${fCorta(r.fecha)} ${(r.hora || "").slice(0, 5)}</span><span class="q">${esc(nombreServ(r.servicio_id) || "—")}</span><span class="estado e-${r.estado}">${r.fecha >= hoy && r.estado !== "cancelada" && r.estado !== "completada" ? "próxima" : r.estado}</span></button>`).join("")}</div>` : ""}`;
+  $("velo").classList.add("open"); $("hoja").classList.add("open"); $("hoja").scrollTop = 0;
+}
+$("hojaCont").addEventListener("click", async (e) => {
+  const b = e.target.closest("[data-c]"), ac = e.target.closest("[data-abrir-cita]");
+  if (ac) { abrirHoja(ac.dataset.abrirCita); return; }
+  if (!b || !cliAbierto) return;
+  const c = CLIENTES.find(x => x.id === cliAbierto), msg = $("cMsg"); msg.textContent = ""; msg.className = "msg";
+  if (b.dataset.c === "nueva") { cerrarHoja(); await irANueva(diaSel >= hoyLocal() ? diaSel : hoyLocal(), ""); $("nNombre").value = c.nombre || ""; $("nTelefono").value = c.telefono || ""; return; }
+  if (b.dataset.c === "editar") { $("cEditar").classList.toggle("hide"); return; }
+  if (b.dataset.c === "notas" || b.dataset.c === "guardar") {
+    const cambios = b.dataset.c === "notas" ? { notas: $("cNotas").value.trim() || null } : { nombre: $("cNom").value.trim(), telefono: $("cTel").value.trim(), email: $("cMail").value.trim() || null };
+    if (b.dataset.c === "guardar" && (!cambios.nombre || !cambios.telefono)) { msg.textContent = "Nombre y teléfono son obligatorios."; msg.className = "msg err"; return; }
+    b.disabled = true;
+    const { error } = await sb.from("clientes").update(cambios).eq("id", c.id);
+    b.disabled = false;
+    if (error) { msg.textContent = "No se pudo guardar: " + error.message; msg.className = "msg err"; return; }
+    Object.assign(c, cambios); msg.textContent = "Guardado ✓"; msg.className = "msg ok";
+    if (b.dataset.c === "guardar") { pintarClientes(); abrirCliente(c.id); $("cMsg").textContent = "Datos guardados ✓"; $("cMsg").className = "msg ok"; }
+    else pintarClientes();
+  }
+});
+
 // ===== HOJA DE LA CITA =====
 let hojaId = null;
-function cerrarHoja() { $("hoja").classList.remove("open"); $("velo").classList.remove("open"); hojaId = null; }
+function cerrarHoja() { $("hoja").classList.remove("open"); $("velo").classList.remove("open"); hojaId = null; cliAbierto = null; }
 $("velo").addEventListener("click", cerrarHoja);
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") cerrarHoja(); });
 async function abrirHoja(id) {
@@ -924,7 +1048,7 @@ async function abrirHoja(id) {
   const { data: r, error } = await sb.from("reservas")
     .select("id,fecha,hora,estado,notas,cliente_id,servicio_id,clientes(nombre,telefono)").eq("id", id).single();
   if (error || !r) { alert("No se pudo cargar la cita."); return; }
-  hojaId = r.id;
+  hojaId = r.id; cliAbierto = null;
   let visitas = 0, ultima = null;
   if (r.cliente_id) {
     const { data: prev } = await sb.from("reservas").select("fecha").eq("negocio_id", NEGOCIO_ID).eq("cliente_id", r.cliente_id)
@@ -932,7 +1056,7 @@ async function abrirHoja(id) {
     visitas = (prev || []).length; ultima = visitas ? prev[0].fecha : null;
   }
   const cli = r.clientes || {}, nom = cli.nombre || "Cliente";
-  const ini = (nom.match(/\b\p{L}/gu) || ["?"]).slice(0, 2).join("").toUpperCase();
+  const ini = iniciales(nom);
   const s = SERVICIOS_ADMIN.find(x => x.id === r.servicio_id) || {};
   const dur = durServicio(r.servicio_id), hi = aMin(r.hora);
   const tel = String(cli.telefono || "").replace(/[^\d+]/g, "");
@@ -1102,8 +1226,8 @@ let edReservaId = null, edClienteId = null;
 
 function refrescarVistaActual() {
   if (vistaActual === "hoy") cargarDia();
-  else if (vistaActual === "semana") { if (modoCal === "mes") cargarMes(); else cargarSemana(); }
-  else if (vistaActual === "reservas") cargarReservas();
+  else if (vistaActual === "semana") { if (modoCal === "mes") cargarMes(); else if (modoCal === "lista") cargarReservas(); else cargarSemana(); }
+  else if (vistaActual === "clientes") cargarClientes();
 }
 
 async function abrirDetalleReserva(id) {
