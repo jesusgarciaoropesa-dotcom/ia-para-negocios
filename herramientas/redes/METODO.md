@@ -175,7 +175,7 @@ fisio, estética, gimnasio, autoescuela, tienda… **Rota el sector cada semana*
   dibujos, crea 2-4 SVG nuevos con el MISMO estilo (abre `bar.svg` y `taller.svg`: trazo y colores planos, mismas
   medidas y `viewBox`), nómbralos `<sector>-<escena>.svg` y súbelos. Escenas `captura` con pantallazos de la demo del
   sector si la hay (rama main, `demos/<sector>-ejemplo/`), `aviso` para notificaciones y `frase` para el gancho.
-- `"musica": "animada"`, `"tema": "color"` (como los cortos de bar y taller de ejemplo en `reels/cortos/`).
+- `"musica": "animada"`, `"tema": "color"`. Ejemplo completo: `herramientas/redes/ejemplo-sector.json` (el corto del bar; sus `captura` apuntan a pantallazos de la demo que tendrás que hacer tú con Playwright a 390×844 y guardar junto a la config).
 - Nada inventado: cifras solo si salen de un artículo de iando con su fuente; si no, sin cifras.
 - Publicación: `comentario` = `Serie por sector · <sector>`, `guia` = la página de servicios
   `https://iando.xyz/servicios.html?utm_source=instagram&utm_medium=dm` o el artículo de ese sector si existe.

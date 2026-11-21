@@ -1,0 +1,82 @@
+{
+ "slug": "bar-1-ocupado",
+ "palabra": "MESA",
+ "musica": "animada",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "¿Cuántas mesas pierdes un sábado a las dos, sin enterarte?",
+   "clave": "mesas",
+   "tipo": "frase",
+   "texto": "¿Cuántas mesas pierdes?",
+   "sub": "un sábado, **sin enterarte**"
+  },
+  {
+   "voz": "La barra a tope… y suena el teléfono.",
+   "clave": "teléfono",
+   "tipo": "dibujo",
+   "dibujo": "bar",
+   "vibrar": true,
+   "globo": {
+    "titulo": "Teléfono",
+    "texto": "Llamada entrante…",
+    "color": "#e0413a"
+   }
+  },
+  {
+   "voz": "Una familia quiere mesa para cuatro.",
+   "clave": "cuatro",
+   "tipo": "dibujo",
+   "dibujo": "bar-cliente",
+   "vibrar": true,
+   "globo": {
+    "titulo": "WhatsApp · a Tu bar",
+    "texto": "¡Hola! ¿Tenéis mesa para cuatro hoy a las dos?",
+    "color": "#1f9d55",
+    "x": 440,
+    "y": 40
+   }
+  },
+  {
+   "voz": "Pero no te da la vida para contestar…",
+   "clave": "contestar",
+   "tipo": "dibujo",
+   "dibujo": "bar-agobio",
+   "vibrar": true,
+   "globo": {
+    "titulo": "3 llamadas perdidas",
+    "texto": "Luego llamo…",
+    "color": "#6b6d80"
+   }
+  },
+  {
+   "voz": "Y reservan en el bar de enfrente.",
+   "clave": "enfrente",
+   "tipo": "dibujo",
+   "dibujo": "bar-enfrente",
+   "sello": "MESA PERDIDA"
+  },
+  {
+   "voz": "Con tu web de reservas eligen turno, cuántos son y la hora. Solos.",
+   "clave": "Solos",
+   "tipo": "captura",
+   "imagen": "cap-bar/movil-pedir-cita.png"
+  },
+  {
+   "voz": "Mesa reservada, sin soltar la bandeja.",
+   "clave": "reservada",
+   "tipo": "captura",
+   "imagen": "cap-bar/movil-cita-hecha.png",
+   "sello": "RESERVADA",
+   "tono": "verde"
+  },
+  {
+   "voz": "Comenta MESA y te enseño la tuya, con tu nombre.",
+   "clave": "MESA",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "MESA",
+   "abajo": "y te enseño **la tuya con tu nombre**"
+  }
+ ]
+}
