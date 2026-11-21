@@ -426,14 +426,14 @@
   <!-- NUEVA CITA -->
   <section id="v-nueva" class="vista hide">
     <div class="card">
-      <label style="margin-top:0">Nombre de la clienta</label>
+      <label style="margin-top:0">Nombre</label>
       <input id="nNombre" type="text" placeholder="Nombre">
       <label>Teléfono</label>
       <input id="nTelefono" type="tel" placeholder="6XX XXX XXX">
       <label>Correo (opcional)</label>
       <input id="nEmail" type="email" placeholder="nombre@correo.com" autocomplete="off">
-      <label>Tratamiento</label>
-      <select id="nServicio"><option value="">Elige tratamiento</option></select>
+      <label>Servicio</label>
+      <select id="nServicio"><option value="">Elige servicio</option></select>
       <div class="row2">
         <div><label>Día</label><input id="nFecha" type="date"></div>
         <div><label>Hora</label><select id="nHora"><option value="">Hora</option></select></div>
@@ -464,12 +464,12 @@
   <!-- AJUSTES -->
   <section id="v-ajustes" class="vista ajs hide">
     <h2>Servicios</h2>
-    <p style="color:var(--earth);font-size:.88rem;margin-bottom:12px">Edita el precio y la duración de cada tratamiento. El precio se refleja en tu web al instante y la duración se usa en la agenda.</p>
+    <p style="color:var(--earth);font-size:.88rem;margin-bottom:12px">Edita el precio y la duración de cada servicio. El precio se refleja en tu web al instante y la duración se usa en la agenda.</p>
     <div id="listaServicios"><div class="empty">Cargando…</div></div>
     <div class="card" style="margin-top:8px">
       <h3 style="margin-bottom:4px;font-size:1.05rem">Añadir servicio</h3>
       <label>Nombre</label>
-      <input id="svNombre" type="text" placeholder="Nombre del tratamiento">
+      <input id="svNombre" type="text" placeholder="Nombre del servicio">
       <div class="row2">
         <div><label>Precio desde (€)</label><input id="svPrecio" type="number" min="0" placeholder="0"></div>
         <div><label>Duración (min)</label><input id="svDur" type="number" min="5" step="5" placeholder="60"></div>
@@ -519,13 +519,13 @@
 <div class="modal-ov" id="edOverlay">
   <div class="modal-card">
     <div class="modal-top"><h3>Cambiar cita</h3><button class="x" id="edClose" aria-label="Cerrar">✕</button></div>
-    <label>Nombre de la clienta</label>
+    <label>Nombre</label>
     <input id="edNombre" type="text">
     <label>Teléfono</label>
     <input id="edTelefono" type="tel">
     <label>Correo</label>
     <input id="edEmail" type="email" placeholder="Opcional">
-    <label>Tratamiento</label>
+    <label>Servicio</label>
     <select id="edServicio"></select>
     <div class="row2">
       <div><label>Día</label><input id="edFecha" type="date"></div>
@@ -965,7 +965,7 @@ async function cambiarEstado(id, estado, boton) {
 $("v-hoy").addEventListener("click", async (e) => {
   const si = e.target.closest("[data-si]"), no = e.target.closest("[data-no]");
   if (si) { cambiarEstado(si.dataset.si, "confirmada", si); return; }
-  if (no) { const fila = no.closest(".pc"); const nom = fila ? fila.querySelector(".q").firstChild.textContent : "esta clienta"; if (confirm("¿Cancelar la cita de " + nom.trim() + "?")) cambiarEstado(no.dataset.no, "cancelada", no); return; }
+  if (no) { const fila = no.closest(".pc"); const nom = fila ? fila.querySelector(".q").firstChild.textContent : "este cliente"; if (confirm("¿Cancelar la cita de " + nom.trim() + "?")) cambiarEstado(no.dataset.no, "cancelada", no); return; }
   if (e.target.closest("[data-ver-pend]")) { modoCal = "lista"; filtroActual = "pendiente"; document.querySelectorAll("#filtros .chip").forEach(x => x.classList.toggle("active", x.dataset.f === "pendiente")); irA("semana"); return; }
   const ab = e.target.closest("[data-abrir]"); if (ab) { abrirHoja(ab.dataset.abrir); return; }
   const nl = e.target.closest("[data-nueva-libre]"); if (nl) irANueva(nl.dataset.nuevaLibre, nl.dataset.hora || "");
@@ -1270,7 +1270,7 @@ async function abrirHoja(id) {
   $("hojaCont").innerHTML = `<div class="h-cab"><div class="asa"></div><small>DETALLE DE LA CITA</small><h3>${cuando}</h3>${avatar(nom)}</div>
     <div class="h-cuerpo"><h2>${esc(nom)}</h2><div class="sub">${visTxt}</div>
     <span class="chip-est" style="color:${estCol};background:color-mix(in srgb,${estCol} 14%,transparent)">${r.estado === "cancelada" ? "✕" : `<span style="width:14px;height:14px;display:inline-block">${icoEstado(r.estado)}</span>`}${estTxt}</span>
-    <div class="h-dat2"><div><span class="ic">${ICO.serv}</span><span class="k">Tratamiento</span><b><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:${colorServ(r.servicio_id)};margin-right:6px"></span>${esc(s.nombre || "—")}</b></div>${s.precio_desde != null ? `<div><span class="ic">${ICO.euro}</span><span class="k">Precio</span><b>desde ${esc(s.precio_desde)} €</b></div>` : ""}${cli.telefono ? `<div><span class="ic">${ICO.tel}</span><span class="k">Teléfono</span><b>${esc(cli.telefono)}</b></div>` : ""}${cli.email ? `<div><span class="ic">${ICO.mail}</span><span class="k">Correo</span><b style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><a href="mailto:${esc(cli.email)}" style="color:inherit">${esc(cli.email)}</a></b></div>` : ""}${r.notas ? `<div><span class="ic">${ICO.nota}</span><span class="k">Nota</span><b style="font-weight:400">${esc(r.notas)}</b></div>` : ""}</div>
+    <div class="h-dat2"><div><span class="ic">${ICO.serv}</span><span class="k">Servicio</span><b><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:${colorServ(r.servicio_id)};margin-right:6px"></span>${esc(s.nombre || "—")}</b></div>${s.precio_desde != null ? `<div><span class="ic">${ICO.euro}</span><span class="k">Precio</span><b>desde ${esc(s.precio_desde)} €</b></div>` : ""}${cli.telefono ? `<div><span class="ic">${ICO.tel}</span><span class="k">Teléfono</span><b>${esc(cli.telefono)}</b></div>` : ""}${cli.email ? `<div><span class="ic">${ICO.mail}</span><span class="k">Correo</span><b style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><a href="mailto:${esc(cli.email)}" style="color:inherit">${esc(cli.email)}</a></b></div>` : ""}${r.notas ? `<div><span class="ic">${ICO.nota}</span><span class="k">Nota</span><b style="font-weight:400">${esc(r.notas)}</b></div>` : ""}</div>
     ${tel ? `<div class="h-cto"><a class="wa" href="${wa}?text=${encodeURIComponent(msgWa)}" target="_blank" rel="noopener">${r.fecha >= hoy && r.estado !== "cancelada" ? "Recordar por WhatsApp" : "WhatsApp"}</a><a href="tel:${esc(tel)}">Llamar</a></div>` : ""}
     ${principal}
     <div class="h-sec2b"><button data-h="editar">Cambiar hora o datos</button>${r.estado !== "cancelada" && r.estado !== "completada" ? `<button class="x" data-h="cancelada">Cancelar</button>` : ""}</div></div>`;
@@ -1317,7 +1317,7 @@ $("btnCrear").addEventListener("click", async () => {
   const servicio_id = $("nServicio").value, fecha = $("nFecha").value, hora = $("nHora").value;
   const estado = $("nEstado").value, notas = $("nNotas").value.trim();
   if (!nombre || !telefono || !servicio_id || !fecha || !hora) {
-    msg.textContent = "Completa nombre, teléfono, tratamiento, día y hora."; msg.className = "msg err"; return;
+    msg.textContent = "Completa nombre, teléfono, servicio, día y hora."; msg.className = "msg err"; return;
   }
   $("btnCrear").disabled = true;
   try {
@@ -1350,7 +1350,7 @@ $("btnCrear").addEventListener("click", async () => {
 function rebuildNservicioSelect() {
   const nsel = $("nServicio"); if (!nsel) return;
   const val = nsel.value;
-  nsel.innerHTML = '<option value="">Elige tratamiento</option>';
+  nsel.innerHTML = '<option value="">Elige servicio</option>';
   SERVICIOS_ADMIN.forEach(s => { const o = document.createElement("option"); o.value = s.id; o.textContent = s.nombre; nsel.appendChild(o); });
   nsel.value = val;
 }
@@ -1463,7 +1463,7 @@ $("edGuardar").addEventListener("click", async () => {
   const servicio_id = $("edServicio").value, fecha = $("edFecha").value;
   const hora = $("edHora").value, estado = $("edEstado").value, notas = $("edNotas").value.trim();
   if (!nombre || !telefono || !servicio_id || !fecha || !hora) {
-    msg.textContent = "Completa nombre, teléfono, tratamiento, día y hora."; msg.className = "msg err"; return;
+    msg.textContent = "Completa nombre, teléfono, servicio, día y hora."; msg.className = "msg err"; return;
   }
   $("edGuardar").disabled = true;
   try {
