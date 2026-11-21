@@ -1,0 +1,31 @@
+{
+  "slug": "movil-bar-reserva-ejemplo",
+  "demo": "bar-ejemplo",
+  "sector": "Bares y restaurantes",
+  "titular": ["Tu mesa, reservada", "sin llamar"],
+  "palabra": "MESA",
+  "musica": "suave",
+  "colores": {"arriba": "#f7ece0", "abajo": "#eccbb4", "tinta": "#2b1e16"},
+  "mocks": {
+    "servicios": [{"id": "a", "nombre": "Mesa para comer", "duracion_minutos": 90}, {"id": "b", "nombre": "Mesa para cenar", "duracion_minutos": 90}],
+    "huecos": ["20:30", "20:45", "21:00", "21:15", "21:30"]
+  },
+  "acciones": [
+    {"esperar": 1300},
+    {"deslizar": "#carta, .platos, section:nth-of-type(3)", "ms": 1100},
+    {"esperar": 700},
+    {"deslizar": "#reservar", "ms": 1100},
+    {"esperar": 300},
+    {"tocar": "#rv-turnos [data-turno=\"cenar\"]"},
+    {"tocar": "#rv-sig1"},
+    {"esperar": 350},
+    {"tocar": "#rv-horas [data-h=\"21:00\"]"},
+    {"tocar": "#rv-sig2"},
+    {"escribir": "#rv-nombre", "texto": "Lucía"},
+    {"escribir": "#rv-tel", "texto": "600123456"},
+    {"escribir": "#rv-email", "texto": "lucia@ejemplo.com"},
+    {"marcar": "#rv-ok"},
+    {"tocar": "#rv-enviar"},
+    {"esperar": 1700}
+  ]
+}

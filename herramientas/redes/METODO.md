@@ -151,3 +151,54 @@ pide la voz de Gemini igual que arriba; sin voz de Gemini usa Kokoro. Genera `re
 
 Cada paso a `centro.registro` con `fabrica = 'iando-redes'` (`ok`, `aviso` o `error`) y, al acabar,
 un informe corto en `centro.informes` (agente `iando-redes`) con los 3 carruseles y sus fechas.
+
+## Plan semanal de reels (decidido por Jesús el 21-11-2026)
+
+iando no tiene cara ni voz de Jesús: nada de grabarle. Cada semana, **4 reels y 1 carrusel**:
+
+| Reel | Qué es | Herramienta |
+|---|---|---|
+| 2 de artículo | reel «historia» de un artículo publicado (arriba) | `generar_historia.py` |
+| 1 de la serie por sector | «La IA en 20 segundos para tu…» | `generar_historia.py` con escenas `dibujo` |
+| 1 demo en el móvil | una demo de iando usada en un teléfono | `movil/montar.py` |
+
+El carrusel es el del artículo más «guardable» de los dos (lista, comparativa o paso a paso).
+
+### Serie por sector · «La IA en 20 segundos para tu…»
+Reels cortos (**15-25 s, 6-9 escenas**) para el dueño de un negocio concreto: bar, peluquería, taller, clínica de
+fisio, estética, gimnasio, autoescuela, tienda… **Rota el sector cada semana** (mira los reels anteriores con
+`select comentario from centro.publicaciones where comentario ilike 'Serie por sector%'`).
+- Guion: una situación del día a día de ese negocio que se reconozca al instante (el teléfono sonando con la barra
+  llena, la clienta que no viene, el coche que espera presupuesto…) → lo que pierde → cómo lo resuelve una web con
+  reservas, un recordatorio automático o un asistente → cierre «Comenta PALABRA».
+- Escenas `dibujo` con los SVG de `herramientas/redes/dibujos/` (bar, taller, peluquería…). Si el sector no tiene
+  dibujos, crea 2-4 SVG nuevos con el MISMO estilo (abre `bar.svg` y `taller.svg`: trazo y colores planos, mismas
+  medidas y `viewBox`), nómbralos `<sector>-<escena>.svg` y súbelos. Escenas `captura` con pantallazos de la demo del
+  sector si la hay (rama main, `demos/<sector>-ejemplo/`), `aviso` para notificaciones y `frase` para el gancho.
+- `"musica": "animada"`, `"tema": "color"` (como los cortos de bar y taller de ejemplo en `reels/cortos/`).
+- Nada inventado: cifras solo si salen de un artículo de iando con su fuente; si no, sin cifras.
+- Publicación: `comentario` = `Serie por sector · <sector>`, `guia` = la página de servicios
+  `https://iando.xyz/servicios.html?utm_source=instagram&utm_medium=dm` o el artículo de ese sector si existe.
+
+### Demo en el móvil
+Un reel de **12-22 s** que enseña una demo de iando usada en un teléfono: se ve la web, el dedo baja y hace una
+reserva de principio a fin. Música suave, sin voz; un titular arriba y el cierre con la palabra clave.
+- **Solo demos de ejemplo** (carpetas `demos/*-ejemplo/` de la rama main, con negocios inventados). NUNCA la demo
+  de un negocio real que no sea cliente (MK Racing, Puerta de Extremadura…): sería usar su nombre sin permiso.
+- Rota la demo cada semana y que encaje con el sector de la serie si se puede.
+- Pasos:
+  1. `git worktree add /tmp/main origin/main` (la demo está en main) y abre `demos/<demo>/index.html` para ver los
+     selectores del formulario de reservas (`#reservar`, `#rv-...`, `[data-h="..."]`, etc.).
+  2. Escribe `configs/<slug>-movil.json` copiando `herramientas/redes/ejemplo-movil.json`: `sector`, `titular`
+     (2 líneas cortas, el beneficio: «Tu cita, reservada / sin llamar»), `palabra`, `mocks` (servicios y horas de
+     ejemplo que cuadren con la demo) y `acciones` (esperar, deslizar, tocar, escribir con datos de ejemplo tipo
+     «Lucía / 600123456», marcar el aviso legal, enviar).
+  3. Prueba: `python3 herramientas/redes/movil/montar.py configs/<slug>-movil.json --demo /tmp/main/demos/<demo> --probar`
+     y mira con Read las capturas de `reels/<slug>-probar/` (una por acción). Corrige selectores y repite. Borra
+     esa carpeta después (no se sube).
+  4. Genera sin `--probar` → `reels/<slug>.mp4` y `reels/<slug>-portada.jpg`. Mira 3-4 fotogramas.
+  (Necesita `pip install --break-system-packages fonttools brotli pillow` si falta; las fuentes de la demo las
+  instala solo con npm.)
+- Publicación: `tipo` reel, `comentario` = `Demo en el móvil · <demo>`, texto con el beneficio para ese tipo de
+  negocio y la línea de comentar; `guia` = `https://iando.xyz/servicios.html?utm_source=instagram&utm_medium=dm`.
+  El cierre del vídeo dice «Comenta PALABRA y te enseño cómo sería la tuya».
