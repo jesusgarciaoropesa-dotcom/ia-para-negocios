@@ -202,3 +202,25 @@ reserva de principio a fin. Música suave, sin voz; un titular arriba y el cierr
 - Publicación: `tipo` reel, `comentario` = `Demo en el móvil · <demo>`, texto con el beneficio para ese tipo de
   negocio y la línea de comentar; `guia` = `https://iando.xyz/servicios.html?utm_source=instagram&utm_medium=dm`.
   El cierre del vídeo dice «Comenta PALABRA y te enseño cómo sería la tuya».
+
+### Sistema completo en 4 pasos (añadido el 24-11-2026)
+Variante de la demo en el móvil que vende **el paquete entero** en un reel de 20-30 s: **Web → Citas online →
+Panel privado → Avisos por WhatsApp**, con la misma demo de ejemplo. Arriba sale una barra «Paso X de 4», el título
+del paso y una frase con la palabra clave resaltada en amarillo; 1-2 chips de beneficio («Sin llamadas»…) pegados al
+móvil; el dedo marca cada toque. Cierre: «Para tu negocio» con 4 sectores y la caja de comentarios escribiendo
+**YO** (regla: los reels de servicios usan siempre «YO»).
+- Misma herramienta: `herramientas/redes/movil/montar.py`. Si la config trae `"pasos"`, entra en modo sistema.
+  Ejemplo completo y probado: `herramientas/redes/ejemplo-sistema.json` (fisio-ejemplo).
+- En `acciones`, `{"paso": n}` marca dónde empieza cada paso. `{"ir": "citas/index.html?n=demo"}` abre el panel
+  privado de verdad (rama main, `citas/`) con las tablas de mentira de `mocks.tablas` (negocios, servicios,
+  clientes, reservas, dias_bloqueados): no se toca ninguna reserva real. `{"whatsapp": "#hojaCont a.wa",
+  "nombre": "Lucía"}` enseña el «Recordar por WhatsApp» del panel como conversación de ejemplo dentro del móvil.
+- Fechas: en `mocks.tablas` usa `"HOY"`, `"MANANA"` o `"HOY+3"`; en selectores, `{HOY}` y `{MANANA}`.
+- Cada paso: `titulo`, `frase`, `clave` (palabra a resaltar), `chips` (máx. 2) y, si tapan algo, `chips_y`
+  (altura de cada chip, por defecto `[700, 1440]`). Cierre: `"sectores"` (4) y `"palabra": "YO"`.
+- Prueba con `--probar` como la demo normal y mira 4-5 fotogramas del vídeo final.
+- Nada inventado: chips con beneficios que la demo enseña de verdad, sin cifras ni precios (en el panel deja
+  `precio_desde` en null salvo que la demo los tenga).
+- Publicación: `tipo` reel, `comentario` = `Sistema completo · <demo>`, `palabra` = `YO`,
+  `guia` = `https://iando.xyz/servicios.html?utm_source=instagram&utm_medium=dm`. Como no hay carrusel, la imagen
+  de historia se hace a partir de la portada (`reels/<slug>-historia.jpg`, con encuesta).

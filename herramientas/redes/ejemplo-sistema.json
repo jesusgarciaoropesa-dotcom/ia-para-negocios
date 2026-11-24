@@ -1,0 +1,415 @@
+{
+  "slug": "sistema-fisio-ejemplo",
+  "demo": "fisio-ejemplo",
+  "musica": "suave",
+  "palabra": "YO",
+  "colores": {
+    "arriba": "#eef4fb",
+    "abajo": "#d3e1f4",
+    "tinta": "#0d2b57",
+    "acento": "#1552c0",
+    "marcador": "#ffd84d"
+  },
+  "pasos": [
+    {
+      "titulo": "Tu web",
+      "frase": "Te encuentran y ven lo que haces",
+      "clave": "encuentran",
+      "chips": [
+        "Hecha para el móvil",
+        "Abierta 24 horas"
+      ]
+    },
+    {
+      "titulo": "Citas online",
+      "frase": "Reservan solos, sin llamarte",
+      "clave": "solos",
+      "chips": [
+        "Sin llamadas",
+        "Elige día y hora"
+      ]
+    },
+    {
+      "titulo": "Tu panel privado",
+      "frase": "Todas tus citas en un sitio",
+      "clave": "citas",
+      "chips": [
+        "Confirmas con un toque",
+        "Desde tu móvil"
+      ]
+    },
+    {
+      "titulo": "Avisos por WhatsApp",
+      "frase": "Recuerdas la cita en un toque",
+      "clave": "Recuerdas",
+      "chips": [
+        "Menos citas perdidas",
+        "Mensaje ya escrito"
+      ],
+      "chips_y": [
+        640,
+        1060
+      ]
+    }
+  ],
+  "sectores": [
+    "Fisios",
+    "Peluquerías",
+    "Talleres",
+    "Bares"
+  ],
+  "mocks": {
+    "servicios": [
+      {
+        "id": "s1",
+        "nombre": "Primera valoración",
+        "duracion_minutos": 60
+      },
+      {
+        "id": "s2",
+        "nombre": "Sesión de fisioterapia",
+        "duracion_minutos": 45
+      },
+      {
+        "id": "s3",
+        "nombre": "Punción seca",
+        "duracion_minutos": 30
+      },
+      {
+        "id": "s4",
+        "nombre": "Masaje descontracturante",
+        "duracion_minutos": 45
+      }
+    ],
+    "huecos": [
+      "10:00",
+      "10:30",
+      "11:00",
+      "17:00",
+      "17:30",
+      "18:00"
+    ],
+    "tablas": {
+      "negocios": [
+        {
+          "id": "demo",
+          "nombre": "Tu fisio",
+          "config": {
+            "intervalo_min": 30,
+            "horario": {
+              "1": [
+                [
+                  "09:00",
+                  "14:00"
+                ],
+                [
+                  "16:00",
+                  "20:00"
+                ]
+              ],
+              "2": [
+                [
+                  "09:00",
+                  "14:00"
+                ],
+                [
+                  "16:00",
+                  "20:00"
+                ]
+              ],
+              "3": [
+                [
+                  "09:00",
+                  "14:00"
+                ],
+                [
+                  "16:00",
+                  "20:00"
+                ]
+              ],
+              "4": [
+                [
+                  "09:00",
+                  "14:00"
+                ],
+                [
+                  "16:00",
+                  "20:00"
+                ]
+              ],
+              "5": [
+                [
+                  "09:00",
+                  "14:00"
+                ]
+              ],
+              "6": [],
+              "7": []
+            },
+            "tema": {
+              "nombre": "Tu fisio",
+              "colores": {
+                "fondo": "#eef4fb",
+                "tarjeta": "#ffffff",
+                "borde": "#d3deec",
+                "primario": "#1552c0",
+                "oscuro": "#0d2b57"
+              },
+              "fuentes": {
+                "titulos": "Plus Jakarta Sans:wght@700;800",
+                "texto": "Manrope:wght@400;600;700"
+              }
+            }
+          }
+        }
+      ],
+      "servicios": [
+        {
+          "id": "s1",
+          "negocio_id": "demo",
+          "nombre": "Primera valoración",
+          "precio_desde": null,
+          "duracion_minutos": 60
+        },
+        {
+          "id": "s2",
+          "negocio_id": "demo",
+          "nombre": "Sesión de fisioterapia",
+          "precio_desde": null,
+          "duracion_minutos": 45
+        },
+        {
+          "id": "s3",
+          "negocio_id": "demo",
+          "nombre": "Punción seca",
+          "precio_desde": null,
+          "duracion_minutos": 30
+        },
+        {
+          "id": "s4",
+          "negocio_id": "demo",
+          "nombre": "Masaje descontracturante",
+          "precio_desde": null,
+          "duracion_minutos": 45
+        }
+      ],
+      "clientes": [
+        {
+          "id": "c1",
+          "negocio_id": "demo",
+          "nombre": "Lucía",
+          "telefono": "600123456",
+          "email": "lucia@ejemplo.com",
+          "created_at": "2026-11-01T10:00:00"
+        },
+        {
+          "id": "c2",
+          "negocio_id": "demo",
+          "nombre": "Marcos",
+          "telefono": "600222333",
+          "email": null,
+          "created_at": "2026-10-10T10:00:00"
+        },
+        {
+          "id": "c3",
+          "negocio_id": "demo",
+          "nombre": "Elena",
+          "telefono": "600444555",
+          "email": null,
+          "created_at": "2026-09-12T10:00:00"
+        },
+        {
+          "id": "c4",
+          "negocio_id": "demo",
+          "nombre": "Andrés",
+          "telefono": "600666777",
+          "email": null,
+          "created_at": "2026-08-20T10:00:00"
+        }
+      ],
+      "reservas": [
+        {
+          "id": "r1",
+          "negocio_id": "demo",
+          "fecha": "MANANA",
+          "hora": "10:30:00",
+          "estado": "pendiente",
+          "notas": null,
+          "servicio_id": "s1",
+          "cliente_id": "c1",
+          "created_at": "2026-11-24T08:00:00",
+          "clientes": {
+            "nombre": "Lucía",
+            "telefono": "600123456",
+            "email": "lucia@ejemplo.com"
+          }
+        },
+        {
+          "id": "r2",
+          "negocio_id": "demo",
+          "fecha": "HOY",
+          "hora": "09:30:00",
+          "estado": "confirmada",
+          "notas": null,
+          "servicio_id": "s2",
+          "cliente_id": "c2",
+          "created_at": "2026-11-20T08:00:00",
+          "clientes": {
+            "nombre": "Marcos",
+            "telefono": "600222333"
+          }
+        },
+        {
+          "id": "r3",
+          "negocio_id": "demo",
+          "fecha": "HOY",
+          "hora": "11:00:00",
+          "estado": "confirmada",
+          "notas": null,
+          "servicio_id": "s3",
+          "cliente_id": "c3",
+          "created_at": "2026-11-21T08:00:00",
+          "clientes": {
+            "nombre": "Elena",
+            "telefono": "600444555"
+          }
+        },
+        {
+          "id": "r4",
+          "negocio_id": "demo",
+          "fecha": "HOY",
+          "hora": "17:00:00",
+          "estado": "confirmada",
+          "notas": null,
+          "servicio_id": "s4",
+          "cliente_id": "c4",
+          "created_at": "2026-11-22T08:00:00",
+          "clientes": {
+            "nombre": "Andrés",
+            "telefono": "600666777"
+          }
+        },
+        {
+          "id": "r5",
+          "negocio_id": "demo",
+          "fecha": "MANANA",
+          "hora": "17:30:00",
+          "estado": "confirmada",
+          "notas": null,
+          "servicio_id": "s2",
+          "cliente_id": "c3",
+          "created_at": "2026-11-22T08:00:00",
+          "clientes": {
+            "nombre": "Elena",
+            "telefono": "600444555"
+          }
+        }
+      ],
+      "dias_bloqueados": []
+    }
+  },
+  "acciones": [
+    {
+      "paso": 1
+    },
+    {
+      "esperar": 1000
+    },
+    {
+      "deslizar": "#tratamientos",
+      "ms": 1000
+    },
+    {
+      "esperar": 600
+    },
+    {
+      "paso": 2
+    },
+    {
+      "tocar": "#tratamientos [data-serv=\"Primera valoración\"]"
+    },
+    {
+      "esperar": 600
+    },
+    {
+      "elegir": "#rv-fecha",
+      "valor": "{MANANA}"
+    },
+    {
+      "tocar": "#rv-sig1"
+    },
+    {
+      "esperar": 400
+    },
+    {
+      "tocar": "#rv-horas [data-h=\"10:30\"]"
+    },
+    {
+      "tocar": "#rv-sig2"
+    },
+    {
+      "escribir": "#rv-nombre",
+      "texto": "Lucía"
+    },
+    {
+      "escribir": "#rv-tel",
+      "texto": "600123456"
+    },
+    {
+      "escribir": "#rv-email",
+      "texto": "lucia@ejemplo.com"
+    },
+    {
+      "marcar": "#rv-ok"
+    },
+    {
+      "tocar": "#rv-enviar"
+    },
+    {
+      "esperar": 1500
+    },
+    {
+      "paso": 3
+    },
+    {
+      "ir": "citas/index.html?n=demo"
+    },
+    {
+      "esperar": 1200
+    },
+    {
+      "tocar": "#porConfirmar button, #porConfirmar [data-id]"
+    },
+    {
+      "esperar": 900
+    },
+    {
+      "tocar": "#hojaCont [data-h=\"confirmada\"]"
+    },
+    {
+      "esperar": 900
+    },
+    {
+      "paso": 4
+    },
+    {
+      "tocar": "#tiraDias [data-f=\"{MANANA}\"]"
+    },
+    {
+      "esperar": 700
+    },
+    {
+      "tocar": "#lineaDia [data-abrir=\"r1\"]"
+    },
+    {
+      "esperar": 700
+    },
+    {
+      "whatsapp": "#hojaCont a.wa",
+      "nombre": "Lucía"
+    },
+    {
+      "esperar": 1200
+    }
+  ]
+}
