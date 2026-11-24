@@ -1,0 +1,90 @@
+[
+ {
+  "nombre": "inicio",
+  "url": "https://images.unsplash.com/photo-1690749138086-7422f71dc159?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/inicio.jpg",
+  "tamano": [
+   1800,
+   1000
+  ],
+  "kb": 116
+ },
+ {
+  "nombre": "manicura",
+  "url": "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/manicura.jpg",
+  "tamano": [
+   600,
+   750
+  ],
+  "kb": 35
+ },
+ {
+  "nombre": "gel",
+  "url": "https://images.unsplash.com/photo-1753285311550-154917dab783?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/gel.jpg",
+  "tamano": [
+   600,
+   750
+  ],
+  "kb": 34
+ },
+ {
+  "nombre": "relleno",
+  "url": "https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/relleno.jpg",
+  "tamano": [
+   600,
+   750
+  ],
+  "kb": 28
+ },
+ {
+  "nombre": "pestanas",
+  "url": "https://images.unsplash.com/photo-1639629509821-c54cdd984227?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/pestanas.jpg",
+  "tamano": [
+   600,
+   750
+  ],
+  "kb": 97
+ },
+ {
+  "nombre": "cejas",
+  "url": "https://images.unsplash.com/photo-1783013951101-2d9ed3eac234?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/cejas.jpg",
+  "tamano": [
+   600,
+   750
+  ],
+  "kb": 44
+ },
+ {
+  "nombre": "alt-cejas",
+  "url": "https://images.unsplash.com/photo-1790244342917-b08f24662dde?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/alt-cejas.jpg",
+  "tamano": [
+   600,
+   750
+  ],
+  "kb": 48
+ },
+ {
+  "nombre": "depilacion",
+  "url": "https://images.unsplash.com/photo-1696192410531-dc179772a0e8?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/depilacion.jpg",
+  "tamano": [
+   600,
+   750
+  ],
+  "kb": 13
+ }
+]
