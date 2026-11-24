@@ -37,13 +37,6 @@
   },
   {
    "nombre": "cejas",
-   "url": "https://images.unsplash.com/photo-1783013951101-2d9ed3eac234?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 600,
-   "alto": 750,
-   "foco_y": 0.4
-  },
-  {
-   "nombre": "alt-cejas",
    "url": "https://images.unsplash.com/photo-1790244342917-b08f24662dde?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 600,
    "alto": 750,
