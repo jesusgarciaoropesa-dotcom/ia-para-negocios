@@ -1,11 +1,46 @@
 {
  "fotos": [
-  {"nombre": "inicio", "url": "https://images.unsplash.com/photo-1770836037816-4445dbd449fd?w=2000&q=80&fm=jpg&fit=max", "ancho": 1800, "alto": 1000, "foco_y": 0.5},
-  {"nombre": "consulta", "url": "https://images.unsplash.com/photo-1770836037289-e00e5f351d11?w=2000&q=80&fm=jpg&fit=max", "ancho": 640, "alto": 480, "foco_y": 0.5},
-  {"nombre": "vacunacion", "url": "https://images.unsplash.com/photo-1770836037275-38b44e4b101f?w=2000&q=80&fm=jpg&fit=max", "ancho": 640, "alto": 480, "foco_y": 0.5},
-  {"nombre": "revision", "url": "https://images.unsplash.com/photo-1770836037793-95bdbf190f71?w=2000&q=80&fm=jpg&fit=max", "ancho": 640, "alto": 480, "foco_y": 0.5},
-  {"nombre": "gato", "url": "https://images.unsplash.com/photo-1725409796872-8b41e8eca929?w=2000&q=80&fm=jpg&fit=max", "ancho": 640, "alto": 480, "foco_y": 0.5},
-  {"nombre": "peluqueria", "url": "https://images.unsplash.com/photo-1597603413826-cd1c06b05222?w=2000&q=80&fm=jpg&fit=max", "ancho": 640, "alto": 480, "foco_y": 0.45},
-  {"nombre": "desparasitacion", "url": "https://images.unsplash.com/photo-1711217012922-4cfe5e0257a5?w=2000&q=80&fm=jpg&fit=max", "ancho": 640, "alto": 480, "foco_y": 0.5}
+  {
+   "nombre": "inicio",
+   "url": "https://images.unsplash.com/photo-1770836037793-95bdbf190f71?w=2400&q=80&fm=jpg&fit=max",
+   "ancho": 1800,
+   "alto": 1000,
+   "foco_y": 0.45
+  },
+  {
+   "nombre": "consulta",
+   "url": "https://images.unsplash.com/photo-1770836037289-e00e5f351d11?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480,
+   "foco_y": 0.5
+  },
+  {
+   "nombre": "vacunacion",
+   "url": "https://images.unsplash.com/photo-1770836037275-38b44e4b101f?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480,
+   "foco_y": 0.5
+  },
+  {
+   "nombre": "gato",
+   "url": "https://images.unsplash.com/photo-1725409796872-8b41e8eca929?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480,
+   "foco_y": 0.5
+  },
+  {
+   "nombre": "peluqueria",
+   "url": "https://images.unsplash.com/photo-1597603413826-cd1c06b05222?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480,
+   "foco_y": 0.45
+  },
+  {
+   "nombre": "desparasitacion",
+   "url": "https://images.unsplash.com/photo-1711217012922-4cfe5e0257a5?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 640,
+   "alto": 480,
+   "foco_y": 0.5
+  }
  ]
 }
