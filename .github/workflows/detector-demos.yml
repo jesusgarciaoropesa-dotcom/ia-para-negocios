@@ -1,0 +1,44 @@
+name: Detector de diseño de las demos
+# Cuando el taller sube demos/<slug>/index.html a la rama demos, pasa el detector de Impeccable
+# (versión fija) en los servidores de GitHub y deja el resultado en demos/<slug>/detector.json.
+# Así las tareas programadas no tienen que ejecutar código descargado (el control de permisos lo bloquea).
+on:
+  push:
+    branches: [demos]
+    paths: ["demos/*/index.html"]
+  workflow_dispatch:
+    inputs:
+      slugs: {description: "Slugs separados por espacios", required: true}
+permissions:
+  contents: write
+concurrency:
+  group: detector-demos
+  cancel-in-progress: false
+jobs:
+  detector:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: demos, fetch-depth: 2}
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - name: Qué demos han cambiado
+        id: s
+        run: |
+          if [ -n "${{ github.event.inputs.slugs }}" ]; then echo "slugs=${{ github.event.inputs.slugs }}" >> $GITHUB_OUTPUT;
+          else echo "slugs=$(git diff --name-only HEAD~1 HEAD -- 'demos/*/index.html' | cut -d/ -f2 | sort -u | tr '\n' ' ')" >> $GITHUB_OUTPUT; fi
+      - name: Pasar el detector
+        run: |
+          for s in ${{ steps.s.outputs.slugs }}; do
+            f="demos/$s/index.html"; [ -f "$f" ] || continue
+            npx -y impeccable@4.8.2 detect --json "$f" > "demos/$s/detector.json" 2> "demos/$s/detector.err" || true
+            [ -s "demos/$s/detector.err" ] || rm -f "demos/$s/detector.err"
+            echo "== $s"; head -c 2000 "demos/$s/detector.json"; echo
+          done
+      - name: Subir el resultado
+        run: |
+          git config user.name "detector-demos"; git config user.email "actions@users.noreply.github.com"
+          git add demos/*/detector.json demos/*/detector.err 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git commit -m "Detector de diseño: ${{ steps.s.outputs.slugs }}"
+          for i in 1 2 3 4 5; do git pull --rebase -q origin demos && git push -q origin HEAD:demos && exit 0; sleep 5; done; exit 1

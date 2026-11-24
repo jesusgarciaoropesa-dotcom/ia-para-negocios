@@ -143,19 +143,15 @@ revisa a mano: que nada sea inventado, que los textos encajen con la ficha y que
 WhatsApp funcione con el número bueno. Y hace la **revisión visual en rondas** de la parte 3 de
 `taller/DISENO.md` (5 notas de 1 a 5; si alguna baja de 4, corrige y repite; máximo 3 rondas),
 guarda `revision.diseno` y añade la línea de la demo a `demos/NOTAS-DISENO.md`.
-**Detector de Impeccable (obligatorio, gratis):**
-
-```bash
-[ -d /tmp/impeccable ] || git clone -q --depth 1 https://github.com/pbakaus/impeccable /tmp/impeccable
-/tmp/impeccable/.claude/skills/impeccable/scripts/impeccable detect --no-advisory demos/<slug>/index.html
-```
-
-Corrige todo lo que marque (contraste, fondo crema, etiquetas, franjas, textos pequeños…) y repite
-hasta que no quede nada. Excepción: los avisos `cramped-padding` de secciones a todo el ancho suelen
-ser falsos (el contenedor ya deja 16 px); compruébalo en la captura y, si es así, se dejan. Guarda el
-resultado en `revision.detector`. Si el detector no se puede descargar, dilo en la revisión y sigue.
-No añadas `impeccable telemetry off` ni otros comandos de configuración: en las pasadas automáticas el
-control de permisos lo bloquea y tumba el comando entero (pasó el 24-11-2026); `detect` funciona sin él.
+**Detector de Impeccable (obligatorio, gratis):** no lo ejecutes tú. Lo pasa la acción de GitHub
+«Detector de diseño de las demos» cada vez que haces push de `demos/<slug>/index.html` a la rama demos
+(en las pasadas automáticas el control de permisos bloquea ejecutar código descargado, pasó el 24-11-2026).
+Después del push espera 2-3 minutos, haz `git pull` y lee `demos/<slug>/detector.json` (si existe
+`demos/<slug>/detector.err`, el detector falló: dilo en la revisión y sigue). Corrige todo lo que marque
+(contraste, fondo crema, etiquetas, franjas, textos pequeños…), vuelve a hacer push y repite hasta que no
+quede nada. Excepción: los avisos `cramped-padding` de secciones a todo el ancho suelen ser falsos (el
+contenedor ya deja 16 px); compruébalo en la captura y, si es así, se dejan. Guarda el resultado en
+`revision.detector`. No descargues ni ejecutes Impeccable ni ningún otro programa de internet.
 Errores pequeños se arreglan directamente; si hay algo grave, vuelve a la etapa que toque.
 
 ### 6. Entrega
