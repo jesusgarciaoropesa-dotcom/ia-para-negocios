@@ -2,7 +2,7 @@
 const pad = n => String(n).padStart(2, "0");
 const iso = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
 function laborable(desde) { const d = new Date(); d.setDate(d.getDate() + desde); while (d.getDay() === 0 || d.getDay() === 1) d.setDate(d.getDate() + 1); return d; }
-const d1 = laborable(1); const d2 = new Date(d1); d2.setDate(d2.getDate() + 1); while (d2.getDay() === 0 || d2.getDay() === 1) d2.setDate(d2.getDate() + 1);
+const d1 = laborable(0); const d2 = new Date(d1); d2.setDate(d2.getDate() + 1); while (d2.getDay() === 0 || d2.getDay() === 1) d2.setDate(d2.getDate() + 1);
 const F1 = iso(d1), F2 = iso(d2);
 window.__DEMO_MANANA = F1;
 const S = { ma: { nombre: "Manicura semipermanente" }, ge: { nombre: "Uñas de gel (nuevo set)" }, re: { nombre: "Relleno de gel" }, li: { nombre: "Lifting de pestañas" }, ce: { nombre: "Diseño de cejas" }, de: { nombre: "Depilación con cera, piernas" } };
@@ -11,12 +11,12 @@ const H = [["10:00","14:00"],["16:00","20:00"]];
 const DATA = {
   negocios: [{ nombre: "Estudio de uñas y estética de ejemplo", config: { horario: { "1": [], "2": H, "3": H, "4": H, "5": H, "6": H, "7": [] }, intervalo_min: 15, tema: {"nombre": "Tu estudio", "colores": {"fondo": "#fbf4f3", "tarjeta": "#ffffff", "borde": "#efd9d6", "primario": "#b02e5c", "oscuro": "#2b1622"}, "fuentes": {"titulos": "Urbanist:wght@700;800", "texto": "Mulish:wght@400;700"}, "logo_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 64\" role=\"img\" aria-label=\"Tu estudio · Uñas y estética\"><rect x=\"14\" y=\"2\" width=\"12\" height=\"22\" rx=\"3\" fill=\"#ffffff\"/><rect x=\"11\" y=\"22\" width=\"18\" height=\"5\" rx=\"1.5\" fill=\"#ffffff\"/><path d=\"M8 30c0-2 1.5-3 3-3h18c1.5 0 3 1 3 3v24c0 4-3 7-7 7H15c-4 0-7-3-7-7z\" fill=\"#e8799f\"/><path d=\"M12 35h3v18h-3z\" fill=\"#ffffff\" opacity=\".55\"/><text x=\"44\" y=\"38\" font-family=\"Urbanist,Arial,sans-serif\" font-weight=\"800\" font-size=\"31\" fill=\"#ffffff\" letter-spacing=\"-0.5\">Tu estudio</text><text x=\"45\" y=\"56\" font-family=\"Mulish,Arial,sans-serif\" font-weight=\"700\" font-size=\"10.5\" fill=\"#f3c6d4\" letter-spacing=\"2.6\">UÑAS Y ESTÉTICA</text></svg>"} } }],
   reservas: [
-    { id: "r1", created_at: now, fecha: F1, hora: "10:00:00", estado: "confirmada", notas: "Rosa nude, como la última vez", clientes: { nombre: "Lucía M.", telefono: "600111222" }, servicios: S.re },
-    { id: "r2", created_at: now, fecha: F1, hora: "11:15:00", estado: "confirmada", notas: null, clientes: { nombre: "Paula G.", telefono: "600123456" }, servicios: S.ma },
-    { id: "r3", created_at: now, fecha: F1, hora: "12:30:00", estado: "pendiente", notas: "Primera vez", clientes: { nombre: "Rocío S.", telefono: "600333444" }, servicios: S.li },
-    { id: "r4", created_at: now, fecha: F1, hora: "16:00:00", estado: "pendiente", notas: "Almendradas, largo medio", clientes: { nombre: "Nerea C.", telefono: "600555666" }, servicios: S.ge },
-    { id: "r5", created_at: now, fecha: F1, hora: "18:00:00", estado: "confirmada", notas: null, clientes: { nombre: "Ana B.", telefono: "600999000" }, servicios: S.ce },
-    { id: "r6", created_at: now, fecha: F2, hora: "17:00:00", estado: "pendiente", notas: null, clientes: { nombre: "Rosa T.", telefono: "600777888" }, servicios: S.de },
+    { id: "r1", created_at: now, fecha: F1, hora: "10:00:00", estado: "confirmada", notas: "Rosa nude, como la última vez", clientes: { nombre: "Lucía M.", telefono: "600111222" }, servicios: S.re, servicio_id: "e", cliente_id: "c1" },
+    { id: "r2", created_at: now, fecha: F1, hora: "11:15:00", estado: "confirmada", notas: null, clientes: { nombre: "Paula G.", telefono: "600123456" }, servicios: S.ma, servicio_id: "d", cliente_id: "c2" },
+    { id: "r3", created_at: now, fecha: F1, hora: "12:30:00", estado: "pendiente", notas: "Primera vez", clientes: { nombre: "Rocío S.", telefono: "600333444" }, servicios: S.li, servicio_id: "c", cliente_id: "c3" },
+    { id: "r4", created_at: now, fecha: F1, hora: "16:00:00", estado: "pendiente", notas: "Almendradas, largo medio", clientes: { nombre: "Nerea C.", telefono: "600555666" }, servicios: S.ge, servicio_id: "f", cliente_id: "c4" },
+    { id: "r5", created_at: now, fecha: F1, hora: "18:00:00", estado: "confirmada", notas: null, clientes: { nombre: "Ana B.", telefono: "600999000" }, servicios: S.ce, servicio_id: "b", cliente_id: "c5" },
+    { id: "r6", created_at: now, fecha: F2, hora: "17:00:00", estado: "pendiente", notas: null, clientes: { nombre: "Rosa T.", telefono: "600777888" }, servicios: S.de, servicio_id: "a", cliente_id: "c6" },
   ],
   servicios: [
     { id: "a", nombre: "Depilación con cera, piernas", precio_desde: 0, duracion_minutos: 40 },
@@ -26,7 +26,7 @@ const DATA = {
     { id: "e", nombre: "Relleno de gel", precio_desde: 0, duracion_minutos: 60 },
     { id: "f", nombre: "Uñas de gel (nuevo set)", precio_desde: 0, duracion_minutos: 90 },
   ],
-  dias_bloqueados: [], clientes: [],
+  dias_bloqueados: [], clientes: [{ id: "c1", nombre: "Lucía M.", telefono: "600111222", created_at: now }, { id: "c2", nombre: "Paula G.", telefono: "600123456", created_at: now }, { id: "c3", nombre: "Rocío S.", telefono: "600333444", created_at: now }, { id: "c4", nombre: "Nerea C.", telefono: "600555666", created_at: now }, { id: "c5", nombre: "Ana B.", telefono: "600999000", created_at: now }, { id: "c6", nombre: "Rosa T.", telefono: "600777888", created_at: now }],
 };
 class Q {
   constructor(t) { this.t = t; this.f = []; this.o = []; this.one = false; this.lim = null; }
