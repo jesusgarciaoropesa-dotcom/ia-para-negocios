@@ -147,7 +147,6 @@ guarda `revision.diseno` y añade la línea de la demo a `demos/NOTAS-DISENO.md`
 
 ```bash
 [ -d /tmp/impeccable ] || git clone -q --depth 1 https://github.com/pbakaus/impeccable /tmp/impeccable
-/tmp/impeccable/.claude/skills/impeccable/scripts/impeccable telemetry off
 /tmp/impeccable/.claude/skills/impeccable/scripts/impeccable detect --no-advisory demos/<slug>/index.html
 ```
 
@@ -155,6 +154,8 @@ Corrige todo lo que marque (contraste, fondo crema, etiquetas, franjas, textos p
 hasta que no quede nada. Excepción: los avisos `cramped-padding` de secciones a todo el ancho suelen
 ser falsos (el contenedor ya deja 16 px); compruébalo en la captura y, si es así, se dejan. Guarda el
 resultado en `revision.detector`. Si el detector no se puede descargar, dilo en la revisión y sigue.
+No añadas `impeccable telemetry off` ni otros comandos de configuración: en las pasadas automáticas el
+control de permisos lo bloquea y tumba el comando entero (pasó el 24-11-2026); `detect` funciona sin él.
 Errores pequeños se arreglan directamente; si hay algo grave, vuelve a la etapa que toque.
 
 ### 6. Entrega
