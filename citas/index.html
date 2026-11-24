@@ -59,6 +59,7 @@
   .cab{position:sticky;top:0;z-index:20;background:color-mix(in srgb, var(--cream) 88%, transparent);-webkit-backdrop-filter:blur(16px) saturate(170%);backdrop-filter:blur(16px) saturate(170%);padding:14px 18px 10px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
   .cab .neg{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;color:var(--muted)}
   .cab .neg svg{height:24px;width:auto;display:block}
+  .cab .neg .marca{background:var(--earth-dark);border-radius:8px;padding:4px 8px}
   .cab h1{font-size:1.75rem;line-height:1.1;margin-top:2px;text-transform:none}
   .cab-acc{display:flex;gap:8px;flex:none}
   .ico{width:42px;height:42px;border-radius:50%;background:var(--white-warm);border:1px solid var(--rose);display:grid;place-items:center;position:relative;color:var(--tx);font-size:.82rem}
@@ -145,9 +146,9 @@
   .nav-sem button{width:40px;height:40px;border-radius:50%;background:var(--white-warm);border:1px solid var(--rose);font-size:1.2rem;color:var(--earth)}
 
   /* Conmutador semana / mes */
-  .seg-mod{display:flex;background:color-mix(in srgb,var(--rose) 50%,#fff);border-radius:12px;padding:3px;margin:4px 0 10px}
-  .seg-mod button{flex:1;padding:8px 0;border-radius:10px;font-size:.88rem;color:var(--earth)}
-  .seg-mod button.on{background:var(--white-warm);color:var(--tx);box-shadow:0 1px 4px rgba(74,51,40,.12)}
+  .seg-mod{display:flex;background:var(--white-warm);border:1px solid var(--rose);border-radius:12px;padding:3px;margin:4px 0 10px}
+  .seg-mod button{flex:1;padding:8px 0;border-radius:9px;font-size:.88rem;color:var(--tx)}
+  .seg-mod button.on{background:var(--earth-dark);color:#fff;box-shadow:0 1px 4px rgba(0,0,0,.18)}
   /* Mes */
   .mes-cab,.mes{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
   .mes-cab span{text-align:center;font-size:.72rem;font-weight:700;color:var(--muted);padding:4px 0}
@@ -328,6 +329,7 @@
     .nav .fab{background:var(--earth);color:#111}
     .dia.sel{background:var(--earth);color:#111} .dia.sel b{color:#111}
     .chip.active{background:var(--earth);border-color:var(--earth);color:#111}
+    .seg-mod button.on{background:var(--earth);color:#111}
   }
   /* Ordenador o tablet: menú lateral y la ficha a la derecha */
   @media (min-width:1000px){
