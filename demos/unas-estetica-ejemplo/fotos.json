@@ -2,7 +2,7 @@
  "fotos": [
   {
    "nombre": "inicio",
-   "url": "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=2000&q=80&fm=jpg&fit=max",
+   "url": "https://images.unsplash.com/photo-1690749138086-7422f71dc159?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 1800,
    "alto": 1000,
    "foco_y": 0.5
@@ -23,7 +23,7 @@
   },
   {
    "nombre": "relleno",
-   "url": "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=2000&q=80&fm=jpg&fit=max",
+   "url": "https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 600,
    "alto": 750,
    "foco_y": 0.5
@@ -37,7 +37,14 @@
   },
   {
    "nombre": "cejas",
-   "url": "https://images.unsplash.com/photo-1674049406179-d7bf2c263e71?w=2000&q=80&fm=jpg&fit=max",
+   "url": "https://images.unsplash.com/photo-1783013951101-2d9ed3eac234?w=2000&q=80&fm=jpg&fit=max",
+   "ancho": 600,
+   "alto": 750,
+   "foco_y": 0.4
+  },
+  {
+   "nombre": "alt-cejas",
+   "url": "https://images.unsplash.com/photo-1790244342917-b08f24662dde?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 600,
    "alto": 750,
    "foco_y": 0.4
@@ -47,62 +54,6 @@
    "url": "https://images.unsplash.com/photo-1696192410531-dc179772a0e8?w=2000&q=80&fm=jpg&fit=max",
    "ancho": 600,
    "alto": 750,
-   "foco_y": 0.5
-  },
-  {
-   "nombre": "alt-unas-rosa",
-   "url": "https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 600,
-   "alto": 750,
-   "foco_y": 0.5
-  },
-  {
-   "nombre": "alt-unas-rosa2",
-   "url": "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 600,
-   "alto": 750,
-   "foco_y": 0.5
-  },
-  {
-   "nombre": "alt-pestanas",
-   "url": "https://images.unsplash.com/photo-1683719312734-e31de63957ab?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 600,
-   "alto": 750,
-   "foco_y": 0.5
-  },
-  {
-   "nombre": "alt-pestanas2",
-   "url": "https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 600,
-   "alto": 750,
-   "foco_y": 0.5
-  },
-  {
-   "nombre": "alt-cejas",
-   "url": "https://images.unsplash.com/photo-1674049406467-824ea37c7184?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 600,
-   "alto": 750,
-   "foco_y": 0.4
-  },
-  {
-   "nombre": "alt-cera",
-   "url": "https://images.unsplash.com/photo-1788014085353-23ecfcc1b670?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 600,
-   "alto": 750,
-   "foco_y": 0.5
-  },
-  {
-   "nombre": "alt-inicio",
-   "url": "https://images.unsplash.com/photo-1690749138086-7422f71dc159?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 1800,
-   "alto": 1000,
-   "foco_y": 0.5
-  },
-  {
-   "nombre": "local",
-   "url": "https://images.unsplash.com/photo-1764448726322-2abd2bdd6c68?w=2000&q=80&fm=jpg&fit=max",
-   "ancho": 1800,
-   "alto": 1000,
    "foco_y": 0.5
   }
  ]
