@@ -89,6 +89,84 @@
   },
   {
    "tipo": "tabla",
+   "titulo": "Demostración: pegas los datos del mes",
+   "destacado": "Demostración:",
+   "archivo": "ventas-noviembre.xlsx",
+   "columnas": [
+    "Producto",
+    "Mes anterior",
+    "Este mes",
+    "Variación"
+   ],
+   "filas": [
+    [
+     "Producto A",
+     "4.200 €",
+     "5.040 €",
+     {
+      "t": "+20 %",
+      "bien": true
+     }
+    ],
+    [
+     "Producto B",
+     "3.000 €",
+     "2.550 €",
+     {
+      "t": "−15 %",
+      "mal": true
+     }
+    ],
+    [
+     "Producto C",
+     "1.800 €",
+     "2.070 €",
+     {
+      "t": "+15 %",
+      "bien": true
+     }
+    ],
+    [
+     "Total",
+     "9.000 €",
+     "9.660 €",
+     {
+      "t": "+7,3 %",
+      "bien": true
+     }
+    ]
+   ],
+   "globo": "**Ejemplo ilustrativo.** Copias la tabla y la pegas con el prompt."
+  },
+  {
+   "tipo": "chat",
+   "titulo": "…y te devuelve el informe redactado",
+   "destacado": "el informe redactado",
+   "chat": {
+    "app": "asistente",
+    "nombre": "ChatGPT",
+    "mensajes": [
+     {
+      "de": "yo",
+      "texto": "Informe de ventas de noviembre con estos datos (te pego la tabla)",
+      "hora": "09:05"
+     },
+     {
+      "de": "ia",
+      "texto": "Resumen: vendes 9.660 €, un 7,3 % más que el mes anterior. El Producto A sube un 20 % y tira del mes.",
+      "hora": "09:05"
+     },
+     {
+      "de": "ia",
+      "texto": "A vigilar: el Producto B cae un 15 %. Revisa precio o stock.",
+      "hora": "09:06"
+     }
+    ]
+   },
+   "globo": "**Ejemplo ilustrativo.** Revisa siempre las cifras."
+  },
+  {
+   "tipo": "tabla",
    "titulo": "Qué informes puedes automatizar",
    "destacado": "automatizar",
    "archivo": "informes.xlsx",
