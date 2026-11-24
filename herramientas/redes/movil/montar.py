@@ -22,6 +22,9 @@ donde la lista de acciones tiene {"paso": n}. Se sirve la raíz de la rama main 
 la acción {"ir": "citas/index.html?n=demo"} abre el panel privado con las tablas de mentira de mocks.tablas, y
 {"whatsapp": "#hojaCont a.wa", "nombre": "Lucía"} enseña el recordatorio como conversación de ejemplo.
 El cierre es «Para tu negocio» con 4 sectores ("sectores") y la caja de comentarios escribiendo la palabra.
+Voz (opcional, añadida el 24-11-2026 a petición de Jesús): "voz" en cada paso y "voz_cierre" (frases cortas que caben en
+lo que dura cada paso; si la voz es más larga, se congela el último fotograma del paso). Se pide como en los reels
+«historia»: --pedido-voz imprime la sentencia SQL (UN audio Gemini «Achird» para todo); --sin-voz hace una vista previa muda.
 Necesita: node + playwright (ya instalados), ffmpeg, y `pip install --break-system-packages fonttools brotli pillow`.
 """
 import json, os, re, subprocess, sys, shutil, socket, time, http.server, threading, functools
@@ -61,16 +64,16 @@ def puerto_libre():
     s = socket.socket(); s.bind(('127.0.0.1', 0)); p = s.getsockname()[1]; s.close(); return p
 
 
-def chip_img(texto, fuente, tinta, acento):
+def chip_img(texto, fuente, tinta, acento, h=78):
     tmp = ImageDraw.Draw(Image.new('RGB', (1, 1))); tw = tmp.textlength(texto, font=fuente)
-    w, h = int(tw) + 120, 78
+    w = int(tw) + 120
     sh = Image.new('L', (w + 40, h + 40), 0); ImageDraw.Draw(sh).rounded_rectangle([22, 28, 18 + w, 24 + h], radius=39, fill=110)
     im = Image.new('RGBA', sh.size, (10, 20, 40, 0)); im.putalpha(sh.filter(ImageFilter.GaussianBlur(9)))
     d = ImageDraw.Draw(im)
     d.rounded_rectangle([20, 20, 20 + w, 20 + h], radius=39, fill=(255, 255, 255, 255))
-    cx, cy = 20 + 44, 20 + h // 2
-    d.ellipse([cx - 21, cy - 21, cx + 21, cy + 21], fill=acento + (255,))
-    d.line([(cx - 10, cy + 1), (cx - 3, cy + 8), (cx + 11, cy - 7)], fill=(255, 255, 255, 255), width=6, joint='curve')
+    cx, cy = 20 + 44, 20 + h // 2; r = int(h * 0.27)
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=acento + (255,))
+    d.line([(cx - r * .48, cy + 1), (cx - r * .14, cy + r * .38), (cx + r * .52, cy - r * .33)], fill=(255, 255, 255, 255), width=max(4, r // 4), joint='curve')
     d.text((20 + 80, cy - fuente.size * 0.62), texto, font=fuente, fill=tinta + (255,))
     return im
 
@@ -94,7 +97,7 @@ def piezas_sistema(cfg, carpeta):
     acento, marcador = hex2rgb(col.get('acento', '#1552c0')), hex2rgb(col.get('marcador', '#ffd84d'))
     s6, s8 = ttf('600'), ttf('800')
     pasos = cfg['pasos']; n = len(pasos)
-    fp, ft, ff, fc = ImageFont.truetype(s8, 30), ImageFont.truetype(s8, 84), ImageFont.truetype(s6, 46), ImageFont.truetype(s8, 36)
+    fp, ft, ff, fchip = ImageFont.truetype(s8, 30), ImageFont.truetype(s8, 84), ImageFont.truetype(s6, 46), ImageFont.truetype(s8, 31)
     for i, ps in enumerate(pasos):
         im = Image.new('RGBA', (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
         # barra «Paso X de N»
@@ -108,13 +111,12 @@ def piezas_sistema(cfg, carpeta):
         if ps.get('frase'):
             fr = ff if d.textlength(ps['frase'], font=ff) < W - 100 else ImageFont.truetype(s6, 38)
             frase_con_clave(d, 318, ps['frase'], ps.get('clave', ''), fr, tinta + (255,), marcador + (255,))
-        chips = ps.get('chips', [])[:2]
-        ys = ps.get('chips_y', [700, 1440])  # altura de cada chip (para no tapar lo importante de la pantalla)
-        sitios = [('izq', ys[0]), ('der', ys[1] if len(ys) > 1 else 1440)]
-        for (lado, y), texto in zip(sitios, chips):
-            c = chip_img(texto, fc, tinta, acento)
-            x = 34 if lado == 'izq' else W - 34 - c.width
-            im.alpha_composite(c, (int(x), y))
+        # chips en fila entre la frase y el móvil: así no tapan nada de la pantalla (pedido por Jesús el 24-11-2026)
+        chips = [chip_img(t, fchip, tinta, acento, h=70) for t in ps.get('chips', [])[:2]]
+        if chips:
+            gap = 22; anchos = [c.width - 40 for c in chips]; x = (W - (sum(anchos) + gap * (len(chips) - 1))) / 2
+            for c, aw in zip(chips, anchos):
+                im.alpha_composite(c, (int(x) - 20, 392 - 20)); x += aw + gap
         im.save(os.path.join(carpeta, f'cabecera-{i + 1}.png'))
     # fondo sin titular
     bg = Image.new('RGB', (W, H)); d = ImageDraw.Draw(bg)
@@ -246,6 +248,10 @@ def main():
         sys.exit(__doc__)
     cfgp = args[0]; demo = os.path.abspath(args[args.index('--demo') + 1]); probar = '--probar' in args
     cfg = json.load(open(cfgp, encoding='utf-8')); slug = cfg['slug']
+    if '--pedido-voz' in args:   # voz Gemini «Achird» de los pasos y el cierre (un solo audio), como en generar_historia.py
+        sys.path.insert(0, REDES); import generar_historia as GH
+        print(GH.pedido_voz([f for g in frases_voz(cfg) for f in g])); return
+    cfg['_sin_voz'] = '--sin-voz' in args
     if not os.path.exists(os.path.join(demo, 'index.html')):
         sys.exit(f'No encuentro {demo}/index.html')
     sistema = bool(cfg.get('pasos'))
@@ -304,40 +310,110 @@ def main():
         print('Aviso: dura más de 30 s; quita esperas o acciones.')
 
 
+def geometria_sistema():
+    """En el modo sistema el móvil es un poco más pequeño para dejar sitio a la fila de chips encima."""
+    global SW, SH, X, Y, R
+    SW, SH = 574, 1242
+    X, Y, R = (W - SW) // 2, 500, 68
+
+
+def frases_voz(cfg):
+    """Frases que lee la voz: las de cada paso ("voz") y las del cierre ("voz_cierre"), partidas por frases."""
+    def partir(t):
+        return [f.strip() for f in re.split(r'(?<=[.!?])\s+', (t or '').strip()) if f.strip()]
+    grupos = [partir(ps.get('voz')) for ps in cfg['pasos']] + [partir(cfg.get('voz_cierre'))]
+    return grupos
+
+
+def voces_sistema(cfg):
+    """Devuelve [(pcm, sr) por grupo (cada paso y el cierre)] o None si aún no está la voz."""
+    sys.path.insert(0, REDES)
+    import generar_historia as GH
+    grupos = frases_voz(cfg)
+    if not any(grupos):
+        return None, grupos
+    todas = [f for g in grupos for f in g]
+    voces = GH.voces_reel(todas)
+    if not all(voces):
+        return None, grupos
+    out, k, sr = [], 0, voces[0][1]
+    for g in grupos:
+        trozo = b''
+        for _ in g:
+            pcm = GH.G.recortar(voces[k][0], sr)
+            trozo += pcm + bytes(int(0.16 * sr) * 2); k += 1
+        out.append((trozo, sr))
+    return out, grupos
+
+
 def montar_sistema(cfg, trabajo, reels, slug, ff, run):
+    geometria_sistema()
     piezas_sistema(cfg, trabajo)
-    run([ff, '-y', '-f', 'concat', '-safe', '0', '-i', 'cuadros.txt', '-vf', f'scale={SW}:{SH}:flags=lanczos,fps=30,format=yuv420p', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', 'pantalla.mp4'])
-    run([ff, '-y', '-f', 'concat', '-safe', '0', '-i', 'cierre.txt', '-vf', 'fps=30,format=yuv420p,setsar=1,fade=t=in:st=0:d=0.3', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', 'cierre.mp4'])
-    dur = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', os.path.join(trabajo, 'pantalla.mp4')]).decode().strip())
-    cierre = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', os.path.join(trabajo, 'cierre.mp4')]).decode().strip())
+    run([ff, '-y', '-f', 'concat', '-safe', '0', '-i', 'cuadros.txt', '-vf', f'scale={SW}:{SH}:flags=lanczos,fps=30,format=yuv420p', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', 'pantalla0.mp4'])
+    run([ff, '-y', '-f', 'concat', '-safe', '0', '-i', 'cierre.txt', '-vf', 'fps=30,format=yuv420p,setsar=1', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', 'cierre0.mp4'])
+    dura = lambda f: float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', os.path.join(trabajo, f)]).decode().strip())
+    dur0, cierre0 = dura('pantalla0.mp4'), dura('cierre0.mp4')
     marcas = json.load(open(os.path.join(trabajo, 'pasos.json')))
     n = len(cfg['pasos'])
     inicios = {}
     for m in marcas: inicios.setdefault(int(m['paso']), float(m['t']))
-    tiempos = [inicios.get(k + 1, 0.0 if k == 0 else None) for k in range(n)]
+    t0 = [inicios.get(k + 1, 0.0 if k == 0 else None) for k in range(n)]
     for k in range(n):
-        if tiempos[k] is None: tiempos[k] = tiempos[k - 1]
-    tiempos[0] = 0.0
+        if t0[k] is None: t0[k] = t0[k - 1]
+    t0[0] = 0.0
+    voces, grupos = voces_sistema(cfg)
+    if any(grupos) and not voces and not cfg.get('_sin_voz'):
+        sys.exit('Falta la voz. Pídela con --pedido-voz (o usa --sin-voz para una vista previa).')
+    ANTES, DESPUES = 0.3, 0.45
+    # cada paso dura lo que su trozo de demo o lo que tarda la voz (si la voz es más larga, se congela el último fotograma)
+    seg0 = [(t0[k], t0[k + 1] if k + 1 < n else dur0) for k in range(n)]
+    largos, extra = [], []
+    for k, (a, b) in enumerate(seg0):
+        v = len(voces[k][0]) / 2 / voces[k][1] if voces else 0
+        L = max(b - a, ANTES + v + DESPUES if v else 0); largos.append(L); extra.append(max(0.0, L - (b - a)))
+    vc = len(voces[n][0]) / 2 / voces[n][1] if voces and len(voces) > n else 0
+    cierre = max(cierre0, ANTES + vc + 1.0)
+    fc = ''.join(f"[0:v]trim=start={a:.3f}:end={b:.3f},setpts=PTS-STARTPTS,tpad=stop_mode=clone:stop_duration={e:.3f}[s{k}];" for k, ((a, b), e) in enumerate(zip(seg0, extra)))
+    fc += ''.join(f'[s{k}]' for k in range(n)) + f'concat=n={n}:v=1:a=0[v]'
+    run([ff, '-y', '-i', 'pantalla0.mp4', '-filter_complex', fc, '-map', '[v]', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', 'pantalla.mp4'])
+    run([ff, '-y', '-i', 'cierre0.mp4', '-vf', f'tpad=stop_mode=clone:stop_duration={max(0, cierre - cierre0):.3f},fade=t=in:st=0:d=0.3', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', 'cierre.mp4'])
+    dur, cierre = dura('pantalla.mp4'), dura('cierre.mp4')
+    tiempos = [sum(largos[:k]) for k in range(n)]
     total = dur + cierre
     musica = os.path.join(REDES, 'musica', f"{cfg.get('musica', 'suave')}.wav")
+    audio_in = []
+    if voces:
+        import wave
+        sr = voces[0][1]; buf = bytearray(int((total + 0.5) * sr) * 2)
+        inicios_voz = [tiempos[k] + ANTES for k in range(n)] + [dur + ANTES]
+        for (pcm, _), ti in zip(voces, inicios_voz):
+            i0 = int(ti * sr) * 2; buf[i0:i0 + len(pcm)] = pcm[:max(0, len(buf) - i0)]
+        with wave.open(os.path.join(trabajo, 'voz.wav'), 'wb') as w:
+            w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr); w.writeframes(bytes(buf))
+        audio_in = ['-i', 'voz.wav']
     ent = [ff, '-y', '-loop', '1', '-t', f'{dur:.2f}', '-i', 'fondo.png', '-i', 'pantalla.mp4', '-loop', '1', '-t', f'{dur:.2f}', '-i', 'marco.png',
            '-loop', '1', '-t', f'{dur:.2f}', '-i', 'mascara.png']
     for k in range(n):
         ent += ['-loop', '1', '-t', f'{dur:.2f}', '-i', f'cabecera-{k + 1}.png']
-    ent += ['-i', 'cierre.mp4', '-stream_loop', '-1', '-i', musica]
+    ent += ['-i', 'cierre.mp4', '-stream_loop', '-1', '-i', musica] + audio_in
     filtro = f"[1:v]format=rgba[p];[p][3:v]alphamerge[pr];[0:v][pr]overlay={X}:{Y}[a];[a][2:v]overlay=0:0[b0];"
     for k in range(n):
         ini = tiempos[k]; fin = tiempos[k + 1] if k + 1 < n else dur + 1
         filtro += (f"[{4 + k}:v]format=rgba,fade=t=in:st={ini:.2f}:d=0.3:alpha=1[c{k}];"
                    f"[b{k}][c{k}]overlay=0:0:enable='between(t,{ini:.2f},{fin - 0.001:.3f})'[b{k + 1}];")
-    filtro += (f"[b{n}]format=yuv420p,setsar=1[demo];[{4 + n}:v]format=yuv420p,setsar=1[fin];[demo][fin]concat=n=2:v=1:a=0[v];"
-               f"[{5 + n}:a]atrim=0:{total:.2f},afade=t=in:d=0.6,afade=t=out:st={total - 1.2:.2f}:d=1.2,volume=0.55[m]")
+    filtro += f"[b{n}]format=yuv420p,setsar=1[demo];[{4 + n}:v]format=yuv420p,setsar=1[fin];[demo][fin]concat=n=2:v=1:a=0[v];"
+    if voces:   # música baja que se aparta cuando habla la voz (como en los reels «historia»)
+        filtro += (f"[{6 + n}:a]aresample=44100,apad,atrim=0:{total:.2f},asplit=2[vz][sc];"
+                   f"[{5 + n}:a]aresample=44100,atrim=0:{total:.2f},volume=0.22,afade=t=in:d=0.6,afade=t=out:st={total - 1.2:.2f}:d=1.2[mu];"
+                   "[mu][sc]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=400[md];[vz][md]amix=inputs=2:duration=first:normalize=0[m]")
+    else:
+        filtro += f"[{5 + n}:a]atrim=0:{total:.2f},afade=t=in:d=0.6,afade=t=out:st={total - 1.2:.2f}:d=1.2,volume=0.55[m]"
     run(ent + ['-filter_complex', filtro, '-map', '[v]', '-map', '[m]', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-r', '30',
                '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-t', f'{total:.2f}', os.path.join(reels, f'{slug}.mp4')])
     run([ff, '-y', '-ss', '1.2', '-i', os.path.join(reels, f'{slug}.mp4'), '-frames:v', '1', '-q:v', '2', os.path.join(reels, f'{slug}-portada.jpg')])
     shutil.rmtree(trabajo, ignore_errors=True)
     print(json.dumps({'reel': f'reels/{slug}.mp4', 'portada': f'reels/{slug}-portada.jpg', 'segundos': round(total, 1),
-                      'pasos': [round(t, 1) for t in tiempos]}, ensure_ascii=False))
+                      'pasos': [round(t, 1) for t in tiempos], 'voz': 'gemini' if voces else 'ninguna'}, ensure_ascii=False))
     if total > 40:
         print('Aviso: dura más de 40 s; quita esperas o acciones.')
 

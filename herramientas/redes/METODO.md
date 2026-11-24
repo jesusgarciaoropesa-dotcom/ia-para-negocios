@@ -216,8 +216,12 @@ móvil; el dedo marca cada toque. Cierre: «Para tu negocio» con 4 sectores y l
   clientes, reservas, dias_bloqueados): no se toca ninguna reserva real. `{"whatsapp": "#hojaCont a.wa",
   "nombre": "Lucía"}` enseña el «Recordar por WhatsApp» del panel como conversación de ejemplo dentro del móvil.
 - Fechas: en `mocks.tablas` usa `"HOY"`, `"MANANA"` o `"HOY+3"`; en selectores, `{HOY}` y `{MANANA}`.
-- Cada paso: `titulo`, `frase`, `clave` (palabra a resaltar), `chips` (máx. 2) y, si tapan algo, `chips_y`
-  (altura de cada chip, por defecto `[700, 1440]`). Cierre: `"sectores"` (4) y `"palabra": "YO"`.
+- Cada paso: `titulo`, `frase`, `clave` (palabra a resaltar) y `chips` (máx. 2, cortos). Los chips van en fila
+  entre la frase y el móvil (nunca encima de la pantalla: lo pidió Jesús el 24-11-2026). Cierre: `"sectores"` (4) y `"palabra": "YO"`.
+- **Voz** (Jesús la pidió el 24-11-2026): `"voz"` en cada paso (1-2 frases cortas, lo que cuenta ese paso) y
+  `"voz_cierre"` («Sirve para… Comenta YO y te enseño cómo sería la tuya.»). Pídela con
+  `montar.py <config> --demo <demo> --pedido-voz` (UN audio Gemini «Achird», SQL como en los reels «historia») y genera.
+  Si la voz de un paso dura más que su trozo de demo se congela el último fotograma: mejor alarga los `esperar` de ese paso.
 - Prueba con `--probar` como la demo normal y mira 4-5 fotogramas del vídeo final.
 - Nada inventado: chips con beneficios que la demo enseña de verdad, sin cifras ni precios (en el panel deja
   `precio_desde` en null salvo que la demo los tenga).

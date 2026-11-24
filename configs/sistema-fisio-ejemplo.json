@@ -18,7 +18,8 @@
       "chips": [
         "Hecha para el móvil",
         "Abierta 24 horas"
-      ]
+      ],
+      "voz": "Así funciona el sistema completo para un negocio con citas. Primero, tu web, hecha para el móvil."
     },
     {
       "titulo": "Citas online",
@@ -27,7 +28,8 @@
       "chips": [
         "Sin llamadas",
         "Elige día y hora"
-      ]
+      ],
+      "voz": "Tus clientes eligen tratamiento, día y hora, y reservan solos, sin llamarte."
     },
     {
       "titulo": "Tu panel privado",
@@ -36,7 +38,8 @@
       "chips": [
         "Confirmas con un toque",
         "Desde tu móvil"
-      ]
+      ],
+      "voz": "Tú lo ves todo en tu panel privado y confirmas cada cita con un toque."
     },
     {
       "titulo": "Avisos por WhatsApp",
@@ -46,10 +49,7 @@
         "Menos citas perdidas",
         "Mensaje ya escrito"
       ],
-      "chips_y": [
-        640,
-        1060
-      ]
+      "voz": "Y el recordatorio por WhatsApp ya va escrito: solo tienes que enviarlo."
     }
   ],
   "sectores": [
@@ -313,14 +313,14 @@
       "paso": 1
     },
     {
-      "esperar": 1000
+      "esperar": 2600
     },
     {
       "deslizar": "#tratamientos",
-      "ms": 1000
+      "ms": 1800
     },
     {
-      "esperar": 600
+      "esperar": 1200
     },
     {
       "paso": 2
@@ -411,5 +411,6 @@
     {
       "esperar": 1200
     }
-  ]
+  ],
+  "voz_cierre": "Sirve para fisios, peluquerías, talleres o bares. Comenta YO y te enseño cómo sería la tuya."
 }
