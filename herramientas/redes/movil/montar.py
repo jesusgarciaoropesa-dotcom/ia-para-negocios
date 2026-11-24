@@ -21,7 +21,8 @@ del paso, una frase con la palabra clave resaltada y 1-2 «chips» de beneficio 
 donde la lista de acciones tiene {"paso": n}. Se sirve la raíz de la rama main (la demo y el panel citas/), así que
 la acción {"ir": "citas/index.html?n=demo"} abre el panel privado con las tablas de mentira de mocks.tablas, y
 {"whatsapp": "#hojaCont a.wa", "nombre": "Lucía"} enseña el recordatorio como conversación de ejemplo.
-El cierre es «Para tu negocio» con 4 sectores ("sectores") y la caja de comentarios escribiendo la palabra.
+El cierre es «Para tu negocio» con hasta 8 sectores con icono ("sectores": textos o {"nombre","icono"}; iconos en
+iconos/) y la hoja de comentarios de Instagram donde se escribe y publica la palabra, con la respuesta de @iando.xyz.
 Voz (opcional, añadida el 24-11-2026 a petición de Jesús): "voz" en cada paso y "voz_cierre" (frases cortas que caben en
 lo que dura cada paso; si la voz es más larga, se congela el último fotograma del paso). Se pide como en los reels
 «historia»: --pedido-voz imprime la sentencia SQL (UN audio Gemini «Achird» para todo); --sin-voz hace una vista previa muda.
@@ -129,52 +130,173 @@ def piezas_sistema(cfg, carpeta):
     cierre_sistema(cfg, carpeta, s6, s8)
 
 
+SECTORES_DEF = [('Peluquerías', 'peluqueria'), ('Restaurantes', 'restaurante'), ('Talleres', 'taller'), ('Fisios', 'fisio'),
+                ('Clínicas dentales', 'dental'), ('Uñas y estética', 'unas'), ('Veterinarias', 'veterinaria'), ('Gimnasios', 'gimnasio')]
+ICONOS = {'peluquer': 'peluqueria', 'barber': 'barberia', 'restaur': 'restaurante', 'bar': 'restaurante', 'taller': 'taller',
+          'fisio': 'fisio', 'dent': 'dental', 'uña': 'unas', 'estét': 'unas', 'veter': 'veterinaria', 'gimn': 'gimnasio',
+          'autoesc': 'autoescuela', 'masaj': 'masajes', 'tatu': 'tatuajes'}
+
+
+def _icono(nombre, color, tam):
+    """PNG blanco de iconos/ teñido del color pedido."""
+    p = os.path.join(AQUI, 'iconos', nombre + '.png')
+    if not os.path.exists(p):
+        return None
+    a = Image.open(p).convert('RGBA').resize((tam, tam), Image.LANCZOS).getchannel('A')
+    im = Image.new('RGBA', (tam, tam), color + (255,)); im.putalpha(a); return im
+
+
+def _sectores(cfg):
+    """"sectores" de la config: textos ("Peluquerías") o {"nombre", "icono"}; el icono se adivina por el nombre."""
+    out = []
+    for s in cfg.get('sectores') or [n for n, _ in SECTORES_DEF]:
+        nom, ico = (s.get('nombre'), s.get('icono')) if isinstance(s, dict) else (s, None)
+        if nom.lower().startswith('bar') and not nom.lower().startswith('barber'):
+            nom = 'Restaurantes'   # decidido por Jesús el 24-11-2026: «restaurantes» en vez de «bares»
+        if not ico:
+            ico = next((v for k, v in ICONOS.items() if any(w.startswith(k) for w in nom.lower().split())), None)
+        out.append((nom, ico))
+    return out[:8]
+
+
+def _emoji(ch, tam):
+    try:
+        f = ImageFont.truetype('/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf', 109)
+    except OSError:
+        return None
+    im = Image.new('RGBA', (136, 128), (0, 0, 0, 0)); ImageDraw.Draw(im).text((0, 0), ch, font=f, embedded_color=True)
+    bb = im.getbbox(); return im.crop(bb).resize((tam, tam), Image.LANCZOS) if bb else None
+
+
 def cierre_sistema(cfg, carpeta, s6, s8):
-    pal = cfg.get('palabra', 'YO'); sectores = cfg.get('sectores', ['Fisios', 'Peluquerías', 'Talleres', 'Bares'])[:4]
+    """Cierre en dos partes (rehecho el 24-11-2026 a petición de Jesús):
+    1) «Para tu negocio» con hasta 8 sectores, cada uno con su icono (tijeras, cubiertos, llave…), que aparecen uno a uno.
+    2) La hoja de comentarios de Instagram que sube desde abajo: alguien escribe la palabra, la publica y aparece
+       el comentario con la respuesta de @iando.xyz («Te escribo por privado»)."""
+    pal = cfg.get('palabra', 'YO'); secs = _sectores(cfg)
     lila, blanco, gris = (163, 163, 245), (255, 255, 255), (220, 220, 235)
-    def base():
-        c = Image.new('RGB', (W, H)); cd = ImageDraw.Draw(c)
-        for y in range(H):
-            t = y / H; cd.line([(0, y), (W, y)], fill=(int(20 + 10 * t), int(20 + 8 * t), int(34 + 40 * t)))
-        f1 = ImageFont.truetype(s8, 96); t = 'Para tu negocio'; cd.text(((W - cd.textlength(t, font=f1)) / 2, 300), t, font=f1, fill=blanco)
-        fs = ImageFont.truetype(s6, 42)
-        for k, sct in enumerate(sectores):
-            cx = W / 2 + (-1 if k % 2 == 0 else 1) * 215; cy = 500 + (k // 2) * 112
-            tw = cd.textlength(sct, font=fs)
-            cd.rounded_rectangle([cx - 190, cy, cx + 190, cy + 88], radius=44, outline=lila, width=3)
-            cd.text((cx - tw / 2, cy + 18), sct, font=fs, fill=gris)
-        f3 = ImageFont.truetype(s6, 48)
-        for k, l in enumerate([f'Comenta {pal} y te enseño', 'cómo sería la tuya']):
-            cd.text(((W - cd.textlength(l, font=f3)) / 2, 1190 + k * 64), l, font=f3, fill=gris)
-        f5 = ImageFont.truetype(s8, 50); l = '@iando.xyz'; cd.text(((W - cd.textlength(l, font=f5)) / 2, 1440), l, font=f5, fill=lila)
+    fondo = Image.new('RGB', (W, H)); fd = ImageDraw.Draw(fondo)
+    for y in range(H):
+        t = y / H; fd.line([(0, y), (W, y)], fill=(int(20 + 10 * t), int(20 + 8 * t), int(34 + 40 * t)))
+    f1, fs, f5 = ImageFont.truetype(s8, 96), ImageFont.truetype(s6, 40), ImageFont.truetype(s8, 50)
+    iconos = [(_icono(ico, lila, 64) if ico else None) for _, ico in secs]
+
+    def sectores_img(visibles, pop=None):
+        c = fondo.copy(); cd = ImageDraw.Draw(c)
+        t = 'Para tu negocio'; cd.text(((W - cd.textlength(t, font=f1)) / 2, 250), t, font=f1, fill=blanco)
+        filas = (len(secs) + 1) // 2
+        for k, (nom, _) in enumerate(secs[:visibles]):
+            col, fila = k % 2, k // 2
+            x0 = 90 + col * 460; y0 = 440 + fila * 150
+            esc = 0.9 if pop == k else 1.0; cw, ch = 440 * esc, 126 * esc
+            xa, ya = x0 + (440 - cw) / 2, y0 + (126 - ch) / 2
+            cd.rounded_rectangle([xa, ya, xa + cw, ya + ch], radius=34, fill=(38, 38, 62), outline=(80, 80, 130), width=2)
+            cd.ellipse([xa + 22, ya + ch / 2 - 40, xa + 102, ya + ch / 2 + 40], fill=(55, 55, 95))
+            ic = iconos[k]
+            if ic:
+                c.paste(ic, (int(xa + 30), int(ya + ch / 2 - 32)), ic)
+            fn = fs if cd.textlength(nom, font=fs) < cw - 150 else ImageFont.truetype(s6, 34)
+            cd.text((xa + 124, ya + ch / 2 - 24), nom, font=fn, fill=gris)
+        yb = 440 + filas * 150 + 40
+        cd.text(((W - cd.textlength('y cualquier negocio con citas', font=fs)) / 2, yb), 'y cualquier negocio con citas', font=fs, fill=(150, 150, 185))
         return c
-    fcaja, fpub, fcom = ImageFont.truetype(s6, 44), ImageFont.truetype(s8, 40), ImageFont.truetype(s8, 46)
-    def caja(texto, cursor, pulsado=False, publicado=False):
-        c = base(); cd = ImageDraw.Draw(c)
-        x0, x1, y0, y1 = 90, W - 90, 930, 1060
-        if publicado:
-            # el comentario ya publicado, encima de la caja
-            cd.ellipse([x0, 820, x0 + 70, 890], fill=(90, 90, 120)); cd.text((x0 + 92, 812), 'tú', font=ImageFont.truetype(s6, 32), fill=(170, 170, 190))
-            cd.text((x0 + 92, 846), pal, font=fcom, fill=blanco)
-        cd.rounded_rectangle([x0, y0, x1, y1], radius=65, fill=(255, 255, 255))
-        cd.ellipse([x0 + 26, y0 + 30, x0 + 96, y0 + 100], fill=(205, 205, 222))
-        tx = x0 + 120
-        if texto:
-            cd.text((tx, y0 + 40), texto, font=fcaja, fill=(20, 20, 34)); tx += cd.textlength(texto, font=fcaja) + 4
+
+    # --- hoja de comentarios de Instagram (modo oscuro) ---
+    ig_bg, ig_line, ig_gris, ig_azul = (38, 38, 38), (60, 60, 60), (168, 168, 168), (0, 149, 246)
+    ft, fn_, fc, fsm, fin = ImageFont.truetype(s8, 40), ImageFont.truetype(s8, 36), ImageFont.truetype(s6, 40), ImageFont.truetype(s6, 32), ImageFont.truetype(s6, 38)
+    emojis = [e for e in (_emoji(ch, 64) for ch in ['❤️', '🙌', '🔥', '👏', '😢', '😍', '😮', '😂']) if e]
+    TOP = 760
+
+    def avatar(cd, c, x, y, r, propio=False):
+        if propio:   # avatar de iando: círculo lila con «i»
+            cd.ellipse([x, y, x + 2 * r, y + 2 * r], fill=lila); fi = ImageFont.truetype(s8, int(r * 1.1))
+            cd.text((x + r - cd.textlength('i', font=fi) / 2, y + r * 0.35), 'i', font=fi, fill=(25, 25, 45))
         else:
-            cd.text((tx, y0 + 40), 'Añade un comentario…', font=fcaja, fill=(150, 150, 165))
+            cd.ellipse([x, y, x + 2 * r, y + 2 * r], fill=(90, 90, 110))
+            cd.ellipse([x + r * 0.62, y + r * 0.38, x + r * 1.38, y + r * 1.14], fill=(150, 150, 170))
+            cd.pieslice([x + r * 0.3, y + r * 1.2, x + r * 1.7, y + r * 2.5], 180, 360, fill=(150, 150, 170))
+
+    def corazon(cd, cx, cy, s, relleno=None):
+        pts = [(cx, cy + s * 0.9)]
+        import math
+        for a in range(0, 361, 12):
+            t = math.radians(a); x = 16 * math.sin(t) ** 3; y = 13 * math.cos(t) - 5 * math.cos(2 * t) - 2 * math.cos(3 * t) - math.cos(4 * t)
+            pts.append((cx + x * s / 17, cy - y * s / 17))
+        if relleno:
+            cd.polygon(pts, fill=relleno)
+        else:
+            cd.line(pts + [pts[1]], fill=ig_gris, width=3)
+
+    def hoja(subida=1.0, texto='', cursor=False, pulsado=False, publicado=False, respuesta=False, like=False):
+        c = fondo.copy(); cd = ImageDraw.Draw(c)
+        l1, l2 = f'Comenta {pal}', 'y te enseño cómo sería la tuya'
+        fcta = ImageFont.truetype(s8, 74); fcta2 = ImageFont.truetype(s6, 46)
+        cd.text(((W - cd.textlength(l1, font=fcta)) / 2, 300), l1, font=fcta, fill=blanco)
+        cd.text(((W - cd.textlength(l2, font=fcta2)) / 2, 400), l2, font=fcta2, fill=gris)
+        cd.text(((W - cd.textlength('@iando.xyz', font=f5)) / 2, 520), '@iando.xyz', font=f5, fill=lila)
+        top = int(H - (H - TOP) * subida)
+        cd.rounded_rectangle([0, top, W, H + 60], radius=44, fill=ig_bg)
+        cd.rounded_rectangle([W / 2 - 50, top + 22, W / 2 + 50, top + 32], radius=5, fill=(90, 90, 90))
+        cd.text(((W - cd.textlength('Comentarios', font=ft)) / 2, top + 58), 'Comentarios', font=ft, fill=blanco)
+        cd.line([(0, top + 130), (W, top + 130)], fill=ig_line, width=2)
+        y = top + 175
+        if not publicado:
+            t1, t2 = 'Aún no hay comentarios', 'Inicia la conversación.'
+            cd.text(((W - cd.textlength(t1, font=ImageFont.truetype(s8, 48))) / 2, y + 120), t1, font=ImageFont.truetype(s8, 48), fill=blanco)
+            cd.text(((W - cd.textlength(t2, font=fsm)) / 2, y + 190), t2, font=fsm, fill=ig_gris)
+        else:
+            avatar(cd, c, 50, y, 40)
+            cd.text((150, y + 2), 'tú', font=fn_, fill=blanco); cd.text((150 + cd.textlength('tú', font=fn_) + 16, y + 6), 'ahora', font=fsm, fill=ig_gris)
+            cd.text((150, y + 50), pal, font=fc, fill=blanco)
+            cd.text((150, y + 108), 'Responder', font=fsm, fill=ig_gris)
+            corazon(cd, W - 75, y + 50, 22, relleno=(255, 48, 64) if like else None)
+            if respuesta:
+                yr = y + 175
+                avatar(cd, c, 150, yr, 32, propio=True)
+                cd.text((235, yr), 'iando.xyz', font=fn_, fill=blanco)
+                xa = 235 + cd.textlength('iando.xyz', font=fn_) + 14
+                cd.text((xa, yr + 5), 'Autor · ahora', font=fsm, fill=ig_gris)
+                cd.text((235, yr + 46), 'Te escribo por privado 📩'.replace(' 📩', ''), font=fc, fill=blanco)
+                em = _emoji('📩', 40)
+                if em:
+                    c.paste(em, (int(235 + cd.textlength('Te escribo por privado ', font=fc)), yr + 50), em)
+        # fila de emojis y caja de escribir, abajo
+        ye = H - 330 + (top - TOP)   # la fila de emojis y la caja suben con la hoja
+        cd.line([(0, ye - 30), (W, ye - 30)], fill=ig_line, width=2)
+        if emojis:
+            paso = (W - 120) / len(emojis)
+            for k, e in enumerate(emojis):
+                c.paste(e, (int(60 + k * paso + (paso - 64) / 2), ye), e)
+        yi = ye + 110
+        avatar(cd, c, 40, yi, 46)
+        cd.rounded_rectangle([150, yi - 4, W - 40, yi + 96], radius=50, outline=(80, 80, 80), width=2)
+        tx = 190
+        if texto:
+            cd.text((tx, yi + 24), texto, font=fin, fill=blanco); tx += cd.textlength(texto, font=fin) + 4
+        else:
+            ph = 'Añade un comentario para iando.xyz…'
+            cd.text((tx, yi + 26), ph, font=ImageFont.truetype(s6, 34), fill=ig_gris)
         if cursor:
-            cd.rectangle([tx, y0 + 36, tx + 4, y0 + 96], fill=(40, 90, 230))
-        pc = (40, 90, 230) if texto else (170, 190, 235); pw = cd.textlength('Publicar', font=fpub)
-        if pulsado:
-            cd.rounded_rectangle([x1 - pw - 60, y0 + 24, x1 - 20, y1 - 24], radius=40, fill=(225, 233, 255))
-        cd.text((x1 - pw - 40, y0 + 42), 'Publicar', font=fpub, fill=pc)
+            cd.rectangle([tx, yi + 20, tx + 4, yi + 76], fill=ig_azul)
+        if texto or pulsado:
+            pw = cd.textlength('Publicar', font=fn_)
+            if pulsado:
+                cd.rounded_rectangle([W - pw - 110, yi + 10, W - 60, yi + 86], radius=34, fill=(20, 60, 100))
+            cd.text((W - pw - 85, yi + 24), 'Publicar', font=fn_, fill=ig_azul)
         return c
-    cuadros = [(caja('', True), 0.45), (caja('', False), 0.4), (caja('', True), 0.3), (caja(pal[:1], True), 0.28)]
-    for k in range(2, len(pal) + 1):
-        cuadros.append((caja(pal[:k], True), 0.28))
-    cuadros += [(caja(pal, False), 0.3), (caja(pal, True), 0.3), (caja(pal, False, pulsado=True), 0.35), (caja('', True, publicado=True), 0.45),
-                (caja('', False, publicado=True), 0.45), (caja('', True, publicado=True), 0.45), (caja('', False, publicado=True), 0.45)]
+
+    cuadros = [(sectores_img(0), 0.35)]
+    for k in range(len(secs)):
+        cuadros += [(sectores_img(k + 1, pop=k), 0.06), (sectores_img(k + 1), 0.12)]
+    cuadros.append((sectores_img(len(secs)), 1.1))
+    for s in (0.15, 0.35, 0.6, 0.82, 0.95, 1.0):
+        cuadros.append((hoja(subida=s), 0.04))
+    cuadros += [(hoja(cursor=True), 0.4), (hoja(), 0.3), (hoja(cursor=True), 0.3)]
+    for k in range(1, len(pal) + 1):
+        cuadros.append((hoja(texto=pal[:k], cursor=True), 0.28))
+    cuadros += [(hoja(texto=pal), 0.3), (hoja(texto=pal, cursor=True), 0.3), (hoja(texto=pal, pulsado=True), 0.3),
+                (hoja(publicado=True), 0.7), (hoja(publicado=True, like=True), 0.6),
+                (hoja(publicado=True, like=True, respuesta=True), 1.6)]
     lista = ''
     for k, (im, dur) in enumerate(cuadros):
         nom = f'cierre-{k:02d}.png'; im.save(os.path.join(carpeta, nom)); lista += f"file '{nom}'\nduration {dur}\n"

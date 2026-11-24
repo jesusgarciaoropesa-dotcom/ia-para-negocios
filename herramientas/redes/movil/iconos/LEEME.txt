@@ -1,0 +1,1 @@
+Iconos de Lucide (https://lucide.dev, licencia ISC) pasados a PNG blanco de 160 px; dental.png dibujado aparte con el mismo trazo.

@@ -53,10 +53,14 @@
     }
   ],
   "sectores": [
-    "Fisios",
     "Peluquerías",
+    "Restaurantes",
     "Talleres",
-    "Bares"
+    "Fisios",
+    "Clínicas dentales",
+    "Uñas y estética",
+    "Veterinarias",
+    "Gimnasios"
   ],
   "mocks": {
     "servicios": [
@@ -412,5 +416,5 @@
       "esperar": 1200
     }
   ],
-  "voz_cierre": "Sirve para fisios, peluquerías, talleres o bares. Comenta YO y te enseño cómo sería la tuya."
+  "voz_cierre": "Sirve para peluquerías, restaurantes, talleres, clínicas y cualquier negocio con citas. Comenta YO y te enseño cómo sería la tuya."
 }
