@@ -574,6 +574,7 @@ async function cargarNegocio() {
     document.getElementById("nombreNegocio").textContent = data.nombre;
     document.title = "Citas · " + data.nombre;
     if (data.config && data.config.horario) CFG = { ...CFG, ...data.config };
+    CFG.sanitario = !!(data.config && data.config.sanitario); // centros sanitarios: el recordatorio no dice el tratamiento (datos de salud)
     if (data.config && data.config.tema) aplicarTema(data.config.tema, data.nombre);
   }
 }
@@ -1264,7 +1265,7 @@ async function abrirHoja(id) {
   if (r.estado === "pendiente") principal = `<button class="h-big" data-h="confirmada">${ICO.check}Confirmar cita</button>`;
   else if (r.estado === "confirmada" && r.fecha <= hoy) principal = `<button class="h-big" data-h="completada">${ICO.check}Marcar como hecha</button>`;
   const diaTxt = r.fecha === hoy ? "hoy" : (r.fecha === iso(new Date(Date.now() + 864e5)) ? "mañana" : "el " + new Date(r.fecha + "T00:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }));
-  const msgWa = `Hola ${String(nom).split(" ")[0]}, te recuerdo tu cita ${diaTxt} a las ${aHora(hi)}${s.nombre ? " para " + s.nombre : ""}${NOMBRE_NEGOCIO ? " en " + NOMBRE_NEGOCIO : ""}. Si no puedes venir, avísame por aquí. ¡Gracias!`;
+  const msgWa = `Hola ${String(nom).split(" ")[0]}, te recuerdo tu cita ${diaTxt} a las ${aHora(hi)}${s.nombre && !CFG.sanitario ? " para " + s.nombre : ""}${NOMBRE_NEGOCIO ? " en " + NOMBRE_NEGOCIO : ""}. Si no puedes venir, avísame por aquí. ¡Gracias!`;
   const estTxt = { pendiente: "Sin confirmar", confirmada: "Confirmada", completada: "Hecha", cancelada: "Cancelada" }[r.estado] || r.estado;
   const estCol = { pendiente: "var(--warn)", confirmada: "var(--ok)", completada: "var(--muted)", cancelada: "var(--bad)" }[r.estado] || "var(--muted)";
   $("hojaCont").innerHTML = `<div class="h-cab"><div class="asa"></div><small>DETALLE DE LA CITA</small><h3>${cuando}</h3>${avatar(nom)}</div>
