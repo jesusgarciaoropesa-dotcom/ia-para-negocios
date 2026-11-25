@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: {ref: redes, fetch-depth: 2}
+        with: {ref: redes, fetch-depth: 0}
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Bajar y recortar
         run: |
-          for cfg in $(git diff --name-only HEAD~1 HEAD -- 'configs/**/stock-*.json'); do
+          for cfg in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'configs/**/stock-*.json' 2>/dev/null || git ls-files 'configs/**/stock-*.json'); do
             dir="$(dirname "$cfg")/stock"; mkdir -p "$dir"
             python3 - "$cfg" > /tmp/lista.txt <<'PY'
           import json,sys

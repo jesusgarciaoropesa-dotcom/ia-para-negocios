@@ -1,14 +1,60 @@
 {
  "nota": "Prueba de Jesús 25-11-2026: reel de heladas con vídeo libre de Pexels (mismo guion y voz que heladas-animado).",
  "clips": [
-  {"id": 10533474, "nombre": "helada-planta-nieve", "inicio": 0, "segundos": 8},
-  {"id": 7127511, "nombre": "gotas-congeladas", "inicio": 0, "segundos": 8},
-  {"id": 9466785, "nombre": "maceta-en-mano", "inicio": 0, "segundos": 8},
-  {"id": 10823401, "nombre": "planta-de-cerca", "inicio": 0, "segundos": 8},
-  {"id": 6624892, "nombre": "plantas-cubiertas", "inicio": 0, "segundos": 8},
-  {"id": 15246847, "nombre": "planta-nevada-viento", "inicio": 0, "segundos": 8},
-  {"id": 5527768, "nombre": "tierra-mojada", "inicio": 0, "segundos": 8},
-  {"id": 7048904, "nombre": "regando-planta", "inicio": 0, "segundos": 8},
-  {"id": 2806063, "nombre": "gotas-en-hojas", "inicio": 0, "segundos": 8}
- ]
+  {
+   "id": 10533474,
+   "nombre": "helada-planta-nieve",
+   "inicio": 0,
+   "segundos": 8
+  },
+  {
+   "id": 7127511,
+   "nombre": "gotas-congeladas",
+   "inicio": 0,
+   "segundos": 8
+  },
+  {
+   "id": 9466785,
+   "nombre": "maceta-en-mano",
+   "inicio": 0,
+   "segundos": 8
+  },
+  {
+   "id": 10823401,
+   "nombre": "planta-de-cerca",
+   "inicio": 0,
+   "segundos": 8
+  },
+  {
+   "id": 6624892,
+   "nombre": "plantas-cubiertas",
+   "inicio": 0,
+   "segundos": 8
+  },
+  {
+   "id": 15246847,
+   "nombre": "planta-nevada-viento",
+   "inicio": 0,
+   "segundos": 8
+  },
+  {
+   "id": 5527768,
+   "nombre": "tierra-mojada",
+   "inicio": 0,
+   "segundos": 8
+  },
+  {
+   "id": 7048904,
+   "nombre": "regando-planta",
+   "inicio": 0,
+   "segundos": 8
+  },
+  {
+   "id": 2806063,
+   "nombre": "gotas-en-hojas",
+   "inicio": 0,
+   "segundos": 8
+  }
+ ],
+ "version": 2
 }
