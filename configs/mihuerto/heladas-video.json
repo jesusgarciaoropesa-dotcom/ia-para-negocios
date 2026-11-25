@@ -1,0 +1,55 @@
+{
+ "slug": "heladas-video",
+ "palabra": "HELADA",
+ "tema": "verde",
+ "musica": "animada",
+ "marca": "mihuertourbano.xyz",
+ "fondo_video": true,
+ "escenas": [
+  {
+   "voz": "Cuando anuncien cero grados o menos, protege tu huerto del balcón.",
+   "clave": "cero",
+   "tipo": "video",
+   "video": "stock/helada-planta-nieve.mp4"
+  },
+  {
+   "voz": "Primero, pega las macetas a la pared: el muro guarda el calor del día y lo suelta de noche.",
+   "clave": "pared",
+   "tipo": "video",
+   "video": "stock/planta-de-cerca.mp4"
+  },
+  {
+   "voz": "Y agrúpalas: juntas se protegen entre sí.",
+   "clave": "agrúpalas",
+   "tipo": "video",
+   "video": "stock/plantas-cubiertas.mp4"
+  },
+  {
+   "voz": "Por la noche, tápalas con una tela antiheladas. Y de día, quítala para que respire.",
+   "clave": "tela",
+   "tipo": "video",
+   "video": "stock/planta-nevada-viento.mp4"
+  },
+  {
+   "voz": "Lo que más se olvida: en maceta, la raíz pasa mucho más frío. Envuélvela con plástico de burbujas.",
+   "clave": "raíz",
+   "tipo": "video",
+   "video": "stock/gotas-congeladas.mp4"
+  },
+  {
+   "voz": "Y riega mucho menos, siempre de día: frío y tierra encharcada pudren las raíces.",
+   "clave": "menos",
+   "tipo": "video",
+   "video": "stock/tierra-mojada.mp4"
+  },
+  {
+   "voz": "Comenta HELADA y te paso la guía completa.",
+   "clave": "HELADA",
+   "tipo": "cierre",
+   "video": "stock/gotas-en-hojas.mp4",
+   "arriba": "Comenta",
+   "palabra": "HELADA",
+   "abajo": "y te paso **la guía completa**"
+  }
+ ]
+}

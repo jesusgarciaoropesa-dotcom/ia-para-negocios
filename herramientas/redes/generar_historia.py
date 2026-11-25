@@ -224,6 +224,7 @@ function construir(e,i){
   case "foto": h = `<div class="dib card" style="position:absolute;left:40px;right:40px;top:0;height:920px;overflow:hidden;padding:0;transform-origin:50% 50%"><img class="fondo" src="${e.src}" style="width:100%;height:100%;object-fit:cover;display:block;object-position:${e.foco||"50% 50%"};transform-origin:50% 50%">${e.figsrc?`<img class="fig" src="${e.figsrc}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${e.foco||"50% 50%"};transform-origin:50% 90%">`:""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
   case "captura": h = `<div class="movil card" style="top:0"><div class="pant" style="background:#fff"><img src="${e.src}" style="width:100%;display:block;position:absolute;top:0;left:0"></div></div>`; break;
+  case "video": h = ""; break;
   case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div>${e.caja?`<div class="card ccaja" style="left:90px;right:90px;top:720px;padding:26px 30px;display:flex;align-items:center;gap:22px;opacity:0"><div class="av" style="background:#c3c5d0;flex:none">Tú</div><div class="ctx" style="flex:1;font-size:40px;font-weight:600;color:#9a9cab">Añade un comentario…</div><div class="cpub" style="font-size:34px;font-weight:800;color:#b9c8ff">Publicar</div></div>`:""}<div class="marca">${esc(window.MARCA||"iando.xyz")}</div>`; break;
   }
   if(e.sello) h += `<div class="sello ${e.tono==="verde"?"verde":""}">${esc(e.sello)}</div>`;
@@ -234,6 +235,7 @@ const Q = (d,s) => Array.from(d.querySelectorAll(s));
 
 function animar(e,d,lt,dur){
   switch(e.tipo){
+  case "video": break;
   case "frase": { const a = pop(lt,0,.3); d.querySelector(".gigante").style.transform=`scale(${0.7+0.3*a})`; d.style.opacity=a; break; }
   case "chat": { const desde = e.desde||0, nuevos = e.mensajes.length-desde;
     Q(d,".bur").forEach(b=>{ const k=+b.dataset.k; if(k<desde){ b.style.opacity=1; return; }
@@ -405,6 +407,11 @@ def pagina(cfg, datos):
                 iconos[f"{i}-{k}"] = icono(t.get("icono", "sparkles"), 64, "#5b5bd6")
     color = cfg.get("tema") in ("color", "verde")
     extra = CSS_COLOR if color else ""
+    if cfg.get("fondo_video"):   # prueba MiHuerto 25-11-2026: vídeo libre (Pexels) detrás, la página es transparente
+        extra += ("body{background:transparent!important}#fondo{display:none!important}"
+                  "#cap{background:rgba(10,20,10,.42);padding:26px 30px;border-radius:34px;left:50px;right:50px}"
+                  "#cap .w{color:rgba(255,255,255,.55)!important}#cap .w.on{color:#fff!important;text-shadow:0 4px 18px rgba(0,0,0,.6)}"
+                  "#cap .w.key.on{color:#17162b!important;text-shadow:none}.marca{color:#fff!important;text-shadow:0 3px 12px rgba(0,0,0,.7)}")
     if cfg.get("tema") == "verde":   # MiHuertoUrbano: mismo estilo con verdes de huerto
         extra = extra.replace("#2e2a8f 0%,#4f46e5 45%,#7c3aed 100%", "#14532d 0%,#1f7a3d 45%,#3f9b4a 100%").replace("background:#3f37c9", "background:#1f7a3d").replace("#22d3ee", "#a3e635").replace("#f472b6", "#fbbf24")
     css = CSS.replace("url(F/", f"url(file://{AQUI / 'fuentes'}/") + extra
@@ -488,7 +495,7 @@ def main():
         print(f"AVISO: el reel dura {total:.0f} s; acorta frases o quita escenas (máximo 60 s).")
     salida = pathlib.Path(a.salida); salida.mkdir(parents=True, exist_ok=True)
     tmp = pathlib.Path("/tmp") / f"historia-{cfg['slug']}"; (tmp / "fr").mkdir(parents=True, exist_ok=True)
-    for v in (tmp / "fr").glob("*.jpg"):
+    for v in list((tmp / "fr").glob("*.jpg")) + list((tmp / "fr").glob("*.png")):
         v.unlink()
     muestras = bytearray(int(total * sr) * 2)
     for d, pcm in zip(datos, pcms):
@@ -504,7 +511,10 @@ def main():
         n = int(total * FPS + 0.999)
         for k in range(n):
             pg.evaluate("t => window.render(t)", k / FPS)
-            pg.screenshot(path=str(tmp / "fr" / f"{k:05d}.jpg"), type="jpeg", quality=88)
+            if cfg.get("fondo_video"):
+                pg.screenshot(path=str(tmp / "fr" / f"{k:05d}.png"), omit_background=True)
+            else:
+                pg.screenshot(path=str(tmp / "fr" / f"{k:05d}.jpg"), type="jpeg", quality=88)
         d0 = datos[0]
         pg.evaluate("t => window.render(t)", d0["ini"] + d0["dur"] * 0.95)
         pg.screenshot(path=str(salida / f"{cfg['slug']}-portada.jpg"), type="jpeg", quality=92)
@@ -521,6 +531,25 @@ def main():
                         f"[0:a]aresample=44100,asplit=2[v][sc];[1:a]volume=0.22,atrim=0:{total:.2f},afade=t=in:d=0.6,afade=t=out:st={max(0, total - 1.2):.2f}:d=1.2[m];"
                         "[m][sc]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=400[md];[v][md]amix=inputs=2:duration=first:normalize=0[out]",
                         "-map", "[out]", "-ac", "1", str(audio)], check=True)
+    if cfg.get("fondo_video"):   # fondo: un clip por escena (campo "video", ruta relativa a la config), recortado a lo que dura
+        base = pathlib.Path(a.config).parent; partes = []
+        for k, (e, d) in enumerate(zip(cfg["escenas"], datos)):
+            fin = datos[k + 1]["ini"] if k + 1 < len(datos) else total
+            ini = 0 if k == 0 else d["ini"]
+            seg = tmp / f"bg{k:02d}.mp4"
+            subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-stream_loop", "-1", "-i", str(base / e["video"]), "-t", f"{fin - ini:.3f}", "-an",
+                            "-vf", "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,eq=brightness=-0.04:saturation=1.08",
+                            "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", str(seg)], check=True)
+            partes.append(seg)
+        (tmp / "bg.txt").write_text("".join(f"file '{x}'\n" for x in partes))
+        subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(tmp / "bg.txt"), "-c", "copy", str(tmp / "bg.mp4")], check=True)
+        subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(tmp / "bg.mp4"), "-framerate", str(FPS), "-i", str(tmp / "fr/%05d.png"), "-i", str(audio),
+                        "-filter_complex", "[0:v][1:v]overlay=0:0:format=auto[v]", "-map", "[v]", "-map", "2:a",
+                        "-c:v", "libx264", "-preset", "veryfast", "-crf", "21", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
+                        "-shortest", "-movflags", "+faststart", str(mp4)], check=True)
+        subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", f"{datos[0]['dur'] * 0.9:.2f}", "-i", str(mp4), "-frames:v", "1", str(salida / f"{cfg['slug']}-portada.jpg")], check=True)
+        print(json.dumps({"reel": str(mp4), "portada": str(salida / f"{cfg['slug']}-portada.jpg"), "segundos": round(total, 1), "voz": "gemini", "fondo": "video"}, ensure_ascii=False))
+        return
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-framerate", str(FPS), "-i", str(tmp / "fr/%05d.jpg"), "-i", str(audio),
                     "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
                     "-shortest", "-movflags", "+faststart", str(mp4)], check=True)
