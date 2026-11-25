@@ -225,6 +225,8 @@ function construir(e,i){
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
   case "captura": h = `<div class="movil card" style="top:0"><div class="pant" style="background:#fff"><img src="${e.src}" style="width:100%;display:block;position:absolute;top:0;left:0"></div></div>`; break;
   case "video": h = ""; break;
+  case "pizarra": h = `<div class="pz" style="position:absolute;left:90px;right:90px;top:0;height:900px"><svg viewBox="0 0 900 900" width="900" height="900" style="overflow:visible">${e.trazos}</svg>`+
+      `<svg class="boli" viewBox="0 0 60 160" width="54" height="144" style="position:absolute;left:0;top:0;transform-origin:4px 156px;opacity:0"><g transform="rotate(28 30 80)"><rect x="16" y="0" width="28" height="112" rx="8" fill="#2d2f3a"/><rect x="16" y="20" width="28" height="18" fill="#ffd43b"/><path d="M18 112 h24 l-8 30 h-8z" fill="#e9e3d6"/><path d="M26 142 h8 l-4 14z" fill="#1d1d1f"/></g></svg></div>`; break;
   case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div>${e.caja?`<div class="card ccaja" style="left:90px;right:90px;top:720px;padding:26px 30px;display:flex;align-items:center;gap:22px;opacity:0"><div class="av" style="background:#c3c5d0;flex:none">Tú</div><div class="ctx" style="flex:1;font-size:40px;font-weight:600;color:#9a9cab">Añade un comentario…</div><div class="cpub" style="font-size:34px;font-weight:800;color:#b9c8ff">Publicar</div></div>`:""}<div class="marca">${esc(window.MARCA||"iando.xyz")}</div>`; break;
   }
   if(e.sello) h += `<div class="sello ${e.tono==="verde"?"verde":""}">${esc(e.sello)}</div>`;
@@ -236,6 +238,19 @@ const Q = (d,s) => Array.from(d.querySelectorAll(s));
 function animar(e,d,lt,dur){
   switch(e.tipo){
   case "video": break;
+  case "pizarra": { const f = lt/dur, R=d, svg=R.querySelector("svg"), boli=R.querySelector(".boli"); let punta=null;
+      const fr=(el)=>{ const t0=+el.dataset.t||0, dd=+el.dataset.d||0.2; return Math.max(0,Math.min(1,(f-t0)/dd)); };
+      R.querySelectorAll(".tz").forEach(el=>{ const pr=fr(el); el.style.strokeDasharray="1 1"; el.style.strokeDashoffset=String(1-pr);
+        if(pr>0 && pr<1 && el.getTotalLength){ const L=el.getTotalLength(), pt=el.getPointAtLength(L*pr), m=el.getCTM(); if(m) punta={x:pt.x*m.a+pt.y*m.c+m.e, y:pt.x*m.b+pt.y*m.d+m.f}; } });
+      R.querySelectorAll(".ap").forEach(el=>{ const pr=ease(fr(el)); el.style.opacity=pr; const bx=el.getBBox?el.getBBox():null; if(bx){ el.style.transformOrigin=`${bx.x+bx.width/2}px ${bx.y+bx.height/2}px`; el.style.transform=`scale(${0.6+0.4*pr})`; } });
+      R.querySelectorAll(".sale").forEach(el=>{ el.style.opacity=1-ease(fr(el)); });
+      R.querySelectorAll(".vuela").forEach((el,k)=>{ const x=+el.dataset.x, y=+el.dataset.y, px=el.dataset.px, py=el.dataset.py;
+        let ox=Math.sin(lt*(2.1+k*0.37)+k)*38, oy=Math.cos(lt*(2.7+k*0.29)+k*1.7)*26, X=x, Y=y;
+        if(px!==undefined){ const pg=ease(fr(el)); X=x+(+px-x)*pg; Y=y+(+py-y)*pg; ox*=1-pg; oy*=1-pg; }
+        el.setAttribute("transform",`translate(${X+ox} ${Y+oy})`); el.style.opacity = el.dataset.fuera ? 1-ease(Math.max(0,Math.min(1,(f-(+el.dataset.fuera))/0.25))) : 1; });
+      R.querySelectorAll(".ondula").forEach((el,k)=>{ el.setAttribute("transform", `${el.dataset.base||""} rotate(${Math.sin(lt*6+k)*12})`); });
+      if(punta){ boli.style.opacity=1; boli.style.left=(punta.x-4)+"px"; boli.style.top=(punta.y-156)+"px"; } else { boli.style.opacity=0; }
+      break; }
   case "frase": { const a = pop(lt,0,.3); d.querySelector(".gigante").style.transform=`scale(${0.7+0.3*a})`; d.style.opacity=a; break; }
   case "chat": { const desde = e.desde||0, nuevos = e.mensajes.length-desde;
     Q(d,".bur").forEach(b=>{ const k=+b.dataset.k; if(k<desde){ b.style.opacity=1; return; }
@@ -414,6 +429,9 @@ def pagina(cfg, datos):
                   "#cap{background:rgba(10,20,10,.42);padding:26px 30px;border-radius:34px;left:50px;right:50px}"
                   "#cap .w{color:rgba(255,255,255,.55)!important}#cap .w.on{color:#fff!important;text-shadow:0 4px 18px rgba(0,0,0,.6)}"
                   "#cap .w.key.on{color:#17162b!important;text-shadow:none}.marca{color:#fff!important;text-shadow:0 3px 12px rgba(0,0,0,.7)}")
+    if cfg.get("tema") == "pizarra":   # estilo pizarra dibujada a mano (prueba MiHuerto 25-11-2026)
+        extra += ("body{background:#fbfaf5}#escenas:before{content:'';position:absolute;inset:0;background-image:linear-gradient(#ecebe4 2px,transparent 2px),"
+                  "linear-gradient(90deg,#ecebe4 2px,transparent 2px);background-size:60px 60px;opacity:.7}.pz text{font-family:inherit;font-weight:800}")
     if cfg.get("tema") == "verde":   # MiHuertoUrbano: mismo estilo con verdes de huerto
         extra = extra.replace("#2e2a8f 0%,#4f46e5 45%,#7c3aed 100%", "#14532d 0%,#1f7a3d 45%,#3f9b4a 100%").replace("background:#3f37c9", "background:#1f7a3d").replace("#22d3ee", "#a3e635").replace("#f472b6", "#fbbf24")
     css = CSS.replace("url(F/", f"url(file://{AQUI / 'fuentes'}/") + extra
