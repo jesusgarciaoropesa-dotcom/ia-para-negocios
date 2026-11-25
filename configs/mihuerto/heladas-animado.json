@@ -1,0 +1,114 @@
+{
+ "slug": "heladas-animado",
+ "palabra": "HELADA",
+ "tema": "verde",
+ "musica": "animada",
+ "marca": "mihuertourbano.xyz",
+ "escenas": [
+  {
+   "voz": "Cuando anuncien cero grados o menos, protege tu huerto del balcón.",
+   "clave": "cero",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "helada",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "termometro",
+    "plantas": 5
+   }
+  },
+  {
+   "voz": "Primero, pega las macetas a la pared: el muro guarda el calor del día y lo suelta de noche.",
+   "clave": "pared",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "helada",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "pared",
+    "plantas": 5
+   }
+  },
+  {
+   "voz": "Y agrúpalas: juntas se protegen entre sí.",
+   "clave": "agrúpalas",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "helada",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "agrupar",
+    "plantas": 5
+   }
+  },
+  {
+   "voz": "Por la noche, tápalas con una tela antiheladas. Y de día, quítala para que respire.",
+   "clave": "tela",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "helada",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "tapar",
+    "plantas": 5
+   }
+  },
+  {
+   "voz": "Lo que más se olvida: en maceta, la raíz pasa mucho más frío. Envuélvela con plástico de burbujas.",
+   "clave": "raíz",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "helada",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "raiz",
+    "plantas": 5
+   }
+  },
+  {
+   "voz": "Y riega mucho menos, siempre de día: frío y tierra encharcada pudren las raíces.",
+   "clave": "menos",
+   "tipo": "anim",
+   "imagen": "img/balcon-jardinera.jpg",
+   "plantilla": "huerto",
+   "params": {
+    "tierra": [
+     296,
+     752,
+     684
+    ],
+    "modo": "riego",
+    "plantas": 7
+   },
+   "sello": "POCO Y DE DÍA"
+  },
+  {
+   "voz": "Comenta HELADA y te paso la guía completa.",
+   "clave": "HELADA",
+   "tipo": "cierre",
+   "arriba": "Comenta",
+   "palabra": "HELADA",
+   "abajo": "y te paso **la guía completa**"
+  }
+ ]
+}

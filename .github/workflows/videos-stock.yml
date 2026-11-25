@@ -1,0 +1,43 @@
+name: Vídeos de stock (Pexels)
+# Baja los vídeos libres de Pexels que pide un configs/**/stock-*.json ({"clips":[{"id":10533474,"nombre":"helada","inicio":0,"segundos":8}]})
+# y deja versiones ligeras en vertical 1080x1920 en configs/<carpeta>/stock/<nombre>.mp4.
+# Licencia de Pexels: uso gratis, también comercial, sin atribución obligatoria (https://www.pexels.com/license/).
+on:
+  push:
+    branches: [redes]
+    paths: ["configs/**/stock-*.json"]
+permissions:
+  contents: write
+concurrency: {group: videos-stock, cancel-in-progress: false}
+jobs:
+  bajar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: redes, fetch-depth: 2}
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Bajar y recortar
+        run: |
+          for cfg in $(git diff --name-only HEAD~1 HEAD -- 'configs/**/stock-*.json'); do
+            dir="$(dirname "$cfg")/stock"; mkdir -p "$dir"
+            python3 - "$cfg" > /tmp/lista.txt <<'PY'
+          import json,sys
+          for c in json.load(open(sys.argv[1]))["clips"]:
+              print(c["id"], c["nombre"], c.get("inicio",0), c.get("segundos",8))
+          PY
+            while read id nombre ini seg; do
+              out="$dir/$nombre.mp4"; [ -f "$out" ] && continue
+              curl -sSL -A "Mozilla/5.0" -o /tmp/orig.mp4 "https://www.pexels.com/download/video/$id/" || { echo "fallo $id" >> "$dir/errores.txt"; continue; }
+              ffmpeg -v error -y -ss "$ini" -t "$seg" -i /tmp/orig.mp4 -an \
+                -vf "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30" \
+                -c:v libx264 -preset veryfast -crf 26 -pix_fmt yuv420p "$out" || echo "fallo ffmpeg $id" >> "$dir/errores.txt"
+              ls -la "$out" || true
+            done < /tmp/lista.txt
+          done
+      - name: Subir
+        run: |
+          git config user.name "videos-stock"; git config user.email "actions@users.noreply.github.com"
+          for f in configs/*/stock/* configs/*/*/stock/*; do [ -f "$f" ] && git add "$f"; done
+          git diff --cached --quiet && exit 0
+          git commit -m "Vídeos de stock (Pexels) bajados"
+          for i in 1 2 3 4 5; do git pull --rebase -q origin redes && git push -q origin HEAD:redes && exit 0; sleep 5; done; exit 1

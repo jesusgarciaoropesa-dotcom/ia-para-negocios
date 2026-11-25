@@ -164,7 +164,7 @@ function construir(e,i){
   case "pasos": h = e.pasos.map((t,k)=>`<div class="card paso" data-k="${k}" style="top:${40+k*200}px"><div class="num">${k+1}</div>${esc(t)}</div>`).join(""); break;
   case "dibujo": h = `<div class="dib" style="position:absolute;left:-10px;right:-10px;top:0;transform-origin:50% 55%">${window.DIBUJOS[e.dibujo]||""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
-  case "anim": { // escena animada: imagen (IA) + capas que se mueven, según plantilla (persiana, sofa, terraza)
+  case "anim": { // escena animada: imagen (IA) + capas que se mueven, según plantilla (persiana, sofa, terraza, huerto, helada)
      const P=e.plantilla, q=e.params||{}; let svg="";
      const NS='<defs><pattern id="lamas'+i+'" width="10" height="26" patternUnits="userSpaceOnUse"><rect width="10" height="26" fill="#8d97a6"/><rect y="20" width="10" height="6" fill="#5f6876"/><rect y="2" width="10" height="3" fill="#b3bcc8"/></pattern><radialGradient id="halo'+i+'"><stop offset="0" stop-color="#ffd870" stop-opacity=".85"/><stop offset="1" stop-color="#ffd870" stop-opacity="0"/></radialGradient><linearGradient id="alba'+i+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb36b" stop-opacity=".95"/><stop offset=".55" stop-color="#ffd9a0" stop-opacity=".55"/><stop offset="1" stop-color="#fff2d6" stop-opacity="0"/></linearGradient></defs>';
      const estrellas = (zona)=>{ let r=""; for(let k=0;k<(zona[4]||20);k++){ const x=zona[0]+((k*137)%100)/100*zona[2], y=zona[1]+((k*71)%100)/100*zona[3]; r+=`<circle class="est" data-f="${(k*1.7)%6}" data-v="${1+(k%3)*0.6}" cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${1.6+(k%3)}" fill="#fff"/>`;} return r; };
@@ -194,6 +194,26 @@ function construir(e,i){
        else if(M==="cosecha"){ svg = xs.map((x,k)=>roseta(x,k,"planta",1.25)).join("")+`<g class="bol"><path d="M${x1-30} ${yt-300} h200 q0 110 -100 110 q-100 0 -100 -110z" fill="#fff" stroke="#2b2a3f" stroke-width="6"/></g>`+
            [...Array(5)].map((_,k)=>`<g class="hoja" data-k="${k}"><ellipse cx="0" cy="0" rx="13" ry="30" fill="#4fa846" stroke="#24521f" stroke-width="3"/></g>`).join("")+
            `<g class="tijeras"><circle cx="-18" cy="40" r="16" fill="none" stroke="#e0413a" stroke-width="8"/><circle cx="18" cy="40" r="16" fill="none" stroke="#e0413a" stroke-width="8"/><g class="hojaA"><path d="M-6 26 L6 -60 L14 -58 L4 28z" fill="#c9ced6" stroke="#5b6270" stroke-width="3"/></g><g class="hojaB"><path d="M6 26 L-6 -60 L-14 -58 L-4 28z" fill="#c9ced6" stroke="#5b6270" stroke-width="3"/></g></g>`; }
+  } else if(P==="helada"){ // MiHuerto, heladas (25-11-2026): termometro, pared, agrupar, tapar, raiz (q.tierra=[x0,x1,y])
+       const [x0,x1,yt]=q.tierra, M=q.modo, n=q.plantas||5, xs=[...Array(n)].map((_,k)=>x0+40+(x1-x0-80)*k/(n-1));
+       const mata=(x,y,k,cls,esc)=>`<g class="${cls}" data-k="${k}" transform="translate(${x} ${y})"><g class="r" style="transform:scale(${esc});transform-origin:0 0">${[0,1,2,3,4,5,6,7].map(j=>`<g transform="rotate(${j*45-180+(j%2?12:-12)})"><ellipse cx="0" cy="-26" rx="11" ry="27" fill="${j%2?"#3f8f3a":"#4fa846"}" stroke="#24521f" stroke-width="3"/></g>`).join("")}</g></g>`;
+       const maceta=(k,x,y)=>`<g class="maceta" data-k="${k}" transform="translate(${x} ${y})"><path d="M-62 0 h124 l-14 118 h-96z" fill="#c8693c" stroke="#6e3216" stroke-width="6"/><rect x="-70" y="-12" width="140" height="24" rx="6" fill="#d97b4a" stroke="#6e3216" stroke-width="6"/>${mata(0,-10,0,"m",1.05)}</g>`;
+       const noche=`<rect class="noche" x="0" y="0" width="1024" height="1024" fill="#0b1a3a" opacity="0"/><g class="luna" opacity="0"><circle cx="860" cy="150" r="54" fill="#f4f1dc"/><circle cx="884" cy="134" r="50" fill="#0b1a3a" opacity=".0"/></g>`;
+       if(M==="termometro"){ svg = noche + xs.map((x,k)=>mata(x,yt,k,"planta",1)).join("") +
+           [...Array(26)].map((_,k)=>`<g class="cristal" data-k="${k}" opacity="0" transform="translate(${xs[k%n]+((k*53)%60-30)} ${yt-30-((k*37)%50)})"><path d="M0 -9 V9 M-8 -5 L8 5 M-8 5 L8 -5" stroke="#eaf6ff" stroke-width="3.5" stroke-linecap="round"/></g>`).join("") +
+           `<g transform="translate(120 170)"><rect x="-34" y="-20" width="68" height="430" rx="34" fill="#fff" stroke="#2b2a3f" stroke-width="7"/><circle cx="0" cy="430" r="58" fill="#e0413a" stroke="#2b2a3f" stroke-width="7"/><rect class="merc" x="-14" y="40" width="28" height="380" rx="14" fill="#e0413a"/>${[0,1,2,3,4].map(j=>`<line x1="20" y1="${60+j*80}" x2="34" y2="${60+j*80}" stroke="#2b2a3f" stroke-width="5"/>`).join("")}<rect x="60" y="150" width="210" height="110" rx="22" fill="#fff" stroke="#2b2a3f" stroke-width="7"/><text class="grados" x="165" y="228" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="64" fill="#2b2a3f">12 °C</text></g>`; }
+       else if(M==="pared"||M==="agrupar"){ const muro=`<rect x="0" y="120" width="190" height="904" fill="#b5654a"/>${[...Array(16)].map((_,k)=>`<rect x="${(k%2)*-45+((k*0)%1)}" y="${140+k*54}" width="${k%2?235:190}" height="6" fill="#7d3c28" opacity=".7"/>`).join("")}`+
+           [0,1,2].map(k=>`<path class="calor" data-k="${k}" d="M205 ${420+k*120} q30 -25 60 0 t60 0" stroke="#ff9a3c" stroke-width="10" fill="none" stroke-linecap="round" opacity="0"/>`).join("");
+         svg = noche + muro + [0,1,2].map(k=>maceta(k, 560+k*170, 760)).join(""); }
+       else if(M==="tapar"){ svg = noche + xs.map((x,k)=>mata(x,yt,k,"planta",1)).join("") +
+           `<g class="velo"><path d="M${x0-40} ${yt+20} Q${(x0+x1)/2} ${yt-330} ${x1+40} ${yt+20}z" fill="#ffffff" fill-opacity=".72" stroke="#dfe6ee" stroke-width="6"/><path d="M${x0+30} ${yt-40} Q${(x0+x1)/2} ${yt-250} ${x1-30} ${yt-40}" fill="none" stroke="#e8eef5" stroke-width="5" stroke-dasharray="14 12"/></g>`+
+           `<g class="sol" opacity="0"><circle cx="860" cy="160" r="70" fill="#ffd43b"/>${[...Array(10)].map((_,j)=>`<line x1="860" y1="60" x2="860" y2="30" stroke="#ffd43b" stroke-width="10" stroke-linecap="round" transform="rotate(${j*36} 860 160)"/>`).join("")}</g>`; }
+       else if(M==="raiz"){ const cx=512, top=330;
+         svg = `<rect x="0" y="0" width="1024" height="1024" fill="#eef3f6" opacity=".88"/><g transform="translate(${cx} ${top})"><path d="M-230 0 h460 l-60 470 h-340z" fill="#c8693c" stroke="#6e3216" stroke-width="8"/><path d="M-212 30 h424 l-52 410 h-320z" fill="#6b4a2b"/>`+
+           [...Array(9)].map((_,k)=>`<path class="raiz" d="M${-120+k*30} 40 q${(k%2?30:-30)} 120 ${(k%3-1)*40} 220 t${(k%2?-20:20)} 140" stroke="#e8d3a8" stroke-width="${6-k%3}" fill="none" stroke-linecap="round"/>`).join("")+
+           `${mata(0,10,0,"m",1.5)}<g class="burbujas" style="transform-origin:0 235px">${[...Array(48)].map((_,k)=>`<circle cx="${-250+(k%8)*72+((Math.floor(k/8))%2)*36}" cy="${30+Math.floor(k/8)*78}" r="26" fill="#dff1ff" fill-opacity=".55" stroke="#9cc9e8" stroke-width="3"/>`).join("")}</g></g>`+
+           [0,1,2,3].map(k=>`<g class="frio" data-k="${k}"><path d="M0 0 h90 m-30 -26 l30 26 l-30 26" stroke="#4aa3e0" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`).join("")+
+           `<text class="frase-raiz" x="${cx}" y="${top-40}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="54" fill="#4aa3e0">LA RAÍZ PASA FRÍO</text>`; }
   } else if(P==="terraza"){ const [cx,cy]=q.cartel;
        svg = (q.vapor||[]).map(v=>[0,1,2].map(k=>`<circle class="vapor" data-k="${k}" cx="${v[0]}" cy="${v[1]}" r="12" fill="#fff" opacity="0"/>`).join("")).join("")+
          `<g class="neon"><rect x="${cx-120}" y="${cy-42}" width="240" height="84" rx="16" fill="#1b1530" stroke="#2bd46b" stroke-width="5"/><text x="${cx}" y="${cy+16}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="44" fill="#57ff95" style="filter:drop-shadow(0 0 8px #2bd46b)">ABIERTO</text></g>`;
@@ -291,6 +311,26 @@ function animar(e,d,lt,dur){
         $$(".planta").forEach(g=>{const k=+g.dataset.k; g.style.opacity=(k>=1&&k<=5&&k-1<i0)||(k-1===i0&&ph>0.55)?0:1;});
         $$(".hoja").forEach(h=>{const k=+h.dataset.k; let u=k<i0?1:k===i0?cl((ph-0.55)/0.4):-1; if(u<0){h.style.opacity=0;return;} const sx=xs[1+k], ex=x1+70+(k%3-1)*30, ey=yt-215;
           h.style.opacity=1; h.setAttribute("transform",`translate(${sx+(ex-sx)*u} ${yt-40+(ey-yt+40)*u-Math.sin(u*Math.PI)*120}) rotate(${u*200+k*20})`);}); }
+    } else if(P==="helada"){ const M=q.modo, [x0,x1,yt]=q.tierra;
+      const nocheA=(a)=>{ const nn=$1(".noche"); if(nn) nn.setAttribute("opacity",0.42*a); const lu=$1(".luna"); if(lu) lu.setAttribute("opacity",a); };
+      if(M==="termometro"){ const a=cl(lt/(dur*0.8)), temp=Math.round(12-14*ease(a)); $1(".merc").setAttribute("y",40+330*ease(a)); $1(".merc").setAttribute("height",380-330*ease(a));
+        $1(".grados").textContent=temp+" °C"; $1(".grados").setAttribute("fill", temp<=0?"#1d6fb8":"#2b2a3f"); nocheA(ease(a));
+        $$(".cristal").forEach(c=>{const k=+c.dataset.k; c.setAttribute("opacity", cl((a-0.55-k*0.012)/0.2));});
+        $$(".planta .r").forEach(r=>r.style.filter=`saturate(${1-0.5*cl((a-0.5)/0.5)}) brightness(${1+0.25*cl((a-0.6)/0.4)})`); }
+      else if(M==="pared"||M==="agrupar"){ nocheA(0.85); const a=ease(cl(lt/(dur*0.6)));
+        $$(".maceta").forEach(g=>{const k=+g.dataset.k; const ini=560+k*170, fin=M==="pared"? 290+k*170 : 290+k*112;
+          const x0_=M==="agrupar"? 290+k*170 : ini; const x=x0_+(fin-x0_)*a; g.setAttribute("transform",`translate(${x} ${760-Math.abs(Math.sin(a*Math.PI*3))*10*(1-a)})`);});
+        $$(".calor").forEach(c=>{const k=+c.dataset.k; c.setAttribute("opacity", (M==="pared"? cl((lt-dur*0.4)/0.4):1)*(0.45+0.45*Math.sin(lt*5+k)));
+          c.setAttribute("transform",`translate(${Math.sin(lt*3+k)*6} 0)`);}); }
+      else if(M==="tapar"){ const baja=ease(cl(lt/(dur*0.35))), sube=ease(cl((lt-dur*0.62)/(dur*0.3)));
+        $1(".velo").setAttribute("transform",`translate(0 ${-720*(1-baja)-720*sube})`); nocheA(1-sube); $1(".sol").setAttribute("opacity",sube);
+        $1(".sol").setAttribute("transform",`translate(0 ${60*(1-sube)})`); }
+      else if(M==="raiz"){ const env=ease(cl((lt-dur*0.45)/(dur*0.35)));
+        $$(".frio").forEach(f=>{const k=+f.dataset.k, lado=k<2?-1:1, y=430+(k%2)*170, base=lado<0? 120 : 904, c=((lt*0.9+k*0.25)%1);
+          const dx= lado<0? 140*c : -140*c - 90; f.setAttribute("transform",`translate(${base+dx} ${y}) ${lado<0?"":"scale(-1 1) translate(-90 0)"}`); f.setAttribute("opacity",(1-env)*(1-c)*0.95);});
+        $1(".burbujas").style.transform=`scaleY(${env})`; $1(".burbujas").style.opacity=env;
+        $$(".raiz").forEach(r=>r.setAttribute("stroke", env>0.5?"#e8d3a8":(Math.sin(lt*6)>0?"#9fc8ea":"#e8d3a8")));
+        const fr=$1(".frase-raiz"); fr.textContent= env>0.6 ? "RAÍZ ABRIGADA" : "LA RAÍZ PASA FRÍO"; fr.setAttribute("fill", env>0.6?"#1f9d55":"#4aa3e0"); }
     } else if(P==="terraza"){
       const n=$1(".neon"); n.style.opacity = lt<0.6 ? (Math.sin(lt*70)>0?1:0.15) : (0.85+0.15*Math.sin(lt*9));
       $$(".vapor").forEach(v=>{ const k=+v.dataset.k, c=((lt*0.7+k/3)%1); v.setAttribute("transform",`translate(${Math.sin(c*6+k)*8} ${-c*90})`); v.setAttribute("opacity",(1-c)*0.55); v.setAttribute("r",10+c*18); });
