@@ -45,7 +45,7 @@ dos negocios.
    (sustituyendo `{{NEGOCIO_ID}}` y `{{WHATSAPP}}`) como sección `#reservar`, adaptando sus
    colores y tipografías a la ficha de estilo. Los botones
    principales de la landing pasan a "Reservar cita" con `href="#reservar"`, y WhatsApp
-   queda como alternativa.
+   queda como alternativa. Al terminar la reserva **no** se pone el botón «Avisar por WhatsApp»: la cita ya llega al panel (decidido por Jesús el 25-11-2026).
 4. **Probador** (`taller-probador`), antes del Revisor:
    - `select * from public.huecos_libres('<negocio>', '<servicio>', '<fecha de un martes de la semana que viene>')`
      debe devolver las horas esperadas según el horario.
