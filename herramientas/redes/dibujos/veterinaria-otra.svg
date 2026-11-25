@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="La dueña se va con su perro a otra clínica">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#e9edf2"/>
+<rect x="0" y="620" width="900" height="140" rx="20" fill="#b9c3b4"/>
+<rect x="60" y="160" width="520" height="460" fill="#d7e6df"/><rect x="80" y="180" width="480" height="80" rx="10" fill="#17162b"/>
+<text x="320" y="234" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="44" fill="#ffd43b">OTRA CLÍNICA</text>
+<rect x="240" y="380" width="160" height="240" rx="8" fill="#5c6675"/><rect x="250" y="390" width="140" height="150" rx="6" fill="#cfe2f7"/>
+<rect x="100" y="320" width="110" height="110" rx="8" fill="#cfe2f7"/><rect x="430" y="320" width="110" height="110" rx="8" fill="#cfe2f7"/>
+<path d="M140 300 h40 M160 280 v40" stroke="#2f8a57" stroke-width="16" stroke-linecap="round"/>
+<g transform="translate(-110 0)"><!-- perro andando -->
+<path d="M800 560 q30 -14 36 -54" stroke="#b5733d" stroke-width="14" fill="none" stroke-linecap="round"/>
+<ellipse cx="740" cy="580" rx="70" ry="34" fill="#c98a4b"/>
+<rect x="690" y="592" width="20" height="44" rx="8" fill="#b5733d"/><rect x="770" y="592" width="20" height="44" rx="8" fill="#b5733d"/>
+<circle cx="666" cy="540" r="38" fill="#c98a4b"/><ellipse cx="638" cy="554" rx="20" ry="15" fill="#e9c08f"/><circle cx="626" cy="548" r="7" fill="#17162b"/>
+<path d="M680 508 q26 -6 24 40 q-20 -6 -24 -40 Z" fill="#8a5428"/>
+<path d="M684 566 Q720 520 790 470" stroke="#e0413a" stroke-width="5" fill="none"/>
+</g><!-- dueña de espaldas yendo hacia la clínica -->
+<g transform="translate(740 330)">
+  <rect x="-40" y="230" width="30" height="110" rx="12" fill="#17162b"/><rect x="6" y="230" width="30" height="110" rx="12" fill="#17162b"/>
+  <path d="M-56 70 Q0 40 56 70 L66 240 L-66 240 Z" fill="#5b5bd6"/>
+  <circle cx="0" cy="0" r="42" fill="#c4452f"/>
+  <path d="M-30 20 q-10 50 10 80" stroke="#c4452f" stroke-width="20" fill="none" stroke-linecap="round"/>
+  <path d="M-50 100 Q-60 130 -40 140" stroke="#e9b38f" stroke-width="22" fill="none" stroke-linecap="round"/>
+</g>
+<path d="M600 640 l-70 0 M610 660 l-90 0" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+</svg>

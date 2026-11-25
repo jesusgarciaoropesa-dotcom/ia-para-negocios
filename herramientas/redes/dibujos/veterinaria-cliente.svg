@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 760" role="img" aria-label="Dueña paseando a su perro y escribiendo a la clínica">
+<rect x="0" y="0" width="900" height="760" rx="40" fill="#dfe8f3"/>
+<circle cx="150" cy="150" r="70" fill="#ffd43b" opacity=".8"/>
+<rect x="0" y="600" width="900" height="160" rx="20" fill="#b9c3b4"/><path d="M0 640 h900" stroke="#a3ae9e" stroke-width="8"/>
+<!-- árbol -->
+<rect x="90" y="360" width="34" height="250" rx="10" fill="#8a5428"/><circle cx="107" cy="330" r="90" fill="#2f8a57"/><circle cx="60" cy="380" r="56" fill="#21704a"/>
+<!-- perro -->
+<path d="M470 520 q40 -20 46 -70" stroke="#b5733d" stroke-width="16" fill="none" stroke-linecap="round"/>
+<ellipse cx="400" cy="545" rx="90" ry="44" fill="#c98a4b"/>
+<rect x="330" y="560" width="24" height="56" rx="10" fill="#b5733d"/><rect x="440" y="560" width="24" height="56" rx="10" fill="#b5733d"/>
+<circle cx="300" cy="490" r="48" fill="#c98a4b"/><ellipse cx="266" cy="508" rx="26" ry="19" fill="#e9c08f"/><circle cx="250" cy="500" r="9" fill="#17162b"/>
+<path d="M316 450 q34 -8 30 52 q-26 -8 -30 -52 Z" fill="#8a5428"/><circle cx="292" cy="482" r="6" fill="#17162b"/>
+<rect x="320" y="520" width="40" height="11" rx="5" fill="#e0413a" transform="rotate(20 340 525)"/>
+<!-- correa -->
+<path d="M350 528 Q520 470 640 440" stroke="#e0413a" stroke-width="6" fill="none"/>
+<!-- dueña -->
+<g transform="translate(730 300)">
+  <rect x="-44" y="290" width="34" height="140" rx="14" fill="#17162b"/><rect x="10" y="290" width="34" height="140" rx="14" fill="#17162b"/>
+  <path d="M-70 90 Q0 50 70 90 L84 300 L-84 300 Z" fill="#5b5bd6"/>
+  <rect x="-16" y="40" width="32" height="40" fill="#e9b38f"/>
+  <circle cx="0" cy="0" r="50" fill="#e9b38f"/>
+  <path d="M-52 4 Q-58 -58 2 -58 Q58 -58 52 4 Q40 -28 0 -30 Q-38 -28 -52 4 Z" fill="#c4452f"/>
+  <path d="M48 -10 q24 50 4 100" stroke="#c4452f" stroke-width="24" fill="none" stroke-linecap="round"/>
+  <circle cx="-18" cy="6" r="5" fill="#17162b"/><circle cx="18" cy="6" r="5" fill="#17162b"/>
+  <path d="M-10 30 q10 7 20 0" stroke="#17162b" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M-60 120 Q-100 150 -90 140" stroke="#e9b38f" stroke-width="26" fill="none" stroke-linecap="round"/>
+</g>
+<g id="telefono"><rect x="690" y="400" width="70" height="120" rx="14" fill="#17162b"/>
+  <rect x="697" y="410" width="56" height="96" rx="8" fill="#7b7bf0" id="pantalla"/>
+  <path id="check" d="M708 458 l10 10 l18 -22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></g>
+<ellipse cx="725" cy="512" rx="34" ry="20" fill="#e9b38f"/>
+<path d="M790 400 Q790 470 750 505" stroke="#e9b38f" stroke-width="28" fill="none" stroke-linecap="round"/>
+</svg>

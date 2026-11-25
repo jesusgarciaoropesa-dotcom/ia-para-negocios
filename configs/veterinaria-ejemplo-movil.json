@@ -1,0 +1,40 @@
+{
+  "slug": "movil-veterinaria-ejemplo",
+  "_nota": "Demo en el móvil (25-11-2026, agente iando-redes). Demo de ejemplo demos/veterinaria-ejemplo (clínica inventada). Servicios y duraciones copiados de la demo; datos de la reserva de mentira (mocks): no se toca ninguna reserva real.",
+  "demo": "veterinaria-ejemplo",
+  "sector": "Clínicas veterinarias",
+  "titular": ["Su cita, pedida", "sin llamar"],
+  "palabra": "YO",
+  "musica": "suave",
+  "cierre_comentarios": true,
+  "sectores": ["Veterinarias", "Peluquerías", "Talleres", "Fisios", "Clínicas dentales", "Uñas y estética", "Gimnasios", "Restaurantes"],
+  "colores": {"arriba": "#e3f1ee", "abajo": "#b9dcd5", "tinta": "#123430"},
+  "mocks": {
+    "servicios": [
+      {"id": "s1", "nombre": "Consulta general", "duracion_minutos": 20},
+      {"id": "s2", "nombre": "Desparasitación", "duracion_minutos": 15},
+      {"id": "s3", "nombre": "Peluquería canina", "duracion_minutos": 60},
+      {"id": "s4", "nombre": "Revisión anual", "duracion_minutos": 30},
+      {"id": "s5", "nombre": "Vacunación", "duracion_minutos": 15}
+    ],
+    "huecos": ["10:00", "10:30", "11:00", "17:00", "17:30", "18:00"]
+  },
+  "acciones": [
+    {"esperar": 1300},
+    {"deslizar": "#servicios .rejilla", "ms": 1200},
+    {"esperar": 800},
+    {"tocar": "#servicios [data-serv=\"Vacunación\"]"},
+    {"esperar": 700},
+    {"elegir": "#rv-fecha", "valor": "{MANANA}"},
+    {"tocar": "#rv-sig1"},
+    {"esperar": 400},
+    {"tocar": "#rv-horas [data-h=\"10:30\"]"},
+    {"tocar": "#rv-sig2"},
+    {"escribir": "#rv-nombre", "texto": "Lucía"},
+    {"escribir": "#rv-tel", "texto": "600123456"},
+    {"escribir": "#rv-email", "texto": "lucia@ejemplo.com"},
+    {"marcar": "#rv-ok"},
+    {"tocar": "#rv-enviar"},
+    {"esperar": 1700}
+  ]
+}

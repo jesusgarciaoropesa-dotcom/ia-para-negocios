@@ -32,7 +32,8 @@ Tipos de escena (todas llevan "voz" = la frase que se lee y, opcional, "clave" =
   foto      {"imagen": "img/escena.jpg", "foco": "50% 30%", "globo": {...}}  foto o imagen generada (Cloudflare) en grande, con zoom lento y bocadillo
   captura   {"imagen": "capturas/reserva-movil.png", "desplazar": true}  captura real (ruta relativa a la config)
             dentro de un móvil; con desplazar, baja poco a poco como si se hiciera scroll
-  cierre    {}  «Comenta PALABRA y te paso la guía». Opcional: "arriba", "palabra", "abajo" para otro cierre
+  cierre    {}  «Comenta PALABRA y te paso la guía». Opcional: "arriba", "palabra", "abajo" para otro cierre y "caja": true
+            para enseñar debajo la caja de comentarios escribiendo la palabra (reels de servicios: «YO»)
 Opcional en la raíz de la config: "musica": "suave" | "animada" (bucles propios de musica.py, sin derechos de nadie):
 suena muy baja y baja sola cuando habla la voz.
 Nada inventado: todo lo que sale en pantalla y en la voz tiene que estar en el artículo.
@@ -203,7 +204,7 @@ function construir(e,i){
   case "foto": h = `<div class="dib card" style="position:absolute;left:40px;right:40px;top:0;height:920px;overflow:hidden;padding:0;transform-origin:50% 50%"><img class="fondo" src="${e.src}" style="width:100%;height:100%;object-fit:cover;display:block;object-position:${e.foco||"50% 50%"};transform-origin:50% 50%">${e.figsrc?`<img class="fig" src="${e.figsrc}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${e.foco||"50% 50%"};transform-origin:50% 90%">`:""}</div>`+
      (e.globo?`<div class="card globo" style="left:${e.globo.x||130}px;top:${e.globo.y||170}px;width:470px;padding:22px 28px;font-size:34px;line-height:1.3"><b style="display:block;font-size:24px;letter-spacing:.5px;color:${e.globo.color||"#6b6d80"}">${esc((e.globo.titulo||"").toUpperCase())}</b>${esc(e.globo.texto)}</div>`:""); break;
   case "captura": h = `<div class="movil card" style="top:0"><div class="pant" style="background:#fff"><img src="${e.src}" style="width:100%;display:block;position:absolute;top:0;left:0"></div></div>`; break;
-  case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div><div class="marca">${esc(window.MARCA||"iando.xyz")}</div>`; break;
+  case "cierre": h = `<div class="card centro" style="left:120px;right:120px;top:140px;padding:70px 50px;text-align:center"><div style="font-size:54px;font-weight:600">${esc(e.arriba||"Comenta")}</div><div class="pill" style="font-size:${(e.palabra||PALABRA).length>8?84:116}px">${esc(e.palabra||PALABRA)}</div><div style="font-size:42px;line-height:1.3;color:#4a4c60">${e.abajo?negrita(e.abajo):"y te paso la guía<br>por mensaje privado 📩"}</div></div>${e.caja?`<div class="card ccaja" style="left:90px;right:90px;top:720px;padding:26px 30px;display:flex;align-items:center;gap:22px;opacity:0"><div class="av" style="background:#c3c5d0;flex:none">Tú</div><div class="ctx" style="flex:1;font-size:40px;font-weight:600;color:#9a9cab">Añade un comentario…</div><div class="cpub" style="font-size:34px;font-weight:800;color:#b9c8ff">Publicar</div></div>`:""}<div class="marca">${esc(window.MARCA||"iando.xyz")}</div>`; break;
   }
   if(e.sello) h += `<div class="sello ${e.tono==="verde"?"verde":""}">${esc(e.sello)}</div>`;
   d.innerHTML = h; raiz.appendChild(d); return d;
@@ -316,7 +317,12 @@ function animar(e,d,lt,dur){
     m.style.opacity=a; m.style.transform=`translateY(${(1-a)*60}px)`;
     if(e.desplazar && img.naturalHeight){ const alto=img.clientHeight, vent=img.parentElement.clientHeight; const p=ease(Math.max(0,(lt-0.5)/(dur*0.8)));
       img.style.top = (-(Math.max(0,alto-vent))*p)+"px"; } break; }
-  case "cierre": { const a=pop(lt,0,.4), c=d.querySelector(".card"); c.style.opacity=a; c.style.transform=`scale(${0.85+0.15*a})`; break; }
+  case "cierre": { const a=pop(lt,0,.4), c=d.querySelector(".card"); c.style.opacity=a; c.style.transform=`scale(${0.85+0.15*a})`;
+    const cj=d.querySelector(".ccaja"); if(cj){ const b=pop(lt,0.5,.35); cj.style.opacity=b; cj.style.transform=`translateY(${(1-b)*40}px)`;
+      const pal=e.palabra||PALABRA, n=Math.max(0,Math.min(pal.length,Math.floor((lt-0.9)/0.22)+1)), tx=cj.querySelector(".ctx"), pb=cj.querySelector(".cpub");
+      if(lt<0.9){ tx.textContent="Añade un comentario…"; tx.style.color="#9a9cab"; } else { tx.textContent=pal.slice(0,n)+(n<pal.length||Math.floor(lt*3)%2?"|":""); tx.style.color="#17162b"; }
+      pb.style.color = n>=pal.length && lt>0.9 ? "#0095f6" : "#b9c8ff"; } break; }
+  // "caja": true en el cierre → caja de comentarios de Instagram escribiendo la palabra (regla de iando para los reels de servicios, 25-11-2026)
   }
   if(e.sello){ const s=d.querySelector(".sello"), a=pop(lt,dur*0.45,.22); s.style.opacity=a; s.style.transform=`rotate(-7deg) scale(${2.2-1.2*a})`; }
 }

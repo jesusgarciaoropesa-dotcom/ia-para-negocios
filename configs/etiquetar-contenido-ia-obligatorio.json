@@ -1,0 +1,190 @@
+{
+ "slug": "etiquetar-contenido-ia-obligatorio",
+ "_nota": "Carrusel 25-11-2026 (agente iando-redes). Todo sale del artículo; fechas y multas comprobadas en el texto del Reglamento (art. 50 y 99) y en Future of Privacy Forum.",
+ "palabra": "ETIQUETA",
+ "historia": {
+  "texto": "Etiquetar lo hecho con IA",
+  "pregunta": "¿Tu chatbot dice que es una IA?",
+  "opciones": [
+   "Sí",
+   "No",
+   "No tengo"
+  ]
+ },
+ "historia_reel": {
+  "texto": "Ley de IA · artículo 50",
+  "pregunta": "¿Sabías que ya es obligatorio?",
+  "opciones": [
+   "Sí",
+   "Ni idea"
+  ]
+ },
+ "slides": [
+  {
+   "tipo": "portada",
+   "kicker": "Ley de IA · artículo 50",
+   "titulo": "Tu chatbot ya tiene que decir que es una IA",
+   "destacado": "decir que es una IA",
+   "subtitulo": "Obligatorio desde el **2 de agosto**.",
+   "chat": {
+    "app": "whatsapp",
+    "nombre": "Tu clínica",
+    "mensajes": [
+     {
+      "de": "ia",
+      "texto": "Hola, soy el asistente virtual (IA) de la clínica. ¿En qué te ayudo?",
+      "hora": "10:02"
+     },
+     {
+      "de": "yo",
+      "texto": "Quería pedir cita",
+      "hora": "10:03"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "tabla",
+   "titulo": "Qué ya se aplica y qué falta",
+   "destacado": "ya",
+   "archivo": "articulo-50.pdf",
+   "columnas": [
+    "Obligación",
+    "Desde"
+   ],
+   "filas": [
+    [
+     "Avisar de que hablas con una IA",
+     {
+      "t": "2 ago 2026",
+      "bien": true
+     }
+    ],
+    [
+     "Etiquetar deepfakes",
+     {
+      "t": "2 ago 2026",
+      "bien": true
+     }
+    ],
+    [
+     "Marcado técnico (lo hace la herramienta)",
+     {
+      "t": "2 dic 2026",
+      "mal": true
+     }
+    ]
+   ],
+   "globo": "Lo del **2 de diciembre** le toca al proveedor de la IA, no a ti."
+  },
+  {
+   "tipo": "versus",
+   "titulo": "Una frase en el primer mensaje",
+   "destacado": "primer mensaje",
+   "izquierda": {
+    "titulo": "Sin aviso",
+    "etiqueta": "No sabe que es una IA",
+    "mensajes": [
+     {
+      "de": "yo",
+      "texto": "¿Tenéis hueco el jueves?"
+     },
+     {
+      "de": "ia",
+      "texto": "Sí, a las 10:00. ¿Te la reservo?"
+     }
+    ]
+   },
+   "derecha": {
+    "titulo": "Con aviso",
+    "etiqueta": "Lo sabe desde el principio",
+    "mensajes": [
+     {
+      "de": "ia",
+      "texto": "Hola, soy el asistente virtual (IA) de la clínica."
+     },
+     {
+      "de": "yo",
+      "texto": "¿Tenéis hueco el jueves?"
+     }
+    ]
+   },
+   "conclusion": "Ejemplo ilustrativo. Por teléfono, igual: que se presente como **asistente automático**."
+  },
+  {
+   "tipo": "tarjetas",
+   "titulo": "¿Hay que etiquetar esto?",
+   "destacado": "etiquetar",
+   "texto": "Te toca avisar con los deepfakes: contenido realista que podría pasar por auténtico.",
+   "tarjetas": [
+    {
+     "icono": "video",
+     "titulo": "Sí: persona real diciendo algo que no dijo",
+     "texto": "Vídeo generado o manipulado con IA."
+    },
+    {
+     "icono": "store",
+     "titulo": "Sí: foto realista de una reforma que no existe",
+     "texto": "Tu local, pero inventado."
+    },
+    {
+     "icono": "mic",
+     "titulo": "Sí: voz clonada en un anuncio",
+     "texto": "Aunque suene muy natural."
+    },
+    {
+     "icono": "image",
+     "titulo": "No: retocar luz o recortar",
+     "texto": "La edición normal queda fuera."
+    }
+   ]
+  },
+  {
+   "tipo": "cifra",
+   "titulo": "Multa máxima por no avisar",
+   "cifra": "15",
+   "unidad": "M€",
+   "texto": "Hasta 15 M€ o el **3 %** de la facturación mundial. En pymes, la cantidad **menor** de las dos.",
+   "compara": {
+    "antes_titulo": "Para no llegar ahí",
+    "antes": "Un aviso en el chatbot",
+    "despues_titulo": "Y en redes",
+    "despues": "«Creado con IA» si es realista"
+   }
+  },
+  {
+   "tipo": "pasos",
+   "titulo": "Checklist para tu negocio",
+   "destacado": "Checklist",
+   "pasos": [
+    {
+     "titulo": "Apunta dónde usas IA",
+     "texto": "Chatbot, voz, imágenes, vídeos, textos."
+    },
+    {
+     "titulo": "Chatbot o agente de voz",
+     "texto": "Que se presente como IA al empezar."
+    },
+    {
+     "titulo": "Imágenes y vídeos realistas",
+     "texto": "Etiqueta «Creado con IA» y la de la red social."
+    },
+    {
+     "titulo": "Textos",
+     "texto": "Revisa y firma lo que publicas."
+    },
+    {
+     "titulo": "Tu proveedor",
+     "texto": "Pregúntale cómo marca lo que genera."
+    }
+   ]
+  },
+  {
+   "tipo": "cierre",
+   "titulo": "¿Lo tienes todo avisado?",
+   "destacado": "avisado",
+   "texto": "La guía completa, con fechas y fuentes, en iando.xyz.",
+   "palabra": "ETIQUETA"
+  }
+ ]
+}

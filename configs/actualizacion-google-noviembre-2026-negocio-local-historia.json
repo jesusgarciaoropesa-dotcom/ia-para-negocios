@@ -1,0 +1,144 @@
+{
+ "slug": "actualizacion-google-noviembre-2026-negocio-local",
+ "_nota": "Reel «historia» (25-11-2026, agente iando-redes) para el viernes 4-12-2026. Todo sale del artículo; el fin de la actualización (24-11-2026) está comprobado en el panel oficial status.search.google.com.",
+ "palabra": "GOOGLE",
+ "musica": "suave",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "¿Te llaman menos desde que Google cambió en noviembre?",
+   "clave": "menos",
+   "tipo": "frase",
+   "texto": "¿Te llaman menos?",
+   "sub": "desde que **Google** cambió en noviembre"
+  },
+  {
+   "voz": "Google hizo dos cambios a la vez.",
+   "clave": "dos",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "settings",
+     "titulo": "Actualización de núcleo"
+    },
+    {
+     "icono": "sparkles",
+     "titulo": "Gemini 4 Hydrogen en la Búsqueda"
+    }
+   ]
+  },
+  {
+   "voz": "La actualización empezó el 10 de noviembre y terminó el 24.",
+   "clave": "terminó",
+   "tipo": "aviso",
+   "app": "Google Search Status",
+   "texto": "November 2026 core update: despliegue completado el 24 de noviembre."
+  },
+  {
+   "voz": "No es un castigo: Google ha reordenado los resultados.",
+   "clave": "castigo",
+   "tipo": "versus",
+   "a": "castigo",
+   "b": "reordenar"
+  },
+  {
+   "voz": "Lo peor ahora es tocarlo todo por el susto.",
+   "clave": "susto",
+   "tipo": "lista",
+   "marcar": false,
+   "items": [
+    "Cambiar la web de urgencia",
+    "Borrar páginas a lo loco",
+    "Comprar enlaces o reseñas"
+   ],
+   "sello": "NO LO HAGAS"
+  },
+  {
+   "voz": "Google pide esperar una semana cuando termina.",
+   "clave": "semana",
+   "tipo": "cifra",
+   "valor": "7",
+   "unidad": "días",
+   "texto": "después de que **termine** la actualización"
+  },
+  {
+   "voz": "Ya ha pasado: entra en Search Console y compara semanas.",
+   "clave": "compara",
+   "tipo": "pasos",
+   "pasos": [
+    "Abre Search Console",
+    "Rendimiento: compara con una semana de antes del 10 de noviembre",
+    "Mira qué páginas han caído"
+   ]
+  },
+  {
+   "voz": "Ojo: Black Friday descuadra el total. Mira páginas concretas.",
+   "clave": "concretas",
+   "tipo": "frase",
+   "texto": "Black Friday",
+   "sub": "mira **páginas concretas**, no el total"
+  },
+  {
+   "voz": "Y mientras, repasa tu ficha de Google.",
+   "clave": "ficha",
+   "tipo": "lista",
+   "marcar": true,
+   "items": [
+    "Horarios de Navidad y festivos",
+    "Teléfono, web y reservas",
+    "Fotos recientes y reales",
+    "Reseñas respondidas"
+   ]
+  },
+  {
+   "voz": "La gente ya le pregunta así a la IA de Google.",
+   "clave": "así",
+   "tipo": "chat",
+   "nombre": "Modo IA de Google",
+   "inicial": "G",
+   "color": "#4285f4",
+   "mensajes": [
+    {
+     "de": "yo",
+     "texto": "peluquería cerca de mí que abra los sábados por la tarde y haga mechas"
+    }
+   ],
+   "desde": 0
+  },
+  {
+   "voz": "Que tu web diga qué haces, dónde, cuándo y a qué precio.",
+   "clave": "precio",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "briefcase",
+     "titulo": "Qué haces"
+    },
+    {
+     "icono": "map-pin",
+     "titulo": "Dónde"
+    },
+    {
+     "icono": "clock",
+     "titulo": "Cuándo"
+    },
+    {
+     "icono": "euro",
+     "titulo": "A qué precio"
+    }
+   ]
+  },
+  {
+   "voz": "Y sin trucos: Google dice que no hace falta nada especial.",
+   "clave": "especial",
+   "tipo": "frase",
+   "texto": "Sin trucos",
+   "sub": "valen las **buenas prácticas** de siempre"
+  },
+  {
+   "voz": "Comenta GOOGLE y te paso la guía paso a paso.",
+   "clave": "GOOGLE",
+   "tipo": "cierre"
+  }
+ ]
+}

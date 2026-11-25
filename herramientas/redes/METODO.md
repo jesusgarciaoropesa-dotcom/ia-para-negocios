@@ -175,6 +175,7 @@ fisio, estética, gimnasio, autoescuela, tienda… **Rota el sector cada semana*
   dibujos, crea 2-4 SVG nuevos con el MISMO estilo (abre `bar.svg` y `taller.svg`: trazo y colores planos, mismas
   medidas y `viewBox`), nómbralos `<sector>-<escena>.svg` y súbelos. Escenas `captura` con pantallazos de la demo del
   sector si la hay (rama main, `demos/<sector>-ejemplo/`), `aviso` para notificaciones y `frase` para el gancho.
+- Cierre con la caja de comentarios escribiendo «YO» (regla de los reels de servicios): en la escena `cierre` pon `"palabra": "YO"` y `"caja": true`.
 - `"musica": "animada"`, `"tema": "color"`. Ejemplo completo: `herramientas/redes/ejemplo-sector.json` (el corto del bar; sus `captura` apuntan a pantallazos de la demo que tendrás que hacer tú con Playwright a 390×844 y guardar junto a la config).
 - Nada inventado: cifras solo si salen de un artículo de iando con su fuente; si no, sin cifras.
 - Publicación: `comentario` = `Serie por sector · <sector>`, `guia` = la página de servicios
@@ -197,6 +198,8 @@ reserva de principio a fin. Música suave, sin voz; un titular arriba y el cierr
      y mira con Read las capturas de `reels/<slug>-probar/` (una por acción). Corrige selectores y repite. Borra
      esa carpeta después (no se sube).
   4. Genera sin `--probar` → `reels/<slug>.mp4` y `reels/<slug>-portada.jpg`. Mira 3-4 fotogramas.
+  Con `"palabra": "YO"` añade `"cierre_comentarios": true` (y `"sectores"`, el de la demo primero): el cierre pasa a ser el
+  animado del modo sistema («Para tu negocio» + hoja de comentarios escribiendo YO), como piden las reglas.
   (Necesita `pip install --break-system-packages fonttools brotli pillow` si falta; las fuentes de la demo las
   instala solo con npm.)
 - Publicación: `tipo` reel, `comentario` = `Demo en el móvil · <demo>`, texto con el beneficio para ese tipo de

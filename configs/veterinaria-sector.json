@@ -1,0 +1,19 @@
+{
+ "slug": "sector-veterinaria",
+ "_nota": "Serie por sector «La IA en 20 segundos para tu…» (25-11-2026, agente iando-redes). Veterinaria: dibujos nuevos veterinaria*.svg y capturas de la demo de ejemplo demos/veterinaria-ejemplo (datos de mentira). Sin cifras; sin prometer nada de salud; el recordatorio solo dice día y hora.",
+ "palabra": "YO",
+ "musica": "animada",
+ "tema": "color",
+ "escenas": [
+  {"voz": "¿Cuántas citas pierdes con un perro en la camilla?", "clave": "citas", "tipo": "frase", "texto": "¿Cuántas citas pierdes?", "sub": "con un perro **en la camilla**"},
+  {"voz": "Estás en plena consulta… y suena el teléfono.", "clave": "teléfono", "tipo": "dibujo", "dibujo": "veterinaria", "vibrar": true,
+   "globo": {"titulo": "Teléfono", "texto": "Llamada entrante…", "color": "#e0413a"}},
+  {"voz": "Una dueña quiere vacunar a su perro.", "clave": "vacunar", "tipo": "dibujo", "dibujo": "veterinaria-cliente", "vibrar": true,
+   "globo": {"titulo": "WhatsApp · a Tu clínica", "texto": "¿Tenéis hueco esta semana para vacunar a mi perro?", "color": "#1f9d55", "x": 440, "y": 40}},
+  {"voz": "No contestas… y pide cita en otra clínica.", "clave": "otra", "tipo": "dibujo", "dibujo": "veterinaria-otra", "sello": "CITA PERDIDA"},
+  {"voz": "Con tu web elige la cita, el día y la hora. Sola.", "clave": "Sola", "tipo": "captura", "imagen": "cap-veterinaria/movil-pedir-cita.png"},
+  {"voz": "Cita pedida, sin soltar al paciente.", "clave": "pedida", "tipo": "captura", "imagen": "cap-veterinaria/movil-cita-hecha.png", "sello": "PEDIDA", "tono": "verde"},
+  {"voz": "Y antes de la cita, le llega el recordatorio.", "clave": "recordatorio", "tipo": "aviso", "app": "Tu clínica · Recordatorio", "texto": "Mañana a las 10:30 tienes cita en la clínica."},
+  {"voz": "Comenta YO y te enseño la tuya, con tu nombre.", "clave": "YO", "tipo": "cierre", "arriba": "Comenta", "palabra": "YO", "abajo": "y te enseño **la tuya con tu nombre**", "caja": true}
+ ]
+}

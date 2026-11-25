@@ -415,14 +415,23 @@ def main():
     run([ff, '-y', '-f', 'concat', '-safe', '0', '-i', 'cuadros.txt', '-vf', f'scale={SW}:{SH}:flags=lanczos,fps=30,format=yuv420p', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', 'pantalla.mp4'])
     dur = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', os.path.join(trabajo, 'pantalla.mp4')]).decode().strip())
     cierre = 2.8
+    # "cierre_comentarios": true → el mismo cierre animado del modo sistema («Para tu negocio» + hoja de comentarios
+    # escribiendo la palabra), que piden las reglas para los reels de servicios (palabra YO). Añadido el 25-11-2026.
+    if cfg.get('cierre_comentarios'):
+        cierre_sistema(cfg, trabajo, ttf('600'), ttf('800'))
+        run([ff, '-y', '-f', 'concat', '-safe', '0', '-i', 'cierre.txt', '-vf', 'fps=30,format=yuv420p,setsar=1', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', 'cierre.mp4'])
+        cierre = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', os.path.join(trabajo, 'cierre.mp4')]).decode().strip())
     total = dur + cierre
     musica = os.path.join(REDES, 'musica', f"{cfg.get('musica', 'suave')}.wav")
+    fin_in = (['-i', 'cierre.mp4'] if cfg.get('cierre_comentarios') else ['-i', 'cierre.png'])
+    fin_f = ("[4:v]fps=30,format=yuv420p,setsar=1,fade=t=in:st=0:d=0.35[fin];" if cfg.get('cierre_comentarios') else
+             f"[4:v]loop=loop=-1:size=1,trim=duration={cierre},fps=30,format=yuv420p,setsar=1,fade=t=in:st=0:d=0.35[fin];")
     filtro = (f"[1:v]format=rgba[p];[p][3:v]alphamerge[pr];[0:v][pr]overlay={X}:{Y}[a];[a][2:v]overlay=0:0,format=yuv420p,setsar=1[demo];"
-              f"[4:v]loop=loop=-1:size=1,trim=duration={cierre},fps=30,format=yuv420p,setsar=1,fade=t=in:st=0:d=0.35[fin];"
+              f"{fin_f}"
               f"[demo][fin]concat=n=2:v=1:a=0[v];"
               f"[5:a]atrim=0:{total:.2f},afade=t=in:d=0.6,afade=t=out:st={total - 1.2:.2f}:d=1.2,volume=0.55[m]")
     run([ff, '-y', '-loop', '1', '-t', f'{dur:.2f}', '-i', 'fondo.png', '-i', 'pantalla.mp4', '-loop', '1', '-t', f'{dur:.2f}', '-i', 'marco.png',
-         '-loop', '1', '-t', f'{dur:.2f}', '-i', 'mascara.png', '-i', 'cierre.png', '-stream_loop', '-1', '-i', musica,
+         '-loop', '1', '-t', f'{dur:.2f}', '-i', 'mascara.png'] + fin_in + ['-stream_loop', '-1', '-i', musica,
          '-filter_complex', filtro, '-map', '[v]', '-map', '[m]', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-r', '30',
          '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-t', f'{total:.2f}', os.path.join(reels, f'{slug}.mp4')])
     run([ff, '-y', '-ss', '1.2', '-i', os.path.join(reels, f'{slug}.mp4'), '-frames:v', '1', '-q:v', '2', os.path.join(reels, f'{slug}-portada.jpg')])

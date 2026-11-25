@@ -1,0 +1,140 @@
+{
+ "slug": "etiquetar-contenido-ia-obligatorio",
+ "_nota": "Reel «historia» (25-11-2026, agente iando-redes). Todo sale del artículo; fechas y multa comprobadas en artificialintelligenceact.eu (art. 50 y 99) y Future of Privacy Forum.",
+ "palabra": "ETIQUETA",
+ "musica": "suave",
+ "tema": "color",
+ "escenas": [
+  {
+   "voz": "¿El chatbot de tu negocio dice que es una IA?",
+   "clave": "IA",
+   "tipo": "frase",
+   "texto": "¿Dice que es una IA?",
+   "sub": "el chatbot **de tu negocio**"
+  },
+  {
+   "voz": "Desde el 2 de agosto, es obligatorio.",
+   "clave": "obligatorio",
+   "tipo": "aviso",
+   "app": "Reglamento de IA · Artículo 50",
+   "texto": "Avisar de que la persona habla con una IA: obligatorio desde el 2 de agosto de 2026."
+  },
+  {
+   "voz": "Y el 2 de diciembre termina la última transición.",
+   "clave": "diciembre",
+   "tipo": "frase",
+   "texto": "2 de diciembre",
+   "sub": "termina la **última transición**"
+  },
+  {
+   "voz": "Pero esa le toca a la herramienta, no a ti.",
+   "clave": "herramienta",
+   "tipo": "versus",
+   "a": "tú",
+   "b": "proveedor"
+  },
+  {
+   "voz": "A ti te tocan dos cosas.",
+   "clave": "dos",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "message-circle",
+     "titulo": "Avisar de que es una IA"
+    },
+    {
+     "icono": "image",
+     "titulo": "Etiquetar los deepfakes"
+    }
+   ]
+  },
+  {
+   "voz": "La primera: tu chatbot se presenta como IA.",
+   "clave": "presenta",
+   "tipo": "chat",
+   "nombre": "Tu clínica",
+   "inicial": "IA",
+   "color": "#25d366",
+   "mensajes": [
+    {
+     "de": "ia",
+     "texto": "Hola, soy el asistente virtual (IA) de la clínica."
+    }
+   ],
+   "desde": 0
+  },
+  {
+   "voz": "Como tarde, en el primer mensaje.",
+   "clave": "primer",
+   "tipo": "chat",
+   "nombre": "Tu clínica",
+   "inicial": "IA",
+   "color": "#25d366",
+   "mensajes": [
+    {
+     "de": "ia",
+     "texto": "Hola, soy el asistente virtual (IA) de la clínica."
+    },
+    {
+     "de": "yo",
+     "texto": "Quería pedir cita"
+    }
+   ],
+   "desde": 1
+  },
+  {
+   "voz": "Por teléfono, igual: asistente automático al empezar.",
+   "clave": "teléfono",
+   "tipo": "frase",
+   "texto": "Asistente automático",
+   "sub": "por teléfono, **al empezar la llamada**"
+  },
+  {
+   "voz": "La segunda: imágenes, vídeos o voces que parecen reales.",
+   "clave": "reales",
+   "tipo": "tarjetas",
+   "items": [
+    {
+     "icono": "video",
+     "titulo": "Persona real diciendo algo que no dijo"
+    },
+    {
+     "icono": "store",
+     "titulo": "Una reforma de tu local que no existe"
+    },
+    {
+     "icono": "mic",
+     "titulo": "Una voz clonada en un anuncio"
+    }
+   ]
+  },
+  {
+   "voz": "Ahí basta con avisar: creado con IA.",
+   "clave": "avisar",
+   "tipo": "prompt",
+   "app": "Tu publicación",
+   "texto": "[Creado con IA]",
+   "sello": "ETIQUETA VISIBLE"
+  },
+  {
+   "voz": "Retocar la luz o recortar no cuenta.",
+   "clave": "recortar",
+   "tipo": "frase",
+   "texto": "Retocar o recortar",
+   "sub": "**no** hace falta etiquetarlo"
+  },
+  {
+   "voz": "La multa llega a 15 millones, o el 3 por ciento.",
+   "clave": "multa",
+   "tipo": "cifra",
+   "valor": "15",
+   "unidad": "millones €",
+   "texto": "o el **3 %** de la facturación · en pymes, la cantidad **menor**"
+  },
+  {
+   "voz": "Comenta ETIQUETA y te paso la guía con el checklist.",
+   "clave": "ETIQUETA",
+   "tipo": "cierre"
+  }
+ ]
+}
