@@ -572,11 +572,6 @@
             var f = largo(), hh = hora;
             $("rv-resumen-fin").innerHTML = resumen() + "<br>A nombre de <b>" + esc(nombre) + "</b>";
             ir(4);
-            if (WHATSAPP && /^\d+$/.test(WHATSAPP)) {
-              var a = document.createElement("a"); a.className = "btn btn-wa"; a.target = "_blank"; a.rel = "noopener";
-              a.href = "https:" + "//wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hola, acabo de reservar mesa para " + personas + " el " + f + " a las " + hh + " a nombre de " + nombre + ".");
-              a.textContent = "Avisar por WhatsApp (opcional)"; $("rv-fin-botones").prepend(a);
-            }
           } else { var m = (res && res.error) || "No se pudo reservar. Inténtalo de nuevo."; if (/hora/i.test(m)) ir(2); estado(m, "mal"); }
         })
         .catch(function () { estado("No se pudo reservar. Escríbenos por WhatsApp.", "mal"); })
