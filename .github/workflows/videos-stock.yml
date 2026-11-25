@@ -27,8 +27,8 @@ jobs:
           PY
             while read id nombre ini seg; do
               out="$dir/$nombre.mp4"; [ -f "$out" ] && continue
-              curl -sSL -A "Mozilla/5.0" -o /tmp/orig.mp4 "https://www.pexels.com/download/video/$id/" || { echo "fallo $id" >> "$dir/errores.txt"; continue; }
-              ffmpeg -v error -y -ss "$ini" -t "$seg" -i /tmp/orig.mp4 -an \
+              curl -sSL --fail -A "Mozilla/5.0" -o /tmp/orig.mp4 "https://www.pexels.com/download/video/$id/" || { echo "fallo $id" >> "$dir/errores.txt"; continue; }
+              ffmpeg -nostdin -v error -y -ss "$ini" -t "$seg" -i /tmp/orig.mp4 -an \
                 -vf "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30" \
                 -c:v libx264 -preset veryfast -crf 26 -pix_fmt yuv420p "$out" || echo "fallo ffmpeg $id" >> "$dir/errores.txt"
               ls -la "$out" || true
