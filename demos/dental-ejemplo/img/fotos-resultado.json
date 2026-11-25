@@ -1,0 +1,112 @@
+[
+ {
+  "nombre": "inicio",
+  "url": "https://images.unsplash.com/photo-1777331903190-341a3dd0441b?w=2400&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/inicio.jpg",
+  "tamano": [
+   1800,
+   1000
+  ],
+  "kb": 167
+ },
+ {
+  "nombre": "revision",
+  "url": "https://images.unsplash.com/photo-1663755489920-5e09f66d011a?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/revision.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 43
+ },
+ {
+  "nombre": "limpieza",
+  "url": "https://images.unsplash.com/photo-1681939282781-341ac4f61996?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/limpieza.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 40
+ },
+ {
+  "nombre": "blanqueamiento",
+  "url": "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/blanqueamiento.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 23
+ },
+ {
+  "nombre": "ortodoncia",
+  "url": "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/ortodoncia.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 30
+ },
+ {
+  "nombre": "urgencia",
+  "url": "https://images.unsplash.com/photo-1657470179447-0f5aa16daa91?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/urgencia.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 33
+ },
+ {
+  "nombre": "alt-sillon",
+  "url": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/alt-sillon.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 39
+ },
+ {
+  "nombre": "alt-alineador",
+  "url": "https://images.unsplash.com/photo-1777793636393-a0fec488f3fb?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/alt-alineador.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 29
+ },
+ {
+  "nombre": "alt-sillon2",
+  "url": "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/alt-sillon2.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 42
+ },
+ {
+  "nombre": "alt-rx",
+  "url": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=2000&q=80&fm=jpg&fit=max",
+  "ok": true,
+  "archivo": "img/alt-rx.jpg",
+  "tamano": [
+   640,
+   480
+  ],
+  "kb": 37
+ }
+]
