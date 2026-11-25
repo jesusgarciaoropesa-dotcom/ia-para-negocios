@@ -8,14 +8,14 @@ REPO = Path(__file__).resolve().parents[3]
 DEMO = REPO / "demos/dental-ejemplo/index.html"
 ADMIN = REPO / "taller/reservas/admin.html"
 OUT = REPO / "demos/dental-ejemplo/capturas"
-FM = Path(os.environ.get("FONTS_DIR", "fonts/node_modules"))  # npm i @fontsource/sora @fontsource/instrument-sans @fontsource/handlee
+FM = Path(os.environ.get("FONTS_DIR", "fonts/node_modules"))  # npm i @fontsource/sora @fontsource/albert-sans @fontsource/handlee
 MOCK = Path(__file__).with_name("mock-supabase.js")
 NEG = "fe74ec14-f676-4256-b76e-4c351c4d2af3"
 
 F = lambda fam, w: FM / f"@fontsource/{fam}/files/{fam}-latin-{w}-normal.woff2"
 FONTS = {
     "Sora": [(f"so{w}", F("sora", w), str(w), None) for w in (700, 800)],
-    "Instrument Sans": [(f"is{w}", F("instrument-sans", w), str(w), None) for w in (400, 600, 700)],
+    "Albert Sans": [(f"as{w}", F("albert-sans", w), str(w), None) for w in (400, 600, 700)],
     "Handlee": [("hl400", F("handlee", 400), "400", None)],
 }
 ARCH = {k: p for fam in FONTS.values() for k, p, *_ in fam}
