@@ -211,9 +211,9 @@ function construir(e,i){
        else if(M==="raiz"){ const cx=512, top=330;
          svg = `<rect x="0" y="0" width="1024" height="1024" fill="#eef3f6" opacity=".88"/><g transform="translate(${cx} ${top})"><path d="M-230 0 h460 l-60 470 h-340z" fill="#c8693c" stroke="#6e3216" stroke-width="8"/><path d="M-212 30 h424 l-52 410 h-320z" fill="#6b4a2b"/>`+
            [...Array(9)].map((_,k)=>`<path class="raiz" d="M${-120+k*30} 40 q${(k%2?30:-30)} 120 ${(k%3-1)*40} 220 t${(k%2?-20:20)} 140" stroke="#e8d3a8" stroke-width="${6-k%3}" fill="none" stroke-linecap="round"/>`).join("")+
-           `${mata(0,10,0,"m",1.5)}<g class="burbujas" style="transform-origin:0 235px">${[...Array(48)].map((_,k)=>`<circle cx="${-250+(k%8)*72+((Math.floor(k/8))%2)*36}" cy="${30+Math.floor(k/8)*78}" r="26" fill="#dff1ff" fill-opacity=".55" stroke="#9cc9e8" stroke-width="3"/>`).join("")}</g></g>`+
+           `${mata(0,10,0,"m",1.1)}<g class="burbujas" style="transform-origin:0 235px">${[...Array(48)].map((_,k)=>`<circle cx="${-250+(k%8)*72+((Math.floor(k/8))%2)*36}" cy="${30+Math.floor(k/8)*78}" r="26" fill="#dff1ff" fill-opacity=".55" stroke="#9cc9e8" stroke-width="3"/>`).join("")}</g></g>`+
            [0,1,2,3].map(k=>`<g class="frio" data-k="${k}"><path d="M0 0 h90 m-30 -26 l30 26 l-30 26" stroke="#4aa3e0" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`).join("")+
-           `<text class="frase-raiz" x="${cx}" y="${top-40}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="54" fill="#4aa3e0">LA RAÍZ PASA FRÍO</text>`; }
+           `<text class="frase-raiz" x="${cx}" y="${top-150}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="54" fill="#4aa3e0">LA RAÍZ PASA FRÍO</text>`; }
   } else if(P==="terraza"){ const [cx,cy]=q.cartel;
        svg = (q.vapor||[]).map(v=>[0,1,2].map(k=>`<circle class="vapor" data-k="${k}" cx="${v[0]}" cy="${v[1]}" r="12" fill="#fff" opacity="0"/>`).join("")).join("")+
          `<g class="neon"><rect x="${cx-120}" y="${cy-42}" width="240" height="84" rx="16" fill="#1b1530" stroke="#2bd46b" stroke-width="5"/><text x="${cx}" y="${cy+16}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="44" fill="#57ff95" style="filter:drop-shadow(0 0 8px #2bd46b)">ABIERTO</text></g>`;
@@ -312,7 +312,7 @@ function animar(e,d,lt,dur){
         $$(".hoja").forEach(h=>{const k=+h.dataset.k; let u=k<i0?1:k===i0?cl((ph-0.55)/0.4):-1; if(u<0){h.style.opacity=0;return;} const sx=xs[1+k], ex=x1+70+(k%3-1)*30, ey=yt-215;
           h.style.opacity=1; h.setAttribute("transform",`translate(${sx+(ex-sx)*u} ${yt-40+(ey-yt+40)*u-Math.sin(u*Math.PI)*120}) rotate(${u*200+k*20})`);}); }
     } else if(P==="helada"){ const M=q.modo, [x0,x1,yt]=q.tierra;
-      const nocheA=(a)=>{ const nn=$1(".noche"); if(nn) nn.setAttribute("opacity",0.42*a); const lu=$1(".luna"); if(lu) lu.setAttribute("opacity",a); };
+      const nocheA=(a)=>{ const f=$1(".fondo"); if(f) f.style.filter=`brightness(${1-0.5*a}) saturate(${1-0.35*a}) hue-rotate(${-12*a}deg)`; const lu=$1(".luna"); if(lu) lu.setAttribute("opacity",a); };
       if(M==="termometro"){ const a=cl(lt/(dur*0.8)), temp=Math.round(12-14*ease(a)); $1(".merc").setAttribute("y",40+330*ease(a)); $1(".merc").setAttribute("height",380-330*ease(a));
         $1(".grados").textContent=temp+" °C"; $1(".grados").setAttribute("fill", temp<=0?"#1d6fb8":"#2b2a3f"); nocheA(ease(a));
         $$(".cristal").forEach(c=>{const k=+c.dataset.k; c.setAttribute("opacity", cl((a-0.55-k*0.012)/0.2));});
