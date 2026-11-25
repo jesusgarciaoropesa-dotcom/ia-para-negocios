@@ -298,9 +298,11 @@ function animar(e,d,lt,dur){
         $$(".semilla").forEach(c=>{const k=+c.dataset.k, t0=k*(dur*0.7)/18, u=cl((lt-t0)/0.6); const sx=x0+(x1-x0)*cl(t0/(dur*0.75)); c.setAttribute("cx",sx+((k*37)%20-10)); c.setAttribute("cy",yt-215+(225)*u*u); c.setAttribute("opacity",lt<t0?0:1);});
         $$(".tierrita").forEach(c=>{const k=+c.dataset.k; c.setAttribute("opacity",cl((lt-dur*0.6-k*0.02)/0.3));}); }
       else if(M==="brotes"){ roset(".brote",k=>0.15+0.75*ease(cl((lt-0.3-k*0.12)/(dur*0.55)))); $1(".ndia").textContent="Día "+(1+Math.floor(9*cl(lt/(dur*0.8)))); }
-      else if(M==="riego"){ const rx=x1-170, ry=yt-330; $1(".regadera").setAttribute("transform",`translate(${rx} ${ry}) rotate(${-25*ease(cl(lt/0.6))} 110 60)`);
-        const bx=rx+215, by=ry-10;
-        $$(".gota").forEach(g=>{const k=+g.dataset.k, c=((lt*1.6+k/16)%1); g.setAttribute("cx",bx-c*60+((k*13)%30)); g.setAttribute("cy",by+c*(yt-by)); g.setAttribute("opacity",lt<0.5?0:0.9);});
+      else if(M==="riego"){ // regadera a la derecha, volteada: el pitorro apunta a la jardinera y baja al regar (corregido 25-11-2026, Jesús: «riega del revés»)
+        const rx=x1+60, ry=yt-330, th=35*ease(cl(lt/0.6)), rad=th*Math.PI/180;
+        $1(".regadera").setAttribute("transform",`translate(${rx} ${ry}) scale(-1 1) rotate(${th} 110 60)`);
+        const px=105, py=-92, bx=rx-(110+px*Math.cos(rad)-py*Math.sin(rad)), by=ry+(60+px*Math.sin(rad)+py*Math.cos(rad));
+        $$(".gota").forEach(g=>{const k=+g.dataset.k, c=((lt*1.6+k/16)%1); g.setAttribute("cx",bx-c*40+((k*13)%30)-15); g.setAttribute("cy",by+c*(yt-by)); g.setAttribute("opacity",lt<0.5?0:0.9);});
         const w=cl((lt-0.6)/(dur*0.7)); const ch=$1(".charco"); ch.setAttribute("rx",10+240*w); ch.setAttribute("ry",6+10*w); ch.setAttribute("opacity",0.85*cl(w*3));
         roset(".planta",k=>0.85-0.25*w); $$(".planta .r").forEach(r=>r.style.filter=`saturate(${1-0.6*w}) brightness(${1-0.15*w})`); }
       else if(M==="calendario"){ const sem=[1,3,5,7], st=Math.min(3,Math.floor(cl(lt/(dur*0.85))*4)); $1(".semana").textContent="Semana "+sem[st];
