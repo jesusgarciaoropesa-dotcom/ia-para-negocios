@@ -1,0 +1,20 @@
+name: Avisar a Bing (IndexNow)
+# Cada vez que se publica o cambia un artículo o una página de iando.xyz, avisa a Bing (y al resto de buscadores
+# que usan IndexNow) para que lo lea enseguida. ChatGPT busca en el índice de Bing. Gratis, sin cuenta.
+on:
+  push:
+    branches: [main]
+    paths: ["articulos/**.html", "categorias/**.html", "*.html", "sitemap.xml"]
+jobs:
+  avisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Avisar
+        run: |
+          urls=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'articulos/*.html' 'categorias/*.html' '*.html' 2>/dev/null | grep -v -E '^(404|google[0-9a-f]+)\.html$' | while read f; do [ -f "$f" ] && echo "https://iando.xyz/$f"; done | sed 's#/index.html$#/#')
+          [ -z "$urls" ] && { echo "Nada que avisar"; exit 0; }
+          echo "$urls"
+          lista=$(echo "$urls" | head -1000 | python3 -c 'import json,sys;print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))')
+          curl -s -o /dev/null -w "IndexNow: %{http_code}\n" -X POST https://api.indexnow.org/indexnow -H "Content-Type: application/json; charset=utf-8"             -d "{\"host\":\"iando.xyz\",\"key\":\"ac21863150ba1fe245e6f9715d91ad2d\",\"keyLocation\":\"https://iando.xyz/ac21863150ba1fe245e6f9715d91ad2d.txt\",\"urlList\":$lista}"

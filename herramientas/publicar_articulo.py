@@ -135,6 +135,25 @@ def en_buscador(a, comprobar):
     return accion
 
 
+MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
+
+
+def marcar_actualizado(ruta, fecha, comprobar):
+    """Artículo revisado: fecha visible «Actualizado el …» en la barra del artículo y dateModified en el JSON-LD
+    (las IA y Google prefieren contenido con fecha de actualización a la vista)."""
+    t = ruta.read_text(encoding="utf-8")
+    d = datetime.date.fromisoformat(fecha); txt = f"Actualizado el {d.day} de {MESES[d.month - 1]} de {d.year}"
+    t2 = re.sub(r'"dateModified":\s*"[^"]*"', f'"dateModified":"{fecha}"', t, count=1)
+    if "Actualizado el " in t2:
+        t2 = re.sub(r"Actualizado el \d{1,2} de [a-z]+ de \d{4}", txt, t2, count=1)
+    else:
+        t2 = re.sub(r'(<div class="article-meta-bar">.*?<span class="separator">·</span><span>[^<]*</span>)',
+                    lambda m: m.group(1) + f'\n          <span class="separator">·</span><span class="actualizado">{txt}</span>', t2, count=1, flags=re.S)
+    if t2 != t and not comprobar:
+        ruta.write_text(t2, encoding="utf-8")
+    return t2 != t
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("articulo")
@@ -149,6 +168,11 @@ def main():
         res["categoria_cambios"] = en_categoria(a, x.comprobar)
     res["sitemap"] = en_sitemap(a, x.fecha, x.comprobar)
     res["buscador"] = en_buscador(a, x.comprobar)
+    if x.actualizado:
+        res["fecha_visible"] = marcar_actualizado(ruta, x.fecha, x.comprobar)
+    if not x.comprobar:
+        import generar_llms
+        res["llms"] = generar_llms.main()
     print(json.dumps(res, ensure_ascii=False))
 
 
