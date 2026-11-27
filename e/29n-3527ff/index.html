@@ -41,6 +41,9 @@ button.enviar:disabled{opacity:.5;cursor:default}
 .dona svg{width:150px;height:150px;flex:none}
 .dona ul{list-style:none;margin:0;padding:0;font-size:.92rem;flex:1;min-width:150px}
 .dona li{margin:3px 0;white-space:nowrap}
+.hemi{display:block;width:100%;height:auto;margin:10px 0 2px}
+.esc{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:.95rem;margin-top:6px}
+.esc b{font-variant-numeric:tabular-nums;text-align:right}
 .ok{font-size:1.15rem;color:var(--tinta);font-weight:600}
 .ap{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--linea)}
 .ap:last-child{border-bottom:0}
@@ -85,6 +88,13 @@ button.enviar:disabled{opacity:.5;cursor:default}
       <div class="dona" id="est-dona"></div>
       <div id="est-lista"></div>
     </div>
+    <div id="dip" hidden>
+      <strong style="display:block;margin-top:18px">Diputados (proyección)</strong>
+      <svg class="hemi" id="hemi" viewBox="0 0 300 160" role="img" aria-label="Hemiciclo con el reparto de los 350 diputados"></svg>
+      <div class="esc" id="dip-lista"></div>
+      <p class="nota" id="dip-may" style="margin-top:8px"></p>
+      <p class="nota">Cálculo: cada partido sube o baja en cada provincia en la misma proporción que su porcentaje nacional en este sondeo respecto a 2023 (Frente Amplio y Podemos sobre la base de Sumar). Luego, ley D'Hondt en cada provincia con barrera del 3 %. Con pocas respuestas, un solo voto puede mover muchos escaños.</p>
+    </div>
     <strong style="display:block;margin-top:18px">Todas las respuestas</strong>
     <div id="res-lista"></div>
     <p class="nota" style="margin-top:14px">La estimación sale solo de las respuestas recogidas aquí, entre quienes han recibido el enlace. No es una muestra elegida para parecerse a toda España, así que el error real puede ser mayor que el margen indicado.</p>
@@ -106,6 +116,49 @@ const COLOR = { pp: "#1d6fc2", psoe: "#e2231a", vox: "#5ac035", frente_amplio: "
   junts: "#1fb5a8", bildu: "#a3c51a", pnv: "#0b7a3e", bng: "#7cb7e3", cc: "#f2d21b",
   otro: "#8a94a3", blanco: "#c9ced6", no_votare: "#4b5260", no_sabe: "#a8afba" };
 const etiqueta = (k) => `<span class="pt" style="--c:${COLOR[k] || "#999"}"><i></i>${NOMBRE[k] || k}</span>`;
+// Resultados de 2023 por provincia (Ministerio del Interior): [escaños 2026, votos por grupo…]
+const BASE = {"k":["pp","psoe","vox","sumar","erc","junts","bildu","pnv","bng","cc","otro","blanco"],"p":[[6,131524,93282,68364,21485,0,0,0,0,0,0,4123,2464],[8,221703,211200,96720,82115,0,0,0,0,0,0,18257,7103],[6,169976,144080,62526,61594,0,0,0,0,0,0,6078,4348],[7,185996,165862,81080,58567,0,0,0,0,0,0,7283,4057],[5,93565,92326,37572,26752,0,0,0,0,0,0,4179,2410],[5,137617,133819,54400,29461,0,0,0,0,0,0,10937,2497],[11,302000,239172,129758,96652,0,0,0,0,0,0,13247,7509],[12,353663,387760,141087,148745,0,0,0,0,0,0,17152,10951],[3,45783,40307,15155,13774,0,0,0,0,0,0,3659,1217],[3,26586,22226,9932,4126,0,0,0,0,0,0,12633,410],[7,186776,159858,79376,69925,0,0,0,0,0,0,18077,4693],[7,212816,205049,74571,88630,0,0,0,0,0,0,9887,6079],[8,179303,151786,76547,83487,0,0,0,0,0,0,7453,4704],[8,136857,175671,77343,54369,0,0,0,0,0,33558,48477,3062],[7,174770,165590,0,53632,0,0,0,0,0,82805,12488,5088],[5,147326,116596,49243,29713,0,0,0,0,0,0,4010,3262],[4,88299,76322,36750,15834,0,0,0,0,0,0,2152,1834],[5,114709,100102,46046,17405,0,0,0,0,0,0,2364,2353],[3,45255,42528,17700,6325,0,0,0,0,0,0,1031,969],[3,51195,46479,27126,12907,0,0,0,0,0,0,2063,1143],[6,146533,126072,76044,31876,0,0,0,0,0,0,4064,2611],[3,42369,26828,15068,5027,0,0,0,0,0,0,8032,632],[4,82329,69775,25858,17508,0,0,0,0,0,0,5248,1851],[4,101605,92578,35451,18577,0,0,0,0,0,0,25452,1577],[3,40709,33613,12504,5877,0,0,0,0,0,0,3426,833],[4,93318,60718,29203,11012,0,0,0,0,0,0,3210,1649],[3,39894,27113,12510,7137,0,0,0,0,0,0,1084,875],[2,18895,14966,4978,1711,0,0,0,0,0,0,9934,285],[5,129170,103596,47948,28049,0,0,0,0,0,0,5127,2419],[3,46196,33601,13652,5839,0,0,0,0,0,0,3200,922],[32,367519,952347,201775,405993,328697,258159,0,0,0,0,131929,21059],[6,31341,93448,22706,35344,47531,63251,0,0,0,0,26386,2981],[4,23699,54414,12560,14561,34331,33228,0,0,0,0,9687,2059],[6,51061,121126,38039,41719,55461,40791,0,0,0,0,16659,3168],[5,148068,153473,53492,26778,0,0,0,0,0,0,6425,3225],[4,89633,91692,32076,16354,0,0,0,0,0,0,4375,1721],[8,292272,190897,34410,82618,0,0,0,0,67653,0,4655,5197],[4,99769,60163,8643,10287,0,0,0,0,17197,0,1256,1251],[4,93182,56035,9080,10171,0,0,0,0,15317,0,1377,1109],[7,227658,179737,27539,75615,0,0,0,0,53828,0,4882,3865],[38,1463183,1004599,506164,557780,0,0,0,0,0,0,47987,28960],[5,57134,93553,19491,43922,0,0,58954,0,0,0,65900,2890],[4,30212,46775,6573,21561,0,0,32987,28075,0,0,2202,722],[6,32721,87709,7877,40081,0,0,117321,85026,0,0,3881,2005],[8,70533,157448,16069,66592,0,0,125867,164188,0,0,5605,3391],[10,307972,189210,163124,71578,0,0,0,0,0,0,10879,5034],[4,79715,62322,17056,11470,0,0,0,0,0,0,2492,1608],[12,330293,287737,146133,115787,0,0,0,0,0,0,12667,6575],[5,108302,100530,48913,44187,0,0,0,0,0,0,3343,2655],[16,483469,461353,218657,242839,0,0,0,0,0,0,20033,10810],[1,12918,11332,7752,821,0,0,0,0,0,0,170,328],[1,13446,6943,4359,827,0,0,0,0,0,0,1521,253]]};
+function diputados(votos) {
+  const K = BASE.k, nv = K.filter((k) => k !== "otro").reduce((a, k) => a + (k === "sumar" ? (votos.frente_amplio || 0) + (votos.podemos || 0) : (votos[k] || 0)), 0) + (votos.otro || 0);
+  if (!nv) return null;
+  const tot = {}; BASE.p.forEach((f) => K.forEach((k, i) => { tot[k] = (tot[k] || 0) + f[i + 1]; }));
+  const t23 = K.reduce((a, k) => a + tot[k], 0);
+  const cuota = (k) => (k === "sumar" ? (votos.frente_amplio || 0) + (votos.podemos || 0) : (votos[k] || 0)) / nv;
+  const ratio = Object.fromEntries(K.map((k) => [k, cuota(k) / (tot[k] / t23)]));
+  const esc = {};
+  BASE.p.forEach((f) => {
+    const n = f[0], w = Object.fromEntries(K.map((k, i) => [k, f[i + 1] * ratio[k]]));
+    const validos = K.reduce((a, k) => a + w[k], 0);
+    const cand = K.filter((k) => k !== "blanco" && k !== "otro" && w[k] > 0 && w[k] >= 0.03 * validos);
+    const q = []; cand.forEach((k) => { for (let d = 1; d <= n; d++) q.push([w[k] / d, k]); });
+    q.sort((a, b) => b[0] - a[0]).slice(0, n).forEach(([, k]) => { esc[k] = (esc[k] || 0) + 1; });
+  });
+  // Frente Amplio y Podemos comparten la base de Sumar: sus escaños se reparten según su peso en el sondeo
+  if (esc.sumar) {
+    const fa = votos.frente_amplio || 0, po = votos.podemos || 0;
+    const nfa = Math.round(esc.sumar * fa / ((fa + po) || 1));
+    if (nfa) esc.frente_amplio = nfa; if (esc.sumar - nfa) esc.podemos = esc.sumar - nfa;
+    delete esc.sumar;
+  }
+  return Object.entries(esc).sort((a, b) => b[1] - a[1]);
+}
+const IZQ = ["podemos", "frente_amplio", "bildu", "erc", "bng", "psoe", "pnv", "junts", "cc", "pp", "vox"];
+function hemiciclo(esc) {
+  // 350 escaños en filas concéntricas, ordenados de izquierda a derecha
+  const orden = []; IZQ.forEach((k) => { const e = esc.find(([x]) => x === k); if (e) for (let i = 0; i < e[1]; i++) orden.push(k); });
+  esc.forEach(([k, n]) => { if (!IZQ.includes(k)) for (let i = 0; i < n; i++) orden.push(k); });
+  const filas = 9, r0 = 52, r1 = 140, pts = [];
+  const radios = Array.from({ length: filas }, (_, i) => r0 + (r1 - r0) * i / (filas - 1));
+  const sumaR = radios.reduce((a, r) => a + r, 0);
+  let usados = 0;
+  radios.forEach((r, i) => {
+    const n = i === filas - 1 ? orden.length - usados : Math.round(orden.length * r / sumaR);
+    for (let j = 0; j < n; j++) { const a = Math.PI * (1 - j / Math.max(1, n - 1)); pts.push([a, 150 + r * Math.cos(a), 150 - r * Math.sin(a)]); }
+    usados += n;
+  });
+  pts.sort((a, b) => b[0] - a[0]);
+  return pts.map(([, x, y], i) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.6" fill="${COLOR[orden[i]] || "#999"}"></circle>`).join("");
+}
 function dona(filas, total) {
   const R = 60, C = 2 * Math.PI * R; let acum = 0;
   const arcos = filas.map(([k, n]) => {
@@ -157,6 +210,15 @@ function pintarResultados(r) {
     }).join("");
     $("#est-dona").innerHTML = dona(validas, nv) + `<ul>${validas.map(([k, n]) => `<li>${etiqueta(k)} ${coma(100 * n / nv)} %</li>`).join("")}</ul>`;
     $("#est").hidden = false;
+    const esc = diputados(Object.fromEntries(validas));
+    if (esc) {
+      $("#hemi").innerHTML = hemiciclo(esc);
+      $("#dip-lista").innerHTML = esc.map(([k, n]) => `${etiqueta(k)}<b>${n}</b>`).join("");
+      const pp_vox = esc.filter(([k]) => k === "pp" || k === "vox").reduce((a, [, n]) => a + n, 0);
+      const ganador = esc[0];
+      $("#dip-may").textContent = `Mayoría absoluta: 176. ${NOMBRE[ganador[0]]} ${ganador[1] >= 176 ? "la tendría en solitario" : "sería primera fuerza"}${pp_vox >= 176 && ganador[1] < 176 ? "; PP y Vox sumarían " + pp_vox : ""}.`;
+      $("#dip").hidden = false;
+    }
   }
   $("#resultados").hidden = false;
 }
