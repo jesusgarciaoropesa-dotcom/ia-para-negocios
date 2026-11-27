@@ -32,12 +32,25 @@ button.enviar:disabled{opacity:.5;cursor:default}
 .barra{height:10px;background:var(--marca-suave);border-radius:6px;overflow:hidden;margin-top:4px}
 .barra i{display:block;height:100%;background:var(--marca)}
 .ok{font-size:1.15rem;color:var(--tinta);font-weight:600}
+.ap{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--linea)}
+.ap:last-child{border-bottom:0}
+.ap span{flex:1}
+.ap b{min-width:2.2em;text-align:center;font-variant-numeric:tabular-nums}
+.ap button{width:48px;height:44px;border-radius:10px;border:1px solid var(--linea);background:var(--papel);color:var(--tinta);font:600 1.3rem system-ui,sans-serif;cursor:pointer}
+.ap button.mas{background:var(--marca);border-color:var(--marca);color:var(--papel)}
+.ap button:disabled{opacity:.4}
 </style>
 </head>
 <body>
 <main>
   <h1>¿A quién vas a votar el 29‑N?</h1>
   <p>Sondeo personal y anónimo sobre las elecciones generales del domingo 29 de noviembre. No se guarda tu nombre, tu correo ni tu dirección IP: solo la opción que elijas y la hora.</p>
+
+  <section class="tarjeta" id="apuntar" hidden>
+    <strong>Apuntar respuestas</strong>
+    <p class="nota">Solo con tu enlace privado. Pregunta a quien quieras y toca + en lo que te diga. El − quita la última que apuntaste de esa opción (las que llegan por el enlace no se tocan). El número es lo que llevas apuntado tú.</p>
+    <div id="ap-lista"></div>
+  </section>
 
   <form class="tarjeta" id="form" hidden>
     <strong>Elige una opción</strong>
@@ -121,6 +134,29 @@ function pintarResultados(r) {
   $("#resultados").hidden = false;
 }
 
+let apuntados = {};
+function pintarApuntar() {
+  $("#ap-lista").innerHTML = [...PARTIDOS, ...OTRAS].map(([v, t]) =>
+    `<div class="ap"><span>${t}</span><button type="button" data-ap="${v}" data-d="-1" aria-label="Quitar una de ${t}">−</button><b id="ap-${v}">${apuntados[v] || 0}</b><button type="button" class="mas" data-ap="${v}" data-d="1" aria-label="Apuntar una de ${t}">+</button></div>`).join("");
+  $("#apuntar").hidden = false;
+}
+$("#ap-lista").addEventListener("click", async (e) => {
+  const btn = e.target.closest("button[data-ap]"); if (!btn) return;
+  const v = btn.dataset.ap, d = Number(btn.dataset.d);
+  if (d < 0 && !(apuntados[v] > 0)) return;
+  btn.disabled = true; $("#aviso").textContent = "";
+  try {
+    const res = await rpc("sondeo_29n_apuntar", { p_clave: CLAVE, p_voto: v, p_delta: d });
+    if (res !== "ok") throw new Error(res);
+    apuntados[v] = Math.max(0, (apuntados[v] || 0) + d);
+    $("#ap-" + v).textContent = apuntados[v];
+    const r = await rpc("sondeo_29n_resultados", { p_clave: CLAVE });
+    if (r.abierto) pintarResultados(r);
+  } catch (err) {
+    $("#aviso").textContent = err.message === "cerrado" ? "El sondeo ya está cerrado." : "No se ha podido apuntar. Revisa la conexión y vuelve a intentarlo.";
+  } finally { btn.disabled = false; }
+});
+
 $("#form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const v = new FormData(e.target).get("voto");
@@ -143,6 +179,8 @@ $("#form").addEventListener("submit", async (e) => {
   try { r = await rpc("sondeo_29n_resultados", { p_clave: CLAVE }); } catch (e) {}
   const cerrado = Date.now() >= Date.parse("2026-11-29T20:00:00+01:00");
   if (r.abierto) pintarResultados(r);
+  // Con la clave: modo apuntar (en lugar del formulario público)
+  if (CLAVE && r.apuntados) { apuntados = r.apuntados; if (!cerrado) pintarApuntar(); return; }
   if (cerrado) { if (!r.abierto) $("#aviso").textContent = "El sondeo está cerrado. Los resultados se publican a las 21:00."; return; }
   if (guardado.get()) { $("#hecho").hidden = false; return; }
   pintarOpciones(); $("#form").hidden = false;
