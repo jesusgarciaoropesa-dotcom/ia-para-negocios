@@ -13,7 +13,7 @@ jobs:
         with: {fetch-depth: 0}
       - name: Avisar
         run: |
-          urls=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'articulos/*.html' 'categorias/*.html' '*.html' 2>/dev/null | grep -v -E '^(404|google[0-9a-f]+)\.html$' | while read f; do [ -f "$f" ] && echo "https://iando.xyz/$f"; done | sed 's#/index.html$#/#')
+          urls=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'articulos/*.html' 'categorias/*.html' '*.html' 2>/dev/null | grep -v -E '^(404|google[0-9a-f]+)\.html$|^e/' | while read f; do [ -f "$f" ] && echo "https://iando.xyz/$f"; done | sed 's#/index.html$#/#')
           [ -z "$urls" ] && { echo "Nada que avisar"; exit 0; }
           echo "$urls"
           lista=$(echo "$urls" | head -1000 | python3 -c 'import json,sys;print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))')
