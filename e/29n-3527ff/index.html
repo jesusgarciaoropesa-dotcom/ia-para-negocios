@@ -31,6 +31,12 @@ button.enviar:disabled{opacity:.5;cursor:default}
 .fila .t{display:flex;justify-content:space-between;font-size:.95rem}
 .barra{height:10px;background:var(--marca-suave);border-radius:6px;overflow:hidden;margin-top:4px}
 .barra i{display:block;height:100%;background:var(--marca)}
+.pt{display:inline-flex;align-items:center;gap:8px}
+.pt i{width:14px;height:14px;border-radius:50%;flex:none;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.dona{display:flex;gap:16px;align-items:center;margin:12px 0 4px;flex-wrap:wrap}
+.dona svg{width:150px;height:150px;flex:none}
+.dona ul{list-style:none;margin:0;padding:0;font-size:.92rem;flex:1;min-width:150px}
+.dona li{margin:3px 0;white-space:nowrap}
 .ok{font-size:1.15rem;color:var(--tinta);font-weight:600}
 .ap{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--linea)}
 .ap:last-child{border-bottom:0}
@@ -71,6 +77,7 @@ button.enviar:disabled{opacity:.5;cursor:default}
     <div id="est" hidden>
       <strong style="display:block;margin-top:4px">Estimación del resultado</strong>
       <p class="nota" id="est-sub"></p>
+      <div class="dona" id="est-dona"></div>
       <div id="est-lista"></div>
     </div>
     <strong style="display:block;margin-top:18px">Todas las respuestas</strong>
@@ -89,6 +96,20 @@ const PARTIDOS = [
 ];
 const OTRAS = [["otro", "Otro partido"], ["blanco", "Voto en blanco"], ["no_votare", "No voy a votar"], ["no_sabe", "Aún no lo sé"]];
 const NOMBRE = Object.fromEntries([...PARTIDOS, ...OTRAS]);
+// Color de cada candidatura (aproximado, sin logotipos)
+const COLOR = { pp: "#1d6fc2", psoe: "#e2231a", vox: "#5ac035", frente_amplio: "#d6336c", podemos: "#6c2a6a", erc: "#f5a623",
+  junts: "#1fb5a8", bildu: "#a3c51a", pnv: "#0b7a3e", bng: "#7cb7e3", cc: "#f2d21b",
+  otro: "#8a94a3", blanco: "#c9ced6", no_votare: "#4b5260", no_sabe: "#a8afba" };
+const etiqueta = (k) => `<span class="pt" style="--c:${COLOR[k] || "#999"}"><i></i>${NOMBRE[k] || k}</span>`;
+function dona(filas, total) {
+  const R = 60, C = 2 * Math.PI * R; let acum = 0;
+  const arcos = filas.map(([k, n]) => {
+    const l = total ? C * n / total : 0;
+    const a = `<circle r="${R}" cx="75" cy="75" fill="none" stroke="${COLOR[k] || "#999"}" stroke-width="26" stroke-dasharray="${l} ${C - l}" stroke-dashoffset="${-acum}" transform="rotate(-90 75 75)"></circle>`;
+    acum += l; return a;
+  }).join("");
+  return `<svg viewBox="0 0 150 150" role="img" aria-label="Gráfico circular de la estimación">${arcos}</svg>`;
+}
 const CLAVE = new URLSearchParams(location.search).get("ver");
 const $ = (s) => document.querySelector(s);
 const guardado = { get() { try { return localStorage.getItem("sondeo29n"); } catch (e) { return null; } },
@@ -104,7 +125,7 @@ async function rpc(fn, args) {
 function pintarOpciones() {
   const mezcla = PARTIDOS.slice();
   for (let i = mezcla.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [mezcla[i], mezcla[j]] = [mezcla[j], mezcla[i]]; }
-  const fila = ([v, t]) => `<label class="op"><input type="radio" name="voto" value="${v}"><span>${t}</span></label>`;
+  const fila = ([v, t]) => `<label class="op"><input type="radio" name="voto" value="${v}">${etiqueta(v)}</label>`;
   $("#opciones").innerHTML = mezcla.map(fila).join("") + `<hr class="sep">` + OTRAS.map(fila).join("");
   $("#opciones").addEventListener("change", () => { $("#enviar").disabled = false; });
 }
@@ -116,7 +137,7 @@ function pintarResultados(r) {
   $("#res-sub").textContent = total === 1 ? "1 respuesta" : `${total} respuestas`;
   $("#res-lista").innerHTML = filas.map(([k, n]) => {
     const pct = total ? (100 * n / total) : 0;
-    return `<div class="fila"><div class="t"><span>${NOMBRE[k] || k}</span><span>${pct.toFixed(1).replace(".", ",")} % · ${n}</span></div><div class="barra"><i style="width:${pct}%"></i></div></div>`;
+    return `<div class="fila"><div class="t">${etiqueta(k)}<span>${pct.toFixed(1).replace(".", ",")} % · ${n}</span></div><div class="barra"><i style="width:${pct}%;background:${COLOR[k] || "var(--marca)"}"></i></div></div>`;
   }).join("") || "<p>Aún no hay respuestas.</p>";
   // Estimación: porcentaje sobre voto válido (partidos + en blanco), como se cuenta el domingo.
   // Fuera quien no va a votar y quien aún no lo sabe. Margen de error al 95 % para cada opción.
@@ -127,8 +148,9 @@ function pintarResultados(r) {
     $("#est-sub").textContent = `Sobre ${nv} ${nv === 1 ? "voto válido" : "votos válidos"} (sin contar quien no va a votar ni quien aún no lo sabe). Entre paréntesis, el margen de error.`;
     $("#est-lista").innerHTML = validas.map(([k, n]) => {
       const p = n / nv, pct = 100 * p, me = 100 * 1.96 * Math.sqrt(p * (1 - p) / nv);
-      return `<div class="fila"><div class="t"><span>${NOMBRE[k] || k}</span><span><strong>${coma(pct)} %</strong> (±${coma(me)})</span></div><div class="barra"><i style="width:${pct}%"></i></div></div>`;
+      return `<div class="fila"><div class="t">${etiqueta(k)}<span><strong>${coma(pct)} %</strong> (±${coma(me)})</span></div><div class="barra"><i style="width:${pct}%;background:${COLOR[k] || "var(--marca)"}"></i></div></div>`;
     }).join("");
+    $("#est-dona").innerHTML = dona(validas, nv) + `<ul>${validas.map(([k, n]) => `<li>${etiqueta(k)} ${coma(100 * n / nv)} %</li>`).join("")}</ul>`;
     $("#est").hidden = false;
   }
   $("#resultados").hidden = false;
@@ -137,7 +159,7 @@ function pintarResultados(r) {
 let apuntados = {};
 function pintarApuntar() {
   $("#ap-lista").innerHTML = [...PARTIDOS, ...OTRAS].map(([v, t]) =>
-    `<div class="ap"><span>${t}</span><button type="button" data-ap="${v}" data-d="-1" aria-label="Quitar una de ${t}">−</button><b id="ap-${v}">${apuntados[v] || 0}</b><button type="button" class="mas" data-ap="${v}" data-d="1" aria-label="Apuntar una de ${t}">+</button></div>`).join("");
+    `<div class="ap"><span>${etiqueta(v)}</span><button type="button" data-ap="${v}" data-d="-1" aria-label="Quitar una de ${t}">−</button><b id="ap-${v}">${apuntados[v] || 0}</b><button type="button" class="mas" data-ap="${v}" data-d="1" aria-label="Apuntar una de ${t}">+</button></div>`).join("");
   $("#apuntar").hidden = false;
 }
 $("#ap-lista").addEventListener("click", async (e) => {
