@@ -55,8 +55,14 @@ button.enviar:disabled{opacity:.5;cursor:default}
   <section class="tarjeta" id="resultados" hidden>
     <strong id="res-tit">Resultados</strong>
     <p class="nota" id="res-sub"></p>
+    <div id="est" hidden>
+      <strong style="display:block;margin-top:4px">Estimación del resultado</strong>
+      <p class="nota" id="est-sub"></p>
+      <div id="est-lista"></div>
+    </div>
+    <strong style="display:block;margin-top:18px">Todas las respuestas</strong>
     <div id="res-lista"></div>
-    <p class="nota" style="margin-top:14px">Es un sondeo informal entre quienes han recibido el enlace, no una encuesta con muestra representativa: sirve como curiosidad, no como predicción.</p>
+    <p class="nota" style="margin-top:14px">La estimación sale solo de las respuestas recogidas aquí, entre quienes han recibido el enlace. No es una muestra elegida para parecerse a toda España, así que el error real puede ser mayor que el margen indicado.</p>
   </section>
 
   <p class="nota" id="aviso" role="status" aria-live="polite"></p>
@@ -99,6 +105,19 @@ function pintarResultados(r) {
     const pct = total ? (100 * n / total) : 0;
     return `<div class="fila"><div class="t"><span>${NOMBRE[k] || k}</span><span>${pct.toFixed(1).replace(".", ",")} % · ${n}</span></div><div class="barra"><i style="width:${pct}%"></i></div></div>`;
   }).join("") || "<p>Aún no hay respuestas.</p>";
+  // Estimación: porcentaje sobre voto válido (partidos + en blanco), como se cuenta el domingo.
+  // Fuera quien no va a votar y quien aún no lo sabe. Margen de error al 95 % para cada opción.
+  const validas = filas.filter(([k]) => k !== "no_votare" && k !== "no_sabe");
+  const nv = validas.reduce((a, [, n]) => a + n, 0);
+  const coma = (x) => x.toFixed(1).replace(".", ",");
+  if (nv > 0) {
+    $("#est-sub").textContent = `Sobre ${nv} ${nv === 1 ? "voto válido" : "votos válidos"} (sin contar quien no va a votar ni quien aún no lo sabe). Entre paréntesis, el margen de error.`;
+    $("#est-lista").innerHTML = validas.map(([k, n]) => {
+      const p = n / nv, pct = 100 * p, me = 100 * 1.96 * Math.sqrt(p * (1 - p) / nv);
+      return `<div class="fila"><div class="t"><span>${NOMBRE[k] || k}</span><span><strong>${coma(pct)} %</strong> (±${coma(me)})</span></div><div class="barra"><i style="width:${pct}%"></i></div></div>`;
+    }).join("");
+    $("#est").hidden = false;
+  }
   $("#resultados").hidden = false;
 }
 
