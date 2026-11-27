@@ -32,6 +32,8 @@ Tipos de escena (todas llevan "voz" = la frase que se lee y, opcional, "clave" =
   foto      {"imagen": "img/escena.jpg", "foco": "50% 30%", "globo": {...}}  foto o imagen generada (Cloudflare) en grande, con zoom lento y bocadillo
   captura   {"imagen": "capturas/reserva-movil.png", "desplazar": true}  captura real (ruta relativa a la config)
             dentro de un móvil; con desplazar, baja poco a poco como si se hiciera scroll
+  (sin voz, cada escena puede llevar "dur" en segundos; "formato": "4:5" en la raíz = diapositiva de carrusel 1080x1350,
+   ver generar_carrusel_video.py)
   cierre    {}  «Comenta PALABRA y te paso la guía». Opcional: "arriba", "palabra", "abajo" para otro cierre y "caja": true
             para enseñar debajo la caja de comentarios escribiendo la palabra (reels de servicios: «YO»)
 Opcional en la raíz de la config: "musica": "suave" | "animada" (bucles propios de musica.py, sin derechos de nadie):
@@ -389,7 +391,7 @@ function animar(e,d,lt,dur){
 function caption(f,t){
   const palabras=f.texto.split(" "), tot=f.texto.length; let acc=0;
   const tiempos=palabras.map(p=>{ const ini=f.ini+f.dur*0.92*acc/tot; acc+=p.length+1; return ini; });
-  const trozos=[]; for(let i=0;i<palabras.length;i+=3) trozos.push([i,Math.min(palabras.length,i+3)]);
+  const trozos=[]; const TZ=window.TROZO||3; for(let i=0;i<palabras.length;i+=TZ) trozos.push([i,Math.min(palabras.length,i+TZ)]);
   if(trozos.length>1 && trozos[trozos.length-1][1]-trozos[trozos.length-1][0]===1){ const u=trozos.pop(); trozos[trozos.length-1][1]=u[1]; }
   let c=trozos[0]; for(const z of trozos) if(t>=tiempos[z[0]]) c=z;
   const limpia = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[.,;:¿?¡!«»"]/g,"").toLowerCase();
@@ -434,12 +436,16 @@ def pagina(cfg, datos):
                   "linear-gradient(90deg,#ecebe4 2px,transparent 2px);background-size:60px 60px;opacity:.7}.pz text{font-family:inherit;font-weight:800}")
     if cfg.get("tema") == "verde":   # MiHuertoUrbano: mismo estilo con verdes de huerto
         extra = extra.replace("#2e2a8f 0%,#4f46e5 45%,#7c3aed 100%", "#14532d 0%,#1f7a3d 45%,#3f9b4a 100%").replace("background:#3f37c9", "background:#1f7a3d").replace("#22d3ee", "#a3e635").replace("#f472b6", "#fbbf24")
+    if cfg.get("formato") == "4:5":   # diapositiva de carrusel en vídeo (1080x1350), prueba MiHuerto 27-11-2026
+        extra += ("body{height:1350px}#cap{top:60px!important;font-size:66px!important;left:50px;right:50px}"
+                  ".esc{top:300px!important;transform:scale(1)!important}.marca{bottom:34px;font-size:34px}"
+                  "#fondo i:nth-child(3){top:1000px}")
     css = CSS.replace("url(F/", f"url(file://{AQUI / 'fuentes'}/") + extra
     fondo = "<div id='fondo'><i></i><i></i><i></i><b></b></div>" if color else ""
     return (f"<!doctype html><html lang='es'><head><meta charset='utf-8'><style>{css}</style></head><body>{fondo}"
             f"<div id='cap'></div><div id='escenas'></div><script>window.DATOS={json.dumps(datos, ensure_ascii=False)};"
             f"window.ESCENAS={json.dumps(cfg['escenas'], ensure_ascii=False)};window.PALABRA={json.dumps(cfg.get('palabra', ''))};"
-            f"window.MARCA={json.dumps(cfg.get('marca','iando.xyz'))};window.ICONOS={json.dumps(iconos)};window.DIBUJOS={json.dumps(dibujos)};{JS}{JS_COLOR if color else ''}</script></body></html>")
+            f"window.MARCA={json.dumps(cfg.get('marca','iando.xyz'))};window.TROZO={9 if cfg.get("formato") == "4:5" else 3};window.ICONOS={json.dumps(iconos)};window.DIBUJOS={json.dumps(dibujos)};{JS}{JS_COLOR if color else ''}</script></body></html>")
 
 
 # Voz: el cupo gratuito de Gemini es de pocos audios al día, así que se pide UN SOLO audio con el guion entero
@@ -504,7 +510,7 @@ def main():
             pcm = G.recortar(pcm, sr)
             dur = len(pcm) / 2 / sr
         elif a.sin_voz:
-            pcm, dur = b"", max(1.4, len(f) / 15)
+            pcm, dur = b"", e.get("dur") or max(1.4, len(f) / 15)
         else:
             sys.exit(f"Falta la voz de «{f}». Pídela con --pedido-voz (o usa --sin-voz para una vista previa).")
         pcms.append(pcm)
@@ -526,11 +532,14 @@ def main():
     (tmp / "reel.html").write_text(pagina(cfg, datos))
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
-        b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1080, "height": 1920})
+        b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1080, "height": 1350 if cfg.get("formato") == "4:5" else 1920})
         pg.on("pageerror", lambda e: print("ERROR JS:", e, file=sys.stderr)); pg.goto(f"file://{tmp / 'reel.html'}"); pg.wait_for_timeout(500)
         n = int(total * FPS + 0.999)
-        for k in range(n):
+        # carrusel: Instagram enseña el primer fotograma como miniatura, así que el vídeo empieza con la escena ya montada
+        k0 = int((datos[0]["ini"] + 0.5) * FPS) if cfg.get("formato") == "4:5" else 0
+        for k in range(k0, n):
             pg.evaluate("t => window.render(t)", k / FPS)
+            k -= k0   # numeración de fotogramas desde 0
             if cfg.get("fondo_video"):
                 pg.screenshot(path=str(tmp / "fr" / f"{k:05d}.png"), omit_background=True)
             else:

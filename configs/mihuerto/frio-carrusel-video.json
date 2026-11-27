@@ -1,0 +1,101 @@
+{
+ "slug": "frio-carrusel-video",
+ "tema": "verde",
+ "marca": "mihuertourbano.xyz",
+ "palabra": "INVIERNO",
+ "diapositivas": [
+  {
+   "escenas": [
+    {
+     "tipo": "frase",
+     "voz": "4 cultivos que sí aguantan el frío en tu balcón",
+     "clave": "frío",
+     "texto": "❄️🌱",
+     "sub": "Desliza →",
+     "dur": 3.6
+    }
+   ]
+  },
+  {
+   "escenas": [
+    {
+     "tipo": "foto",
+     "imagen": "img/cultivo-habas-maceta.jpg",
+     "voz": "Habas y guisantes: de los más resistentes",
+     "clave": "resistentes",
+     "globo": {
+      "titulo": "Siémbralos en otoño",
+      "texto": "y aguantan todo el invierno",
+      "color": "#1f9d55",
+      "y": 640
+     },
+     "dur": 4.6
+    }
+   ]
+  },
+  {
+   "escenas": [
+    {
+     "tipo": "foto",
+     "imagen": "img/cultivo-espinacas-maceta.jpg",
+     "voz": "Espinacas y acelgas aguantan heladas ligeras",
+     "clave": "heladas",
+     "globo": {
+      "titulo": "Truco",
+      "texto": "mejor si ya están bien asentadas antes del frío fuerte",
+      "color": "#1f9d55",
+      "y": 640
+     },
+     "dur": 4.6
+    }
+   ]
+  },
+  {
+   "escenas": [
+    {
+     "tipo": "foto",
+     "imagen": "img/ajos-maceta.jpg",
+     "voz": "Ajos y cebollas pasan el invierno creciendo despacio",
+     "clave": "despacio",
+     "globo": {
+      "titulo": "Ciclo largo",
+      "texto": "se siembran en otoño, sin miedo al frío",
+      "color": "#1f9d55",
+      "y": 640
+     },
+     "dur": 4.6
+    }
+   ]
+  },
+  {
+   "escenas": [
+    {
+     "tipo": "foto",
+     "imagen": "img/cultivo-lechuga-maceta.jpg",
+     "voz": "Lechugas de invierno: elige bien la variedad",
+     "clave": "variedad",
+     "globo": {
+      "titulo": "Ojo",
+      "texto": "revisa siempre el sobre de semillas",
+      "color": "#e0413a",
+      "y": 640
+     },
+     "dur": 4.6
+    }
+   ]
+  },
+  {
+   "escenas": [
+    {
+     "tipo": "cierre",
+     "voz": "Comenta INVIERNO y te paso la guía",
+     "clave": "INVIERNO",
+     "arriba": "Comenta",
+     "palabra": "INVIERNO",
+     "abajo": "y te paso **la guía completa**",
+     "dur": 3.6
+    }
+   ]
+  }
+ ]
+}
